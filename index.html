@@ -299,14 +299,15 @@
   .works-filter button:hover{color:var(--text)}
   .works-filter button.on{color:var(--text)}
   .works-filter button.on::after{transform:scaleX(1)}
-  .works-grid{column-count:2;column-gap:clamp(12px,2vw,22px)}
-  @media(max-width:600px){.works-grid{column-count:2;column-gap:10px}}
-  .work{break-inside:avoid;margin-bottom:clamp(12px,2vw,22px);position:relative;border-radius:14px;overflow:hidden;background:var(--panel2);display:block}
+  .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,2vw,22px)}
+  @media(min-width:760px){.works-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:600px){.works-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+  .work{position:relative;border-radius:14px;overflow:hidden;background:var(--panel2);display:block}
   .work.hide{display:none}
-  .work .img{width:100%;transition:transform 1.1s var(--ease)}
+  .work .img{width:100%;aspect-ratio:4/5;transition:transform 1.1s var(--ease)}
   .work:hover .img{transform:scale(1.05)}
   .work.tall .img{aspect-ratio:4/5}
-  .work.wide .img{aspect-ratio:5/4}
+  .work.wide .img{aspect-ratio:4/5}
   .work::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(8,10,11,.8));pointer-events:none}
   .work figcaption{position:absolute;left:18px;right:18px;bottom:16px;z-index:2}
   .work .wc{display:block;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
@@ -329,6 +330,7 @@
   .news{list-style:none;border-top:1px solid var(--line-soft)}
   .news li{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:clamp(14px,2.5vw,30px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
   .news li:hover{padding-left:8px}
+  .news li[data-slug]{cursor:pointer}
   .news .ndate{font-family:var(--sans);font-weight:500;font-size:.82rem;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
   .news .pill{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:5px 14px;white-space:nowrap;justify-self:start;background:none}
   .news .nt{font-family:var(--jp);font-weight:500;font-size:clamp(1rem,2.1vw,1.2rem);letter-spacing:.01em;line-height:1.45;color:var(--text)}
@@ -477,9 +479,9 @@
     margin-bottom:clamp(22px,3vw,30px)}
 
   /* ---------- WORKS PAGE ---------- */
-  .wp-grid{column-count:3;column-gap:clamp(12px,1.6vw,18px)}
-  @media(max-width:900px){.wp-grid{column-count:2}}
-  @media(max-width:560px){.wp-grid{column-count:2;column-gap:10px}}
+  .wp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,18px)}
+  @media(max-width:900px){.wp-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.wp-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
   @media(max-width:600px){
     .work figcaption{left:11px;right:11px;bottom:11px}
     .work .wt{font-size:.86rem;line-height:1.28}
@@ -506,6 +508,10 @@
     transition:border-color .3s,color .3s,background .3s}
   .ct-sns a:hover{border-color:var(--accent);color:var(--accent);background:rgba(224,166,97,.06)}
   .ct-form{display:flex;flex-direction:column;gap:clamp(16px,2.2vw,22px)}
+  .field label .req{color:var(--accent);margin-left:5px;font-weight:700}
+  .field label .opt{color:var(--muted);margin-left:7px;font-weight:500;font-size:.92em;letter-spacing:.08em;opacity:.8}
+  .ct-req-note{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.12em;color:var(--muted);margin:0 0 clamp(14px,2vw,18px)}
+  .ct-req-note .req{color:var(--accent);font-weight:700;margin-right:3px}
   .ct-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,20px)}
   @media(max-width:520px){.ct-row{grid-template-columns:1fr}}
   .field{display:flex;flex-direction:column;gap:8px}
@@ -701,6 +707,20 @@
   .wd-desc{font-size:1rem;line-height:2;color:var(--text);white-space:pre-line}
   .wd-ig{margin:clamp(30px,4.4vw,52px) 0 0;display:flex;justify-content:center}
   .wd-ig iframe{border-radius:14px!important}
+  /* multi-post vertical story gallery */
+  .wd-gallery{display:flex;flex-direction:column;gap:clamp(16px,2.8vw,30px);margin:clamp(26px,3.6vw,40px) 0}
+  .wd-shot{position:relative;display:block;border-radius:16px;overflow:hidden;background:var(--panel2);text-decoration:none}
+  .wd-shot .img{width:100%;display:block;transition:transform 1.1s var(--ease)}
+  a.wd-shot:hover .img{transform:scale(1.03)}
+  .wd-shot .wd-cap{position:absolute;left:clamp(14px,2.4vw,22px);bottom:clamp(12px,2vw,18px);right:clamp(14px,2.4vw,22px);
+    z-index:2;font-family:var(--mincho);font-size:clamp(.95rem,1.8vw,1.18rem);color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.6);line-height:1.4}
+  .wd-shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,10,11,.72));pointer-events:none}
+  a.wd-shot .wd-shot-go{position:absolute;top:clamp(12px,2vw,16px);right:clamp(12px,2vw,16px);z-index:3;
+    font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.12em;color:#fff;
+    background:rgba(0,0,0,.4);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.35);
+    padding:7px 13px;border-radius:100px;opacity:0;transform:translateY(-4px);transition:.3s}
+  a.wd-shot:hover .wd-shot-go{opacity:1;transform:none}
+  @media(max-width:600px){a.wd-shot .wd-shot-go{opacity:1;transform:none;font-size:.54rem;padding:6px 11px}}
   .ig-cta{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:100px;
     border:1px solid var(--line);font-family:var(--sans);font-weight:600;font-size:.78rem;
     letter-spacing:.06em;color:var(--text);transition:border-color .3s,color .3s,background .3s}
@@ -871,7 +891,7 @@
         </ul>
       </div>
       <div class="about-stats">
-        <div><span class="n accent" data-count="285" data-suffix="K">0</span><span class="sl">Instagram</span></div>
+        <div><span class="n accent" data-count="285" data-suffix="K+">0</span><span class="sl">Instagram</span></div>
         <div><span class="n" data-count="68" data-suffix="K">0</span><span class="sl">Facebook</span></div>
         <div><span class="n" data-count="30" data-suffix="+">0</span><span class="sl">Clients</span></div>
       </div>
@@ -924,17 +944,17 @@
       <button data-filter="exhibition">Exhibition</button>
     </div>
   <div class="works-grid" id="worksGrid">
-    <figure class="work tall" data-cat="ambassador"><div class="img ph-city reveal-media"></div>
+    <figure class="work tall" data-cat="ambassador" data-slug="w1"><div class="img ph-city reveal-media"></div>
       <figcaption><span class="wc">Ambassador</span><span class="wt">Team Galaxy アンバサダー</span><span class="wclient">Client — Samsung</span></figcaption></figure>
-    <figure class="work wide" data-cat="ambassador"><div class="img ph-sakura reveal-media"></div>
+    <figure class="work wide" data-cat="ambassador" data-slug="w2"><div class="img ph-sakura reveal-media"></div>
       <figcaption><span class="wc">Ambassador</span><span class="wt">Adobe Lightroom Ambassador</span><span class="wclient">Client — Adobe</span></figcaption></figure>
-    <figure class="work tall" data-cat="commercial"><div class="img ph-bamboo reveal-media"></div>
+    <figure class="work tall" data-cat="commercial" data-slug="w3"><div class="img ph-bamboo reveal-media"></div>
       <figcaption><span class="wc">Commercial</span><span class="wt">クリスマス ドローンショー 2024</span><span class="wclient">Client — Coca-Cola</span></figcaption></figure>
-    <figure class="work wide" data-cat="tourism"><div class="img ph-okinawa reveal-media"></div>
+    <figure class="work wide" data-cat="tourism" data-slug="w4"><div class="img ph-okinawa reveal-media"></div>
       <figcaption><span class="wc">Tourism</span><span class="wt">釜山／慶州 FAM ツアー</span><span class="wclient">Client — 韓国観光公社</span></figcaption></figure>
-    <figure class="work tall" data-cat="official"><div class="img ph-portrait reveal-media"></div>
+    <figure class="work tall" data-cat="official" data-slug="w5"><div class="img ph-portrait reveal-media"></div>
       <figcaption><span class="wc">Official</span><span class="wt">光の神苑 平安神宮 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
-    <figure class="work wide" data-cat="ambassador"><div class="img ph-city reveal-media"></div>
+    <figure class="work wide" data-cat="ambassador" data-slug="w6"><div class="img ph-city reveal-media"></div>
       <figcaption><span class="wc">Ambassador</span><span class="wt">Alfa Romeo Junior アンバサダー</span><span class="wclient">Client — Alfa Romeo</span></figcaption></figure>
   </div>
   <div class="more-row rv">
@@ -1010,12 +1030,12 @@
 <section class="sec wrap" id="news">
   <div class="sec-head rv"><span class="eyebrow">Updates</span><h2 class="en-h">News</h2></div>
   <ul class="news">
-    <li class="rv"><div class="ndate">2025.08</div><span class="pill pill-exhibition">Exhibition</span><h3 class="nt">JR京都駅ビル EKIspot KYOTO にて写真が展示されました。</h3><span class="new">NEW</span></li>
-    <li class="rv"><div class="ndate">2025.08</div><span class="pill pill-official">Official</span><h3 class="nt">NAKED, Inc.｜伏見稲荷大社・八坂神社のオフィシャル撮影を担当。</h3><span class="new">NEW</span></li>
-    <li class="rv"><div class="ndate">2025.08</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">Adobe Partner｜Adobe Lightroom の PR 投稿をしました。</h3><span class="new">NEW</span></li>
-    <li class="rv"><div class="ndate">2025.07</div><span class="pill pill-official">Official</span><h3 class="nt">SHONIN PARK｜別府上人ヶ浜公園 竣工撮影を担当しました。</h3></li>
-    <li class="rv"><div class="ndate">2025.07</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">オーストラリア NSW 州観光局にご招待いただき PR 投稿。</h3></li>
-    <li class="rv"><div class="ndate">2025.04</div><span class="pill pill-media">Media</span><h3 class="nt">Connect to Turkey｜GALA で上映のムービーに出演しました。</h3></li>
+    <li class="rv"data-slug="p1"><div class="ndate">2025.08</div><span class="pill pill-exhibition">Exhibition</span><h3 class="nt">JR京都駅ビル EKIspot KYOTO にて写真が展示されました。</h3><span class="new">NEW</span></li>
+    <li class="rv"data-slug="p2"><div class="ndate">2025.08</div><span class="pill pill-official">Official</span><h3 class="nt">NAKED, Inc.｜伏見稲荷大社・八坂神社のオフィシャル撮影を担当。</h3><span class="new">NEW</span></li>
+    <li class="rv"data-slug="p3"><div class="ndate">2025.08</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">Adobe Partner｜Adobe Lightroom の PR 投稿をしました。</h3><span class="new">NEW</span></li>
+    <li class="rv"data-slug="p4"><div class="ndate">2025.07</div><span class="pill pill-official">Official</span><h3 class="nt">SHONIN PARK｜別府上人ヶ浜公園 竣工撮影を担当しました。</h3></li>
+    <li class="rv"data-slug="p5"><div class="ndate">2025.07</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">オーストラリア NSW 州観光局にご招待いただき PR 投稿。</h3></li>
+    <li class="rv"data-slug="p6"><div class="ndate">2025.04</div><span class="pill pill-media">Media</span><h3 class="nt">Connect to Turkey｜GALA で上映のムービーに出演しました。</h3></li>
   </ul>
   <div class="more-row rv">
     <a class="read-more" href="#news-page" data-view="news"><span>View all news</span><span class="arr">→</span></a>
@@ -1106,43 +1126,43 @@
       <button data-filter="exhibition">Exhibition</button>
     </div>
     <div class="works-grid wp-grid" id="wpGrid">
-      <figure class="work tall" data-cat="ambassador"><div class="img ph-city"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Team Galaxy アンバサダー</span><span class="wclient">Client — Samsung</span></figcaption></figure>
-      <figure class="work wide" data-cat="ambassador"><div class="img ph-sakura"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Galaxy みんなのフォトスポット</span><span class="wclient">Client — Samsung</span></figcaption></figure>
-      <figure class="work tall" data-cat="ambassador"><div class="img ph-bamboo"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Galaxy イベント登壇</span><span class="wclient">Client — Samsung</span></figcaption></figure>
-      <figure class="work wide" data-cat="ambassador"><div class="img ph-okinawa"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Adobe Partner</span><span class="wclient">Client — Adobe</span></figcaption></figure>
-      <figure class="work tall" data-cat="ambassador"><div class="img ph-portrait"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Adobe Lightroom Ambassador</span><span class="wclient">Client — Adobe</span></figcaption></figure>
-      <figure class="work wide" data-cat="commercial"><div class="img ph-city"></div><figcaption><span class="wc">Commercial</span><span class="wt">クリスマス ドローンショー 2024</span><span class="wclient">Client — Coca-Cola</span></figcaption></figure>
-      <figure class="work tall" data-cat="tourism"><div class="img ph-sakura"></div><figcaption><span class="wc">Tourism</span><span class="wt">Turkish Airlines × HIS PR</span><span class="wclient">Client — Turkish Airlines</span></figcaption></figure>
-      <figure class="work wide" data-cat="tourism"><div class="img ph-bamboo"></div><figcaption><span class="wc">Tourism</span><span class="wt">Istanbul PR ＆ 動画出演</span><span class="wclient">Client — Turkish Airlines</span></figcaption></figure>
-      <figure class="work tall" data-cat="commercial"><div class="img ph-okinawa"></div><figcaption><span class="wc">Commercial</span><span class="wt">#個性線 フォトコンテスト審査員</span><span class="wclient">Client — JR 西日本</span></figcaption></figure>
-      <figure class="work wide" data-cat="exhibition"><div class="img ph-portrait"></div><figcaption><span class="wc">Exhibition</span><span class="wt">京都駅 EKI spot 写真展示</span><span class="wclient">Client — 京都府</span></figcaption></figure>
-      <figure class="work tall" data-cat="tourism"><div class="img ph-city"></div><figcaption><span class="wc">Tourism</span><span class="wt">香港国際空港コラボ／香港 PR</span><span class="wclient">Client — Trip.com</span></figcaption></figure>
-      <figure class="work wide" data-cat="tourism"><div class="img ph-sakura"></div><figcaption><span class="wc">Tourism</span><span class="wt">GW セール PR</span><span class="wclient">Client — Trip.com</span></figcaption></figure>
-      <figure class="work tall" data-cat="tourism"><div class="img ph-bamboo"></div><figcaption><span class="wc">Tourism</span><span class="wt">ブリスベン／GC／シドニー FAM ツアー</span><span class="wclient">Client — オーストラリア政府観光局</span></figcaption></figure>
-      <figure class="work wide" data-cat="tourism"><div class="img ph-okinawa"></div><figcaption><span class="wc">Tourism</span><span class="wt">シドニー／近郊 FAM ツアー</span><span class="wclient">Client — NSW 観光局</span></figcaption></figure>
-      <figure class="work tall" data-cat="tourism"><div class="img ph-portrait"></div><figcaption><span class="wc">Tourism</span><span class="wt">大阪・関西万博 パビリオン PR</span><span class="wclient">Client — サウジアラビア王国</span></figcaption></figure>
-      <figure class="work wide" data-cat="tourism"><div class="img ph-city"></div><figcaption><span class="wc">Tourism</span><span class="wt">アラビアの驚異 PR</span><span class="wclient">Client — サウジアラビア王国</span></figcaption></figure>
-      <figure class="work tall" data-cat="tourism"><div class="img ph-sakura"></div><figcaption><span class="wc">Tourism</span><span class="wt">Saudi Meet Tour PR</span><span class="wclient">Client — サウジアラビア王国</span></figcaption></figure>
-      <figure class="work wide" data-cat="tourism"><div class="img ph-bamboo"></div><figcaption><span class="wc">Tourism</span><span class="wt">釜山／慶州 FAM ツアー</span><span class="wclient">Client — 韓国観光公社</span></figcaption></figure>
-      <figure class="work tall" data-cat="commercial"><div class="img ph-okinawa"></div><figcaption><span class="wc">Commercial</span><span class="wt">みどりの日 PR（紙面・YouTube 出演）</span><span class="wclient">Client — 産経新聞／日本公園緑地協会</span></figcaption></figure>
-      <figure class="work wide" data-cat="ambassador"><div class="img ph-portrait"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Alfa Romeo Junior アンバサダー</span><span class="wclient">Client — Alfa Romeo</span></figcaption></figure>
-      <figure class="work tall" data-cat="commercial"><div class="img ph-city"></div><figcaption><span class="wc">Commercial</span><span class="wt">Ace Pro 2 プロモーション</span><span class="wclient">Client — Insta360</span></figcaption></figure>
-      <figure class="work wide" data-cat="commercial"><div class="img ph-sakura"></div><figcaption><span class="wc">Commercial</span><span class="wt">ウェディング撮影</span><span class="wclient">Client — 奥仲麻琴</span></figcaption></figure>
-      <figure class="work tall" data-cat="commercial"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">eSIM PR</span><span class="wclient">Client — Holafly</span></figcaption></figure>
-      <figure class="work wide" data-cat="official"><div class="img ph-okinawa"></div><figcaption><span class="wc">Official</span><span class="wt">光の神苑 平安神宮 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
-      <figure class="work tall" data-cat="official"><div class="img ph-portrait"></div><figcaption><span class="wc">Official</span><span class="wt">伏見稲荷大社 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
-      <figure class="work wide" data-cat="official"><div class="img ph-city"></div><figcaption><span class="wc">Official</span><span class="wt">八坂神社 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
-      <figure class="work tall" data-cat="official"><div class="img ph-sakura"></div><figcaption><span class="wc">Official</span><span class="wt">夏まつり 2023 二条城 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
-      <figure class="work wide" data-cat="official"><div class="img ph-bamboo"></div><figcaption><span class="wc">Official</span><span class="wt">京の七夕 in 宇治 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
-      <figure class="work tall" data-cat="exhibition"><div class="img ph-okinawa"></div><figcaption><span class="wc">Exhibition</span><span class="wt">CP+ 2025 作品展示 ＆ PR</span><span class="wclient">Client — K&F Concept</span></figcaption></figure>
-      <figure class="work wide" data-cat="official"><div class="img ph-portrait"></div><figcaption><span class="wc">Official</span><span class="wt">別府上人ヶ浜公園 竣工撮影</span><span class="wclient">Client — SHONIN PARK</span></figcaption></figure>
-      <figure class="work tall" data-cat="official"><div class="img ph-city"></div><figcaption><span class="wc">Official</span><span class="wt">秋の特別拝観 PR</span><span class="wclient">Client — 勝林寺</span></figcaption></figure>
-      <figure class="work wide" data-cat="commercial"><div class="img ph-sakura"></div><figcaption><span class="wc">Commercial</span><span class="wt">風景写真講座</span><span class="wclient">Client — MK タクシー</span></figcaption></figure>
-      <figure class="work tall" data-cat="commercial"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">フォトコンテスト審査員</span><span class="wclient">Client — CIZUCU</span></figcaption></figure>
-      <figure class="work wide" data-cat="hotel"><div class="img ph-okinawa"></div><figcaption><span class="wc">Hotel</span><span class="wt">ホテル PR</span><span class="wclient">Client — ダブルツリー by ヒルトン東京有明</span></figcaption></figure>
-      <figure class="work tall" data-cat="hotel"><div class="img ph-portrait"></div><figcaption><span class="wc">Hotel</span><span class="wt">ホテル PR</span><span class="wclient">Client — EMIL NAKIJIN</span></figcaption></figure>
-      <figure class="work wide" data-cat="hotel"><div class="img ph-city"></div><figcaption><span class="wc">Hotel</span><span class="wt">プロモーション</span><span class="wclient">Client — JUNEI HOTEL</span></figcaption></figure>
-      <figure class="work tall" data-cat="hotel"><div class="img ph-sakura"></div><figcaption><span class="wc">Hotel</span><span class="wt">ホテル PR</span><span class="wclient">Client — 天橋立 文珠荘</span></figcaption></figure>
+      <figure class="work tall" data-cat="ambassador" data-slug="w7"><div class="img ph-city"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Team Galaxy アンバサダー</span><span class="wclient">Client — Samsung</span></figcaption></figure>
+      <figure class="work wide" data-cat="ambassador" data-slug="w8"><div class="img ph-sakura"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Galaxy みんなのフォトスポット</span><span class="wclient">Client — Samsung</span></figcaption></figure>
+      <figure class="work tall" data-cat="ambassador" data-slug="w9"><div class="img ph-bamboo"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Galaxy イベント登壇</span><span class="wclient">Client — Samsung</span></figcaption></figure>
+      <figure class="work wide" data-cat="ambassador" data-slug="w10"><div class="img ph-okinawa"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Adobe Partner</span><span class="wclient">Client — Adobe</span></figcaption></figure>
+      <figure class="work tall" data-cat="ambassador" data-slug="w11"><div class="img ph-portrait"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Adobe Lightroom Ambassador</span><span class="wclient">Client — Adobe</span></figcaption></figure>
+      <figure class="work wide" data-cat="commercial" data-slug="w12"><div class="img ph-city"></div><figcaption><span class="wc">Commercial</span><span class="wt">クリスマス ドローンショー 2024</span><span class="wclient">Client — Coca-Cola</span></figcaption></figure>
+      <figure class="work tall" data-cat="tourism" data-slug="w13"><div class="img ph-sakura"></div><figcaption><span class="wc">Tourism</span><span class="wt">Turkish Airlines × HIS PR</span><span class="wclient">Client — Turkish Airlines</span></figcaption></figure>
+      <figure class="work wide" data-cat="tourism" data-slug="w14"><div class="img ph-bamboo"></div><figcaption><span class="wc">Tourism</span><span class="wt">Istanbul PR ＆ 動画出演</span><span class="wclient">Client — Turkish Airlines</span></figcaption></figure>
+      <figure class="work tall" data-cat="commercial" data-slug="w15"><div class="img ph-okinawa"></div><figcaption><span class="wc">Commercial</span><span class="wt">#個性線 フォトコンテスト審査員</span><span class="wclient">Client — JR 西日本</span></figcaption></figure>
+      <figure class="work wide" data-cat="exhibition" data-slug="w16"><div class="img ph-portrait"></div><figcaption><span class="wc">Exhibition</span><span class="wt">京都駅 EKI spot 写真展示</span><span class="wclient">Client — 京都府</span></figcaption></figure>
+      <figure class="work tall" data-cat="tourism" data-slug="w17"><div class="img ph-city"></div><figcaption><span class="wc">Tourism</span><span class="wt">香港国際空港コラボ／香港 PR</span><span class="wclient">Client — Trip.com</span></figcaption></figure>
+      <figure class="work wide" data-cat="tourism" data-slug="w18"><div class="img ph-sakura"></div><figcaption><span class="wc">Tourism</span><span class="wt">GW セール PR</span><span class="wclient">Client — Trip.com</span></figcaption></figure>
+      <figure class="work tall" data-cat="tourism" data-slug="w19"><div class="img ph-bamboo"></div><figcaption><span class="wc">Tourism</span><span class="wt">ブリスベン／GC／シドニー FAM ツアー</span><span class="wclient">Client — オーストラリア政府観光局</span></figcaption></figure>
+      <figure class="work wide" data-cat="tourism" data-slug="w20"><div class="img ph-okinawa"></div><figcaption><span class="wc">Tourism</span><span class="wt">シドニー／近郊 FAM ツアー</span><span class="wclient">Client — NSW 観光局</span></figcaption></figure>
+      <figure class="work tall" data-cat="tourism" data-slug="w21"><div class="img ph-portrait"></div><figcaption><span class="wc">Tourism</span><span class="wt">大阪・関西万博 パビリオン PR</span><span class="wclient">Client — サウジアラビア王国</span></figcaption></figure>
+      <figure class="work wide" data-cat="tourism" data-slug="w22"><div class="img ph-city"></div><figcaption><span class="wc">Tourism</span><span class="wt">アラビアの驚異 PR</span><span class="wclient">Client — サウジアラビア王国</span></figcaption></figure>
+      <figure class="work tall" data-cat="tourism" data-slug="w23"><div class="img ph-sakura"></div><figcaption><span class="wc">Tourism</span><span class="wt">Saudi Meet Tour PR</span><span class="wclient">Client — サウジアラビア王国</span></figcaption></figure>
+      <figure class="work wide" data-cat="tourism" data-slug="w24"><div class="img ph-bamboo"></div><figcaption><span class="wc">Tourism</span><span class="wt">釜山／慶州 FAM ツアー</span><span class="wclient">Client — 韓国観光公社</span></figcaption></figure>
+      <figure class="work tall" data-cat="commercial" data-slug="w25"><div class="img ph-okinawa"></div><figcaption><span class="wc">Commercial</span><span class="wt">みどりの日 PR（紙面・YouTube 出演）</span><span class="wclient">Client — 産経新聞／日本公園緑地協会</span></figcaption></figure>
+      <figure class="work wide" data-cat="ambassador" data-slug="w26"><div class="img ph-portrait"></div><figcaption><span class="wc">Ambassador</span><span class="wt">Alfa Romeo Junior アンバサダー</span><span class="wclient">Client — Alfa Romeo</span></figcaption></figure>
+      <figure class="work tall" data-cat="commercial" data-slug="w27"><div class="img ph-city"></div><figcaption><span class="wc">Commercial</span><span class="wt">Ace Pro 2 プロモーション</span><span class="wclient">Client — Insta360</span></figcaption></figure>
+      <figure class="work wide" data-cat="commercial" data-slug="w28"><div class="img ph-sakura"></div><figcaption><span class="wc">Commercial</span><span class="wt">ウェディング撮影</span><span class="wclient">Client — 奥仲麻琴</span></figcaption></figure>
+      <figure class="work tall" data-cat="commercial" data-slug="w29"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">eSIM PR</span><span class="wclient">Client — Holafly</span></figcaption></figure>
+      <figure class="work wide" data-cat="official" data-slug="w30"><div class="img ph-okinawa"></div><figcaption><span class="wc">Official</span><span class="wt">光の神苑 平安神宮 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
+      <figure class="work tall" data-cat="official" data-slug="w31"><div class="img ph-portrait"></div><figcaption><span class="wc">Official</span><span class="wt">伏見稲荷大社 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
+      <figure class="work wide" data-cat="official" data-slug="w32"><div class="img ph-city"></div><figcaption><span class="wc">Official</span><span class="wt">八坂神社 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
+      <figure class="work tall" data-cat="official" data-slug="w33"><div class="img ph-sakura"></div><figcaption><span class="wc">Official</span><span class="wt">夏まつり 2023 二条城 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
+      <figure class="work wide" data-cat="official" data-slug="w34"><div class="img ph-bamboo"></div><figcaption><span class="wc">Official</span><span class="wt">京の七夕 in 宇治 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
+      <figure class="work tall" data-cat="exhibition" data-slug="w35"><div class="img ph-okinawa"></div><figcaption><span class="wc">Exhibition</span><span class="wt">CP+ 2025 作品展示 ＆ PR</span><span class="wclient">Client — K&F Concept</span></figcaption></figure>
+      <figure class="work wide" data-cat="official" data-slug="w36"><div class="img ph-portrait"></div><figcaption><span class="wc">Official</span><span class="wt">別府上人ヶ浜公園 竣工撮影</span><span class="wclient">Client — SHONIN PARK</span></figcaption></figure>
+      <figure class="work tall" data-cat="official" data-slug="w37"><div class="img ph-city"></div><figcaption><span class="wc">Official</span><span class="wt">秋の特別拝観 PR</span><span class="wclient">Client — 勝林寺</span></figcaption></figure>
+      <figure class="work wide" data-cat="commercial" data-slug="w38"><div class="img ph-sakura"></div><figcaption><span class="wc">Commercial</span><span class="wt">風景写真講座</span><span class="wclient">Client — MK タクシー</span></figcaption></figure>
+      <figure class="work tall" data-cat="commercial" data-slug="w39"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">フォトコンテスト審査員</span><span class="wclient">Client — CIZUCU</span></figcaption></figure>
+      <figure class="work wide" data-cat="hotel" data-slug="w40"><div class="img ph-okinawa"></div><figcaption><span class="wc">Hotel</span><span class="wt">ホテル PR</span><span class="wclient">Client — ダブルツリー by ヒルトン東京有明</span></figcaption></figure>
+      <figure class="work tall" data-cat="hotel" data-slug="w41"><div class="img ph-portrait"></div><figcaption><span class="wc">Hotel</span><span class="wt">ホテル PR</span><span class="wclient">Client — EMIL NAKIJIN</span></figcaption></figure>
+      <figure class="work wide" data-cat="hotel" data-slug="w42"><div class="img ph-city"></div><figcaption><span class="wc">Hotel</span><span class="wt">プロモーション</span><span class="wclient">Client — JUNEI HOTEL</span></figcaption></figure>
+      <figure class="work tall" data-cat="hotel" data-slug="w43"><div class="img ph-sakura"></div><figcaption><span class="wc">Hotel</span><span class="wt">ホテル PR</span><span class="wclient">Client — 天橋立 文珠荘</span></figcaption></figure>
     </div>
     <p class="works-empty" id="wpEmpty">このカテゴリの作品は準備中です。</p>
     <p class="note">※ 実績一覧。各 .work を複製→data-cat（ambassador / tourism / commercial / official / hotel / exhibition）→画像クラス・タイトル・Client を編集。フィルターは自動連動します。写真が用意でき次第、画像クラスを実画像に差し替えてください。</p>
@@ -1157,19 +1177,23 @@
       <span class="wd-client" id="wdClient">—</span>
     </div>
     <h2 class="wd-title" id="wdTitle">—</h2>
-    <p class="wd-jp" id="wdJp">—</p>
-    <div class="wd-info">
-      <div><span class="k">Location</span><span class="v" id="wdLoc">—</span></div>
-      <div><span class="k">Year</span><span class="v" id="wdYear">—</span></div>
-      <div><span class="k">Category</span><span class="v" id="wdCatFull">—</span></div>
-    </div>
-    <figure class="wd-hero"><div class="img" id="wdImg"></div></figure>
+    <figure class="wd-hero" id="wdHeroFig" style="margin-top:clamp(20px,3vw,28px)"><div class="img" id="wdImg"></div></figure>
+    <div class="wd-gallery" id="wdGallery"></div>
     <div class="wd-body"><p class="wd-desc" id="wdDesc">—</p></div>
     <div class="wd-ig" id="wdIg"></div>
     <div class="more-row" style="margin-top:clamp(34px,5vw,56px)">
       <a class="read-more" href="#works-page"><span>View all works</span><span class="arr">→</span></a>
     </div>
-    <p class="note">※ 各作品の詳細・本文・Instagram埋め込みは &lt;script&gt; 内の <strong>WORKS</strong> データで編集します（slugごと）。instagram に投稿URLを入れると埋め込み表示、空なら「Instagramで見る」ボタンになります。</p>
+  </section>
+</main>
+
+<main id="view-post" class="view">
+  <section class="sec wrap subpage-top wd">
+    <div class="wd-meta"><span class="wd-cat" id="postCat">—</span><span class="wd-client" id="postDate">—</span></div>
+    <h2 class="wd-title" id="postTitle">—</h2>
+    <div class="wd-body" style="margin-top:clamp(20px,3vw,30px)"><p class="wd-desc" id="postBody">—</p></div>
+    <div class="more-row" id="postLinkRow" style="margin-top:clamp(30px,5vw,50px)"></div>
+    <div class="more-row" style="margin-top:clamp(22px,3.5vw,34px)"><a class="read-more" href="#news-page"><span>View all news</span><span class="arr">→</span></a></div>
   </section>
 </main>
 
@@ -1187,7 +1211,7 @@
         <div class="np-card"><span class="nn accent">100<span class="u">+</span></span><span class="nl">PR Projects</span></div>
         <div class="np-card"><span class="nn">3</span><span class="nl">Ambassadorships</span></div>
         <div class="np-card"><span class="nn">10<span class="u">+</span></span><span class="nl">Countries</span></div>
-        <div class="np-card"><span class="nn">285<span class="u">K</span></span><span class="nl">Followers</span></div>
+        <div class="np-card"><span class="nn">285<span class="u">K+</span></span><span class="nl">Followers</span></div>
       </div>
       </div>
     </div>
@@ -1208,55 +1232,55 @@
       <div class="np-year-group" id="npGroup2025">
         <h3 class="np-year rv">2025</h3>
         <ul class="news">
-          <li class="rv" data-cat="exhibition"><div class="ndate">2025.08</div><span class="pill pill-exhibition">Exhibition</span><h3 class="nt">JR京都駅ビル EKIspot KYOTO にて写真が展示されました。</h3><span class="new">NEW</span></li>
-          <li class="rv" data-cat="official"><div class="ndate">2025.08</div><span class="pill pill-official">Official</span><h3 class="nt">NAKED, Inc.｜伏見稲荷大社・八坂神社のオフィシャル撮影を担当しました。</h3><span class="new">NEW</span></li>
-          <li class="rv" data-cat="tieup"><div class="ndate">2025.08</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">Adobe Partner｜Adobe Lightroom の PR 投稿をしました。</h3><span class="new">NEW</span></li>
-          <li class="rv" data-cat="official"><div class="ndate">2025.07</div><span class="pill pill-official">Official</span><h3 class="nt">SHONIN PARK｜別府上人ヶ浜公園 竣工撮影・PR 投稿を担当しました。</h3></li>
-          <li class="rv" data-cat="tieup"><div class="ndate">2025.07</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">サウジアラビア王国主催イベントの PR 投稿をしました。</h3></li>
-          <li class="rv" data-cat="tieup"><div class="ndate">2025.07</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">オーストラリア NSW 州観光局にご招待いただき PR 投稿をしました。</h3></li>
-          <li class="rv" data-cat="tieup"><div class="ndate">2025.04</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">サウジアラビア王国 パビリオンの PR 投稿をしました。</h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2025.04</div><span class="pill pill-media">Media</span><h3 class="nt">Connect to Turkey｜GALA パーティーで上映されたムービーに出演しました。</h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2025.03</div><span class="pill pill-media">Media</span><h3 class="nt">写真集プロジェクトで中国にて 8 日間の撮影を行いました。（発売時に改めてお知らせします）</h3></li>
-          <li class="rv" data-cat="ambassador"><div class="ndate">2025.03</div><span class="pill pill-ambassador">Ambassador</span><h3 class="nt">Team Galaxy｜韓国 Samsung 本社にご招待いただきました。</h3></li>
-          <li class="rv" data-cat="ambassador"><div class="ndate">2025.03</div><span class="pill pill-ambassador">Ambassador</span><h3 class="nt">Team Galaxy｜Galaxy Experience Space（渋谷 TSUTAYA 1F）のイベントに登壇しました。</h3></li>
-          <li class="rv" data-cat="tieup"><div class="ndate">2025.02</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">サウジアラビア王国 Saudi Meet Tour の PR 投稿をしました。</h3></li>
-          <li class="rv" data-cat="tieup"><div class="ndate">2025.02</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">K&F Concept｜CP+ 2025 PR 投稿。フィルター展にて作品が展示されました。</h3></li>
-          <li class="rv" data-cat="ambassador"><div class="ndate">2025.02</div><span class="pill pill-ambassador">Ambassador</span><h3 class="nt">Team Galaxy｜Samsung Galaxy 公式アンバサダーに就任しました。</h3></li>
-          <li class="rv" data-cat="tieup"><div class="ndate">2025.01</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">Turkish Airlines × HIS の PR 投稿をしました。</h3></li>
+          <li class="rv" data-cat="exhibition"data-slug="p1"><div class="ndate">2025.08</div><span class="pill pill-exhibition">Exhibition</span><h3 class="nt">JR京都駅ビル EKIspot KYOTO にて写真が展示されました。</h3><span class="new">NEW</span></li>
+          <li class="rv" data-cat="official"data-slug="p7"><div class="ndate">2025.08</div><span class="pill pill-official">Official</span><h3 class="nt">NAKED, Inc.｜伏見稲荷大社・八坂神社のオフィシャル撮影を担当しました。</h3><span class="new">NEW</span></li>
+          <li class="rv" data-cat="tieup"data-slug="p3"><div class="ndate">2025.08</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">Adobe Partner｜Adobe Lightroom の PR 投稿をしました。</h3><span class="new">NEW</span></li>
+          <li class="rv" data-cat="official"data-slug="p8"><div class="ndate">2025.07</div><span class="pill pill-official">Official</span><h3 class="nt">SHONIN PARK｜別府上人ヶ浜公園 竣工撮影・PR 投稿を担当しました。</h3></li>
+          <li class="rv" data-cat="tieup"data-slug="p9"><div class="ndate">2025.07</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">サウジアラビア王国主催イベントの PR 投稿をしました。</h3></li>
+          <li class="rv" data-cat="tieup"data-slug="p10"><div class="ndate">2025.07</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">オーストラリア NSW 州観光局にご招待いただき PR 投稿をしました。</h3></li>
+          <li class="rv" data-cat="tieup"data-slug="p11"><div class="ndate">2025.04</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">サウジアラビア王国 パビリオンの PR 投稿をしました。</h3></li>
+          <li class="rv" data-cat="media"data-slug="p12"><div class="ndate">2025.04</div><span class="pill pill-media">Media</span><h3 class="nt">Connect to Turkey｜GALA パーティーで上映されたムービーに出演しました。</h3></li>
+          <li class="rv" data-cat="media"data-slug="p13"><div class="ndate">2025.03</div><span class="pill pill-media">Media</span><h3 class="nt">写真集プロジェクトで中国にて 8 日間の撮影を行いました。（発売時に改めてお知らせします）</h3></li>
+          <li class="rv" data-cat="ambassador"data-slug="p14"><div class="ndate">2025.03</div><span class="pill pill-ambassador">Ambassador</span><h3 class="nt">Team Galaxy｜韓国 Samsung 本社にご招待いただきました。</h3></li>
+          <li class="rv" data-cat="ambassador"data-slug="p15"><div class="ndate">2025.03</div><span class="pill pill-ambassador">Ambassador</span><h3 class="nt">Team Galaxy｜Galaxy Experience Space（渋谷 TSUTAYA 1F）のイベントに登壇しました。</h3></li>
+          <li class="rv" data-cat="tieup"data-slug="p16"><div class="ndate">2025.02</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">サウジアラビア王国 Saudi Meet Tour の PR 投稿をしました。</h3></li>
+          <li class="rv" data-cat="tieup"data-slug="p17"><div class="ndate">2025.02</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">K&F Concept｜CP+ 2025 PR 投稿。フィルター展にて作品が展示されました。</h3></li>
+          <li class="rv" data-cat="ambassador"data-slug="p18"><div class="ndate">2025.02</div><span class="pill pill-ambassador">Ambassador</span><h3 class="nt">Team Galaxy｜Samsung Galaxy 公式アンバサダーに就任しました。</h3></li>
+          <li class="rv" data-cat="tieup"data-slug="p19"><div class="ndate">2025.01</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">Turkish Airlines × HIS の PR 投稿をしました。</h3></li>
         </ul>
       </div>
 
       <div class="np-year-group" id="npGroup2024">
         <h3 class="np-year rv">2024</h3>
         <ul class="news">
-          <li class="rv" data-cat="tieup"><div class="ndate">2024.12</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">コカ・コーラ クリスマスドローンショー 2024 タイアップ投稿（リール動画 173 万回再生突破）。</h3></li>
-          <li class="rv" data-cat="tieup"><div class="ndate">2024.10</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">オーストラリア政府観光局主催のプレスツアーに参加しました。</h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2024.09</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.westjr.co.jp/press/article/2024/09/page_26230.html" target="_blank" rel="noopener">JR 西日本主催フォトコンテストの審査員として参加しました。 ↗</a></h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2024.09</div><span class="pill pill-media">Media</span><h3 class="nt">Web サイトをリニューアルしました。</h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2024.07</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://tokyocameraclub.com/calbee/kataage2024summer/" target="_blank" rel="noopener">堅あげポテト 30 周年フォトコンテスト｜Web ページ TOP に写真が掲載されました。 ↗</a></h3></li>
-          <li class="rv" data-cat="tieup"><div class="ndate">2024.06</div><span class="pill pill-partner">Tie-up</span><h3 class="nt"><a href="https://www.instagram.com/p/C8HPlusPojR/" target="_blank" rel="noopener">Galaxy みんなのフォトスポット タイアップをしました。 ↗</a></h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2024.06</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.cizucu.com/contests/hBhRj0gSJ7f85ICJHHIW" target="_blank" rel="noopener">cizucu 主宰フォトコンテストの審査員を務めました。 ↗</a></h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2024.04</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.samsung.com/jp/explore/special/galaxy-photo-spot/" target="_blank" rel="noopener">Galaxy みんなのフォトスポット｜選定者として参加しました。 ↗</a></h3></li>
-          <li class="rv" data-cat="award"><div class="ndate">2024.03</div><span class="pill pill-award">Award</span><h3 class="nt"><a href="https://www.instagram.com/p/C5ImXoQiAvy/" target="_blank" rel="noopener">美山フォトコンテスト 2023-2024「暮らすように旅をする」冬の季節賞を受賞しました。 ↗</a></h3></li>
-          <li class="rv" data-cat="award"><div class="ndate">2024.03</div><span class="pill pill-award">Award</span><h3 class="nt"><a href="https://calbee.tokyocameraclub.com/kataage2023autumn/results/" target="_blank" rel="noopener">堅あげポテト 30 周年 よる堅フォトコンテスト 秋のよる堅賞を受賞しました。 ↗</a></h3></li>
+          <li class="rv" data-cat="tieup"data-slug="p20"><div class="ndate">2024.12</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">コカ・コーラ クリスマスドローンショー 2024 タイアップ投稿（リール動画 173 万回再生突破）。</h3></li>
+          <li class="rv" data-cat="tieup"data-slug="p21"><div class="ndate">2024.10</div><span class="pill pill-partner">Tie-up</span><h3 class="nt">オーストラリア政府観光局主催のプレスツアーに参加しました。</h3></li>
+          <li class="rv" data-cat="media"data-slug="p22"><div class="ndate">2024.09</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.westjr.co.jp/press/article/2024/09/page_26230.html" target="_blank" rel="noopener">JR 西日本主催フォトコンテストの審査員として参加しました。 ↗</a></h3></li>
+          <li class="rv" data-cat="media"data-slug="p23"><div class="ndate">2024.09</div><span class="pill pill-media">Media</span><h3 class="nt">Web サイトをリニューアルしました。</h3></li>
+          <li class="rv" data-cat="media"data-slug="p24"><div class="ndate">2024.07</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://tokyocameraclub.com/calbee/kataage2024summer/" target="_blank" rel="noopener">堅あげポテト 30 周年フォトコンテスト｜Web ページ TOP に写真が掲載されました。 ↗</a></h3></li>
+          <li class="rv" data-cat="tieup"data-slug="p25"><div class="ndate">2024.06</div><span class="pill pill-partner">Tie-up</span><h3 class="nt"><a href="https://www.instagram.com/p/C8HPlusPojR/" target="_blank" rel="noopener">Galaxy みんなのフォトスポット タイアップをしました。 ↗</a></h3></li>
+          <li class="rv" data-cat="media"data-slug="p26"><div class="ndate">2024.06</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.cizucu.com/contests/hBhRj0gSJ7f85ICJHHIW" target="_blank" rel="noopener">cizucu 主宰フォトコンテストの審査員を務めました。 ↗</a></h3></li>
+          <li class="rv" data-cat="media"data-slug="p27"><div class="ndate">2024.04</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.samsung.com/jp/explore/special/galaxy-photo-spot/" target="_blank" rel="noopener">Galaxy みんなのフォトスポット｜選定者として参加しました。 ↗</a></h3></li>
+          <li class="rv" data-cat="award"data-slug="p28"><div class="ndate">2024.03</div><span class="pill pill-award">Award</span><h3 class="nt"><a href="https://www.instagram.com/p/C5ImXoQiAvy/" target="_blank" rel="noopener">美山フォトコンテスト 2023-2024「暮らすように旅をする」冬の季節賞を受賞しました。 ↗</a></h3></li>
+          <li class="rv" data-cat="award"data-slug="p29"><div class="ndate">2024.03</div><span class="pill pill-award">Award</span><h3 class="nt"><a href="https://calbee.tokyocameraclub.com/kataage2023autumn/results/" target="_blank" rel="noopener">堅あげポテト 30 周年 よる堅フォトコンテスト 秋のよる堅賞を受賞しました。 ↗</a></h3></li>
         </ul>
       </div>
 
       <div class="np-year-group" id="npGroup2023">
         <h3 class="np-year rv">2023</h3>
         <ul class="news">
-          <li class="rv" data-cat="media"><div class="ndate">2023.12</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://souda-kyoto.jp/other/hikari/" target="_blank" rel="noopener">そうだ京都、行こう。｜ひかりの京都・下鴨神社に写真が掲載されました。 ↗</a></h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2023.11</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://souda-kyoto.jp/other/hikari/" target="_blank" rel="noopener">そうだ京都、行こう。｜ひかりの京都・北野天満宮に写真が掲載されました。 ↗</a></h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2023.10</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://okunaka-makoto.jimdofree.com/" target="_blank" rel="noopener">奥仲麻琴さん Web サイトに写真を使用していただきました。 ↗</a></h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2023.10</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.instagram.com/okunaka_makoto" target="_blank" rel="noopener">奥仲麻琴さん SNS プロフィールに写真を使用していただきました。 ↗</a></h3></li>
-          <li class="rv" data-cat="media"><div class="ndate">2023.08</div><span class="pill pill-media">Media</span><h3 class="nt">そうだ京都、行こう。｜夏の京都・夜のおすすめイベント 2023 に写真が掲載されました。</h3></li>
+          <li class="rv" data-cat="media"data-slug="p30"><div class="ndate">2023.12</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://souda-kyoto.jp/other/hikari/" target="_blank" rel="noopener">そうだ京都、行こう。｜ひかりの京都・下鴨神社に写真が掲載されました。 ↗</a></h3></li>
+          <li class="rv" data-cat="media"data-slug="p31"><div class="ndate">2023.11</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://souda-kyoto.jp/other/hikari/" target="_blank" rel="noopener">そうだ京都、行こう。｜ひかりの京都・北野天満宮に写真が掲載されました。 ↗</a></h3></li>
+          <li class="rv" data-cat="media"data-slug="p32"><div class="ndate">2023.10</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://okunaka-makoto.jimdofree.com/" target="_blank" rel="noopener">奥仲麻琴さん Web サイトに写真を使用していただきました。 ↗</a></h3></li>
+          <li class="rv" data-cat="media"data-slug="p33"><div class="ndate">2023.10</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.instagram.com/okunaka_makoto" target="_blank" rel="noopener">奥仲麻琴さん SNS プロフィールに写真を使用していただきました。 ↗</a></h3></li>
+          <li class="rv" data-cat="media"data-slug="p34"><div class="ndate">2023.08</div><span class="pill pill-media">Media</span><h3 class="nt">そうだ京都、行こう。｜夏の京都・夜のおすすめイベント 2023 に写真が掲載されました。</h3></li>
         </ul>
       </div>
 
       <div class="np-year-group" id="npGroup2022">
         <h3 class="np-year rv">2022</h3>
         <ul class="news">
-          <li class="rv" data-cat="media"><div class="ndate">2022.11</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.sankei.com/article/20221125-KEZOZBZ2K5J3VGKSWBS7RVRT4A/" target="_blank" rel="noopener">産経新聞｜古都の錦秋おさめる「額縁構図」インタビュー記事が掲載されました。 ↗</a></h3></li>
+          <li class="rv" data-cat="media"data-slug="p35"><div class="ndate">2022.11</div><span class="pill pill-media">Media</span><h3 class="nt"><a href="https://www.sankei.com/article/20221125-KEZOZBZ2K5J3VGKSWBS7RVRT4A/" target="_blank" rel="noopener">産経新聞｜古都の錦秋おさめる「額縁構図」インタビュー記事が掲載されました。 ↗</a></h3></li>
         </ul>
       </div>
     </div><!-- /#npGrid -->
@@ -1289,13 +1313,14 @@
           </div>
         </div>
       </div>
+      <p class="ct-req-note"><span class="req">*</span> は必須項目です</p>
       <form class="ct-form" id="ctForm" novalidate>
         <div class="ct-row">
-          <div class="field"><label for="cf-name">お名前 / Name</label><input id="cf-name" name="name" type="text" placeholder="山田 太郎" required></div>
-          <div class="field"><label for="cf-company">会社・媒体 / Company</label><input id="cf-company" name="company" type="text" placeholder="任意"></div>
+          <div class="field"><label for="cf-name">お名前 / Name<span class="req">*</span></label><input id="cf-name" name="name" type="text" placeholder="山田 太郎" required></div>
+          <div class="field"><label for="cf-company">会社・媒体 / Company<span class="opt">任意</span></label><input id="cf-company" name="company" type="text" placeholder="任意"></div>
         </div>
         <div class="ct-row">
-          <div class="field"><label for="cf-email">メール / Email</label><input id="cf-email" name="email" type="email" placeholder="you@example.com" required></div>
+          <div class="field"><label for="cf-email">メール / Email<span class="req">*</span></label><input id="cf-email" name="email" type="email" placeholder="you@example.com" required></div>
           <div class="field"><label for="cf-type">ご依頼内容 / Type</label>
             <select id="cf-type" name="type">
               <option>撮影のご依頼</option>
@@ -1306,7 +1331,7 @@
             </select>
           </div>
         </div>
-        <div class="field"><label for="cf-msg">メッセージ / Message</label><textarea id="cf-msg" name="message" placeholder="ご予算・希望時期・媒体・撮影地などをお書きください。" required></textarea></div>
+        <div class="field"><label for="cf-msg">メッセージ / Message<span class="req">*</span></label><textarea id="cf-msg" name="message" placeholder="ご予算・希望時期・媒体・撮影地などをお書きください。" required></textarea></div>
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <button class="ct-submit" type="submit"><span>送信する →</span></button>
         <p class="ct-status" id="ctStatus" role="status" aria-live="polite"></p>
@@ -1387,7 +1412,8 @@
       works:document.getElementById('view-works'),
       contact:document.getElementById('view-contact'),
       news:document.getElementById('view-news'),
-      work:document.getElementById('view-work')
+      work:document.getElementById('view-work'),
+      post:document.getElementById('view-post')
     };
     var nav=document.getElementById('nav');
     var hashMap={'gallery-page':'gallery','works-page':'works','contact-page':'contact','news-page':'news'};
@@ -1395,33 +1421,49 @@
 
     /* ----- work detail data (edit here: 本文 / Instagram投稿URL) ----- */
     var WORKS={
-      'osaka-rain-night':{cat:'Night',catFull:'Night / Cityscape',client:'Samsung Galaxy',year:'2024',loc:'Osaka, Japan',title:'雨の夜景',jp:'Rainy Night, Osaka',img:'ph-city',
-        desc:'雨上がりのアスファルトがネオンを鏡のように映し込む、大阪の夜。\n濡れた路面の反射を活かして、街の光をいつもより深く、濃く描いています。\nSamsung Galaxy のナイトモード検証も兼ねて撮影した一枚です。',
-        instagram:''},
-      'kyoto-spring-valley':{cat:'Kyoto',catFull:'Landscape / Kyoto',client:'JR West',year:'2024',loc:'Kyoto, Japan',title:'春の渓谷',jp:'Spring Valley, Kyoto',img:'ph-sakura',
-        desc:'新緑と山桜が混ざり合う、京都郊外の渓谷。\n朝のやわらかい光を待って、川面のきらめきと芽吹きの色を一緒に収めました。',
-        instagram:''},
-      'arashiyama-bamboo':{cat:'Kyoto',catFull:'Landscape / Kyoto',client:'Adobe Lightroom',year:'2024',loc:'Arashiyama, Kyoto',title:'竹林の道',jp:'Bamboo Grove, Arashiyama',img:'ph-bamboo',
-        desc:'観光客が途切れる早朝の嵐山・竹林の小径。\n縦に抜ける光と霧を活かし、奥行きと静けさを意識して撮影しました。\nLightroom の現像ワークフロー解説でも使用したカットです。',
-        instagram:''},
-      'okinawa-sea':{cat:'Landscape',catFull:'Landscape / Sea',client:'Tourism Australia',year:'2023',loc:'Okinawa, Japan',title:'沖縄の海',jp:'Okinawan Sea',img:'ph-okinawa',
-        desc:'透明度の高い沖縄の海を、空のグラデーションごと一枚に。\n遠浅のリーフが描くブルーの段階を丁寧に残しています。',
-        instagram:''},
-      'osaka-neon':{cat:'Night',catFull:'Night / Street',client:'Personal Work',year:'2024',loc:'Osaka, Japan',title:'ネオンの交差点',jp:'Neon Crossing, Osaka',img:'ph-city',
-        desc:'大阪・ミナミの交差点。看板の光が一番濃くなる時間帯を狙った個人作品です。\n人の流れをスローシャッターで溶かし、光だけを残しました。',
-        instagram:''},
-      'kyoto-sakura-hotel':{cat:'Commercial',catFull:'Commercial / Hotel',client:'Hotel PR',year:'2024',loc:'Kyoto, Japan',title:'桜のホテル',jp:'Sakura & Hotel, Kyoto',img:'ph-sakura',
-        desc:'桜のシーズンに合わせたホテルのPR撮影。\n客室から望む桜と建築のラインが重なる構図で、宿泊体験の魅力を表現しました。',
-        instagram:''},
-      'okinawa-reef':{cat:'Landscape',catFull:'Landscape / Sea',client:'Trip.com',year:'2023',loc:'Okinawa, Japan',title:'珊瑚礁',jp:'Coral Reef, Okinawa',img:'ph-okinawa',
-        desc:'上空から見た珊瑚礁のパターン。\n旅行プラットフォーム向けに、沖縄の海の豊かさが伝わる一枚を意識しました。',
-        instagram:''},
-      'kyoto-kamogawa-night':{cat:'Night',catFull:'Night / Kyoto',client:'JR West',year:'2024',loc:'Kyoto, Japan',title:'鴨川の夜',jp:'Kamogawa at Night',img:'ph-city',
-        desc:'灯りがともり始める鴨川沿い。\n川面に映る街明かりと、等間隔に並ぶ人々のシルエットが京都らしい夜の表情です。',
-        instagram:''},
-      'arashiyama-lightup':{cat:'Commercial',catFull:'Commercial / Event',client:'Turkish Airlines',year:'2023',loc:'Arashiyama, Kyoto',title:'嵐山ライトアップ',jp:'Arashiyama Light-up',img:'ph-bamboo',
-        desc:'冬の嵐山・花灯路のライトアップ。\n竹林を照らす光の演出を、観光プロモーション用に印象的に切り取りました。',
-        instagram:''}
+      "w1":{cat:"Ambassador",catFull:"Ambassador",client:"Samsung",title:"Team Galaxy アンバサダー",img:"ph-city",desc:"Samsung のオフィシャルアンバサダーとしての活動「Team Galaxy アンバサダー」。製品やブランドの世界観を、旅や日常のワンシーンに重ねて発信しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w2":{cat:"Ambassador",catFull:"Ambassador",client:"Adobe",title:"Adobe Lightroom Ambassador",img:"ph-sakura",desc:"Adobe のオフィシャルアンバサダーとしての活動「Adobe Lightroom Ambassador」。製品やブランドの世界観を、旅や日常のワンシーンに重ねて発信しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w3":{cat:"Commercial",catFull:"Commercial / Tie-up",client:"Coca-Cola",title:"クリスマス ドローンショー 2024",img:"ph-bamboo",desc:"Coca-Cola とのコマーシャル / タイアップ「クリスマス ドローンショー 2024」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w4":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"韓国観光公社",title:"釜山／慶州 FAM ツアー",img:"ph-okinawa",desc:"韓国観光公社 の観光プロモーション「釜山／慶州 FAM ツアー」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w5":{cat:"Official",catFull:"Official",client:"NAKED, Inc.",title:"光の神苑 平安神宮 オフィシャル撮影",img:"ph-portrait",desc:"NAKED, Inc. のオフィシャル撮影「光の神苑 平安神宮 オフィシャル撮影」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w6":{cat:"Ambassador",catFull:"Ambassador",client:"Alfa Romeo",title:"Alfa Romeo Junior アンバサダー",img:"ph-city",desc:"Alfa Romeo のオフィシャルアンバサダーとして、Alfa Romeo Junior の世界観を旅や日常のシーンで発信しました。本案件では3つの投稿を制作しています。\n\n各画像をタップすると、それぞれの Instagram 投稿に移動します。",instagram:'',images:[{img:'ph-city',ar:'3 / 2',cap:'Alfa Romeo Junior と巡る、初夏の京都。',link:'https://instagram.com/s_ken.ken'},{img:'ph-portrait',ar:'4 / 5',cap:'街に映えるイタリアンレッド。',link:'https://instagram.com/s_ken.ken'},{img:'ph-sakura',ar:'3 / 2',cap:'日常に寄り添う、一台のある風景。',link:'https://instagram.com/s_ken.ken'}]},
+      "w7":{cat:"Ambassador",catFull:"Ambassador",client:"Samsung",title:"Team Galaxy アンバサダー",img:"ph-city",desc:"Samsung のオフィシャルアンバサダーとしての活動「Team Galaxy アンバサダー」。製品やブランドの世界観を、旅や日常のワンシーンに重ねて発信しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w8":{cat:"Ambassador",catFull:"Ambassador",client:"Samsung",title:"Galaxy みんなのフォトスポット",img:"ph-sakura",desc:"Samsung のオフィシャルアンバサダーとしての活動「Galaxy みんなのフォトスポット」。製品やブランドの世界観を、旅や日常のワンシーンに重ねて発信しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w9":{cat:"Ambassador",catFull:"Ambassador",client:"Samsung",title:"Galaxy イベント登壇",img:"ph-bamboo",desc:"Samsung のオフィシャルアンバサダーとしての活動「Galaxy イベント登壇」。製品やブランドの世界観を、旅や日常のワンシーンに重ねて発信しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w10":{cat:"Ambassador",catFull:"Ambassador",client:"Adobe",title:"Adobe Partner",img:"ph-okinawa",desc:"Adobe のオフィシャルアンバサダーとしての活動「Adobe Partner」。製品やブランドの世界観を、旅や日常のワンシーンに重ねて発信しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w11":{cat:"Ambassador",catFull:"Ambassador",client:"Adobe",title:"Adobe Lightroom Ambassador",img:"ph-portrait",desc:"Adobe のオフィシャルアンバサダーとしての活動「Adobe Lightroom Ambassador」。製品やブランドの世界観を、旅や日常のワンシーンに重ねて発信しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w12":{cat:"Commercial",catFull:"Commercial / Tie-up",client:"Coca-Cola",title:"クリスマス ドローンショー 2024",img:"ph-city",desc:"Coca-Cola とのコマーシャル / タイアップ「クリスマス ドローンショー 2024」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w13":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"Turkish Airlines",title:"Turkish Airlines × HIS PR",img:"ph-sakura",desc:"Turkish Airlines の観光プロモーション「Turkish Airlines × HIS PR」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w14":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"Turkish Airlines",title:"Istanbul PR ＆ 動画出演",img:"ph-bamboo",desc:"Turkish Airlines の観光プロモーション「Istanbul PR ＆ 動画出演」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w15":{cat:"Commercial",catFull:"Commercial / Tie-up",client:"JR 西日本",title:"#個性線 フォトコンテスト審査員",img:"ph-okinawa",desc:"JR 西日本 とのコマーシャル / タイアップ「#個性線 フォトコンテスト審査員」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w16":{cat:"Exhibition",catFull:"Exhibition",client:"京都府",title:"京都駅 EKI spot 写真展示",img:"ph-portrait",desc:"「京都駅 EKI spot 写真展示」（京都府）。作品の展示・掲載に携わりました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w17":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"Trip.com",title:"香港国際空港コラボ／香港 PR",img:"ph-city",desc:"Trip.com の観光プロモーション「香港国際空港コラボ／香港 PR」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w18":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"Trip.com",title:"GW セール PR",img:"ph-sakura",desc:"Trip.com の観光プロモーション「GW セール PR」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w19":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"オーストラリア政府観光局",title:"ブリスベン／GC／シドニー FAM ツアー",img:"ph-bamboo",desc:"オーストラリア政府観光局 の観光プロモーション「ブリスベン／GC／シドニー FAM ツアー」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w20":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"NSW 観光局",title:"シドニー／近郊 FAM ツアー",img:"ph-okinawa",desc:"NSW 観光局 の観光プロモーション「シドニー／近郊 FAM ツアー」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w21":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"サウジアラビア王国",title:"大阪・関西万博 パビリオン PR",img:"ph-portrait",desc:"サウジアラビア王国 の観光プロモーション「大阪・関西万博 パビリオン PR」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w22":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"サウジアラビア王国",title:"アラビアの驚異 PR",img:"ph-city",desc:"サウジアラビア王国 の観光プロモーション「アラビアの驚異 PR」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w23":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"サウジアラビア王国",title:"Saudi Meet Tour PR",img:"ph-sakura",desc:"サウジアラビア王国 の観光プロモーション「Saudi Meet Tour PR」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w24":{cat:"Tourism",catFull:"Tourism / 観光PR",client:"韓国観光公社",title:"釜山／慶州 FAM ツアー",img:"ph-bamboo",desc:"韓国観光公社 の観光プロモーション「釜山／慶州 FAM ツアー」。現地の空気感が伝わるビジュアルで、その土地を訪れたくなる魅力を切り取りました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w25":{cat:"Commercial",catFull:"Commercial / Tie-up",client:"産経新聞／日本公園緑地協会",title:"みどりの日 PR（紙面・YouTube 出演）",img:"ph-okinawa",desc:"産経新聞／日本公園緑地協会 とのコマーシャル / タイアップ「みどりの日 PR（紙面・YouTube 出演）」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w26":{cat:"Ambassador",catFull:"Ambassador",client:"Alfa Romeo",title:"Alfa Romeo Junior アンバサダー",img:"ph-portrait",desc:"Alfa Romeo のオフィシャルアンバサダーとして、Alfa Romeo Junior の世界観を旅や日常のシーンで発信しました。本案件では3つの投稿を制作しています。\n\n各画像をタップすると、それぞれの Instagram 投稿に移動します。",instagram:'',images:[{img:'ph-city',ar:'3 / 2',cap:'Alfa Romeo Junior と巡る、初夏の京都。',link:'https://instagram.com/s_ken.ken'},{img:'ph-portrait',ar:'4 / 5',cap:'街に映えるイタリアンレッド。',link:'https://instagram.com/s_ken.ken'},{img:'ph-sakura',ar:'3 / 2',cap:'日常に寄り添う、一台のある風景。',link:'https://instagram.com/s_ken.ken'}]},
+      "w27":{cat:"Commercial",catFull:"Commercial / Tie-up",client:"Insta360",title:"Ace Pro 2 プロモーション",img:"ph-city",desc:"Insta360 とのコマーシャル / タイアップ「Ace Pro 2 プロモーション」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w28":{cat:"Commercial",catFull:"Commercial / Tie-up",client:"奥仲麻琴",title:"ウェディング撮影",img:"ph-sakura",desc:"奥仲麻琴 とのコマーシャル / タイアップ「ウェディング撮影」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w29":{cat:"Commercial",catFull:"Commercial / Tie-up",client:"Holafly",title:"eSIM PR",img:"ph-bamboo",desc:"Holafly とのコマーシャル / タイアップ「eSIM PR」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w30":{cat:"Official",catFull:"Official",client:"NAKED, Inc.",title:"光の神苑 平安神宮 オフィシャル撮影",img:"ph-okinawa",desc:"NAKED, Inc. のオフィシャル撮影「光の神苑 平安神宮 オフィシャル撮影」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w31":{cat:"Official",catFull:"Official",client:"NAKED, Inc.",title:"伏見稲荷大社 オフィシャル撮影",img:"ph-portrait",desc:"NAKED, Inc. のオフィシャル撮影「伏見稲荷大社 オフィシャル撮影」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w32":{cat:"Official",catFull:"Official",client:"NAKED, Inc.",title:"八坂神社 オフィシャル撮影",img:"ph-city",desc:"NAKED, Inc. のオフィシャル撮影「八坂神社 オフィシャル撮影」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w33":{cat:"Official",catFull:"Official",client:"NAKED, Inc.",title:"夏まつり 2023 二条城 オフィシャル撮影",img:"ph-sakura",desc:"NAKED, Inc. のオフィシャル撮影「夏まつり 2023 二条城 オフィシャル撮影」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w34":{cat:"Official",catFull:"Official",client:"NAKED, Inc.",title:"京の七夕 in 宇治 オフィシャル撮影",img:"ph-bamboo",desc:"NAKED, Inc. のオフィシャル撮影「京の七夕 in 宇治 オフィシャル撮影」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w35":{cat:"Exhibition",catFull:"Exhibition",client:"K&F Concept",title:"CP+ 2025 作品展示 ＆ PR",img:"ph-okinawa",desc:"「CP+ 2025 作品展示 ＆ PR」（K&F Concept）。作品の展示・掲載に携わりました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w36":{cat:"Official",catFull:"Official",client:"SHONIN PARK",title:"別府上人ヶ浜公園 竣工撮影",img:"ph-portrait",desc:"SHONIN PARK のオフィシャル撮影「別府上人ヶ浜公園 竣工撮影」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w37":{cat:"Official",catFull:"Official",client:"勝林寺",title:"秋の特別拝観 PR",img:"ph-city",desc:"勝林寺 のオフィシャル撮影「秋の特別拝観 PR」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w38":{cat:"Commercial",catFull:"Commercial / Tie-up",client:"MK タクシー",title:"風景写真講座",img:"ph-sakura",desc:"MK タクシー とのコマーシャル / タイアップ「風景写真講座」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w39":{cat:"Commercial",catFull:"Commercial / Tie-up",client:"CIZUCU",title:"フォトコンテスト審査員",img:"ph-bamboo",desc:"CIZUCU とのコマーシャル / タイアップ「フォトコンテスト審査員」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w40":{cat:"Hotel",catFull:"Hotel",client:"ダブルツリー by ヒルトン東京有明",title:"ホテル PR",img:"ph-okinawa",desc:"ダブルツリー by ヒルトン東京有明｜「ホテル PR」。宿泊体験の世界観が伝わる空間と風景を撮影しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w41":{cat:"Hotel",catFull:"Hotel",client:"EMIL NAKIJIN",title:"ホテル PR",img:"ph-portrait",desc:"EMIL NAKIJIN｜「ホテル PR」。宿泊体験の世界観が伝わる空間と風景を撮影しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w42":{cat:"Hotel",catFull:"Hotel",client:"JUNEI HOTEL",title:"プロモーション",img:"ph-city",desc:"JUNEI HOTEL｜「プロモーション」。宿泊体験の世界観が伝わる空間と風景を撮影しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w43":{cat:"Hotel",catFull:"Hotel",client:"天橋立 文珠荘",title:"ホテル PR",img:"ph-sakura",desc:"天橋立 文珠荘｜「ホテル PR」。宿泊体験の世界観が伝わる空間と風景を撮影しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''}
     };
 
     function setText(id,v){ var el=document.getElementById(id); if(el)el.textContent=v; }
@@ -1434,15 +1476,69 @@
         box.innerHTML='<a class="ig-cta" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener">この作品をInstagramで見る →</a>';
       }
     }
+    var IG_PROFILE='https://instagram.com/s_ken.ken';
     function populateWork(slug){
       var w=WORKS[slug]; if(!w)return false;
       setText('wdCat',w.cat); setText('wdClient','Client — '+w.client);
-      setText('wdTitle',w.title); setText('wdJp',w.jp);
-      setText('wdLoc',w.loc); setText('wdYear',w.year); setText('wdCatFull',w.catFull);
+      setText('wdTitle',w.title);
       setText('wdDesc',w.desc);
-      var img=document.getElementById('wdImg'); if(img){img.className='img '+w.img;}
+      var hero=document.getElementById('wdHeroFig'), gal=document.getElementById('wdGallery');
+      var imgs=(w.images && w.images.length) ? w.images
+               : [{img:w.img, ar:'16 / 10', cap:'', link:IG_PROFILE}];
+      if(hero)hero.style.display='none';
+      if(gal){ gal.innerHTML=imgs.map(function(im){
+        var link=im.link||IG_PROFILE;
+        var body='<div class="img '+im.img+'" style="aspect-ratio:'+(im.ar||'3 / 2')+'"></div>'+(im.cap?'<figcaption class="wd-cap">'+im.cap+'</figcaption>':'');
+        return '<a class="wd-shot" href="'+link+'" target="_blank" rel="noopener">'+body+'<span class="wd-shot-go">Instagram \u2197</span></a>';
+      }).join(''); }
+      var ig=document.getElementById('wdIg'); if(ig)ig.innerHTML='';
       try{document.title=w.title+' — Sawai Kenta';}catch(_){}
-      renderIG(w.instagram);
+      return true;
+    }
+    var POSTS={
+      "p1":{date:"2025.08",pill:"pill-exhibition",cat:"Exhibition",title:"JR京都駅ビル EKIspot KYOTO にて写真が展示されました。",link:"",body:"写真の展示・掲載に関する記録です。"},
+      "p2":{date:"2025.08",pill:"pill-official",cat:"Official",title:"NAKED, Inc.｜伏見稲荷大社・八坂神社のオフィシャル撮影を担当。",link:"",body:"オフィシャル撮影・制作の実績です。"},
+      "p3":{date:"2025.08",pill:"pill-partner",cat:"Tie-up",title:"Adobe Partner｜Adobe Lightroom の PR 投稿をしました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p4":{date:"2025.07",pill:"pill-official",cat:"Official",title:"SHONIN PARK｜別府上人ヶ浜公園 竣工撮影を担当しました。",link:"",body:"オフィシャル撮影・制作の実績です。"},
+      "p5":{date:"2025.07",pill:"pill-partner",cat:"Tie-up",title:"オーストラリア NSW 州観光局にご招待いただき PR 投稿。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p6":{date:"2025.04",pill:"pill-media",cat:"Media",title:"Connect to Turkey｜GALA で上映のムービーに出演しました。",link:"",body:"メディア掲載・出演・審査などの記録です。"},
+      "p7":{date:"2025.08",pill:"pill-official",cat:"Official",title:"NAKED, Inc.｜伏見稲荷大社・八坂神社のオフィシャル撮影を担当しました。",link:"",body:"オフィシャル撮影・制作の実績です。"},
+      "p8":{date:"2025.07",pill:"pill-official",cat:"Official",title:"SHONIN PARK｜別府上人ヶ浜公園 竣工撮影・PR 投稿を担当しました。",link:"",body:"オフィシャル撮影・制作の実績です。"},
+      "p9":{date:"2025.07",pill:"pill-partner",cat:"Tie-up",title:"サウジアラビア王国主催イベントの PR 投稿をしました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p10":{date:"2025.07",pill:"pill-partner",cat:"Tie-up",title:"オーストラリア NSW 州観光局にご招待いただき PR 投稿をしました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p11":{date:"2025.04",pill:"pill-partner",cat:"Tie-up",title:"サウジアラビア王国 パビリオンの PR 投稿をしました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p12":{date:"2025.04",pill:"pill-media",cat:"Media",title:"Connect to Turkey｜GALA パーティーで上映されたムービーに出演しました。",link:"",body:"メディア掲載・出演・審査などの記録です。"},
+      "p13":{date:"2025.03",pill:"pill-media",cat:"Media",title:"写真集プロジェクトで中国にて 8 日間の撮影を行いました。（発売時に改めてお知らせします）",link:"",body:"メディア掲載・出演・審査などの記録です。"},
+      "p14":{date:"2025.03",pill:"pill-ambassador",cat:"Ambassador",title:"Team Galaxy｜韓国 Samsung 本社にご招待いただきました。",link:"",body:"オフィシャルアンバサダーとしての活動の記録です。"},
+      "p15":{date:"2025.03",pill:"pill-ambassador",cat:"Ambassador",title:"Team Galaxy｜Galaxy Experience Space（渋谷 TSUTAYA 1F）のイベントに登壇しました。",link:"",body:"オフィシャルアンバサダーとしての活動の記録です。"},
+      "p16":{date:"2025.02",pill:"pill-partner",cat:"Tie-up",title:"サウジアラビア王国 Saudi Meet Tour の PR 投稿をしました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p17":{date:"2025.02",pill:"pill-partner",cat:"Tie-up",title:"K&F Concept｜CP+ 2025 PR 投稿。フィルター展にて作品が展示されました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p18":{date:"2025.02",pill:"pill-ambassador",cat:"Ambassador",title:"Team Galaxy｜Samsung Galaxy 公式アンバサダーに就任しました。",link:"",body:"オフィシャルアンバサダーとしての活動の記録です。"},
+      "p19":{date:"2025.01",pill:"pill-partner",cat:"Tie-up",title:"Turkish Airlines × HIS の PR 投稿をしました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p20":{date:"2024.12",pill:"pill-partner",cat:"Tie-up",title:"コカ・コーラ クリスマスドローンショー 2024 タイアップ投稿（リール動画 173 万回再生突破）。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p21":{date:"2024.10",pill:"pill-partner",cat:"Tie-up",title:"オーストラリア政府観光局主催のプレスツアーに参加しました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p22":{date:"2024.09",pill:"pill-media",cat:"Media",title:"JR 西日本主催フォトコンテストの審査員として参加しました。",link:"https://www.westjr.co.jp/press/article/2024/09/page_26230.html",body:"メディア掲載・出演・審査などの記録です。"},
+      "p23":{date:"2024.09",pill:"pill-media",cat:"Media",title:"Web サイトをリニューアルしました。",link:"",body:"メディア掲載・出演・審査などの記録です。"},
+      "p24":{date:"2024.07",pill:"pill-media",cat:"Media",title:"堅あげポテト 30 周年フォトコンテスト｜Web ページ TOP に写真が掲載されました。",link:"https://tokyocameraclub.com/calbee/kataage2024summer/",body:"メディア掲載・出演・審査などの記録です。"},
+      "p25":{date:"2024.06",pill:"pill-partner",cat:"Tie-up",title:"Galaxy みんなのフォトスポット タイアップをしました。",link:"https://www.instagram.com/p/C8HPlusPojR/",body:"ブランドとのタイアップ・PR 活動の記録です。"},
+      "p26":{date:"2024.06",pill:"pill-media",cat:"Media",title:"cizucu 主宰フォトコンテストの審査員を務めました。",link:"https://www.cizucu.com/contests/hBhRj0gSJ7f85ICJHHIW",body:"メディア掲載・出演・審査などの記録です。"},
+      "p27":{date:"2024.04",pill:"pill-media",cat:"Media",title:"Galaxy みんなのフォトスポット｜選定者として参加しました。",link:"https://www.samsung.com/jp/explore/special/galaxy-photo-spot/",body:"メディア掲載・出演・審査などの記録です。"},
+      "p28":{date:"2024.03",pill:"pill-award",cat:"Award",title:"美山フォトコンテスト 2023-2024「暮らすように旅をする」冬の季節賞を受賞しました。",link:"https://www.instagram.com/p/C5ImXoQiAvy/",body:"フォトコンテスト等での受賞の記録です。"},
+      "p29":{date:"2024.03",pill:"pill-award",cat:"Award",title:"堅あげポテト 30 周年 よる堅フォトコンテスト 秋のよる堅賞を受賞しました。",link:"https://calbee.tokyocameraclub.com/kataage2023autumn/results/",body:"フォトコンテスト等での受賞の記録です。"},
+      "p30":{date:"2023.12",pill:"pill-media",cat:"Media",title:"そうだ京都、行こう。｜ひかりの京都・下鴨神社に写真が掲載されました。",link:"https://souda-kyoto.jp/other/hikari/",body:"メディア掲載・出演・審査などの記録です。"},
+      "p31":{date:"2023.11",pill:"pill-media",cat:"Media",title:"そうだ京都、行こう。｜ひかりの京都・北野天満宮に写真が掲載されました。",link:"https://souda-kyoto.jp/other/hikari/",body:"メディア掲載・出演・審査などの記録です。"},
+      "p32":{date:"2023.10",pill:"pill-media",cat:"Media",title:"奥仲麻琴さん Web サイトに写真を使用していただきました。",link:"https://okunaka-makoto.jimdofree.com/",body:"メディア掲載・出演・審査などの記録です。"},
+      "p33":{date:"2023.10",pill:"pill-media",cat:"Media",title:"奥仲麻琴さん SNS プロフィールに写真を使用していただきました。",link:"https://www.instagram.com/okunaka_makoto",body:"メディア掲載・出演・審査などの記録です。"},
+      "p34":{date:"2023.08",pill:"pill-media",cat:"Media",title:"そうだ京都、行こう。｜夏の京都・夜のおすすめイベント 2023 に写真が掲載されました。",link:"",body:"メディア掲載・出演・審査などの記録です。"},
+      "p35":{date:"2022.11",pill:"pill-media",cat:"Media",title:"産経新聞｜古都の錦秋おさめる「額縁構図」インタビュー記事が掲載されました。",link:"https://www.sankei.com/article/20221125-KEZOZBZ2K5J3VGKSWBS7RVRT4A/",body:"メディア掲載・出演・審査などの記録です。"}
+    };
+    function populatePost(slug){
+      var p=POSTS[slug]; if(!p)return false;
+      var c=document.getElementById('postCat'); if(c){c.textContent=p.cat;c.className='wd-cat '+p.pill;}
+      setText('postDate',p.date); setText('postTitle',p.title); setText('postBody',p.body);
+      var row=document.getElementById('postLinkRow');
+      if(row){ row.innerHTML = p.link ? '<a class="read-more" href="'+p.link+'" target="_blank" rel="noopener"><span>\u5916\u90e8\u30b5\u30a4\u30c8\u3067\u898b\u308b</span><span class="arr">\u2197</span></a>' : ''; }
+      try{document.title=p.title+' \u2014 Sawai Kenta';}catch(_){}
       return true;
     }
 
@@ -1466,7 +1562,8 @@
       } else if(name==='home' && opts.anchor && opts.anchor!=='top'){
         requestAnimationFrame(function(){ var t=document.getElementById(opts.anchor); if(t)t.scrollIntoView(); nav.classList.toggle('solid', window.scrollY>60); });
       } else {
-        window.scrollTo(0,0);
+        var goTop=function(){ window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0; };
+        goTop(); requestAnimationFrame(goTop);
         nav.classList.toggle('solid', name!=='home');
       }
       if(name!=='home') reveal(views[name]);
@@ -1475,6 +1572,7 @@
     function applyHash(h,opts){
       h=(h||'').replace(/^#/,''); opts=opts||{};
       if(h.indexOf('work-')===0){ if(populateWork(h.slice(5))){show('work',opts);} else {show('works',opts);} }
+      else if(h.indexOf('post-')===0){ if(populatePost(h.slice(5))){show('post',opts);} else {show('news',opts);} }
       else if(hashMap[h]){ show(hashMap[h],opts); }
       else if(h===''||h==='home'){ show('home',opts); }
       else if(h==='top'){ show('home',{anchor:'top'}); }
@@ -1493,6 +1591,8 @@
       if(back){ e.preventDefault(); show('home',{restore:true}); try{history.pushState({h:''},'',location.pathname);}catch(_){}; return; }
       var card=e.target.closest('.work[data-slug]');
       if(card){ e.preventDefault(); go('#work-'+card.dataset.slug); return; }
+      var nli=e.target.closest('li[data-slug]');
+      if(nli){ if(e.target.closest('a[href]'))return; e.preventDefault(); go('#post-'+nli.dataset.slug); return; }
       var wf=e.target.closest('a[data-wf]');
       if(wf){ e.preventDefault(); go('#works-page'); var fb=document.querySelector('#wpFilter button[data-filter="'+wf.dataset.wf+'"]'); if(fb)fb.click(); return; }
       var a=e.target.closest('a[href^="#"]');
@@ -1509,7 +1609,7 @@
     window.addEventListener('popstate',route);
 
     /* back link on every subpage (incl. work detail) */
-    ['gallery','works','contact','news','work'].forEach(function(k){
+    ['gallery','works','contact','news','work','post'].forEach(function(k){
       if(!views[k])return;
       var sec=views[k].querySelector('.subpage-top');
       if(sec && !sec.querySelector('.subpage-back')){
