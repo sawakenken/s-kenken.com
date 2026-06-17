@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>澤井 健太 / Sawai Kenta — Nightscape &amp; Travel Photographer</title>
+<title>澤井 健太 / Sawai Kenta — Travel Photographer</title>
 
 <!-- SEO -->
-<meta name="description" content="澤井健太（けんけん）｜京都を拠点に活動する夜景・旅フォトグラファー。Samsung Team Galaxy / Adobe / Alfa Romeo オフィシャルアンバサダー。撮影・タイアップ・観光PR・Lightroom現像・講座のご依頼を承ります。">
+<meta name="description" content="澤井健太（けんけん）｜京都を拠点に活動する旅フォトグラファー。Samsung Team Galaxy / Adobe / Alfa Romeo オフィシャルアンバサダー。撮影・タイアップ・観光PR・Lightroom現像・講座のご依頼を承ります。">
 <meta name="author" content="Sawai Kenta">
 <meta name="keywords" content="澤井健太, けんけん, フォトグラファー, 夜景, 旅, 京都, photographer, nightscape, travel">
 <meta name="theme-color" content="#171A1B">
@@ -20,13 +20,13 @@
 <!-- Open Graph (LINE / X / Facebook / Slack などのカード表示) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sawai Kenta — Photographer">
-<meta property="og:title" content="澤井 健太 / Sawai Kenta — Nightscape & Travel Photographer">
+<meta property="og:title" content="澤井 健太 / Sawai Kenta — Travel Photographer">
 <meta property="og:description" content="心から感動した景色を、世界中の人々に共有したい。京都拠点の夜景・旅フォトグラファー。">
 <meta property="og:url" content="https://s-kenken.com/">
 <meta property="og:image" content="https://s-kenken.com/ogp.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Sawai Kenta — Nightscape & Travel Photographer">
+<meta property="og:image:alt" content="Sawai Kenta — Travel Photographer">
 <meta property="og:locale" content="ja_JP">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,25 +83,28 @@
   body.menu-open .menu-btn .lbl-open{display:none}body.menu-open .menu-btn .lbl-close{display:inline}
 
   /* MENU */
-  .menu{position:fixed;inset:0;z-index:300;background:var(--panel);display:flex;flex-direction:column;justify-content:center;padding:96px var(--pad) 44px;overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(-1.5%);transition:opacity .5s var(--ease),transform .6s var(--ease),visibility .5s}
+  /* MENU — mobile dropdown (single clean definition) */
+  .menu{position:fixed;z-index:300;
+    top:calc(env(safe-area-inset-top,0px) + 56px);right:var(--pad);left:auto;
+    width:min(300px,calc(100vw - var(--pad)*2));max-height:calc(100svh - 88px);overflow-y:auto;
+    background:rgba(28,32,33,.96);backdrop-filter:blur(18px) saturate(1.15);
+    -webkit-backdrop-filter:blur(18px) saturate(1.15);
+    border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 22px 56px -20px rgba(0,0,0,.8);padding:8px;
+    opacity:0;visibility:hidden;transform:translateY(-8px) scale(.98);transform-origin:top right;
+    transition:opacity .24s var(--ease),transform .28s var(--ease),visibility .24s}
   body.menu-open .menu{opacity:1;visibility:visible;transform:none}
-  .menu-nav{display:flex;flex-direction:column;max-width:560px;border-top:1px solid var(--line)}
-  .menu-nav a{display:flex;align-items:baseline;gap:18px;padding:clamp(11px,1.9vw,15px) 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease),transform .55s var(--ease),color .3s,padding-left .3s}
-  body.menu-open .menu-nav a{opacity:1;transform:none}
-  body.menu-open .menu-nav a:nth-child(1){transition-delay:.06s}body.menu-open .menu-nav a:nth-child(2){transition-delay:.10s}
-  body.menu-open .menu-nav a:nth-child(3){transition-delay:.14s}body.menu-open .menu-nav a:nth-child(4){transition-delay:.18s}
-  body.menu-open .menu-nav a:nth-child(5){transition-delay:.22s}body.menu-open .menu-nav a:nth-child(6){transition-delay:.26s}
-  body.menu-open .menu-nav a:nth-child(7){transition-delay:.30s}
-  .menu-nav a:hover,.menu-nav a:focus-visible{color:var(--accent);padding-left:8px}
-  .menu-nav .i{font-family:var(--sans);font-size:.66rem;font-weight:500;letter-spacing:.1em;color:var(--muted);min-width:26px}
-  .menu-nav .t{font-family:var(--sans);font-weight:500;text-transform:uppercase;letter-spacing:.03em;font-size:clamp(1.25rem,4.4vw,1.85rem);line-height:1}
-  .menu-nav .jp{font-family:var(--mincho);font-size:.84rem;color:var(--muted);margin-left:auto;align-self:center}
-  .menu-sns{margin-top:clamp(22px,3.5vw,38px);max-width:560px}
-  .menu-sns .lab{display:block;font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-  .menu-sns a{display:flex;justify-content:space-between;align-items:center;max-width:330px;padding:10px 0;border-bottom:1px solid var(--line-soft);font-family:var(--sans);font-weight:500;font-size:.94rem;transition:color .3s,padding-left .3s}
-  .menu-sns a:hover{color:var(--accent);padding-left:7px}
-  .menu-sns a em{font-style:normal;color:var(--muted);font-size:.78rem}
-  @media(max-width:540px){.menu-nav .jp{display:none}}
+  .menu-nav{display:flex;flex-direction:column}
+  .menu-nav a{display:flex;align-items:center;gap:12px;padding:13px 12px;border-radius:10px;
+    color:var(--text);transition:background .22s ease,color .22s ease}
+  .menu-nav a + a{border-top:1px solid var(--line-soft)}
+  .menu-nav a:hover,.menu-nav a:focus-visible{background:rgba(255,255,255,.05)}
+  .menu-nav a:hover .t,.menu-nav a:focus-visible .t{color:var(--accent)}
+  .menu-nav .i{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.1em;color:var(--accent);opacity:.8;min-width:18px}
+  .menu-nav .t{font-family:var(--sans);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:.96rem;line-height:1}
+  .menu-nav .jp{font-family:var(--mincho);font-size:.72rem;color:var(--muted);margin-left:auto}
+  .menu-sns{margin-top:6px;padding:13px 12px 7px;border-top:1px solid var(--line)}
+  .menu-sns .lab{display:block;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:11px}
 
   /* HERO */
   header.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end}
@@ -547,6 +550,142 @@
   .np-empty{display:none;text-align:center;color:var(--muted);font-size:.95rem;
     padding:clamp(24px,4vw,40px) 0}
   .np-empty.show{display:block}
+
+  /* ============================================================
+     v16 — menu redesign / stronger intro / SNS / work detail / gallery fix
+     ============================================================ */
+
+  /* ---------- ABOUT: ambassador spacing + sharp serif stat numbers ---------- */
+  .amb-lab{margin-bottom:16px}
+  .about-stats .n{font-family:var(--serif)!important;font-weight:500!important;
+    letter-spacing:.01em!important;font-size:clamp(2.7rem,5.4vw,3.7rem)!important;
+    font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+  .about-stats .n.sm{font-size:clamp(1.05rem,2.2vw,1.3rem)!important;font-weight:500!important}
+
+  /* ---------- MENU: scroll not locked (dropdown defined in base) ---------- */
+  body.menu-open{overflow:auto;height:auto}
+
+  /* ---------- SNS ICON BUTTONS (hero + footer + menu) ---------- */
+  .sns-btns{display:flex;gap:10px;flex-wrap:wrap}
+  .sns-btn{display:inline-flex;align-items:center;justify-content:center;
+    width:42px;height:42px;border-radius:50%;
+    border:1px solid rgba(234,232,226,.28);color:var(--text);
+    background:rgba(255,255,255,.03);
+    transition:border-color .3s,background .3s,color .3s,transform .3s var(--ease)}
+  .sns-btn svg{width:18px;height:18px;display:block}
+  .sns-btn:hover,.sns-btn:focus-visible{border-color:var(--accent);color:var(--accent);
+    background:rgba(224,166,97,.08);transform:translateY(-3px)}
+  /* hero variant — sits on the photo */
+  .hero-sns{margin-top:clamp(20px,3vw,30px);opacity:0;
+    animation:riseFade 1s ease .86s forwards;animation-play-state:paused}
+  body:not(.preload) .hero-sns{animation-play-state:running}
+  .hero-sns .sns-btn{border-color:rgba(255,255,255,.35);color:#fff;
+    background:rgba(0,0,0,.18);backdrop-filter:blur(4px)}
+  .hero-sns .sns-btn:hover{border-color:#fff;color:#fff;background:rgba(0,0,0,.35)}
+
+  /* ---------- STRONGER HERO INTRO ---------- */
+  @keyframes riseFade{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @keyframes upBlur2{from{transform:translateY(116%);filter:blur(7px);opacity:0}
+    to{transform:none;filter:blur(0);opacity:1}}
+  .hero-name .reveal span{animation-name:upBlur2!important;filter:blur(7px)}
+  .hero-inner .eyebrow{animation-delay:.14s!important}
+  .hero-name .reveal:nth-child(1) span{animation-delay:.28s!important;animation-duration:.82s!important}
+  .hero-name .reveal:nth-child(2) span{animation-delay:.40s!important;animation-duration:.82s!important}
+  .hero-jp{animation-name:riseFade!important;animation-delay:.60s!important;animation-duration:.85s!important}
+  .hero-foot{animation-name:riseFade!important;animation-delay:.72s!important;animation-duration:.9s!important}
+  .hero-index{animation-delay:.95s!important}
+  .loader-name{animation-duration:.85s!important}
+
+  /* ---------- FOOTER SNS ---------- */
+  .foot-social{margin-top:clamp(26px,3.5vw,38px)}
+  .foot-social .lab{display:block;font-family:var(--sans);font-size:.6rem;font-weight:600;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+
+  /* ---------- WORK DETAIL PAGE ---------- */
+  .wd{max-width:1080px;margin:0 auto}
+  .wd-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:14px}
+  .wd-cat{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent)}
+  .wd-client{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted)}
+  .wd-title{font-family:var(--mincho);font-weight:600;line-height:1.12;
+    font-size:clamp(2.1rem,6vw,3.6rem);letter-spacing:.02em}
+  .wd-jp{font-family:var(--serif);font-style:italic;color:var(--muted);
+    font-size:clamp(1rem,2.4vw,1.35rem);margin-top:10px}
+  .wd-info{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,48px);
+    margin:clamp(24px,3.4vw,34px) 0;padding:clamp(18px,2.4vw,22px) 0;
+    border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .wd-info .k{display:block;font-family:var(--sans);font-size:.58rem;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .wd-info .v{font-family:var(--mincho);font-size:1rem;color:var(--text)}
+  .wd-hero{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:16px;
+    background:var(--panel2);margin:clamp(26px,3.6vw,40px) 0}
+  .wd-hero .img{position:absolute;inset:0}
+  .wd-body{max-width:62ch}
+  .wd-desc{font-size:1rem;line-height:2;color:var(--text);white-space:pre-line}
+  .wd-ig{margin:clamp(30px,4.4vw,52px) 0 0;display:flex;justify-content:center}
+  .wd-ig iframe{border-radius:14px!important}
+  .ig-cta{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:100px;
+    border:1px solid var(--line);font-family:var(--sans);font-weight:600;font-size:.78rem;
+    letter-spacing:.06em;color:var(--text);transition:border-color .3s,color .3s,background .3s}
+  .ig-cta:hover{border-color:var(--accent);color:var(--accent);background:rgba(224,166,97,.06)}
+  .work[data-slug]{cursor:pointer}
+  .gp-tile[data-slug]{cursor:pointer}
+
+  /* ---------- GALLERY PAGE: fix alignment + 縦3・横2 rhythm ---------- */
+  .gp-grid{grid-template-columns:repeat(6,1fr);grid-auto-flow:dense;
+    gap:clamp(8px,1.2vw,14px)}
+  .gp-tile{aspect-ratio:auto}
+  .gp-tile.p{grid-column:span 2;aspect-ratio:4/5}
+  .gp-tile.l{grid-column:span 3;aspect-ratio:16/10}
+  @media(max-width:760px){
+    .gp-grid{grid-template-columns:repeat(2,1fr)}
+    .gp-tile.p{grid-column:span 1}
+    .gp-tile.l{grid-column:span 2}
+  }
+  @media(max-width:430px){
+    .gp-grid{grid-template-columns:1fr}
+    .gp-tile.p,.gp-tile.l{grid-column:span 1}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-sns{opacity:1;animation:none!important}
+    .menu{transition:none}
+  }
+
+  /* ============================================================
+     v17 — desktop top-nav / mobile-only accordion / gallery lock / JP wrapping
+     ============================================================ */
+
+  /* ---------- DESKTOP HORIZONTAL NAV (≥900px) ---------- */
+  .nav-links{display:none}
+  @media(min-width:900px){
+    .menu-btn{display:none}
+    #menu{display:none!important}              /* accordion = mobile only */
+    .nav-links{display:flex;align-items:center;gap:clamp(20px,2.4vw,40px)}
+    .nav-links a{position:relative;font-family:var(--sans);font-weight:500;font-size:.74rem;
+      letter-spacing:.15em;text-transform:uppercase;color:#fff;
+      text-shadow:0 1px 14px rgba(0,0,0,.45);padding:6px 0;transition:color .3s}
+    .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;
+      background:var(--accent);transform:scaleX(0);transform-origin:left;
+      transition:transform .35s var(--ease)}
+    .nav-links a:hover::after{transform:scaleX(1)}
+    nav.solid .nav-links a{color:var(--text);text-shadow:none}
+  }
+
+  /* ---------- GALLERY PAGE: keep the 縦3・横2 arrangement at every width ---------- */
+  .gp-grid{grid-template-columns:repeat(6,1fr)!important;grid-auto-flow:row!important;
+    gap:clamp(7px,1.2vw,14px)}
+  .gp-tile.p{grid-column:span 2!important;aspect-ratio:4/5}
+  .gp-tile.l{grid-column:span 3!important;aspect-ratio:16/10}
+  @media(max-width:760px){.gp-grid{gap:6px}.gp-tile{border-radius:8px}}
+  @media(max-width:430px){.gp-grid{gap:5px}.gp-tile{border-radius:6px}}
+
+  /* ---------- JAPANESE TEXT WRAPPING (desktop readability) ---------- */
+  @media(min-width:821px){
+    .about-body .bio{max-width:60ch;line-height:2;word-break:auto-phrase;text-wrap:pretty}
+  }
+  .ct-lead{max-width:26ch;word-break:auto-phrase;text-wrap:pretty}
 </style>
 <noscript><style>.loader{display:none!important}.rv{opacity:1;transform:none}.reveal-media{clip-path:none}.hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}.news li.hide{display:block}</style></noscript>
 </head>
@@ -563,6 +702,14 @@
 
 <nav id="nav">
   <a href="#top" class="brand">澤井健太</a>
+  <div class="nav-links" aria-label="メインメニュー">
+    <a href="#about">About</a>
+    <a href="#clients">Clients</a>
+    <a href="#selected">Works</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#news">News</a>
+    <a href="#contact-page">Contact</a>
+  </div>
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
     <span class="ico"><span></span><span></span></span>
     <span class="lbl-open">Menu</span><span class="lbl-close">Close</span>
@@ -580,10 +727,12 @@
   </nav>
   <div class="menu-sns">
     <span class="lab">Follow</span>
-    <a href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener">Instagram <em>@s_ken.ken ↗</em></a>
-    <a href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener">Facebook <em>@s_ken.ken ↗</em></a>
-    <a href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener">TikTok <em>@s_ken.ken ↗</em></a>
-    <a href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener">YouTube <em>@s_kenken ↗</em></a>
+    <div class="sns-btns">
+      <a class="sns-btn" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a class="sns-btn" href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V14h2.4v7h2.8z"/></svg></a>
+      <a class="sns-btn" href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.5 3.4 3.5 3.6v2.4c-1.2.1-2.3-.3-3.5-1v5.7c0 3.2-2.3 5.3-5.2 5.3-2.7 0-4.8-2-4.8-4.7 0-2.9 2.4-4.8 5.6-4.4v2.5c-.5-.1-1-.2-1.5-.1-1.2.2-1.9 1-1.8 2.2.1 1.1 1 1.9 2.1 1.8 1.2-.1 1.9-1 1.9-2.4V3h3.2z"/></svg></a>
+      <a class="sns-btn" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16.4 5 12 5 12 5s-4.4 0-7.2.2c-.4 0-1.2.1-2 .9C2.2 6.7 2 8.2 2 8.2S1.8 9.9 1.8 11.6v1.6c0 1.7.2 3.4.2 3.4s.2 1.5.8 2.1c.8.8 1.8.8 2.3.9 1.7.2 7 .2 7 .2s4.4 0 7.2-.2c.4 0 1.2-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.7.2-3.4v-1.6c0-1.7-.2-3.4-.2-3.4zM10 14.6V9.4l4.5 2.6-4.5 2.6z"/></svg></a>
+    </div>
   </div>
 </div>
 
@@ -602,12 +751,18 @@
   </div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-inner wrap">
-    <p class="eyebrow">Nightscape &amp; Travel Photographer</p>
+    <p class="eyebrow">Travel Photographer</p>
     <h1 class="hero-name"><span class="reveal"><span>Sawai</span></span><span class="reveal"><span>Kenta</span></span></h1>
     <p class="hero-jp">澤井 健太 ／ けんけん</p>
     <div class="hero-foot">
       <p class="hero-tag">心から感動した景色を、世界中の人々に共有したい。</p>
       <p class="hero-loc">Instagram 285K+ Followers<br>Samsung / Adobe / Alfa Romeo Ambassador</p>
+    </div>
+    <div class="hero-sns sns-btns">
+      <a class="sns-btn" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a class="sns-btn" href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V14h2.4v7h2.8z"/></svg></a>
+      <a class="sns-btn" href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.5 3.4 3.5 3.6v2.4c-1.2.1-2.3-.3-3.5-1v5.7c0 3.2-2.3 5.3-5.2 5.3-2.7 0-4.8-2-4.8-4.7 0-2.9 2.4-4.8 5.6-4.4v2.5c-.5-.1-1-.2-1.5-.1-1.2.2-1.9 1-1.8 2.2.1 1.1 1 1.9 2.1 1.8 1.2-.1 1.9-1 1.9-2.4V3h3.2z"/></svg></a>
+      <a class="sns-btn" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16.4 5 12 5 12 5s-4.4 0-7.2.2c-.4 0-1.2.1-2 .9C2.2 6.7 2 8.2 2 8.2S1.8 9.9 1.8 11.6v1.6c0 1.7.2 3.4.2 3.4s.2 1.5.8 2.1c.8.8 1.8.8 2.3.9 1.7.2 7 .2 7 .2s4.4 0 7.2-.2c.4 0 1.2-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.7.2-3.4v-1.6c0-1.7-.2-3.4-.2-3.4zM10 14.6V9.4l4.5 2.6-4.5 2.6z"/></svg></a>
     </div>
   </div>
   <div class="hero-index" id="heroIndex" aria-hidden="true">
@@ -686,13 +841,13 @@
     <button data-filter="commercial">Commercial</button>
   </div>
   <div class="works-grid" id="worksGrid">
-    <figure class="work tall" data-cat="night landscape"><div class="img ph-city reveal-media"></div>
+    <figure class="work tall" data-cat="night landscape" data-slug="osaka-rain-night" role="link" tabindex="0"><div class="img ph-city reveal-media"></div>
       <figcaption><span class="wc">Night</span><span class="wt">雨の夜景 — Osaka</span><span class="wclient">Client — Samsung Galaxy</span></figcaption></figure>
-    <figure class="work wide" data-cat="landscape kyoto"><div class="img ph-sakura reveal-media"></div>
+    <figure class="work wide" data-cat="landscape kyoto" data-slug="kyoto-spring-valley" role="link" tabindex="0"><div class="img ph-sakura reveal-media"></div>
       <figcaption><span class="wc">Kyoto</span><span class="wt">春の渓谷 — Kyoto</span><span class="wclient">Client — JR West</span></figcaption></figure>
-    <figure class="work tall" data-cat="kyoto landscape"><div class="img ph-bamboo reveal-media"></div>
+    <figure class="work tall" data-cat="kyoto landscape" data-slug="arashiyama-bamboo" role="link" tabindex="0"><div class="img ph-bamboo reveal-media"></div>
       <figcaption><span class="wc">Kyoto</span><span class="wt">竹林の道 — Arashiyama</span><span class="wclient">Client — Adobe Lightroom</span></figcaption></figure>
-    <figure class="work wide" data-cat="landscape"><div class="img ph-okinawa reveal-media"></div>
+    <figure class="work wide" data-cat="landscape" data-slug="okinawa-sea" role="link" tabindex="0"><div class="img ph-okinawa reveal-media"></div>
       <figcaption><span class="wc">Landscape</span><span class="wt">沖縄の海 — Okinawa</span><span class="wclient">Client — Tourism Australia</span></figcaption></figure>
   </div>
   <div class="more-row rv">
@@ -823,27 +978,27 @@
     </div>
     <p class="gp-count rv" id="gpCount"></p>
     <div class="gp-grid" id="gpGrid">
-      <figure class="gp-tile tall" data-cat="japan"><div class="img ph-bamboo"></div><figcaption><div class="gt">竹林の道</div><div class="gl">Arashiyama, Japan</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="japan"><div class="img ph-sakura"></div><figcaption><div class="gt">桜並木</div><div class="gl">Kyoto, Japan</div></figcaption></figure>
-      <figure class="gp-tile tall" data-cat="japan"><div class="img ph-city"></div><figcaption><div class="gt">夜の鴨川</div><div class="gl">Kyoto, Japan</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="japan"><div class="img ph-okinawa"></div><figcaption><div class="gt">沖縄の海</div><div class="gl">Okinawa, Japan</div></figcaption></figure>
-      <figure class="gp-tile tall" data-cat="france"><div class="img ph-city"></div><figcaption><div class="gt">夜のパリ</div><div class="gl">Paris, France</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="france"><div class="img ph-sakura"></div><figcaption><div class="gt">セーヌの朝</div><div class="gl">Paris, France</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="uk"><div class="img ph-city"></div><figcaption><div class="gt">霧のロンドン</div><div class="gl">London, UK</div></figcaption></figure>
-      <figure class="gp-tile tall" data-cat="netherlands"><div class="img ph-sakura"></div><figcaption><div class="gt">運河の街</div><div class="gl">Amsterdam, NL</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="spain"><div class="img ph-okinawa"></div><figcaption><div class="gt">地中海の光</div><div class="gl">Barcelona, Spain</div></figcaption></figure>
-      <figure class="gp-tile tall" data-cat="italy"><div class="img ph-city"></div><figcaption><div class="gt">水の都</div><div class="gl">Venezia, Italy</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="germany"><div class="img ph-bamboo"></div><figcaption><div class="gt">黒い森</div><div class="gl">Bayern, Germany</div></figcaption></figure>
-      <figure class="gp-tile tall" data-cat="turkey"><div class="img ph-city"></div><figcaption><div class="gt">イスタンブールの夜</div><div class="gl">İstanbul, Türkiye</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="australia"><div class="img ph-okinawa"></div><figcaption><div class="gt">グレートオーシャン</div><div class="gl">Victoria, Australia</div></figcaption></figure>
-      <figure class="gp-tile tall" data-cat="hawaii"><div class="img ph-okinawa"></div><figcaption><div class="gt">ワイキキの夕暮れ</div><div class="gl">Oʻahu, Hawaii</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="saudi"><div class="img ph-okinawa"></div><figcaption><div class="gt">砂漠の星空</div><div class="gl">AlUla, Saudi Arabia</div></figcaption></figure>
-      <figure class="gp-tile tall" data-cat="korea"><div class="img ph-city"></div><figcaption><div class="gt">ソウルの夜</div><div class="gl">Seoul, Korea</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="thailand"><div class="img ph-okinawa"></div><figcaption><div class="gt">南国の海</div><div class="gl">Phuket, Thailand</div></figcaption></figure>
-      <figure class="gp-tile tall" data-cat="hongkong"><div class="img ph-city"></div><figcaption><div class="gt">香港の夜景</div><div class="gl">Hong Kong</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="wedding"><div class="img ph-sakura"></div><figcaption><div class="gt">桜の前撮り</div><div class="gl">Wedding · Kyoto</div></figcaption></figure>
-      <figure class="gp-tile tall" data-cat="hotels"><div class="img ph-okinawa"></div><figcaption><div class="gt">リゾートステイ</div><div class="gl">Hotel · Okinawa</div></figcaption></figure>
-      <figure class="gp-tile" data-cat="events"><div class="img ph-city"></div><figcaption><div class="gt">ガラディナー</div><div class="gl">Event · Osaka</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="japan"><div class="img ph-bamboo"></div><figcaption><div class="gt">竹林の道</div><div class="gl">Arashiyama, Japan</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="japan"><div class="img ph-sakura"></div><figcaption><div class="gt">桜並木</div><div class="gl">Kyoto, Japan</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="japan"><div class="img ph-city"></div><figcaption><div class="gt">夜の鴨川</div><div class="gl">Kyoto, Japan</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="japan"><div class="img ph-okinawa"></div><figcaption><div class="gt">沖縄の海</div><div class="gl">Okinawa, Japan</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="france"><div class="img ph-city"></div><figcaption><div class="gt">夜のパリ</div><div class="gl">Paris, France</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="france"><div class="img ph-sakura"></div><figcaption><div class="gt">セーヌの朝</div><div class="gl">Paris, France</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="uk"><div class="img ph-city"></div><figcaption><div class="gt">霧のロンドン</div><div class="gl">London, UK</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="netherlands"><div class="img ph-sakura"></div><figcaption><div class="gt">運河の街</div><div class="gl">Amsterdam, NL</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="spain"><div class="img ph-okinawa"></div><figcaption><div class="gt">地中海の光</div><div class="gl">Barcelona, Spain</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="italy"><div class="img ph-city"></div><figcaption><div class="gt">水の都</div><div class="gl">Venezia, Italy</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="germany"><div class="img ph-bamboo"></div><figcaption><div class="gt">黒い森</div><div class="gl">Bayern, Germany</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="turkey"><div class="img ph-city"></div><figcaption><div class="gt">イスタンブールの夜</div><div class="gl">İstanbul, Türkiye</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="australia"><div class="img ph-okinawa"></div><figcaption><div class="gt">グレートオーシャン</div><div class="gl">Victoria, Australia</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="hawaii"><div class="img ph-okinawa"></div><figcaption><div class="gt">ワイキキの夕暮れ</div><div class="gl">Oʻahu, Hawaii</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="saudi"><div class="img ph-okinawa"></div><figcaption><div class="gt">砂漠の星空</div><div class="gl">AlUla, Saudi Arabia</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="korea"><div class="img ph-city"></div><figcaption><div class="gt">ソウルの夜</div><div class="gl">Seoul, Korea</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="thailand"><div class="img ph-okinawa"></div><figcaption><div class="gt">南国の海</div><div class="gl">Phuket, Thailand</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="hongkong"><div class="img ph-city"></div><figcaption><div class="gt">香港の夜景</div><div class="gl">Hong Kong</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="wedding"><div class="img ph-sakura"></div><figcaption><div class="gt">桜の前撮り</div><div class="gl">Wedding · Kyoto</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="hotels"><div class="img ph-okinawa"></div><figcaption><div class="gt">リゾートステイ</div><div class="gl">Hotel · Okinawa</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="events"><div class="img ph-city"></div><figcaption><div class="gt">ガラディナー</div><div class="gl">Event · Osaka</div></figcaption></figure>
     </div>
     <p class="gp-empty" id="gpEmpty">このカテゴリの写真は準備中です。</p>
     <p class="note">※ 写真追加は .gp-tile を複製→data-cat にカテゴリslug（japan / france …）→画像クラスを差し替え。縦長にしたいタイルは class に tall を追加。空のカテゴリ（Denmark / Sweden / China / Macao）はタイルを足すと自動で表示されます。</p>
@@ -862,18 +1017,42 @@
       <button data-filter="commercial">Commercial</button>
     </div>
     <div class="works-grid wp-grid" id="wpGrid">
-      <figure class="work tall" data-cat="night landscape"><div class="img ph-city"></div><figcaption><span class="wc">Night</span><span class="wt">雨の夜景 — Osaka</span><span class="wclient">Client — Samsung Galaxy</span></figcaption></figure>
-      <figure class="work wide" data-cat="landscape kyoto"><div class="img ph-sakura"></div><figcaption><span class="wc">Kyoto</span><span class="wt">春の渓谷 — Kyoto</span><span class="wclient">Client — JR West</span></figcaption></figure>
-      <figure class="work tall" data-cat="kyoto commercial"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">竹林の道 — Arashiyama</span><span class="wclient">Client — Adobe Lightroom</span></figcaption></figure>
-      <figure class="work wide" data-cat="landscape"><div class="img ph-okinawa"></div><figcaption><span class="wc">Landscape</span><span class="wt">沖縄の海 — Okinawa</span><span class="wclient">Client — Tourism Australia</span></figcaption></figure>
-      <figure class="work tall" data-cat="night"><div class="img ph-city"></div><figcaption><span class="wc">Night</span><span class="wt">ネオンの交差点 — Osaka</span><span class="wclient">Client — Personal Work</span></figcaption></figure>
-      <figure class="work wide" data-cat="commercial kyoto"><div class="img ph-sakura"></div><figcaption><span class="wc">Commercial</span><span class="wt">桜のホテル — Kyoto</span><span class="wclient">Client — Hotel PR</span></figcaption></figure>
-      <figure class="work tall" data-cat="landscape"><div class="img ph-okinawa"></div><figcaption><span class="wc">Landscape</span><span class="wt">珊瑚礁 — Okinawa</span><span class="wclient">Client — Trip.com</span></figcaption></figure>
-      <figure class="work wide" data-cat="night kyoto"><div class="img ph-city"></div><figcaption><span class="wc">Night</span><span class="wt">鴨川の夜 — Kyoto</span><span class="wclient">Client — JR West</span></figcaption></figure>
-      <figure class="work tall" data-cat="commercial"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">嵐山ライトアップ — Arashiyama</span><span class="wclient">Client — Turkish Airlines</span></figcaption></figure>
+      <figure class="work tall" data-cat="night landscape" data-slug="osaka-rain-night" role="link" tabindex="0"><div class="img ph-city"></div><figcaption><span class="wc">Night</span><span class="wt">雨の夜景 — Osaka</span><span class="wclient">Client — Samsung Galaxy</span></figcaption></figure>
+      <figure class="work wide" data-cat="landscape kyoto" data-slug="kyoto-spring-valley" role="link" tabindex="0"><div class="img ph-sakura"></div><figcaption><span class="wc">Kyoto</span><span class="wt">春の渓谷 — Kyoto</span><span class="wclient">Client — JR West</span></figcaption></figure>
+      <figure class="work tall" data-cat="kyoto commercial" data-slug="arashiyama-bamboo" role="link" tabindex="0"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">竹林の道 — Arashiyama</span><span class="wclient">Client — Adobe Lightroom</span></figcaption></figure>
+      <figure class="work wide" data-cat="landscape" data-slug="okinawa-sea" role="link" tabindex="0"><div class="img ph-okinawa"></div><figcaption><span class="wc">Landscape</span><span class="wt">沖縄の海 — Okinawa</span><span class="wclient">Client — Tourism Australia</span></figcaption></figure>
+      <figure class="work tall" data-cat="night" data-slug="osaka-neon" role="link" tabindex="0"><div class="img ph-city"></div><figcaption><span class="wc">Night</span><span class="wt">ネオンの交差点 — Osaka</span><span class="wclient">Client — Personal Work</span></figcaption></figure>
+      <figure class="work wide" data-cat="commercial kyoto" data-slug="kyoto-sakura-hotel" role="link" tabindex="0"><div class="img ph-sakura"></div><figcaption><span class="wc">Commercial</span><span class="wt">桜のホテル — Kyoto</span><span class="wclient">Client — Hotel PR</span></figcaption></figure>
+      <figure class="work tall" data-cat="landscape" data-slug="okinawa-reef" role="link" tabindex="0"><div class="img ph-okinawa"></div><figcaption><span class="wc">Landscape</span><span class="wt">珊瑚礁 — Okinawa</span><span class="wclient">Client — Trip.com</span></figcaption></figure>
+      <figure class="work wide" data-cat="night kyoto" data-slug="kyoto-kamogawa-night" role="link" tabindex="0"><div class="img ph-city"></div><figcaption><span class="wc">Night</span><span class="wt">鴨川の夜 — Kyoto</span><span class="wclient">Client — JR West</span></figcaption></figure>
+      <figure class="work tall" data-cat="commercial" data-slug="arashiyama-lightup" role="link" tabindex="0"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">嵐山ライトアップ — Arashiyama</span><span class="wclient">Client — Turkish Airlines</span></figcaption></figure>
     </div>
     <p class="works-empty" id="wpEmpty">このカテゴリの作品は準備中です。</p>
-    <p class="note">※ ここが Works の全件ページ。.work を複製→data-cat（landscape / kyoto / night / commercial）→画像クラス・タイトル・Client を編集。フィルターは自動連動します。</p>
+    <p class="note">※ ここが Works の全件ページ。.work を複製→data-cat（landscape / kyoto / night / commercial）→data-slug（詳細ページのURL）→画像クラス・タイトル・Client を編集。カードをクリックすると詳細ページに飛びます。</p>
+  </section>
+</main>
+
+<!-- ===================== WORK DETAIL PAGE ===================== -->
+<main id="view-work" class="view">
+  <section class="sec wrap subpage-top wd">
+    <div class="wd-meta">
+      <span class="wd-cat" id="wdCat">—</span>
+      <span class="wd-client" id="wdClient">—</span>
+    </div>
+    <h2 class="wd-title" id="wdTitle">—</h2>
+    <p class="wd-jp" id="wdJp">—</p>
+    <div class="wd-info">
+      <div><span class="k">Location</span><span class="v" id="wdLoc">—</span></div>
+      <div><span class="k">Year</span><span class="v" id="wdYear">—</span></div>
+      <div><span class="k">Category</span><span class="v" id="wdCatFull">—</span></div>
+    </div>
+    <figure class="wd-hero"><div class="img" id="wdImg"></div></figure>
+    <div class="wd-body"><p class="wd-desc" id="wdDesc">—</p></div>
+    <div class="wd-ig" id="wdIg"></div>
+    <div class="more-row" style="margin-top:clamp(34px,5vw,56px)">
+      <a class="read-more" href="#works-page"><span>View all works</span><span class="arr">→</span></a>
+    </div>
+    <p class="note">※ 各作品の詳細・本文・Instagram埋め込みは &lt;script&gt; 内の <strong>WORKS</strong> データで編集します（slugごと）。instagram に投稿URLを入れると埋め込み表示、空なら「Instagramで見る」ボタンになります。</p>
   </section>
 </main>
 
@@ -945,7 +1124,7 @@
     <div class="sec-head rv"><span class="eyebrow">Get in touch</span><h2 class="en-h">Contact</h2><p class="jp" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— お問い合わせ</p></div>
     <div class="ct-grid rv">
       <div>
-        <p class="ct-lead">撮影・タイアップ・<span class="hl">講座</span>のご依頼、<br>その他お仕事のご相談はこちらから。</p>
+        <p class="ct-lead">撮影・タイアップ・<span class="hl">講座</span>のご依頼、その他お仕事のご相談はこちらから。</p>
         <div class="ct-meta">
           <div class="row"><span class="k">Email</span><a class="v" href="mailto:s.kenkenn@gmail.com">s.kenkenn@gmail.com</a></div>
           <div class="row"><span class="k">Based in</span><span class="v">Kyoto, Japan ／ 出張対応可（国内・海外）</span></div>
@@ -993,6 +1172,15 @@
     <div class="foot-name">Sawai Kenta<small>澤井 健太 ／ けんけん</small></div>
     <a class="foot-back" href="#top">Back to top ↑</a>
   </div>
+  <div class="foot-social">
+    <span class="lab">Follow</span>
+    <div class="sns-btns">
+      <a class="sns-btn" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a class="sns-btn" href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V14h2.4v7h2.8z"/></svg></a>
+      <a class="sns-btn" href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.5 3.4 3.5 3.6v2.4c-1.2.1-2.3-.3-3.5-1v5.7c0 3.2-2.3 5.3-5.2 5.3-2.7 0-4.8-2-4.8-4.7 0-2.9 2.4-4.8 5.6-4.4v2.5c-.5-.1-1-.2-1.5-.1-1.2.2-1.9 1-1.8 2.2.1 1.1 1 1.9 2.1 1.8 1.2-.1 1.9-1 1.9-2.4V3h3.2z"/></svg></a>
+      <a class="sns-btn" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16.4 5 12 5 12 5s-4.4 0-7.2.2c-.4 0-1.2.1-2 .9C2.2 6.7 2 8.2 2 8.2S1.8 9.9 1.8 11.6v1.6c0 1.7.2 3.4.2 3.4s.2 1.5.8 2.1c.8.8 1.8.8 2.3.9 1.7.2 7 .2 7 .2s4.4 0 7.2-.2c.4 0 1.2-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.7.2-3.4v-1.6c0-1.7-.2-3.4-.2-3.4zM10 14.6V9.4l4.5 2.6-4.5 2.6z"/></svg></a>
+    </div>
+  </div>
   <div class="foot-base"><span>© <span id="yr"></span> Sawai Kenta</span><span>Sharing the scenery that moved me.</span></div>
 </footer>
 
@@ -1007,9 +1195,10 @@
   document.getElementById('yr').textContent=new Date().getFullYear();
   new IntersectionObserver(([e])=>{document.getElementById('nav').classList.toggle('solid',!e.isIntersecting);},{rootMargin:'-70px 0px 0px 0px'}).observe(document.getElementById('top'));
   (function(){const btn=document.getElementById('menuBtn'),menu=document.getElementById('menu');
-    const set=o=>{document.body.classList.toggle('menu-open',o);document.body.classList.toggle('lock',o);btn.setAttribute('aria-expanded',o);menu.setAttribute('aria-hidden',!o);};
-    btn.addEventListener('click',()=>set(!document.body.classList.contains('menu-open')));
+    const set=o=>{document.body.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',o);menu.setAttribute('aria-hidden',!o);};
+    btn.addEventListener('click',e=>{e.stopPropagation();set(!document.body.classList.contains('menu-open'));});
     menu.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>set(false)));
+    document.addEventListener('click',e=>{if(!document.body.classList.contains('menu-open'))return;if(e.target.closest('#menu')||e.target.closest('#menuBtn'))return;set(false);});
     addEventListener('keydown',e=>{if(e.key==='Escape')set(false);});})();
   (function(){const slides=[...document.querySelectorAll('.slide')],ticks=[...document.querySelectorAll('#heroIndex i')],curEl=document.querySelector('#heroIndex .cur');
     if(slides.length<2)return;let idx=0,timer;
@@ -1044,71 +1233,134 @@
       gallery:document.getElementById('view-gallery'),
       works:document.getElementById('view-works'),
       contact:document.getElementById('view-contact'),
-      news:document.getElementById('view-news')
+      news:document.getElementById('view-news'),
+      work:document.getElementById('view-work')
     };
     var nav=document.getElementById('nav');
     var hashMap={'gallery-page':'gallery','works-page':'works','contact-page':'contact','news-page':'news'};
+    var scrollMem={}, current='home', canBack=false;
+
+    /* ----- work detail data (edit here: 本文 / Instagram投稿URL) ----- */
+    var WORKS={
+      'osaka-rain-night':{cat:'Night',catFull:'Night / Cityscape',client:'Samsung Galaxy',year:'2024',loc:'Osaka, Japan',title:'雨の夜景',jp:'Rainy Night, Osaka',img:'ph-city',
+        desc:'雨上がりのアスファルトがネオンを鏡のように映し込む、大阪の夜。\n濡れた路面の反射を活かして、街の光をいつもより深く、濃く描いています。\nSamsung Galaxy のナイトモード検証も兼ねて撮影した一枚です。',
+        instagram:''},
+      'kyoto-spring-valley':{cat:'Kyoto',catFull:'Landscape / Kyoto',client:'JR West',year:'2024',loc:'Kyoto, Japan',title:'春の渓谷',jp:'Spring Valley, Kyoto',img:'ph-sakura',
+        desc:'新緑と山桜が混ざり合う、京都郊外の渓谷。\n朝のやわらかい光を待って、川面のきらめきと芽吹きの色を一緒に収めました。',
+        instagram:''},
+      'arashiyama-bamboo':{cat:'Kyoto',catFull:'Landscape / Kyoto',client:'Adobe Lightroom',year:'2024',loc:'Arashiyama, Kyoto',title:'竹林の道',jp:'Bamboo Grove, Arashiyama',img:'ph-bamboo',
+        desc:'観光客が途切れる早朝の嵐山・竹林の小径。\n縦に抜ける光と霧を活かし、奥行きと静けさを意識して撮影しました。\nLightroom の現像ワークフロー解説でも使用したカットです。',
+        instagram:''},
+      'okinawa-sea':{cat:'Landscape',catFull:'Landscape / Sea',client:'Tourism Australia',year:'2023',loc:'Okinawa, Japan',title:'沖縄の海',jp:'Okinawan Sea',img:'ph-okinawa',
+        desc:'透明度の高い沖縄の海を、空のグラデーションごと一枚に。\n遠浅のリーフが描くブルーの段階を丁寧に残しています。',
+        instagram:''},
+      'osaka-neon':{cat:'Night',catFull:'Night / Street',client:'Personal Work',year:'2024',loc:'Osaka, Japan',title:'ネオンの交差点',jp:'Neon Crossing, Osaka',img:'ph-city',
+        desc:'大阪・ミナミの交差点。看板の光が一番濃くなる時間帯を狙った個人作品です。\n人の流れをスローシャッターで溶かし、光だけを残しました。',
+        instagram:''},
+      'kyoto-sakura-hotel':{cat:'Commercial',catFull:'Commercial / Hotel',client:'Hotel PR',year:'2024',loc:'Kyoto, Japan',title:'桜のホテル',jp:'Sakura & Hotel, Kyoto',img:'ph-sakura',
+        desc:'桜のシーズンに合わせたホテルのPR撮影。\n客室から望む桜と建築のラインが重なる構図で、宿泊体験の魅力を表現しました。',
+        instagram:''},
+      'okinawa-reef':{cat:'Landscape',catFull:'Landscape / Sea',client:'Trip.com',year:'2023',loc:'Okinawa, Japan',title:'珊瑚礁',jp:'Coral Reef, Okinawa',img:'ph-okinawa',
+        desc:'上空から見た珊瑚礁のパターン。\n旅行プラットフォーム向けに、沖縄の海の豊かさが伝わる一枚を意識しました。',
+        instagram:''},
+      'kyoto-kamogawa-night':{cat:'Night',catFull:'Night / Kyoto',client:'JR West',year:'2024',loc:'Kyoto, Japan',title:'鴨川の夜',jp:'Kamogawa at Night',img:'ph-city',
+        desc:'灯りがともり始める鴨川沿い。\n川面に映る街明かりと、等間隔に並ぶ人々のシルエットが京都らしい夜の表情です。',
+        instagram:''},
+      'arashiyama-lightup':{cat:'Commercial',catFull:'Commercial / Event',client:'Turkish Airlines',year:'2023',loc:'Arashiyama, Kyoto',title:'嵐山ライトアップ',jp:'Arashiyama Light-up',img:'ph-bamboo',
+        desc:'冬の嵐山・花灯路のライトアップ。\n竹林を照らす光の演出を、観光プロモーション用に印象的に切り取りました。',
+        instagram:''}
+    };
+
+    function setText(id,v){ var el=document.getElementById(id); if(el)el.textContent=v; }
+    function renderIG(permalink){
+      var box=document.getElementById('wdIg'); if(!box)return;
+      if(permalink){
+        box.innerHTML='<blockquote class="instagram-media" data-instgrm-permalink="'+permalink+'" data-instgrm-version="14" style="margin:0 auto;max-width:540px;width:100%;background:#1F2324;border-radius:14px"></blockquote>';
+        if(window.instgrm&&window.instgrm.Embeds){ window.instgrm.Embeds.process(); }
+      } else {
+        box.innerHTML='<a class="ig-cta" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener">この作品をInstagramで見る →</a>';
+      }
+    }
+    function populateWork(slug){
+      var w=WORKS[slug]; if(!w)return false;
+      setText('wdCat',w.cat); setText('wdClient','Client — '+w.client);
+      setText('wdTitle',w.title); setText('wdJp',w.jp);
+      setText('wdLoc',w.loc); setText('wdYear',w.year); setText('wdCatFull',w.catFull);
+      setText('wdDesc',w.desc);
+      var img=document.getElementById('wdImg'); if(img){img.className='img '+w.img;}
+      try{document.title=w.title+' — Sawai Kenta';}catch(_){}
+      renderIG(w.instagram);
+      return true;
+    }
 
     function reveal(view){
       if(!view)return;
       view.querySelectorAll('.rv, .reveal-media').forEach(function(el){el.classList.add('in');});
     }
-    function show(name,anchor){
-      if(!views[name])name='home';
-      Object.keys(views).forEach(function(k){
-        if(views[k])views[k].classList.toggle('active',k===name);
-      });
-      document.body.classList.remove('menu-open','lock');
-      if(name==='home'){
-        if(anchor && anchor!=='top'){
-          requestAnimationFrame(function(){
-            var t=document.getElementById(anchor);
-            if(t){t.scrollIntoView();}else{window.scrollTo(0,0);}
-            nav.classList.toggle('solid', window.scrollY>60);
-          });
-        }else{
-          window.scrollTo(0,0);
-          nav.classList.remove('solid');
-        }
-      }else{
-        window.scrollTo(0,0);
-        nav.classList.add('solid');
-        reveal(views[name]);
-      }
+    function activate(name){
+      Object.keys(views).forEach(function(k){ if(views[k]) views[k].classList.toggle('active',k===name); });
     }
-    function applyHash(h){
-      h=(h||'').replace(/^#/,'');
-      if(hashMap[h]){show(hashMap[h]);}
-      else if(h===''||h==='home'||h==='top'){show('home', h==='top'?'top':null);}
-      else{show('home',h);}
+    function show(name,opts){
+      opts=opts||{};
+      if(views[current]) scrollMem[current]=window.scrollY;   /* remember where we were */
+      if(!views[name]) name='home';
+      activate(name);
+      document.body.classList.remove('menu-open');
+      var restored = opts.restore && scrollMem[name]!=null;
+      if(restored){
+        var y=scrollMem[name];
+        requestAnimationFrame(function(){ window.scrollTo(0,y); nav.classList.toggle('solid', name!=='home'||y>60); });
+      } else if(name==='home' && opts.anchor && opts.anchor!=='top'){
+        requestAnimationFrame(function(){ var t=document.getElementById(opts.anchor); if(t)t.scrollIntoView(); nav.classList.toggle('solid', window.scrollY>60); });
+      } else {
+        window.scrollTo(0,0);
+        nav.classList.toggle('solid', name!=='home');
+      }
+      if(name!=='home') reveal(views[name]);
+      current=name;
+    }
+    function applyHash(h,opts){
+      h=(h||'').replace(/^#/,''); opts=opts||{};
+      if(h.indexOf('work-')===0){ if(populateWork(h.slice(5))){show('work',opts);} else {show('works',opts);} }
+      else if(hashMap[h]){ show(hashMap[h],opts); }
+      else if(h===''||h==='home'){ show('home',opts); }
+      else if(h==='top'){ show('home',{anchor:'top'}); }
+      else { show('home',{anchor:h}); }
     }
     function go(h){
       h=(h||'').replace(/^#/,'');
-      applyHash(h);
+      applyHash(h,{});
+      canBack=true;
       try{history.pushState({h:h},'', h?('#'+h):location.pathname);}catch(_){}
     }
-    function route(){ applyHash(location.hash); }
+    function route(){ applyHash(location.hash,{restore:true}); }
 
-    /* Intercept internal (#) links and switch views in JS — never trigger a real
-       navigation, which in the artifact preview would open a new browser tab. */
     document.addEventListener('click',function(e){
+      var back=e.target.closest('.subpage-back');
+      if(back){ e.preventDefault(); if(canBack){history.back();}else{go('#home');} return; }
+      var card=e.target.closest('.work[data-slug]');
+      if(card){ e.preventDefault(); go('#work-'+card.dataset.slug); return; }
       var a=e.target.closest('a[href^="#"]');
       if(!a)return;
       e.preventDefault();
       var href=a.getAttribute('href');
       if(href && href!=='#') go(href);
     });
+    document.addEventListener('keydown',function(e){
+      if(e.key!=='Enter')return;
+      var card=e.target.closest&&e.target.closest('.work[data-slug]');
+      if(card){ e.preventDefault(); go('#work-'+card.dataset.slug); }
+    });
     window.addEventListener('popstate',route);
 
-    /* Drop a "back to home" link at the top of every subpage. */
-    Object.keys(views).forEach(function(k){
-      if(k==='home'||!views[k])return;
+    /* back link on every subpage (incl. work detail) */
+    ['gallery','works','contact','news','work'].forEach(function(k){
+      if(!views[k])return;
       var sec=views[k].querySelector('.subpage-top');
       if(sec && !sec.querySelector('.subpage-back')){
         var b=document.createElement('a');
-        b.className='subpage-back';
-        b.href='#top';
-        b.innerHTML='← <span>Back to home</span>';
+        b.className='subpage-back'; b.href='#';
+        b.innerHTML='← <span>戻る / Back</span>';
         sec.insertBefore(b, sec.firstChild);
       }
     });
@@ -1222,5 +1474,6 @@
     }
   })();
 </script>
+<script async src="https://www.instagram.com/embed.js"></script>
 </body>
 </html>
