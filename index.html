@@ -456,9 +456,11 @@
   .gp-filter button:hover{color:var(--text)}
   .gp-filter button.on{color:var(--text)}
   .gp-filter button.on::after{left:0;right:0}
-  .gp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));
-    gap:clamp(8px,1.2vw,14px)}
-  @media(max-width:520px){.gp-grid{grid-template-columns:repeat(2,1fr)}}
+  .gp-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-flow:row;gap:clamp(8px,1.2vw,14px)}
+  .gp-tile.p{grid-column:span 2;aspect-ratio:4/5}
+  .gp-tile.l{grid-column:span 3;aspect-ratio:16/10}
+  @media(max-width:760px){.gp-grid{gap:6px}}
+  @media(max-width:430px){.gp-grid{gap:5px}}
   .gp-tile{position:relative;border-radius:10px;overflow:hidden;background:var(--panel2);
     aspect-ratio:4/5;opacity:0;transform:translateY(34px) scale(.97);transition:opacity .9s ease,transform 1.05s var(--ease)}
   .gp-tile.in{opacity:1;transform:none}
@@ -733,21 +735,7 @@
   .work[data-slug]{cursor:pointer}
   .gp-tile[data-slug]{cursor:pointer}
 
-  /* ---------- GALLERY PAGE: fix alignment + 縦3・横2 rhythm ---------- */
-  .gp-grid{grid-template-columns:repeat(6,1fr);grid-auto-flow:dense;
-    gap:clamp(8px,1.2vw,14px)}
-  .gp-tile{aspect-ratio:auto}
-  .gp-tile.p{grid-column:span 2;aspect-ratio:4/5}
-  .gp-tile.l{grid-column:span 3;aspect-ratio:16/10}
-  @media(max-width:760px){
-    .gp-grid{grid-template-columns:repeat(2,1fr)}
-    .gp-tile.p{grid-column:span 1}
-    .gp-tile.l{grid-column:span 2}
-  }
-  @media(max-width:430px){
-    .gp-grid{grid-template-columns:1fr}
-    .gp-tile.p,.gp-tile.l{grid-column:span 1}
-  }
+  /* ---------- GALLERY PAGE rhythm defined once above ---------- */
 
   @media (prefers-reduced-motion: reduce){
     .hero-sns{opacity:1;animation:none!important}
@@ -774,14 +762,8 @@
     nav.solid .nav-links a{color:var(--text);text-shadow:none}
   }
 
-  /* ---------- GALLERY PAGE: keep the 縦3・横2 arrangement at every width ---------- */
-  .gp-grid{grid-template-columns:repeat(6,1fr)!important;grid-auto-flow:row!important;
-    gap:clamp(7px,1.2vw,14px)}
-  .gp-tile.p{grid-column:span 2!important;aspect-ratio:4/5}
-  .gp-tile.l{grid-column:span 3!important;aspect-ratio:16/10}
-  @media(max-width:760px){.gp-grid{gap:6px}.gp-tile{border-radius:8px}}
-  @media(max-width:430px){.gp-grid{gap:5px}.gp-tile{border-radius:6px}}
-  /* mobile: balanced even 2-column grid (no rhythm gaps / left-bias) */
+  @media(max-width:760px){.gp-tile{border-radius:8px}}
+  @media(max-width:430px){.gp-tile{border-radius:6px}}
 
   /* ---------- JAPANESE TEXT WRAPPING (desktop readability) ---------- */
   @media(min-width:821px){
