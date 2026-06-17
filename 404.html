@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — ページが見つかりません / Sawai Kenta</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Schibsted+Grotesk:wght@500;600&family=Shippori+Mincho:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#171A1B;--text:#EAE8E2;--muted:#9BA09E;--accent:#E0A661;
+    --serif:"Cormorant Garamond",Georgia,serif;--mincho:"Shippori Mincho",serif;--sans:"Schibsted Grotesk",system-ui,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100svh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:clamp(24px,6vw,72px);-webkit-font-smoothing:antialiased}
+  .code{font-family:var(--serif);font-weight:500;font-size:clamp(5rem,22vw,12rem);line-height:.9;letter-spacing:.02em}
+  .line{width:96px;height:2px;background:var(--accent);border-radius:2px;margin:clamp(20px,4vw,32px) auto}
+  .jp{font-family:var(--mincho);font-size:clamp(1rem,3.4vw,1.35rem);letter-spacing:.06em;color:var(--text)}
+  .en{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:clamp(.95rem,2.4vw,1.15rem);margin-top:10px}
+  a.home{display:inline-flex;align-items:center;gap:10px;margin-top:clamp(34px,5vw,48px);
+    padding:15px 38px;border:1px solid var(--text);border-radius:100px;color:var(--text);
+    text-decoration:none;font-weight:500;font-size:.85rem;letter-spacing:.06em;
+    position:relative;overflow:hidden;z-index:0;transition:color .4s}
+  a.home span{position:relative;z-index:2}
+  a.home::before{content:"";position:absolute;inset:0;z-index:1;background:var(--text);transform:translateY(101%);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+  a.home:hover{color:var(--bg)}a.home:hover::before{transform:none}
+  @media (prefers-reduced-motion:reduce){a.home::before{transition:none}}
+</style>
+</head>
+<body>
+  <div class="code">404</div>
+  <div class="line"></div>
+  <p class="jp">お探しのページは見つかりませんでした。</p>
+  <p class="en">The page you're looking for could not be found.</p>
+  <a class="home" href="/"><span>トップへ戻る →</span></a>
+</body>
+</html>

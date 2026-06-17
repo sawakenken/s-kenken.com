@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>澤井 健太 / Sawai Kenta — Nightscape &amp; Travel Photographer</title>
+
+<!-- SEO -->
+<meta name="description" content="澤井健太（けんけん）｜京都を拠点に活動する夜景・旅フォトグラファー。Samsung Team Galaxy / Adobe / Alfa Romeo オフィシャルアンバサダー。撮影・タイアップ・観光PR・Lightroom現像・講座のご依頼を承ります。">
+<meta name="author" content="Sawai Kenta">
+<meta name="keywords" content="澤井健太, けんけん, フォトグラファー, 夜景, 旅, 京都, photographer, nightscape, travel">
+<meta name="theme-color" content="#171A1B">
+<link rel="canonical" href="https://s-kenken.com/">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Open Graph (LINE / X / Facebook / Slack などのカード表示) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sawai Kenta — Photographer">
+<meta property="og:title" content="澤井 健太 / Sawai Kenta — Nightscape & Travel Photographer">
+<meta property="og:description" content="心から感動した景色を、世界中の人々に共有したい。京都拠点の夜景・旅フォトグラファー。">
+<meta property="og:url" content="https://s-kenken.com/">
+<meta property="og:image" content="https://s-kenken.com/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sawai Kenta — Nightscape & Travel Photographer">
+<meta property="og:locale" content="ja_JP">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Schibsted+Grotesk:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#171A1B;--panel:#1F2324;--panel2:#272B2C;--footer:#101213;
+    --text:#EAE8E2;--muted:#9BA09E;
+    --line:rgba(234,232,226,.13);--line-soft:rgba(234,232,226,.07);
+    --accent:#E0A661;--accent2:#6FB3AD;
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --mincho:"Shippori Mincho",serif;
+    --jp:"Zen Kaku Gothic New",system-ui,sans-serif;
+    --sans:"Schibsted Grotesk",system-ui,sans-serif;
+    --ease:cubic-bezier(.16,1,.3,1);--pad:clamp(18px,5vw,72px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--jp);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  body.lock{overflow:hidden;height:100vh}
+  ::selection{background:var(--accent);color:#16181a}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{padding-left:var(--pad);padding-right:var(--pad)}
+  .eyebrow{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--accent)}
+  .note{margin-top:22px;font-size:.82rem;color:var(--muted);opacity:.7}
+
+  /* PRELOADER */
+  .loader{position:fixed;inset:0;z-index:1000;background:var(--bg);color:var(--text);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform 1s var(--ease);will-change:transform}
+  .loader.done{transform:translateY(-101%)}
+  .loader-name{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,8vw,4.4rem);letter-spacing:.02em;opacity:0;animation:fadeUp .9s var(--ease) .1s forwards}
+  .loader-jp{font-family:var(--mincho);letter-spacing:.4em;color:var(--muted);margin-top:12px;font-size:.9rem;opacity:0;animation:fadeUp .9s var(--ease) .22s forwards}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .loader-count{position:absolute;bottom:26px;right:var(--pad);font-family:var(--sans);font-weight:500;font-size:.78rem;letter-spacing:.18em;color:var(--muted)}
+  .loader-count i{font-style:normal;margin:0 6px;opacity:.5}
+  .loader-bar{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--line-soft)}
+  .loader-bar span{display:block;height:100%;width:0;background:var(--accent)}
+
+  .grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);transition:background .45s ease,padding .45s ease,border-color .45s ease;border-bottom:1px solid transparent}
+  nav.solid{background:rgba(23,26,27,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);padding-top:13px;padding-bottom:13px}
+  .brand{font-family:var(--mincho);font-weight:600;font-size:1.08rem;letter-spacing:.05em;color:var(--text);text-shadow:0 1px 14px rgba(0,0,0,.4);position:relative;z-index:320}
+  .menu-btn{position:relative;z-index:320;background:none;border:0;color:var(--text);font-family:var(--sans);font-weight:500;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:11px;padding:8px 0;cursor:pointer;text-shadow:0 1px 14px rgba(0,0,0,.4)}
+  .menu-btn .ico{position:relative;width:24px;height:8px}
+  .menu-btn .ico span{position:absolute;left:0;width:100%;height:1.4px;background:currentColor;transition:.4s var(--ease)}
+  .menu-btn .ico span:first-child{top:0}.menu-btn .ico span:last-child{bottom:0}
+  body.menu-open .menu-btn .ico span:first-child{top:3.5px;transform:rotate(45deg)}
+  body.menu-open .menu-btn .ico span:last-child{bottom:3px;transform:rotate(-45deg)}
+  .menu-btn .lbl-close{display:none}
+  body.menu-open .menu-btn .lbl-open{display:none}body.menu-open .menu-btn .lbl-close{display:inline}
+
+  /* MENU */
+  .menu{position:fixed;inset:0;z-index:300;background:var(--panel);display:flex;flex-direction:column;justify-content:center;padding:96px var(--pad) 44px;overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(-1.5%);transition:opacity .5s var(--ease),transform .6s var(--ease),visibility .5s}
+  body.menu-open .menu{opacity:1;visibility:visible;transform:none}
+  .menu-nav{display:flex;flex-direction:column;max-width:560px;border-top:1px solid var(--line)}
+  .menu-nav a{display:flex;align-items:baseline;gap:18px;padding:clamp(11px,1.9vw,15px) 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease),transform .55s var(--ease),color .3s,padding-left .3s}
+  body.menu-open .menu-nav a{opacity:1;transform:none}
+  body.menu-open .menu-nav a:nth-child(1){transition-delay:.06s}body.menu-open .menu-nav a:nth-child(2){transition-delay:.10s}
+  body.menu-open .menu-nav a:nth-child(3){transition-delay:.14s}body.menu-open .menu-nav a:nth-child(4){transition-delay:.18s}
+  body.menu-open .menu-nav a:nth-child(5){transition-delay:.22s}body.menu-open .menu-nav a:nth-child(6){transition-delay:.26s}
+  body.menu-open .menu-nav a:nth-child(7){transition-delay:.30s}
+  .menu-nav a:hover,.menu-nav a:focus-visible{color:var(--accent);padding-left:8px}
+  .menu-nav .i{font-family:var(--sans);font-size:.66rem;font-weight:500;letter-spacing:.1em;color:var(--muted);min-width:26px}
+  .menu-nav .t{font-family:var(--sans);font-weight:500;text-transform:uppercase;letter-spacing:.03em;font-size:clamp(1.25rem,4.4vw,1.85rem);line-height:1}
+  .menu-nav .jp{font-family:var(--mincho);font-size:.84rem;color:var(--muted);margin-left:auto;align-self:center}
+  .menu-sns{margin-top:clamp(22px,3.5vw,38px);max-width:560px}
+  .menu-sns .lab{display:block;font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .menu-sns a{display:flex;justify-content:space-between;align-items:center;max-width:330px;padding:10px 0;border-bottom:1px solid var(--line-soft);font-family:var(--sans);font-weight:500;font-size:.94rem;transition:color .3s,padding-left .3s}
+  .menu-sns a:hover{color:var(--accent);padding-left:7px}
+  .menu-sns a em{font-style:normal;color:var(--muted);font-size:.78rem}
+  @media(max-width:540px){.menu-nav .jp{display:none}}
+
+  /* HERO */
+  header.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end}
+  .ken{position:absolute;inset:-8% 0;z-index:0;will-change:transform}
+  .hero-slides{position:absolute;inset:0}
+  .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease;background-size:cover;background-position:center;transform:scale(1.04)}
+  .slide.is-active{opacity:1;animation:kb 7s ease-out forwards}
+  @keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+  .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,14,16,.4) 0%,transparent 24%,transparent 44%,rgba(12,14,16,.86) 100%)}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:clamp(54px,8vw,98px);color:#fff}
+  .hero-inner .eyebrow{color:rgba(255,255,255,.82);margin-bottom:14px}
+  .hero-name{font-family:var(--serif);font-weight:500;line-height:.94;letter-spacing:.01em;font-size:clamp(3rem,12vw,8rem)}
+  .hero-name .reveal{display:block;overflow:hidden}
+  .hero-name .reveal span{display:block;transform:translateY(110%);animation:up 1.1s var(--ease) forwards;animation-play-state:paused}
+  .hero-name .reveal:nth-child(2) span{animation-delay:.1s}
+  @keyframes up{to{transform:none}}
+  .hero-jp{font-family:var(--mincho);font-weight:500;font-size:clamp(1rem,3.2vw,1.4rem);letter-spacing:.28em;margin-top:14px;opacity:0;animation:fade 1s ease .5s forwards;animation-play-state:paused}
+  .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;flex-wrap:wrap;margin-top:clamp(22px,5vw,46px);opacity:0;animation:fade 1s ease .7s forwards;animation-play-state:paused}
+  .hero-tag{max-width:26ch;font-family:var(--mincho);font-size:clamp(1rem,2.4vw,1.2rem);font-weight:400;line-height:1.7}
+  .hero-loc{font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:right;opacity:.9;line-height:1.95}
+  @keyframes fade{to{opacity:1}}
+  body:not(.preload) .hero-name .reveal span,body:not(.preload) .hero-jp,body:not(.preload) .hero-foot{animation-play-state:running}
+  .hero-index{position:absolute;right:var(--pad);bottom:clamp(20px,4vw,34px);z-index:2;display:flex;align-items:center;gap:9px;color:#fff;font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.14em}
+  .hero-index .tot{color:rgba(255,255,255,.55)}
+  .hero-index i{display:block;width:22px;height:2px;background:rgba(255,255,255,.3);cursor:pointer;transition:background .4s,width .4s var(--ease)}
+  .hero-index i.on{background:var(--accent);width:34px}
+  @media(max-width:540px){.hero-index i{width:15px}.hero-index i.on{width:24px}}
+
+  /* sections + headers */
+  .sec{padding-top:clamp(72px,12vw,148px);padding-bottom:clamp(72px,12vw,148px)}
+  .sec-head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(34px,5vw,60px)}
+  .jp-h{font-family:var(--mincho);font-weight:500;font-size:clamp(2.1rem,7vw,4.2rem);line-height:1.08;letter-spacing:.02em}
+  .en-h{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,8.5vw,5rem);line-height:1;letter-spacing:.01em}
+
+  /* ABOUT (refined / minimal) */
+  .about{background:var(--panel)}
+  .about-grid{display:grid;grid-template-columns:minmax(0,250px) 1fr;gap:clamp(40px,6vw,80px);align-items:start}
+  .about-portrait{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:50%;background:var(--panel2);max-width:228px;width:100%;border:3px solid rgba(255,255,255,.88);box-shadow:0 18px 50px rgba(0,0,0,.5)}
+  .about-portrait .img{position:absolute;inset:0;transition:transform 1.4s var(--ease)}
+  .about-portrait:hover .img{transform:scale(1.05)}
+  .about-lead{font-family:var(--mincho);font-weight:400;font-size:clamp(1.2rem,2.7vw,1.68rem);line-height:1.85;letter-spacing:.045em;color:var(--text)}
+  .about-lead .hl{color:var(--accent)}
+  .about-lead-en{font-family:var(--serif);font-style:italic;font-size:clamp(.95rem,1.8vw,1.12rem);color:var(--muted);margin-top:11px}
+  .about-body .bio{font-size:.94rem;line-height:1.95;color:var(--muted);margin-top:22px;max-width:50ch}
+  .amb{margin-top:clamp(24px,3vw,32px);padding-top:clamp(18px,2.4vw,24px);border-top:1px solid var(--line)}
+  .amb-lab{display:block;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .amb-list{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+  .amb-list li{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.03em;color:var(--text);border:1px solid var(--line);border-radius:100px;padding:9px 18px 9px 14px;background:rgba(255,255,255,.02);transition:border-color .3s,background .3s}
+  .amb-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+  .amb-list li:hover{border-color:var(--accent);background:rgba(224,166,97,.06)}
+  @media(max-width:480px){.amb-list{flex-direction:column;align-items:stretch}.amb-list li{justify-content:flex-start}}
+  .about-stats{display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,56px);margin-top:clamp(26px,3.4vw,36px)}
+  .about-stats .n{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;color:var(--text);font-variant-numeric:tabular-nums}
+  .about-stats .n.accent{color:var(--accent)}
+  .about-stats .n.sm{font-size:clamp(1rem,2vw,1.16rem);line-height:1.3}
+  .about-stats .sl{display:block;margin-top:10px;font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:32px}.about-portrait{max-width:196px;margin:0 auto}}
+
+  /* ACHIEVEMENTS (airy timeline) */
+  .ach{list-style:none}
+  .ach li{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:clamp(16px,3vw,44px);padding:clamp(20px,3vw,30px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
+  .ach li:first-child{border-top:1px solid var(--line-soft)}
+  .ach li:hover{padding-left:8px}
+  .ach .yr{font-family:var(--serif);font-weight:500;font-size:clamp(1.15rem,2.6vw,1.55rem);color:var(--muted);letter-spacing:.02em}
+  .ach li:hover .yr{color:var(--accent)}
+  .ach .t{font-family:var(--mincho);font-weight:500;font-size:clamp(1.05rem,2.6vw,1.4rem);line-height:1.4}
+  .ach li:hover .t{color:var(--accent)}
+  .ach .ct{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+  @media(max-width:680px){
+    .ach li{grid-template-columns:auto 1fr;gap:6px 16px;padding:19px 0}
+    .ach .yr{order:1}.ach .ct{order:2;justify-self:end}.ach .t{order:3;grid-column:1/-1;margin-top:2px}
+  }
+
+  /* CLIENTS — coded scrolling logo wall */
+  .logo-wall{display:flex;flex-direction:column;gap:clamp(10px,1.4vw,16px)}
+  .logo-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  .logo-track{display:flex;width:max-content;will-change:transform}
+  .logo-track.lt-left{animation:logo-left 40s linear infinite}
+  .logo-track.lt-right{animation:logo-right 40s linear infinite}
+  .logo-wall:hover .logo-track{animation-play-state:paused}
+  @keyframes logo-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes logo-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  .logo-cell{flex:0 0 auto;width:clamp(88px,24vw,200px);height:clamp(50px,13vw,96px);margin-right:clamp(8px,2vw,16px);display:flex;align-items:center;justify-content:center;background:#F4F3EF;border-radius:clamp(8px,1.4vw,12px);padding:0 clamp(10px,2vw,18px)}
+  .logo-cell span{font-family:var(--serif);font-weight:600;font-size:clamp(.7rem,2.3vw,1.12rem);letter-spacing:.01em;color:#161616;text-align:center;line-height:1.18}
+  .logo-cell img{max-width:100%;max-height:62%;object-fit:contain}
+  @media(prefers-reduced-motion:reduce){.logo-track{animation:none}}
+
+  /* SELECTED */
+  .sel-lead{font-family:var(--mincho);font-weight:400;font-size:clamp(1.3rem,3.6vw,2.1rem);line-height:1.7;letter-spacing:.03em;max-width:24ch;margin-top:6px}
+  .sel-en{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:clamp(1rem,2.4vw,1.35rem);margin:10px 0 clamp(30px,4vw,52px)}
+  .rail{display:flex;gap:clamp(12px,2vw,22px);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;margin-right:calc(var(--pad)*-1);padding-right:var(--pad);scrollbar-width:thin;scrollbar-color:var(--line) transparent;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar{height:4px}.rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+  .card{flex:0 0 min(80vw,480px);scroll-snap-align:start}
+  .card .ph{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:14px;background:var(--panel2)}
+  .card .ph .img{position:absolute;inset:0;transition:transform 1s var(--ease)}
+  .card:hover .ph .img{transform:scale(1.05)}
+  .card .cap{display:flex;justify-content:space-between;gap:12px;margin-top:13px;align-items:baseline}
+  .card .place{font-family:var(--mincho);font-weight:500;font-size:1.05rem}
+  .card .coord{font-family:var(--sans);font-size:.66rem;font-weight:500;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+
+  /* read-more button */
+  .read-more{margin:clamp(22px,3vw,34px) auto 0;display:flex;align-items:center;gap:10px;width:max-content;background:none;border:1px solid var(--line);color:var(--text);font-family:var(--sans);font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;padding:14px 30px;border-radius:100px;transition:border-color .3s,color .3s}
+  .read-more:hover{border-color:var(--accent);color:var(--accent)}
+  .g-hide{display:none}
+
+  /* CONTACT */
+  .contact{text-align:center;background:var(--panel)}
+  .contact .en-h{font-size:clamp(2.8rem,12vw,7rem)}
+  .contact .jp{font-family:var(--mincho);font-weight:500;font-size:clamp(1.1rem,3.2vw,1.6rem);letter-spacing:.08em;margin-top:14px}
+  .contact p.lead{max-width:38ch;margin:20px auto 0;color:var(--muted)}
+  .cta{display:inline-block;margin-top:34px;padding:16px 42px;border:1px solid var(--text);border-radius:100px;font-family:var(--sans);font-weight:500;font-size:.9rem;letter-spacing:.06em;position:relative;overflow:hidden;z-index:0;transition:color .4s}
+  .cta span{position:relative;z-index:2}
+  .cta::before{content:"";position:absolute;inset:0;z-index:1;background:var(--text);transform:translateY(101%);transition:transform .45s var(--ease)}
+  .cta:hover,.cta:focus-visible{color:var(--bg)}.cta:hover::before,.cta:focus-visible::before{transform:none}
+
+  /* FOOTER */
+  footer{background:var(--footer);padding:clamp(48px,8vw,80px) var(--pad) 34px}
+  .foot-top{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-start}
+  .foot-name{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,7vw,3.4rem);line-height:1}
+  .foot-name small{display:block;font-family:var(--mincho);font-size:.9rem;letter-spacing:.08em;color:var(--muted);margin-top:12px;font-weight:500}
+  .foot-back{font-family:var(--sans);font-weight:500;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+  .foot-back:hover{color:var(--accent)}
+  .foot-base{margin-top:44px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  /* reveals */
+  .rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s var(--ease)}
+  .rv.in{opacity:1;transform:none}.rv.d1{transition-delay:.08s}
+  .reveal-media{clip-path:inset(0 0 100% 0);transition:clip-path 1.15s var(--ease)}
+  .reveal-media.in{clip-path:inset(0 0 0 0)}
+
+  /* PORTRAIT */
+  .ph-portrait{background:linear-gradient(160deg,#2a2e30,#3a4042,#52595b)}
+
+  /* WORKS (filterable masonry) */
+  .works-filter{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:clamp(16px,3vw,40px);margin:clamp(20px,4vw,38px) 0 clamp(28px,5vw,50px);border-bottom:1px solid var(--line-soft);scrollbar-width:none;-ms-overflow-style:none}
+  .works-filter::-webkit-scrollbar{display:none}
+  .works-filter button{flex:0 0 auto;white-space:nowrap;background:none;border:0;padding:0 0 14px;cursor:pointer;font-family:var(--sans);font-weight:500;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);position:relative;transition:color .3s}
+  .works-filter button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+  .works-filter button:hover{color:var(--text)}
+  .works-filter button.on{color:var(--text)}
+  .works-filter button.on::after{transform:scaleX(1)}
+  .works-grid{column-count:2;column-gap:clamp(12px,2vw,22px)}
+  @media(max-width:600px){.works-grid{column-count:1}}
+  .work{break-inside:avoid;margin-bottom:clamp(12px,2vw,22px);position:relative;border-radius:14px;overflow:hidden;background:var(--panel2);display:block}
+  .work.hide{display:none}
+  .work .img{width:100%;transition:transform 1.1s var(--ease)}
+  .work:hover .img{transform:scale(1.05)}
+  .work.tall .img{aspect-ratio:4/5}
+  .work.wide .img{aspect-ratio:5/4}
+  .work::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(8,10,11,.8));pointer-events:none}
+  .work figcaption{position:absolute;left:18px;right:18px;bottom:16px;z-index:2}
+  .work .wc{display:block;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+  .work .wt{font-family:var(--mincho);font-weight:500;font-size:clamp(1.05rem,2.2vw,1.32rem);color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.55);line-height:1.3}
+  .works-empty{display:none;color:var(--muted);font-size:.95rem;padding:24px 0}
+  .works-empty.show{display:block}
+  /* GALLERY (tight square grid) */
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1vw,12px)}
+  .gtile{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:1/1;background:var(--panel2)}
+  .gtile .img{position:absolute;inset:0;transition:transform 1s var(--ease)}
+  .gtile:hover .img{transform:scale(1.06)}
+  .gtile::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 52%,rgba(0,0,0,.6));opacity:0;transition:opacity .4s}
+  .gtile:hover::after{opacity:1}
+  .gtile figcaption{position:absolute;left:12px;bottom:10px;z-index:2;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
+  .gtile:hover figcaption{opacity:1;transform:none}
+  .gtile .gt{font-family:var(--mincho);font-weight:600;font-size:.9rem;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+  .gtile .gl{font-family:var(--sans);font-size:.58rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:2px}
+  @media(max-width:600px){.gal{grid-template-columns:repeat(2,1fr)}}
+  /* NEWS (rows) */
+  .news{list-style:none;border-top:1px solid var(--line-soft)}
+  .news li{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:clamp(14px,2.5vw,30px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
+  .news li:hover{padding-left:8px}
+  .news .ndate{font-family:var(--sans);font-weight:500;font-size:.82rem;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
+  .news .pill{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:5px 14px;white-space:nowrap;justify-self:start;background:none}
+  .news .nt{font-family:var(--jp);font-weight:500;font-size:clamp(1rem,2.1vw,1.2rem);letter-spacing:.01em;line-height:1.45;color:var(--text)}
+  .news li:hover .nt{color:var(--accent)}
+  .news .new{font-family:var(--sans);font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--bg);background:var(--accent);border-radius:5px;padding:5px 10px;white-space:nowrap}
+  .pill-media{color:#6CA8FF}.pill-partner{color:var(--accent)}.pill-exhibition{color:#B69CFF}.pill-award{color:#5FCDA0}.pill-workshop{color:#E08A4F}
+  .news li.hide{display:none}
+  @media(max-width:680px){
+    .news li{display:flex;flex-wrap:wrap;align-items:center;gap:9px 12px;padding:18px 0}
+    .news .ndate{order:1}
+    .news .pill{order:2}
+    .news .new{order:3;margin-left:auto}
+    .news .nt{order:4;flex-basis:100%;font-size:1.04rem;line-height:1.5}
+  }
+
+  /* real photos */
+  .img,.slide{background-size:cover;background-position:center}
+  .ph-okinawa{background:linear-gradient(135deg,#1a3a4a,#2d6e7e,#4a9fb0)}
+  .ph-sakura{background:linear-gradient(135deg,#3a1f2a,#7e4a5e,#c98aa0)}
+  .ph-bamboo{background:linear-gradient(135deg,#1a2a1a,#3e5e2e,#6ea04a)}
+  .ph-city{background:linear-gradient(135deg,#16181a,#2a2e38,#4a5266)}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .rv{opacity:1;transform:none}.reveal-media{clip-path:none}
+    .hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}
+    .loader{display:none!important}html{scroll-behavior:auto}.menu-nav a{opacity:1;transform:none}.slide{transition:none}
+  }
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* ============================================================
+     v15 — overrides & additions
+     ============================================================ */
+
+  /* multi-view routing */
+  .view{display:none}
+  .view.active{display:block}
+  .subpage-top{padding-top:clamp(104px,13vw,168px)}
+
+  /* CLIENTS — do NOT pause on hover */
+  .logo-wall:hover .logo-track{animation-play-state:running}
+
+  /* ABOUT — refined, vertically centred, blended circular portrait */
+  .about-grid{grid-template-columns:minmax(0,228px) 1fr;align-items:center;gap:clamp(40px,6vw,92px)}
+  .about-portrait{background:var(--panel);
+    border:3px solid rgba(255,255,255,.9);
+    box-shadow:0 30px 64px -28px rgba(0,0,0,.72);
+    max-width:226px;margin:0 auto}
+  .about-portrait.reveal-media{clip-path:none;opacity:0;transform:translateY(16px);
+    transition:opacity 1.05s var(--ease) .08s, transform 1.05s var(--ease) .08s}
+  .about-portrait.reveal-media.in{opacity:1;transform:none}
+  .about-portrait .img{transition:none!important}
+  .about-portrait:hover .img{transform:none}
+  .about-stats{gap:clamp(30px,5vw,58px);margin-top:clamp(28px,3.6vw,40px)}
+  .about-stats div{min-width:clamp(78px,9vw,98px)}
+  .about-stats .n{font-family:var(--sans);font-weight:600;letter-spacing:-.022em;
+    font-size:clamp(2.2rem,4.6vw,3.1rem);line-height:1;
+    font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+  .about-stats .n.sm{font-size:clamp(1rem,2vw,1.16rem);font-weight:500;letter-spacing:0}
+  .about-stats .sl{margin-top:12px}
+  @media(max-width:820px){
+    .about-grid{grid-template-columns:1fr;justify-items:center;text-align:center;gap:34px}
+    .about-portrait{max-width:188px;margin:0 auto}
+    .about-body{max-width:560px}
+    .about-body .bio{margin-left:auto;margin-right:auto}
+    .amb-list{justify-content:center}
+    .about-stats{justify-content:center}
+  }
+  @media(max-width:480px){
+    .amb-list{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center}
+    .amb-list li{justify-content:center;width:auto;align-self:auto}
+  }
+
+  /* READ MORE — bottom-right, underline link (no pill) */
+  .more-row{display:flex;justify-content:flex-end;margin-top:clamp(26px,3.6vw,44px)}
+  .read-more{margin:0;display:inline-flex;align-items:center;gap:11px;background:none;
+    border:0;border-bottom:1px solid var(--line);border-radius:0;color:var(--text);
+    font-family:var(--sans);font-weight:600;font-size:.72rem;letter-spacing:.18em;
+    text-transform:uppercase;cursor:pointer;padding:0 3px 9px;
+    transition:gap .35s var(--ease),border-color .3s,color .3s}
+  .read-more .arr{display:inline-block;transition:transform .35s var(--ease)}
+  .read-more:hover,.read-more:focus-visible{color:var(--accent);border-color:var(--accent)}
+  .read-more:hover .arr,.read-more:focus-visible .arr{transform:translateX(6px)}
+
+  /* WORKS — filter wraps to multiple lines (standard), + client credit */
+  .works-filter{flex-wrap:wrap;overflow:visible;
+    gap:clamp(13px,2.2vw,18px) clamp(20px,3.4vw,40px)}
+  .works-filter::-webkit-scrollbar{display:none}
+  .work .wclient{display:block;font-family:var(--sans);font-size:.55rem;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:7px}
+
+  /* GALLERY (home) — editorial rhythm: 3 portrait / 2 landscape, repeating */
+  #view-home .gal{grid-template-columns:repeat(6,1fr);gap:clamp(8px,1.3vw,16px)}
+  #view-home .gal .gtile{aspect-ratio:auto;border-radius:10px}
+  #view-home .gal .gtile.p{grid-column:span 2;aspect-ratio:4/5}
+  #view-home .gal .gtile.l{grid-column:span 3;aspect-ratio:16/10}
+  @media(max-width:760px){
+    #view-home .gal{gap:6px}
+    #view-home .gal .gtile{border-radius:7px}
+  }
+
+  /* ---------- GALLERY PAGE ---------- */
+  .gp-filter{display:flex;flex-wrap:wrap;justify-content:center;
+    gap:clamp(10px,1.6vw,15px) clamp(16px,2.4vw,30px);
+    max-width:980px;margin:clamp(22px,4vw,40px) auto clamp(34px,5vw,56px);
+    padding-bottom:clamp(24px,3vw,32px);border-bottom:1px solid var(--line-soft)}
+  .gp-filter button{background:none;border:0;padding:0;cursor:pointer;position:relative;
+    font-family:var(--sans);font-weight:500;font-size:.7rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);transition:color .3s;line-height:1.4}
+  .gp-filter button::after{content:"";position:absolute;left:50%;right:50%;bottom:-6px;height:1.5px;
+    background:var(--accent);transition:left .35s var(--ease),right .35s var(--ease)}
+  .gp-filter button:hover{color:var(--text)}
+  .gp-filter button.on{color:var(--text)}
+  .gp-filter button.on::after{left:0;right:0}
+  .gp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));
+    gap:clamp(8px,1.2vw,14px)}
+  @media(max-width:520px){.gp-grid{grid-template-columns:repeat(2,1fr)}}
+  .gp-tile{position:relative;border-radius:10px;overflow:hidden;background:var(--panel2);
+    aspect-ratio:4/5}
+  .gp-tile.tall{aspect-ratio:3/4}
+  .gp-tile .img{position:absolute;inset:0;transition:transform 1s var(--ease)}
+  .gp-tile:hover .img{transform:scale(1.06)}
+  .gp-tile::after{content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.62));
+    opacity:0;transition:opacity .4s}
+  .gp-tile:hover::after{opacity:1}
+  .gp-tile figcaption{position:absolute;left:13px;right:13px;bottom:12px;z-index:2;
+    opacity:0;transform:translateY(7px);transition:opacity .4s,transform .4s}
+  .gp-tile:hover figcaption{opacity:1;transform:none}
+  .gp-tile .gt{font-family:var(--mincho);font-weight:600;font-size:.92rem;color:#fff;
+    text-shadow:0 1px 10px rgba(0,0,0,.6)}
+  .gp-tile .gl{font-family:var(--sans);font-size:.56rem;font-weight:500;letter-spacing:.1em;
+    text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:2px}
+  .gp-tile.hide{display:none}
+  .gp-empty{display:none;text-align:center;color:var(--muted);font-size:.95rem;padding:30px 0}
+  .gp-empty.show{display:block}
+  .gp-count{text-align:center;font-family:var(--sans);font-size:.66rem;font-weight:500;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:clamp(22px,3vw,30px)}
+
+  /* ---------- WORKS PAGE ---------- */
+  .wp-grid{column-count:3;column-gap:clamp(12px,1.6vw,18px)}
+  @media(max-width:900px){.wp-grid{column-count:2}}
+  @media(max-width:560px){.wp-grid{column-count:1}}
+
+  /* ---------- CONTACT PAGE ---------- */
+  .ct-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+    gap:clamp(40px,6vw,84px);align-items:start}
+  @media(max-width:880px){.ct-grid{grid-template-columns:1fr;gap:clamp(36px,7vw,52px)}}
+  .ct-lead{font-family:var(--mincho);font-weight:400;font-size:clamp(1.2rem,2.7vw,1.7rem);
+    line-height:1.85;letter-spacing:.04em;max-width:24ch}
+  .ct-lead .hl{color:var(--accent)}
+  .ct-meta{margin-top:clamp(28px,4vw,40px);display:flex;flex-direction:column;gap:22px}
+  .ct-meta .row{padding-bottom:18px;border-bottom:1px solid var(--line-soft)}
+  .ct-meta .k{display:block;font-family:var(--sans);font-size:.6rem;font-weight:600;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .ct-meta .v{font-family:var(--sans);font-size:1rem;color:var(--text)}
+  .ct-meta a.v{transition:color .3s}.ct-meta a.v:hover{color:var(--accent)}
+  .ct-sns{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  .ct-sns a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.04em;
+    color:var(--text);border:1px solid var(--line);border-radius:100px;padding:9px 18px;
+    transition:border-color .3s,color .3s,background .3s}
+  .ct-sns a:hover{border-color:var(--accent);color:var(--accent);background:rgba(224,166,97,.06)}
+  .ct-form{display:flex;flex-direction:column;gap:clamp(16px,2.2vw,22px)}
+  .ct-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,20px)}
+  @media(max-width:520px){.ct-row{grid-template-columns:1fr}}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field label{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted)}
+  .field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,.025);
+    border:1px solid var(--line);border-radius:10px;color:var(--text);font-family:var(--jp);
+    font-size:.95rem;padding:13px 15px;transition:border-color .3s,background .3s;outline:none}
+  .field textarea{resize:vertical;min-height:140px;line-height:1.7}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    border-color:var(--accent);background:rgba(255,255,255,.04)}
+  .field select{appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%239BA09E' stroke-width='1.5'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 15px center;padding-right:38px}
+  .field select option{background:var(--panel)}
+  .ct-submit{align-self:flex-start;margin-top:6px;padding:15px 40px;border:1px solid var(--text);
+    border-radius:100px;background:none;cursor:pointer;font-family:var(--sans);font-weight:500;
+    font-size:.9rem;letter-spacing:.06em;color:var(--text);position:relative;overflow:hidden;z-index:0;
+    transition:color .4s}
+  .ct-submit span{position:relative;z-index:2}
+  .ct-submit::before{content:"";position:absolute;inset:0;z-index:1;background:var(--text);
+    transform:translateY(101%);transition:transform .45s var(--ease)}
+  .ct-submit:hover{color:var(--bg)}.ct-submit:hover::before{transform:none}
+  .ct-submit[disabled]{opacity:.55;cursor:default}
+  .ct-status{font-family:var(--sans);font-size:.86rem;letter-spacing:.02em;min-height:1.2em;margin-top:2px}
+  .ct-status.ok{color:var(--accent2)}
+  .ct-status.err{color:#E0795F}
+
+  /* ============================================================
+     v15 — upgraded intro / hero entrance
+     ============================================================ */
+  .loader{transition:transform 1.05s cubic-bezier(.78,0,.22,1)}
+  .loader-name{filter:blur(8px);animation:loadName 1s var(--ease) .05s forwards}
+  @keyframes loadName{from{opacity:0;transform:translateY(20px);filter:blur(8px)}
+    to{opacity:1;transform:none;filter:blur(0)}}
+  .loader-line{position:absolute;left:50%;top:calc(50% + 34px);transform:translateX(-50%);
+    width:0;height:1.5px;background:var(--accent);max-width:min(240px,46vw);border-radius:2px;
+    box-shadow:0 0 14px rgba(224,166,97,.45)}
+
+  /* hero image reveal */
+  .ken{opacity:0;transition:opacity 1.4s ease .1s}
+  body:not(.preload) .ken{opacity:1}
+  /* eyebrow now staggers in before the name */
+  .hero-inner .eyebrow{opacity:0;animation:fade 1s ease .4s forwards;animation-play-state:paused}
+  body:not(.preload) .hero-inner .eyebrow{animation-play-state:running}
+  /* name words rise + de-blur */
+  .hero-name .reveal span{filter:blur(12px);animation-name:upBlur!important;animation-duration:1.25s!important}
+  @keyframes upBlur{from{transform:translateY(118%);filter:blur(12px);opacity:0}
+    to{transform:none;filter:blur(0);opacity:1}}
+  .hero-name .reveal:nth-child(1) span{animation-delay:.55s!important}
+  .hero-name .reveal:nth-child(2) span{animation-delay:.66s!important}
+  .hero-jp{animation-delay:.95s!important}
+  .hero-foot{animation-delay:1.12s!important}
+  .hero-index{opacity:0;animation:fade 1s ease 1.25s forwards;animation-play-state:paused}
+  body:not(.preload) .hero-index{animation-play-state:running}
+
+  @media (prefers-reduced-motion: reduce){
+    .ken,.loader-name,.hero-inner .eyebrow,.hero-index{opacity:1;filter:none;animation:none!important}
+    .about-portrait.reveal-media{opacity:1;transform:none}
+  }
+
+  /* ---------- SUBPAGE BACK LINK ---------- */
+  .subpage-back{display:inline-flex;align-items:center;gap:9px;margin-bottom:clamp(20px,3vw,30px);
+    font-family:var(--sans);font-weight:600;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);transition:color .3s,gap .35s var(--ease)}
+  .subpage-back:hover{color:var(--accent);gap:14px}
+
+  /* ---------- NEWS PAGE ---------- */
+  .np-summary{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;
+    margin-bottom:clamp(40px,6vw,72px);padding-bottom:clamp(36px,5vw,56px);border-bottom:1px solid var(--line-soft)}
+  .np-lead{font-family:var(--mincho);font-weight:400;font-size:clamp(1.1rem,2.4vw,1.5rem);line-height:1.92;
+    letter-spacing:.04em;color:var(--text)}
+  .np-lead .hl{color:var(--accent)}
+  .np-sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:clamp(.95rem,1.7vw,1.1rem);margin-top:14px}
+  .np-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .np-card{border:1px solid var(--line);border-radius:14px;padding:clamp(18px,2.4vw,24px);
+    background:rgba(255,255,255,.015)}
+  .np-card .nn{display:block;font-family:var(--sans);font-weight:600;font-size:clamp(1.7rem,3.6vw,2.3rem);
+    line-height:1;color:var(--text);letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums}
+  .np-card .nn .u{font-size:.5em;font-weight:600;margin-left:1px;letter-spacing:0}
+  .np-card .nn.accent{color:var(--accent)}
+  .np-card .nl{display:block;margin-top:10px;font-family:var(--sans);font-size:.6rem;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .np-year{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);font-weight:500;color:var(--muted);
+    margin:clamp(30px,4vw,44px) 0 clamp(12px,2vw,18px);letter-spacing:.04em}
+  .np-year:first-of-type{margin-top:0}
+  @media(max-width:760px){
+    .np-summary{grid-template-columns:1fr;gap:30px}
+    .np-cards{gap:11px}
+  }
+
+  /* ---------- NEWS PAGE filter ---------- */
+  .np-filter{display:flex;flex-wrap:wrap;gap:clamp(10px,1.6vw,15px) clamp(18px,2.8vw,34px);
+    margin:0 0 clamp(28px,4vw,44px);padding-bottom:clamp(20px,3vw,28px);
+    border-bottom:1px solid var(--line-soft)}
+  .np-filter button{background:none;border:0;padding:0;cursor:pointer;position:relative;
+    font-family:var(--sans);font-weight:500;font-size:.7rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);transition:color .3s;line-height:1.4}
+  .np-filter button::after{content:"";position:absolute;left:50%;right:50%;bottom:-6px;height:1.5px;
+    background:var(--accent);transition:left .35s var(--ease),right .35s var(--ease)}
+  .np-filter button:hover{color:var(--text)}
+  .np-filter button.on{color:var(--text)}
+  .np-filter button.on::after{left:0;right:0}
+  .np-count{font-family:var(--sans);font-size:.66rem;font-weight:500;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:clamp(10px,2vw,18px)}
+  .np-year-group{display:block}
+  .np-year-group.hide{display:none}
+  .np-empty{display:none;text-align:center;color:var(--muted);font-size:.95rem;
+    padding:clamp(24px,4vw,40px) 0}
+  .np-empty.show{display:block}
+</style>
+<noscript><style>.loader{display:none!important}.rv{opacity:1;transform:none}.reveal-media{clip-path:none}.hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}.news li.hide{display:block}</style></noscript>
+</head>
+<body class="preload">
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-name">Sawai Kenta</div>
+  <div class="loader-jp">澤井 健太</div>
+  <div class="loader-line"><span id="loadLine"></span></div>
+  <div class="loader-count"><span id="count">0</span><i>—</i>100</div>
+  <div class="loader-bar"><span id="bar"></span></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a href="#top" class="brand">澤井健太</a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
+    <span class="ico"><span></span><span></span></span>
+    <span class="lbl-open">Menu</span><span class="lbl-close">Close</span>
+  </button>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <nav class="menu-nav" aria-label="メインメニュー">
+    <a href="#about"><span class="i">01</span><span class="t">About</span><span class="jp">プロフィール</span></a>
+    <a href="#clients"><span class="i">02</span><span class="t">Clients</span><span class="jp">取引先</span></a>
+    <a href="#selected"><span class="i">03</span><span class="t">Works</span><span class="jp">セレクテッド</span></a>
+    <a href="#gallery"><span class="i">04</span><span class="t">Gallery</span><span class="jp">ギャラリー</span></a>
+    <a href="#news"><span class="i">05</span><span class="t">News</span><span class="jp">お知らせ</span></a>
+    <a href="#contact-page"><span class="i">06</span><span class="t">Contact</span><span class="jp">お問い合わせ</span></a>
+  </nav>
+  <div class="menu-sns">
+    <span class="lab">Follow</span>
+    <a href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener">Instagram <em>@s_ken.ken ↗</em></a>
+    <a href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener">Facebook <em>@s_ken.ken ↗</em></a>
+    <a href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener">TikTok <em>@s_ken.ken ↗</em></a>
+    <a href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener">YouTube <em>@s_kenken ↗</em></a>
+  </div>
+</div>
+
+<main id="view-home" class="view active">
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="ken">
+    <div class="hero-slides">
+      <div class="slide ph-okinawa is-active"></div>
+      <div class="slide ph-sakura"></div>
+      <div class="slide ph-bamboo"></div>
+      <div class="slide ph-city"></div>
+      <div class="slide" style="background-image:url('https://storage.googleapis.com/production-os-assets/assets/a5c84750-24bc-4659-a24c-eb4f5ec3d072')"></div>
+    </div>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-inner wrap">
+    <p class="eyebrow">Nightscape &amp; Travel Photographer</p>
+    <h1 class="hero-name"><span class="reveal"><span>Sawai</span></span><span class="reveal"><span>Kenta</span></span></h1>
+    <p class="hero-jp">澤井 健太 ／ けんけん</p>
+    <div class="hero-foot">
+      <p class="hero-tag">心から感動した景色を、世界中の人々に共有したい。</p>
+      <p class="hero-loc">Instagram 285K+ Followers<br>Samsung / Adobe / Alfa Romeo Ambassador</p>
+    </div>
+  </div>
+  <div class="hero-index" id="heroIndex" aria-hidden="true">
+    <span class="cur">01</span><i class="on"></i><i></i><i></i><i></i><i></i><span class="tot">/ 05</span>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="sec wrap about" id="about">
+  <div class="sec-head rv"><span class="eyebrow">Profile</span><h2 class="en-h">About</h2></div>
+  <div class="about-grid">
+    <figure class="about-portrait reveal-media">
+      <div class="img ph-portrait"></div>
+    </figure>
+    <div class="about-body rv d1">
+      <p class="about-lead">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
+      <p class="about-lead-en">Sharing the scenery that truly moved me.</p>
+      <p class="bio">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
+      <div class="amb">
+        <span class="amb-lab">Official Ambassador</span>
+        <ul class="amb-list">
+          <li>Samsung Team Galaxy</li>
+          <li>Adobe Partner</li>
+          <li>Alfa Romeo</li>
+        </ul>
+      </div>
+      <div class="about-stats">
+        <div><span class="n accent" data-count="285" data-suffix="K">0</span><span class="sl">Instagram</span></div>
+        <div><span class="n" data-count="68" data-suffix="K">0</span><span class="sl">Facebook</span></div>
+        <div><span class="n" data-count="30" data-suffix="+">0</span><span class="sl">Clients</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="sec wrap" id="clients">
+  <div class="sec-head rv"><span class="eyebrow">Partners</span><h2 class="en-h">Clients</h2></div>
+  <div class="logo-wall rv">
+    <div class="logo-row"><div class="logo-track lt-left" style="animation-duration:38s">
+      <div class="logo-cell"><span>JR WEST</span></div>
+      <div class="logo-cell"><span>Turkish Airlines</span></div>
+      <div class="logo-cell"><span>Saudi Tourism</span></div>
+      <div class="logo-cell"><span>Tourism Australia</span></div>
+      <div class="logo-cell"><span>Adobe</span></div>
+      <div class="logo-cell"><span>Samsung</span></div>
+    </div></div>
+    <div class="logo-row"><div class="logo-track lt-right" style="animation-duration:46s">
+      <div class="logo-cell"><span>NAKED, Inc.</span></div>
+      <div class="logo-cell"><span>Alfa Romeo</span></div>
+      <div class="logo-cell"><span>Trip.com</span></div>
+      <div class="logo-cell"><span>Korea Tourism</span></div>
+      <div class="logo-cell"><span>Calbee</span></div>
+      <div class="logo-cell"><span>MK Taxi</span></div>
+    </div></div>
+    <div class="logo-row"><div class="logo-track lt-left" style="animation-duration:34s">
+      <div class="logo-cell"><span>Samsung Galaxy</span></div>
+      <div class="logo-cell"><span>Adobe Lightroom</span></div>
+      <div class="logo-cell"><span>JR West</span></div>
+      <div class="logo-cell"><span>Turkish Airlines</span></div>
+      <div class="logo-cell"><span>Saudi Tourism</span></div>
+      <div class="logo-cell"><span>Tourism Australia</span></div>
+    </div></div>
+  </div>
+  <p class="note">※ 各マスは .logo-cell。中の &lt;span&gt;ブランド名&lt;/span&gt; を &lt;img src="logo.svg" alt="ブランド名"&gt; に差し替えればロゴ画像になります（透過PNG/SVG推奨）。行は自動で複製＆スクロール（1行目←／2行目→／3行目←）、ホバーで停止します。</p>
+</section>
+
+<!-- SELECTED -->
+<section class="sec wrap" id="selected">
+  <div class="sec-head rv"><span class="eyebrow">Portfolio</span><h2 class="en-h">Works</h2></div>
+  <div class="works-filter rv" id="worksFilter">
+    <button class="on" data-filter="all">All</button>
+    <button data-filter="landscape">Landscape</button>
+    <button data-filter="kyoto">Kyoto</button>
+    <button data-filter="night">Night</button>
+    <button data-filter="commercial">Commercial</button>
+  </div>
+  <div class="works-grid" id="worksGrid">
+    <figure class="work tall" data-cat="night landscape"><div class="img ph-city reveal-media"></div>
+      <figcaption><span class="wc">Night</span><span class="wt">雨の夜景 — Osaka</span><span class="wclient">Client — Samsung Galaxy</span></figcaption></figure>
+    <figure class="work wide" data-cat="landscape kyoto"><div class="img ph-sakura reveal-media"></div>
+      <figcaption><span class="wc">Kyoto</span><span class="wt">春の渓谷 — Kyoto</span><span class="wclient">Client — JR West</span></figcaption></figure>
+    <figure class="work tall" data-cat="kyoto landscape"><div class="img ph-bamboo reveal-media"></div>
+      <figcaption><span class="wc">Kyoto</span><span class="wt">竹林の道 — Arashiyama</span><span class="wclient">Client — Adobe Lightroom</span></figcaption></figure>
+    <figure class="work wide" data-cat="landscape"><div class="img ph-okinawa reveal-media"></div>
+      <figcaption><span class="wc">Landscape</span><span class="wt">沖縄の海 — Okinawa</span><span class="wclient">Client — Tourism Australia</span></figcaption></figure>
+  </div>
+  <div class="more-row rv">
+    <a class="read-more" href="#works-page" data-view="works"><span>View all works</span><span class="arr">→</span></a>
+  </div>
+  <p class="works-empty" id="worksEmpty">このカテゴリの作品は準備中です。</p>
+  <p class="note">※ 作品追加は .work を複製→data-cat にカテゴリ→画像クラスを差し替え。クライアント名は &lt;span class="wclient"&gt;Client — 〇〇&lt;/span&gt; で編集（不要なら削除）。「View all works」は Works ページ(#works-page)へ遷移します。</p>
+</section>
+
+<!-- GALLERY -->
+<section class="sec wrap" id="gallery">
+  <div class="sec-head rv"><span class="eyebrow">Photographs</span><h2 class="en-h">Gallery</h2></div>
+  <div class="gal rv" id="galGrid">
+    <!-- リズム: 縦3 → 横2 → 縦3 → 横2（.p=縦/portrait・.l=横/landscape） -->
+    <!-- 縦 1 -->
+    <figure class="gtile p rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a2a1a,#3e5e2e,#6ea04a);background-size:cover"></div>
+      <figcaption><div class="gt">竹林の道</div><div class="gl">Arashiyama</div></figcaption>
+    </figure>
+    <!-- 縦 2 -->
+    <figure class="gtile p rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#3a1f2a,#7e4a5e,#c98aa0);background-size:cover"></div>
+      <figcaption><div class="gt">桜並木</div><div class="gl">Kyoto</div></figcaption>
+    </figure>
+    <!-- 縦 3 -->
+    <figure class="gtile p rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#16181a,#2a2e38,#4a5266);background-size:cover"></div>
+      <figcaption><div class="gt">夜の鴨川</div><div class="gl">Kyoto</div></figcaption>
+    </figure>
+    <!-- 横 1 -->
+    <figure class="gtile l rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a3a4a,#2d6e7e,#4a9fb0);background-size:cover"></div>
+      <figcaption><div class="gt">沖縄の海</div><div class="gl">Okinawa</div></figcaption>
+    </figure>
+    <!-- 横 2 -->
+    <figure class="gtile l rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#16181a,#2a2e38,#4a5266);background-size:cover"></div>
+      <figcaption><div class="gt">雨上がりの街</div><div class="gl">Osaka</div></figcaption>
+    </figure>
+    <!-- 縦 4 -->
+    <figure class="gtile p rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#3a1f2a,#7e4a5e,#c98aa0);background-size:cover"></div>
+      <figcaption><div class="gt">春の渓谷</div><div class="gl">Kyoto</div></figcaption>
+    </figure>
+    <!-- 縦 5 -->
+    <figure class="gtile p rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a2a1a,#3e5e2e,#6ea04a);background-size:cover"></div>
+      <figcaption><div class="gt">朝靄の参道</div><div class="gl">Kyoto</div></figcaption>
+    </figure>
+    <!-- 縦 6 -->
+    <figure class="gtile p rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a3a4a,#2d6e7e,#4a9fb0);background-size:cover"></div>
+      <figcaption><div class="gt">珊瑚の海</div><div class="gl">Okinawa</div></figcaption>
+    </figure>
+    <!-- 横 3 -->
+    <figure class="gtile l rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#1a3a4a,#2d6e7e,#4a9fb0);background-size:cover"></div>
+      <figcaption><div class="gt">白浜の海岸</div><div class="gl">Okinawa</div></figcaption>
+    </figure>
+    <!-- 横 4 -->
+    <figure class="gtile l rv">
+      <div class="img" style="position:absolute;inset:0;background:linear-gradient(135deg,#16181a,#2a2e38,#4a5266);background-size:cover"></div>
+      <figcaption><div class="gt">ネオンの街</div><div class="gl">Osaka</div></figcaption>
+    </figure>
+  </div>
+  <div class="more-row rv">
+    <a class="read-more" href="#gallery-page" data-view="gallery"><span>View full gallery</span><span class="arr">→</span></a>
+  </div>
+  <p class="note">※ 配置は「縦3→横2」の繰り返し。縦写真は .gtile.p、横写真は .gtile.l を付けて並べてね。「View full gallery」はカテゴリ別ギャラリーページ(#gallery-page)へ遷移します。</p>
+</section>
+
+<!-- NEWS -->
+<section class="sec wrap" id="news">
+  <div class="sec-head rv"><span class="eyebrow">Updates</span><h2 class="en-h">News</h2></div>
+  <ul class="news">
+    <li class="rv"><div class="ndate">2024.12</div><span class="pill pill-media">Media</span><h3 class="nt">テレビ出演：関西ローカル番組にて写真活動を特集</h3><span class="new">NEW</span></li>
+    <li class="rv"><div class="ndate">2024.11</div><span class="pill pill-partner">Partnership</span><h3 class="nt">Samsung Galaxy S24 Ultra 公式キャンペーンビジュアル撮影</h3><span class="new">NEW</span></li>
+    <li class="rv"><div class="ndate">2024.10</div><span class="pill pill-exhibition">Exhibition</span><h3 class="nt">京都写真展「光と影の対話」開催 — 3日間で1,000名来場</h3></li>
+    <li class="rv"><div class="ndate">2024.09</div><span class="pill pill-award">Award</span><h3 class="nt">Instagram フォロワー28万人突破</h3></li>
+    <li class="rv"><div class="ndate">2024.08</div><span class="pill pill-partner">Partnership</span><h3 class="nt">サウジアラビア政府観光局 公式撮影プロジェクト参加</h3></li>
+    <li class="rv"><div class="ndate">2024.07</div><span class="pill pill-workshop">Workshop</span><h3 class="nt">Adobe Lightroom ワークショップ in 東京・大阪 開催</h3></li>
+  </ul>
+  <div class="more-row rv">
+    <a class="read-more" href="#news-page" data-view="news"><span>View all news</span><span class="arr">→</span></a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec wrap contact" id="contact">
+  <div class="rv">
+    <span class="eyebrow" style="display:block;margin-bottom:22px">Contact</span>
+    <h2 class="en-h">Let’s Talk</h2>
+    <p class="jp">撮影・タイアップのご依頼</p>
+    <p class="lead">風景・旅・観光PR、Lightroom現像、講座まで。お仕事のご相談はお気軽にどうぞ。</p>
+    <a class="cta" href="#contact-page" data-view="contact"><span>お問い合わせフォームへ →</span></a>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== GALLERY PAGE ===================== -->
+<main id="view-gallery" class="view">
+  <section class="sec wrap subpage-top">
+    <div class="sec-head rv"><span class="eyebrow">Photographs</span><h2 class="en-h">Gallery</h2><p class="jp" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— ギャラリー</p></div>
+    <div class="gp-filter rv" id="gpFilter">
+      <button class="on" data-filter="all">All</button>
+      <button data-filter="japan">Japan</button>
+      <button data-filter="france">France</button>
+      <button data-filter="uk">United Kingdom</button>
+      <button data-filter="netherlands">Netherlands</button>
+      <button data-filter="spain">Spain</button>
+      <button data-filter="italy">Italy</button>
+      <button data-filter="germany">Germany</button>
+      <button data-filter="denmark">Denmark</button>
+      <button data-filter="sweden">Sweden</button>
+      <button data-filter="turkey">Turkey</button>
+      <button data-filter="australia">Australia</button>
+      <button data-filter="hawaii">Hawaii</button>
+      <button data-filter="saudi">Saudi Arabia</button>
+      <button data-filter="hongkong">Hong Kong</button>
+      <button data-filter="korea">Korea</button>
+      <button data-filter="thailand">Thailand</button>
+      <button data-filter="china">China</button>
+      <button data-filter="macao">Macao</button>
+      <button data-filter="wedding">Wedding</button>
+      <button data-filter="events">Events</button>
+      <button data-filter="hotels">Hotels</button>
+    </div>
+    <p class="gp-count rv" id="gpCount"></p>
+    <div class="gp-grid" id="gpGrid">
+      <figure class="gp-tile tall" data-cat="japan"><div class="img ph-bamboo"></div><figcaption><div class="gt">竹林の道</div><div class="gl">Arashiyama, Japan</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="japan"><div class="img ph-sakura"></div><figcaption><div class="gt">桜並木</div><div class="gl">Kyoto, Japan</div></figcaption></figure>
+      <figure class="gp-tile tall" data-cat="japan"><div class="img ph-city"></div><figcaption><div class="gt">夜の鴨川</div><div class="gl">Kyoto, Japan</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="japan"><div class="img ph-okinawa"></div><figcaption><div class="gt">沖縄の海</div><div class="gl">Okinawa, Japan</div></figcaption></figure>
+      <figure class="gp-tile tall" data-cat="france"><div class="img ph-city"></div><figcaption><div class="gt">夜のパリ</div><div class="gl">Paris, France</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="france"><div class="img ph-sakura"></div><figcaption><div class="gt">セーヌの朝</div><div class="gl">Paris, France</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="uk"><div class="img ph-city"></div><figcaption><div class="gt">霧のロンドン</div><div class="gl">London, UK</div></figcaption></figure>
+      <figure class="gp-tile tall" data-cat="netherlands"><div class="img ph-sakura"></div><figcaption><div class="gt">運河の街</div><div class="gl">Amsterdam, NL</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="spain"><div class="img ph-okinawa"></div><figcaption><div class="gt">地中海の光</div><div class="gl">Barcelona, Spain</div></figcaption></figure>
+      <figure class="gp-tile tall" data-cat="italy"><div class="img ph-city"></div><figcaption><div class="gt">水の都</div><div class="gl">Venezia, Italy</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="germany"><div class="img ph-bamboo"></div><figcaption><div class="gt">黒い森</div><div class="gl">Bayern, Germany</div></figcaption></figure>
+      <figure class="gp-tile tall" data-cat="turkey"><div class="img ph-city"></div><figcaption><div class="gt">イスタンブールの夜</div><div class="gl">İstanbul, Türkiye</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="australia"><div class="img ph-okinawa"></div><figcaption><div class="gt">グレートオーシャン</div><div class="gl">Victoria, Australia</div></figcaption></figure>
+      <figure class="gp-tile tall" data-cat="hawaii"><div class="img ph-okinawa"></div><figcaption><div class="gt">ワイキキの夕暮れ</div><div class="gl">Oʻahu, Hawaii</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="saudi"><div class="img ph-okinawa"></div><figcaption><div class="gt">砂漠の星空</div><div class="gl">AlUla, Saudi Arabia</div></figcaption></figure>
+      <figure class="gp-tile tall" data-cat="korea"><div class="img ph-city"></div><figcaption><div class="gt">ソウルの夜</div><div class="gl">Seoul, Korea</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="thailand"><div class="img ph-okinawa"></div><figcaption><div class="gt">南国の海</div><div class="gl">Phuket, Thailand</div></figcaption></figure>
+      <figure class="gp-tile tall" data-cat="hongkong"><div class="img ph-city"></div><figcaption><div class="gt">香港の夜景</div><div class="gl">Hong Kong</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="wedding"><div class="img ph-sakura"></div><figcaption><div class="gt">桜の前撮り</div><div class="gl">Wedding · Kyoto</div></figcaption></figure>
+      <figure class="gp-tile tall" data-cat="hotels"><div class="img ph-okinawa"></div><figcaption><div class="gt">リゾートステイ</div><div class="gl">Hotel · Okinawa</div></figcaption></figure>
+      <figure class="gp-tile" data-cat="events"><div class="img ph-city"></div><figcaption><div class="gt">ガラディナー</div><div class="gl">Event · Osaka</div></figcaption></figure>
+    </div>
+    <p class="gp-empty" id="gpEmpty">このカテゴリの写真は準備中です。</p>
+    <p class="note">※ 写真追加は .gp-tile を複製→data-cat にカテゴリslug（japan / france …）→画像クラスを差し替え。縦長にしたいタイルは class に tall を追加。空のカテゴリ（Denmark / Sweden / China / Macao）はタイルを足すと自動で表示されます。</p>
+  </section>
+</main>
+
+<!-- ===================== WORKS PAGE ===================== -->
+<main id="view-works" class="view">
+  <section class="sec wrap subpage-top">
+    <div class="sec-head rv"><span class="eyebrow">Portfolio</span><h2 class="en-h">Works</h2><p class="jp" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— 実績一覧</p></div>
+    <div class="works-filter rv" id="wpFilter">
+      <button class="on" data-filter="all">All</button>
+      <button data-filter="landscape">Landscape</button>
+      <button data-filter="kyoto">Kyoto</button>
+      <button data-filter="night">Night</button>
+      <button data-filter="commercial">Commercial</button>
+    </div>
+    <div class="works-grid wp-grid" id="wpGrid">
+      <figure class="work tall" data-cat="night landscape"><div class="img ph-city"></div><figcaption><span class="wc">Night</span><span class="wt">雨の夜景 — Osaka</span><span class="wclient">Client — Samsung Galaxy</span></figcaption></figure>
+      <figure class="work wide" data-cat="landscape kyoto"><div class="img ph-sakura"></div><figcaption><span class="wc">Kyoto</span><span class="wt">春の渓谷 — Kyoto</span><span class="wclient">Client — JR West</span></figcaption></figure>
+      <figure class="work tall" data-cat="kyoto commercial"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">竹林の道 — Arashiyama</span><span class="wclient">Client — Adobe Lightroom</span></figcaption></figure>
+      <figure class="work wide" data-cat="landscape"><div class="img ph-okinawa"></div><figcaption><span class="wc">Landscape</span><span class="wt">沖縄の海 — Okinawa</span><span class="wclient">Client — Tourism Australia</span></figcaption></figure>
+      <figure class="work tall" data-cat="night"><div class="img ph-city"></div><figcaption><span class="wc">Night</span><span class="wt">ネオンの交差点 — Osaka</span><span class="wclient">Client — Personal Work</span></figcaption></figure>
+      <figure class="work wide" data-cat="commercial kyoto"><div class="img ph-sakura"></div><figcaption><span class="wc">Commercial</span><span class="wt">桜のホテル — Kyoto</span><span class="wclient">Client — Hotel PR</span></figcaption></figure>
+      <figure class="work tall" data-cat="landscape"><div class="img ph-okinawa"></div><figcaption><span class="wc">Landscape</span><span class="wt">珊瑚礁 — Okinawa</span><span class="wclient">Client — Trip.com</span></figcaption></figure>
+      <figure class="work wide" data-cat="night kyoto"><div class="img ph-city"></div><figcaption><span class="wc">Night</span><span class="wt">鴨川の夜 — Kyoto</span><span class="wclient">Client — JR West</span></figcaption></figure>
+      <figure class="work tall" data-cat="commercial"><div class="img ph-bamboo"></div><figcaption><span class="wc">Commercial</span><span class="wt">嵐山ライトアップ — Arashiyama</span><span class="wclient">Client — Turkish Airlines</span></figcaption></figure>
+    </div>
+    <p class="works-empty" id="wpEmpty">このカテゴリの作品は準備中です。</p>
+    <p class="note">※ ここが Works の全件ページ。.work を複製→data-cat（landscape / kyoto / night / commercial）→画像クラス・タイトル・Client を編集。フィルターは自動連動します。</p>
+  </section>
+</main>
+
+<!-- ===================== NEWS PAGE ===================== -->
+<main id="view-news" class="view">
+  <section class="sec wrap subpage-top">
+    <div class="sec-head rv"><span class="eyebrow">Updates</span><h2 class="en-h">News</h2><p class="jp" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— お知らせ・活動記録</p></div>
+
+    <div class="np-summary rv">
+      <div>
+        <p class="np-lead">2024年は<span class="hl">媒体露出・グローバルPR・写真展</span>と、活動の幅が大きく広がった一年でした。Samsung・Adobe とのパートナーシップを軸に、国内外での撮影プロジェクトが加速しています。</p>
+        <p class="np-sub">A year of new partnerships, exhibitions, and global projects.</p>
+      </div>
+      <div class="np-cards">
+        <div class="np-card"><span class="nn accent">12</span><span class="nl">Media &amp; Press</span></div>
+        <div class="np-card"><span class="nn">5</span><span class="nl">New Partners</span></div>
+        <div class="np-card"><span class="nn">1,000<span class="u">名</span></span><span class="nl">Exhibition Guests</span></div>
+        <div class="np-card"><span class="nn">+50<span class="u">K</span></span><span class="nl">Followers / yr</span></div>
+      </div>
+    </div>
+
+    <!-- NEWS FILTER -->
+    <div class="np-filter rv" id="npFilter">
+      <button class="on" data-filter="all">All</button>
+      <button data-filter="media">Media</button>
+      <button data-filter="partnership">Partnership</button>
+      <button data-filter="exhibition">Exhibition</button>
+      <button data-filter="workshop">Workshop</button>
+      <button data-filter="milestone">Milestone</button>
+    </div>
+    <p class="np-count rv" id="npCount"></p>
+
+    <div id="npGrid">
+      <div class="np-year-group" id="npGroup2024">
+        <h3 class="np-year rv">2024</h3>
+        <ul class="news">
+          <li class="rv" data-cat="media"><div class="ndate">2024.12</div><span class="pill pill-media">Media</span><h3 class="nt">テレビ出演：関西ローカル番組にて写真活動を特集</h3><span class="new">NEW</span></li>
+          <li class="rv" data-cat="partnership"><div class="ndate">2024.11</div><span class="pill pill-partner">Partnership</span><h3 class="nt">Samsung Galaxy S24 Ultra 公式キャンペーンビジュアル撮影</h3></li>
+          <li class="rv" data-cat="exhibition"><div class="ndate">2024.10</div><span class="pill pill-exhibition">Exhibition</span><h3 class="nt">京都写真展「光と影の対話」開催 — 3日間で1,000名来場</h3></li>
+          <li class="rv" data-cat="milestone"><div class="ndate">2024.09</div><span class="pill pill-award">Milestone</span><h3 class="nt">Instagram フォロワー28万人突破</h3></li>
+          <li class="rv" data-cat="partnership"><div class="ndate">2024.08</div><span class="pill pill-partner">Partnership</span><h3 class="nt">サウジアラビア政府観光局 公式撮影プロジェクト参加</h3></li>
+          <li class="rv" data-cat="workshop"><div class="ndate">2024.07</div><span class="pill pill-workshop">Workshop</span><h3 class="nt">Adobe Lightroom ワークショップ in 東京・大阪 開催</h3></li>
+          <li class="rv" data-cat="media"><div class="ndate">2024.05</div><span class="pill pill-media">Media</span><h3 class="nt">写真雑誌にてインタビュー＆作品ポートフォリオ掲載</h3></li>
+          <li class="rv" data-cat="partnership"><div class="ndate">2024.03</div><span class="pill pill-partner">Partnership</span><h3 class="nt">オーストラリア政府観光局とのタイアップ撮影を実施</h3></li>
+        </ul>
+      </div>
+
+      <div class="np-year-group" id="npGroup2023">
+        <h3 class="np-year rv">2023</h3>
+        <ul class="news">
+          <li class="rv" data-cat="exhibition"><div class="ndate">2023.11</div><span class="pill pill-exhibition">Exhibition</span><h3 class="nt">グループ写真展に出展（大阪）</h3></li>
+          <li class="rv" data-cat="partnership"><div class="ndate">2023.08</div><span class="pill pill-partner">Partnership</span><h3 class="nt">Samsung Team Galaxy アンバサダー就任</h3></li>
+          <li class="rv" data-cat="workshop"><div class="ndate">2023.06</div><span class="pill pill-workshop">Workshop</span><h3 class="nt">夜景撮影ワークショップ初開催</h3></li>
+          <li class="rv" data-cat="milestone"><div class="ndate">2023.04</div><span class="pill pill-award">Milestone</span><h3 class="nt">Instagram フォロワー20万人突破</h3></li>
+          <li class="rv" data-cat="media"><div class="ndate">2023.01</div><span class="pill pill-media">Media</span><h3 class="nt">Web メディアにて作品連載スタート</h3></li>
+        </ul>
+      </div>
+    </div><!-- /#npGrid -->
+
+    <p class="np-empty" id="npEmpty">このカテゴリのニュースは準備中です。</p>
+
+    <p class="note">※ まとめの数字は &lt;span class="nn"&gt; を編集。項目は &lt;li&gt; を複製して date / カテゴリpill（data-cat: media / partnership / exhibition / workshop / milestone）/ 見出しを編集。年の見出しは &lt;h3 class="np-year"&gt; で追加できます。</p>
+  </section>
+</main>
+
+<!-- ===================== CONTACT PAGE ===================== -->
+<main id="view-contact" class="view">
+  <section class="sec wrap subpage-top">
+    <div class="sec-head rv"><span class="eyebrow">Get in touch</span><h2 class="en-h">Contact</h2><p class="jp" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— お問い合わせ</p></div>
+    <div class="ct-grid rv">
+      <div>
+        <p class="ct-lead">撮影・タイアップ・<span class="hl">講座</span>のご依頼、<br>その他お仕事のご相談はこちらから。</p>
+        <div class="ct-meta">
+          <div class="row"><span class="k">Email</span><a class="v" href="mailto:s.kenkenn@gmail.com">s.kenkenn@gmail.com</a></div>
+          <div class="row"><span class="k">Based in</span><span class="v">Kyoto, Japan ／ 出張対応可（国内・海外）</span></div>
+          <div class="row"><span class="k">Response</span><span class="v">通常 2〜3 営業日以内にご返信します</span></div>
+          <div class="row" style="border:0;padding-bottom:0">
+            <span class="k">Follow</span>
+            <div class="ct-sns">
+              <a href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener">Instagram ↗</a>
+              <a href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener">Facebook ↗</a>
+              <a href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener">TikTok ↗</a>
+              <a href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener">YouTube ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="ct-form" id="ctForm" novalidate>
+        <div class="ct-row">
+          <div class="field"><label for="cf-name">お名前 / Name</label><input id="cf-name" name="name" type="text" placeholder="山田 太郎" required></div>
+          <div class="field"><label for="cf-company">会社・媒体 / Company</label><input id="cf-company" name="company" type="text" placeholder="任意"></div>
+        </div>
+        <div class="ct-row">
+          <div class="field"><label for="cf-email">メール / Email</label><input id="cf-email" name="email" type="email" placeholder="you@example.com" required></div>
+          <div class="field"><label for="cf-type">ご依頼内容 / Type</label>
+            <select id="cf-type" name="type">
+              <option>撮影のご依頼</option>
+              <option>タイアップ・PR</option>
+              <option>Lightroom 現像・データ提供</option>
+              <option>講座・ワークショップ</option>
+              <option>その他</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="cf-msg">メッセージ / Message</label><textarea id="cf-msg" name="message" placeholder="ご予算・希望時期・媒体・撮影地などをお書きください。" required></textarea></div>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <button class="ct-submit" type="submit"><span>送信する →</span></button>
+        <p class="ct-status" id="ctStatus" role="status" aria-live="polite"></p>
+        <p class="note" style="margin-top:8px">※ 送信内容は <strong>s.kenkenn@gmail.com</strong> に届きます（FormSubmit経由・ページ遷移なし）。</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-name">Sawai Kenta<small>澤井 健太 ／ けんけん</small></div>
+    <a class="foot-back" href="#top">Back to top ↑</a>
+  </div>
+  <div class="foot-base"><span>© <span id="yr"></span> Sawai Kenta</span><span>Sharing the scenery that moved me.</span></div>
+</footer>
+
+<script>
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function(){const loader=document.getElementById('loader'),count=document.getElementById('count'),bar=document.getElementById('bar'),line=document.querySelector('.loader-line');
+    const finish=()=>{loader.classList.add('done');document.body.classList.remove('preload')};
+    if(reduce){document.body.classList.remove('preload');loader.style.display='none';return;}
+    const dur=1500,t0=performance.now();
+    (function step(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3),v=Math.round(e*100);count.textContent=v;bar.style.width=v+'%';if(line)line.style.width=(v*2.4)+'px';if(k<1)requestAnimationFrame(step);else setTimeout(finish,220);})(t0);
+    setTimeout(()=>{if(document.body.classList.contains('preload'))finish();},4200);})();
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  new IntersectionObserver(([e])=>{document.getElementById('nav').classList.toggle('solid',!e.isIntersecting);},{rootMargin:'-70px 0px 0px 0px'}).observe(document.getElementById('top'));
+  (function(){const btn=document.getElementById('menuBtn'),menu=document.getElementById('menu');
+    const set=o=>{document.body.classList.toggle('menu-open',o);document.body.classList.toggle('lock',o);btn.setAttribute('aria-expanded',o);menu.setAttribute('aria-hidden',!o);};
+    btn.addEventListener('click',()=>set(!document.body.classList.contains('menu-open')));
+    menu.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>set(false)));
+    addEventListener('keydown',e=>{if(e.key==='Escape')set(false);});})();
+  (function(){const slides=[...document.querySelectorAll('.slide')],ticks=[...document.querySelectorAll('#heroIndex i')],curEl=document.querySelector('#heroIndex .cur');
+    if(slides.length<2)return;let idx=0,timer;
+    const go=n=>{slides[idx].classList.remove('is-active');ticks[idx]&&ticks[idx].classList.remove('on');idx=(n+slides.length)%slides.length;slides[idx].classList.add('is-active');ticks[idx]&&ticks[idx].classList.add('on');if(curEl)curEl.textContent=String(idx+1).padStart(2,'0');};
+    const play=()=>timer=setInterval(()=>go(idx+1),5200);play();
+    ticks.forEach((t,i)=>t.addEventListener('click',()=>{clearInterval(timer);go(i);play();}));})();
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv, .reveal-media').forEach(el=>io.observe(el));
+  const cu=el=>{const t=parseFloat(el.dataset.count),s=el.dataset.suffix||'',d=(t%1)?1:0;if(reduce){el.textContent=t.toFixed(d)+s;return;}const dur=1700,t0=performance.now();(function st(n){const k=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=(e*t).toFixed(d)+s;if(k<1)requestAnimationFrame(st);else el.textContent=t.toFixed(d)+s;})(t0);};
+  const cio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){cu(e.target);cio.unobserve(e.target);}});},{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+  (function(){const fil=document.getElementById('worksFilter'),grid=document.getElementById('worksGrid'),empty=document.getElementById('worksEmpty');
+    if(!fil)return;const items=[...grid.querySelectorAll('.work')];
+    fil.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+      fil.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+      const f=b.dataset.filter;let shown=0;
+      items.forEach(it=>{const ok=f==='all'||it.dataset.cat.split(' ').includes(f);it.classList.toggle('hide',!ok);if(ok)shown++;});
+      empty.classList.toggle('show',shown===0);});})();
+  (function(){document.querySelectorAll('.logo-track').forEach(t=>{t.innerHTML=t.innerHTML+t.innerHTML;});})();
+  (function(){const btn=document.getElementById('galMore'),grid=document.getElementById('galGrid');
+    if(!btn||!grid)return;
+    btn.addEventListener('click',()=>{const hidden=grid.querySelectorAll('.g-hide');
+      if(hidden.length){hidden.forEach(t=>{t.classList.remove('g-hide');t.classList.add('in');});btn.querySelector('span').textContent='Show less';}
+      else{[...grid.children].forEach((t,i)=>{if(i>=6)t.classList.add('g-hide');});btn.querySelector('span').textContent='Read more';grid.scrollIntoView({behavior:'smooth',block:'start'});}
+    });})();
+  if(!reduce){const ken=document.querySelector('.ken');let raf;addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{ken.style.transform=`translate3d(0,${window.scrollY*0.22}px,0)`;raf=null;});},{passive:true});}
+
+  /* ---- v15: multi-view router + page filters + contact form ---- */
+  (function(){
+    var views={
+      home:document.getElementById('view-home'),
+      gallery:document.getElementById('view-gallery'),
+      works:document.getElementById('view-works'),
+      contact:document.getElementById('view-contact'),
+      news:document.getElementById('view-news')
+    };
+    var nav=document.getElementById('nav');
+    var hashMap={'gallery-page':'gallery','works-page':'works','contact-page':'contact','news-page':'news'};
+
+    function reveal(view){
+      if(!view)return;
+      view.querySelectorAll('.rv, .reveal-media').forEach(function(el){el.classList.add('in');});
+    }
+    function show(name,anchor){
+      if(!views[name])name='home';
+      Object.keys(views).forEach(function(k){
+        if(views[k])views[k].classList.toggle('active',k===name);
+      });
+      document.body.classList.remove('menu-open','lock');
+      if(name==='home'){
+        if(anchor && anchor!=='top'){
+          requestAnimationFrame(function(){
+            var t=document.getElementById(anchor);
+            if(t){t.scrollIntoView();}else{window.scrollTo(0,0);}
+            nav.classList.toggle('solid', window.scrollY>60);
+          });
+        }else{
+          window.scrollTo(0,0);
+          nav.classList.remove('solid');
+        }
+      }else{
+        window.scrollTo(0,0);
+        nav.classList.add('solid');
+        reveal(views[name]);
+      }
+    }
+    function applyHash(h){
+      h=(h||'').replace(/^#/,'');
+      if(hashMap[h]){show(hashMap[h]);}
+      else if(h===''||h==='home'||h==='top'){show('home', h==='top'?'top':null);}
+      else{show('home',h);}
+    }
+    function go(h){
+      h=(h||'').replace(/^#/,'');
+      applyHash(h);
+      try{history.pushState({h:h},'', h?('#'+h):location.pathname);}catch(_){}
+    }
+    function route(){ applyHash(location.hash); }
+
+    /* Intercept internal (#) links and switch views in JS — never trigger a real
+       navigation, which in the artifact preview would open a new browser tab. */
+    document.addEventListener('click',function(e){
+      var a=e.target.closest('a[href^="#"]');
+      if(!a)return;
+      e.preventDefault();
+      var href=a.getAttribute('href');
+      if(href && href!=='#') go(href);
+    });
+    window.addEventListener('popstate',route);
+
+    /* Drop a "back to home" link at the top of every subpage. */
+    Object.keys(views).forEach(function(k){
+      if(k==='home'||!views[k])return;
+      var sec=views[k].querySelector('.subpage-top');
+      if(sec && !sec.querySelector('.subpage-back')){
+        var b=document.createElement('a');
+        b.className='subpage-back';
+        b.href='#top';
+        b.innerHTML='← <span>Back to home</span>';
+        sec.insertBefore(b, sec.firstChild);
+      }
+    });
+
+    route();
+
+    /* generic category filter (gallery page + works page) */
+    function bindFilter(filterId,gridId,itemSel,emptyId,countId){
+      var fil=document.getElementById(filterId), grid=document.getElementById(gridId);
+      if(!fil||!grid)return;
+      var items=[].slice.call(grid.querySelectorAll(itemSel));
+      var empty=emptyId?document.getElementById(emptyId):null;
+      var countEl=countId?document.getElementById(countId):null;
+      function apply(f){
+        var shown=0;
+        items.forEach(function(it){
+          var ok = f==='all' || (it.dataset.cat||'').split(' ').indexOf(f)>-1;
+          it.classList.toggle('hide',!ok);
+          if(ok)shown++;
+        });
+        if(empty)empty.classList.toggle('show',shown===0);
+        if(countEl)countEl.textContent = shown + (shown===1?' photograph':' photographs');
+      }
+      fil.addEventListener('click',function(e){
+        var b=e.target.closest('button'); if(!b)return;
+        fil.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on');
+        apply(b.dataset.filter);
+      });
+      apply('all');
+    }
+    bindFilter('gpFilter','gpGrid','.gp-tile','gpEmpty','gpCount');
+    bindFilter('wpFilter','wpGrid','.work','wpEmpty',null);
+
+    /* news page category filter */
+    (function(){
+      var fil=document.getElementById('npFilter');
+      var grid=document.getElementById('npGrid');
+      if(!fil||!grid)return;
+      var items=[].slice.call(grid.querySelectorAll('.news li'));
+      var groups=[].slice.call(grid.querySelectorAll('.np-year-group'));
+      var empty=document.getElementById('npEmpty');
+      var countEl=document.getElementById('npCount');
+      function apply(f){
+        var shown=0;
+        items.forEach(function(it){
+          var ok=f==='all'||(it.dataset.cat||'')===f;
+          it.classList.toggle('hide',!ok);
+          if(ok)shown++;
+        });
+        groups.forEach(function(g){
+          var visible=g.querySelectorAll('.news li:not(.hide)').length>0;
+          g.classList.toggle('hide',!visible);
+        });
+        if(empty)empty.classList.toggle('show',shown===0);
+        if(countEl)countEl.textContent=shown+(shown===1?' item':' items');
+      }
+      fil.addEventListener('click',function(e){
+        var b=e.target.closest('button');if(!b)return;
+        fil.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on');
+        apply(b.dataset.filter);
+      });
+      apply('all');
+    })();
+
+    /* contact form -> FormSubmit (AJAX, no page reload) */
+    var cf=document.getElementById('ctForm');
+    if(cf){
+      var ENDPOINT='https://formsubmit.co/ajax/s.kenkenn@gmail.com';
+      var statusEl=document.getElementById('ctStatus');
+      var btn=cf.querySelector('.ct-submit');
+      var btnLabel=btn?btn.querySelector('span'):null;
+      function setStatus(msg,kind){ if(!statusEl)return; statusEl.textContent=msg; statusEl.className='ct-status'+(kind?(' '+kind):''); }
+      cf.addEventListener('submit',function(e){
+        e.preventDefault();
+        var g=function(id){var el=document.getElementById(id);return el?el.value.trim():'';};
+        var name=g('cf-name'),company=g('cf-company'),email=g('cf-email'),type=g('cf-type'),msg=g('cf-msg');
+        var honey=(cf.querySelector('[name="_honey"]')||{}).value||'';
+        if(honey){return;} /* spam bot trap */
+        if(!name||!email||!msg){
+          setStatus('お名前・メール・メッセージは必須です。','err');
+          (document.getElementById(!name?'cf-name':!email?'cf-email':'cf-msg')||{focus:function(){}}).focus();
+          return;
+        }
+        var payload={
+          name:name, company:company||'-', email:email, type:type||'-', message:msg,
+          _subject:'【お仕事のご依頼】'+(type||'お問い合わせ')+' / '+name,
+          _template:'table',
+          _captcha:'false'
+        };
+        if(btn){btn.disabled=true;} if(btnLabel){btnLabel.textContent='送信中…';}
+        setStatus('送信中です…','');
+        fetch(ENDPOINT,{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(payload)
+        }).then(function(r){return r.json();}).then(function(data){
+          if(data && (data.success===true||data.success==='true')){
+            cf.reset();
+            setStatus('送信しました。2〜3営業日以内にご返信します。ありがとうございます。','ok');
+            if(btnLabel){btnLabel.textContent='送信完了 ✓';}
+          }else{
+            throw new Error(data && data.message ? data.message : 'failed');
+          }
+        }).catch(function(){
+          setStatus('送信に失敗しました。お手数ですが s.kenkenn@gmail.com まで直接ご連絡ください。','err');
+          if(btn){btn.disabled=false;} if(btnLabel){btnLabel.textContent='送信する →';}
+        });
+      });
+    }
+  })();
+</script>
+</body>
+</html>
