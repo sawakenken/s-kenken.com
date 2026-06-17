@@ -238,8 +238,8 @@
   .logo-track.lt-left{animation:logo-left 40s linear infinite}
   .logo-track.lt-right{animation:logo-right 40s linear infinite}
   .logo-wall:hover .logo-track{animation-play-state:paused}
-  @keyframes logo-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  @keyframes logo-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  @keyframes logo-left{from{transform:translateX(0)}to{transform:translateX(-33.3333%)}}
+  @keyframes logo-right{from{transform:translateX(-33.3333%)}to{transform:translateX(0)}}
   .logo-cell{flex:0 0 auto;width:clamp(88px,24vw,200px);height:clamp(50px,13vw,96px);margin-right:clamp(8px,2vw,16px);display:flex;align-items:center;justify-content:center;background:#F4F3EF;border-radius:clamp(8px,1.4vw,12px);padding:0 clamp(10px,2vw,18px)}
   .logo-cell span{font-family:var(--serif);font-weight:600;font-size:clamp(.7rem,2.3vw,1.12rem);letter-spacing:.01em;color:#161616;text-align:center;line-height:1.18}
   .logo-cell img{max-width:100%;max-height:62%;object-fit:contain}
@@ -916,7 +916,6 @@
       <div class="logo-cell"><span>Tourism Australia</span></div>
     </div></div>
   </div>
-  <p class="note">※ 各マスは .logo-cell。中の &lt;span&gt;ブランド名&lt;/span&gt; を &lt;img src="logo.svg" alt="ブランド名"&gt; に差し替えればロゴ画像になります（透過PNG/SVG推奨）。行は自動で複製＆スクロール（1行目←／2行目→／3行目←）、ホバーで停止します。</p>
 </section>
 
 <!-- SELECTED -->
@@ -949,7 +948,6 @@
     <a class="read-more" href="#works-page" data-view="works"><span>View all works</span><span class="arr">→</span></a>
   </div>
   <p class="works-empty" id="worksEmpty">このカテゴリの作品は準備中です。</p>
-  <p class="note">※ 作品追加は .work を複製→data-cat にカテゴリ→画像クラスを差し替え。クライアント名は &lt;span class="wclient"&gt;Client — 〇〇&lt;/span&gt; で編集（不要なら削除）。「View all works」は Works ページ(#works-page)へ遷移します。</p>
 </section>
 
 <!-- GALLERY -->
@@ -1011,7 +1009,6 @@
   <div class="more-row rv">
     <a class="read-more" href="#gallery-page" data-view="gallery"><span>View full gallery</span><span class="arr">→</span></a>
   </div>
-  <p class="note">※ 配置は「縦3→横2」の繰り返し。縦写真は .gtile.p、横写真は .gtile.l を付けて並べてね。「View full gallery」はカテゴリ別ギャラリーページ(#gallery-page)へ遷移します。</p>
 </section>
 
 <!-- NEWS -->
@@ -1069,8 +1066,8 @@
       <button data-filter="wedding">Wedding</button>
       <button data-filter="events">Events</button>
       <button data-filter="hotels">Hotels</button>
+      <button data-filter="philippines">Philippines</button>
     </div>
-    <p class="gp-count rv" id="gpCount"></p>
     <div class="gp-grid" id="gpGrid">
       <figure class="gp-tile p" data-cat="japan"><div class="img ph-bamboo" style="--photo:url('images/gallery/japan/01.jpg')"></div><figcaption><div class="gt">Japan 01</div><div class="gl">JAPAN</div></figcaption></figure>
       <figure class="gp-tile p" data-cat="japan"><div class="img ph-sakura" style="--photo:url('images/gallery/japan/02.jpg')"></div><figcaption><div class="gt">Japan 02</div><div class="gl">JAPAN</div></figcaption></figure>
@@ -1282,9 +1279,18 @@
       <figure class="gp-tile p" data-cat="hotels"><div class="img ph-city" style="--photo:url('images/gallery/hotels/08.jpg')"></div><figcaption><div class="gt">Hotels 08</div><div class="gl">HOTELS</div></figcaption></figure>
       <figure class="gp-tile l" data-cat="hotels"><div class="img ph-okinawa" style="--photo:url('images/gallery/hotels/09.jpg')"></div><figcaption><div class="gt">Hotels 09</div><div class="gl">HOTELS</div></figcaption></figure>
       <figure class="gp-tile l" data-cat="hotels"><div class="img ph-portrait" style="--photo:url('images/gallery/hotels/10.jpg')"></div><figcaption><div class="gt">Hotels 10</div><div class="gl">HOTELS</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-bamboo" style="--photo:url('images/gallery/philippines/01.jpg')"></div><figcaption><div class="gt">Philippines 01</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-sakura" style="--photo:url('images/gallery/philippines/02.jpg')"></div><figcaption><div class="gt">Philippines 02</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-city" style="--photo:url('images/gallery/philippines/03.jpg')"></div><figcaption><div class="gt">Philippines 03</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-okinawa" style="--photo:url('images/gallery/philippines/04.jpg')"></div><figcaption><div class="gt">Philippines 04</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-portrait" style="--photo:url('images/gallery/philippines/05.jpg')"></div><figcaption><div class="gt">Philippines 05</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-bamboo" style="--photo:url('images/gallery/philippines/06.jpg')"></div><figcaption><div class="gt">Philippines 06</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-sakura" style="--photo:url('images/gallery/philippines/07.jpg')"></div><figcaption><div class="gt">Philippines 07</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-city" style="--photo:url('images/gallery/philippines/08.jpg')"></div><figcaption><div class="gt">Philippines 08</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-okinawa" style="--photo:url('images/gallery/philippines/09.jpg')"></div><figcaption><div class="gt">Philippines 09</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-portrait" style="--photo:url('images/gallery/philippines/10.jpg')"></div><figcaption><div class="gt">Philippines 10</div><div class="gl">PHILIPPINES</div></figcaption></figure>
     </div>
     <p class="gp-empty" id="gpEmpty">このカテゴリの写真は準備中です。</p>
-    <p class="note">※ 写真追加は .gp-tile を複製→data-cat にカテゴリslug（japan / france …）→画像クラスを差し替え。縦長にしたいタイルは class に tall を追加。空のカテゴリ（Denmark / Sweden / China / Macao）はタイルを足すと自動で表示されます。</p>
   </section>
 </main>
 
@@ -1341,7 +1347,6 @@
       <figure class="work tall" data-cat="hotel" data-slug="w43"><div class="img ph-sakura" style="--photo:url('images/works/37.jpg')"></div><figcaption><span class="wc">Hotel</span><span class="wt">ホテル PR</span><span class="wclient">Client — 天橋立 文珠荘</span></figcaption></figure>
     </div>
     <p class="works-empty" id="wpEmpty">このカテゴリの作品は準備中です。</p>
-    <p class="note">※ 実績一覧。各 .work を複製→data-cat（ambassador / tourism / commercial / official / hotel / exhibition）→画像クラス・タイトル・Client を編集。フィルターは自動連動します。写真が用意でき次第、画像クラスを実画像に差し替えてください。</p>
   </section>
 </main>
 
@@ -1463,7 +1468,6 @@
 
     <p class="np-empty" id="npEmpty">このカテゴリのニュースは準備中です。</p>
 
-    <p class="note">※ まとめの数字は &lt;span class="nn"&gt; を編集。項目は &lt;li&gt; を複製して date / カテゴリpill（data-cat: media / partnership / exhibition / workshop / milestone）/ 見出しを編集。年の見出しは &lt;h3 class="np-year"&gt; で追加できます。</p>
   </section>
 </main>
 
@@ -1511,7 +1515,6 @@
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <button class="ct-submit" type="submit"><span>送信する →</span></button>
         <p class="ct-status" id="ctStatus" role="status" aria-live="polite"></p>
-        <p class="note" style="margin-top:8px">※ 送信内容は <strong>s.kenkenn@gmail.com</strong> に届きます（FormSubmit経由・ページ遷移なし）。</p>
       </form>
     </div>
   </section>
@@ -1575,7 +1578,7 @@
       const f=b.dataset.filter;let shown=0;
       items.forEach(it=>{const ok=f==='all'||it.dataset.cat.split(' ').includes(f);it.classList.toggle('hide',!ok);if(ok)shown++;});
       empty.classList.toggle('show',shown===0);});})();
-  (function(){document.querySelectorAll('.logo-track').forEach(t=>{t.innerHTML=t.innerHTML+t.innerHTML;});})();
+  (function(){document.querySelectorAll('.logo-track').forEach(t=>{var o=t.innerHTML;t.innerHTML=o+o+o;});})();
   (function(){const btn=document.getElementById('galMore'),grid=document.getElementById('galGrid');
     if(!btn||!grid)return;
     btn.addEventListener('click',()=>{const hidden=grid.querySelectorAll('.g-hide');
@@ -1828,7 +1831,7 @@
       });
       apply(defFilter||'all');
     }
-    bindFilter('gpFilter','gpGrid','.gp-tile','gpEmpty','gpCount','japan');
+    bindFilter('gpFilter','gpGrid','.gp-tile','gpEmpty',null,'japan');
     bindFilter('wpFilter','wpGrid','.work','wpEmpty',null);
 
     /* news page category filter */
