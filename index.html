@@ -333,6 +333,7 @@
   .news{list-style:none;border-top:1px solid var(--line-soft)}
   .news li{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:clamp(14px,2.5vw,30px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
   .news li:hover{padding-left:8px}
+  .news li.rv{transition:opacity 1s ease,transform 1.1s var(--ease),padding-left .35s var(--ease)}
   .news li[data-slug]{cursor:pointer}
   .news .ndate{font-family:var(--sans);font-weight:500;font-size:.82rem;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
   .news .pill{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:5px 14px;white-space:nowrap;justify-self:start;background:none}
@@ -1566,6 +1567,7 @@
   function staggerGrid(sel, childSel, step, cap, jit){ document.querySelectorAll(sel).forEach(function(g){ g.querySelectorAll(childSel).forEach(function(k,i){ var d=Math.min(i*step, cap)+(jit?Math.random()*jit:0); k.style.transitionDelay=d.toFixed(3)+'s'; }); }); }
   staggerGrid('#worksGrid, #wpGrid', '.work', 0.09, 0.6, 0);
   staggerGrid('#gpGrid', '.gp-tile', 0.06, 0.9, 0.2);
+  staggerGrid('.news', 'li.rv', 0.07, 0.6, 0);
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){addIn(e.target);io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.rv, .reveal-media, .gp-tile, .work').forEach(el=>io.observe(el));
   const cu=el=>{const t=parseFloat(el.dataset.count),s=el.dataset.suffix||'',d=(t%1)?1:0;if(reduce){el.textContent=t.toFixed(d)+s;return;}const dur=1700,t0=performance.now();(function st(n){const k=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=(e*t).toFixed(d)+s;if(k<1)requestAnimationFrame(st);else el.textContent=t.toFixed(d)+s;})(t0);};
