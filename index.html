@@ -72,6 +72,8 @@
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);transition:background .45s ease,padding .45s ease,border-color .45s ease;border-bottom:1px solid transparent}
   nav.solid{background:rgba(23,26,27,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);padding-top:13px;padding-bottom:13px}
+  /* menu open: solid bar so scrolled menu content tucks behind it (prevents logo/About overlap) */
+  body.menu-open nav{background:rgba(20,23,24,.985);backdrop-filter:blur(10px) saturate(1.1);-webkit-backdrop-filter:blur(10px) saturate(1.1);border-bottom:1px solid var(--line)}
   .brand{font-family:var(--mincho);font-weight:600;font-size:1.08rem;letter-spacing:.05em;color:var(--text);text-shadow:0 1px 14px rgba(0,0,0,.4);position:relative;z-index:320}
   .menu-btn{position:relative;z-index:320;background:none;border:0;color:var(--text);font-family:var(--sans);font-weight:500;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:11px;padding:8px 0;cursor:pointer;text-shadow:0 1px 14px rgba(0,0,0,.4)}
   .menu-btn .ico{position:relative;width:24px;height:8px}
@@ -87,7 +89,7 @@
     background:rgba(20,23,24,.985);backdrop-filter:blur(10px) saturate(1.1);
     -webkit-backdrop-filter:blur(10px) saturate(1.1);
     overflow-y:auto;-webkit-overflow-scrolling:touch;
-    padding:clamp(78px,17vw,104px) 0 calc(44px + env(safe-area-inset-bottom,0px));
+    padding:clamp(100px,24vw,124px) 0 calc(44px + env(safe-area-inset-bottom,0px));
     opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s}
   body.menu-open .menu{opacity:1;visibility:visible}
   .menu-nav{position:static;top:auto;left:auto;right:auto;display:flex;flex-direction:column;
@@ -813,7 +815,7 @@
         <a href="#works-page" data-wf="commercial">ブランドPR / Commercial</a>
         <a href="#works-page" data-wf="official">オフィシャル / Official</a>
         <a href="#works-page" data-wf="hotel">ホテル / Hotel</a>
-        <a href="#works-page" class="mi-sub-all">すべての作品を見る →</a>
+        <a href="#works-page" class="mi-sub-all">View all works →</a>
       </div>
     </div>
     <a href="#clients" class="mi"><span class="t">Clients</span><span class="jp">取引先</span></a>
@@ -1062,12 +1064,12 @@
       <button data-filter="hongkong">Hong Kong</button>
       <button data-filter="korea">Korea</button>
       <button data-filter="thailand">Thailand</button>
+      <button data-filter="philippines">Philippines</button>
       <button data-filter="china">China</button>
       <button data-filter="macao">Macao</button>
       <button data-filter="wedding">Wedding</button>
       <button data-filter="events">Events</button>
       <button data-filter="hotels">Hotels</button>
-      <button data-filter="philippines">Philippines</button>
     </div>
     <div class="gp-grid" id="gpGrid">
       <figure class="gp-tile p" data-cat="japan"><div class="img ph-bamboo" style="--photo:url('images/gallery/japan/01.jpg')"></div><figcaption><div class="gt">Japan 01</div><div class="gl">JAPAN</div></figcaption></figure>
@@ -1230,6 +1232,16 @@
       <figure class="gp-tile p" data-cat="thailand"><div class="img ph-city" style="--photo:url('images/gallery/thailand/08.jpg')"></div><figcaption><div class="gt">Thailand 08</div><div class="gl">THAILAND</div></figcaption></figure>
       <figure class="gp-tile l" data-cat="thailand"><div class="img ph-okinawa" style="--photo:url('images/gallery/thailand/09.jpg')"></div><figcaption><div class="gt">Thailand 09</div><div class="gl">THAILAND</div></figcaption></figure>
       <figure class="gp-tile l" data-cat="thailand"><div class="img ph-portrait" style="--photo:url('images/gallery/thailand/10.jpg')"></div><figcaption><div class="gt">Thailand 10</div><div class="gl">THAILAND</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-bamboo" style="--photo:url('images/gallery/philippines/01.jpg')"></div><figcaption><div class="gt">Philippines 01</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-sakura" style="--photo:url('images/gallery/philippines/02.jpg')"></div><figcaption><div class="gt">Philippines 02</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-city" style="--photo:url('images/gallery/philippines/03.jpg')"></div><figcaption><div class="gt">Philippines 03</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-okinawa" style="--photo:url('images/gallery/philippines/04.jpg')"></div><figcaption><div class="gt">Philippines 04</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-portrait" style="--photo:url('images/gallery/philippines/05.jpg')"></div><figcaption><div class="gt">Philippines 05</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-bamboo" style="--photo:url('images/gallery/philippines/06.jpg')"></div><figcaption><div class="gt">Philippines 06</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-sakura" style="--photo:url('images/gallery/philippines/07.jpg')"></div><figcaption><div class="gt">Philippines 07</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-city" style="--photo:url('images/gallery/philippines/08.jpg')"></div><figcaption><div class="gt">Philippines 08</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-okinawa" style="--photo:url('images/gallery/philippines/09.jpg')"></div><figcaption><div class="gt">Philippines 09</div><div class="gl">PHILIPPINES</div></figcaption></figure>
+      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-portrait" style="--photo:url('images/gallery/philippines/10.jpg')"></div><figcaption><div class="gt">Philippines 10</div><div class="gl">PHILIPPINES</div></figcaption></figure>
       <figure class="gp-tile p" data-cat="china"><div class="img ph-bamboo" style="--photo:url('images/gallery/china/01.jpg')"></div><figcaption><div class="gt">China 01</div><div class="gl">CHINA</div></figcaption></figure>
       <figure class="gp-tile p" data-cat="china"><div class="img ph-sakura" style="--photo:url('images/gallery/china/02.jpg')"></div><figcaption><div class="gt">China 02</div><div class="gl">CHINA</div></figcaption></figure>
       <figure class="gp-tile p" data-cat="china"><div class="img ph-city" style="--photo:url('images/gallery/china/03.jpg')"></div><figcaption><div class="gt">China 03</div><div class="gl">CHINA</div></figcaption></figure>
@@ -1280,16 +1292,6 @@
       <figure class="gp-tile p" data-cat="hotels"><div class="img ph-city" style="--photo:url('images/gallery/hotels/08.jpg')"></div><figcaption><div class="gt">Hotels 08</div><div class="gl">HOTELS</div></figcaption></figure>
       <figure class="gp-tile l" data-cat="hotels"><div class="img ph-okinawa" style="--photo:url('images/gallery/hotels/09.jpg')"></div><figcaption><div class="gt">Hotels 09</div><div class="gl">HOTELS</div></figcaption></figure>
       <figure class="gp-tile l" data-cat="hotels"><div class="img ph-portrait" style="--photo:url('images/gallery/hotels/10.jpg')"></div><figcaption><div class="gt">Hotels 10</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-bamboo" style="--photo:url('images/gallery/philippines/01.jpg')"></div><figcaption><div class="gt">Philippines 01</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-sakura" style="--photo:url('images/gallery/philippines/02.jpg')"></div><figcaption><div class="gt">Philippines 02</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-city" style="--photo:url('images/gallery/philippines/03.jpg')"></div><figcaption><div class="gt">Philippines 03</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-okinawa" style="--photo:url('images/gallery/philippines/04.jpg')"></div><figcaption><div class="gt">Philippines 04</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-portrait" style="--photo:url('images/gallery/philippines/05.jpg')"></div><figcaption><div class="gt">Philippines 05</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-bamboo" style="--photo:url('images/gallery/philippines/06.jpg')"></div><figcaption><div class="gt">Philippines 06</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-sakura" style="--photo:url('images/gallery/philippines/07.jpg')"></div><figcaption><div class="gt">Philippines 07</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-city" style="--photo:url('images/gallery/philippines/08.jpg')"></div><figcaption><div class="gt">Philippines 08</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-okinawa" style="--photo:url('images/gallery/philippines/09.jpg')"></div><figcaption><div class="gt">Philippines 09</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-portrait" style="--photo:url('images/gallery/philippines/10.jpg')"></div><figcaption><div class="gt">Philippines 10</div><div class="gl">PHILIPPINES</div></figcaption></figure>
     </div>
     <p class="gp-empty" id="gpEmpty">このカテゴリの写真は準備中です。</p>
   </section>
