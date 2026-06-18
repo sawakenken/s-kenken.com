@@ -39,9 +39,9 @@
     --line:rgba(234,232,226,.13);--line-soft:rgba(234,232,226,.07);
     --accent:#E0A661;--accent2:#6FB3AD;
     --serif:"Cormorant Garamond",Georgia,serif;
-    --mincho:"Shippori Mincho",serif;
-    --jp:"Zen Kaku Gothic New",system-ui,sans-serif;
-    --sans:"Schibsted Grotesk",system-ui,sans-serif;
+    --mincho:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;
+    --jp:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,"Noto Sans JP",system-ui,sans-serif;
+    --sans:"Schibsted Grotesk","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,"Noto Sans JP",system-ui,sans-serif;
     --ease:cubic-bezier(.16,1,.3,1);--pad:clamp(18px,5vw,72px);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -180,7 +180,8 @@
   .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;flex-wrap:wrap;margin-top:clamp(22px,5vw,46px);opacity:0;animation:fade 1s ease .7s forwards;animation-play-state:paused}
   .hero-tag{max-width:26ch;font-family:var(--mincho);font-size:clamp(1rem,2.4vw,1.2rem);font-weight:400;line-height:1.7}
   .hero-tag span{white-space:nowrap}
-  .hero-loc{font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:right;opacity:.9;line-height:1.95}
+  .hero-loc{font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:right;opacity:.9;line-height:1.95;margin-left:auto}
+  @media(max-width:720px){.hero-loc{width:100%;text-align:right}}
   @keyframes fade{to{opacity:1}}
   body:not(.preload) .hero-name .reveal span,body:not(.preload) .hero-jp,body:not(.preload) .hero-foot{animation-play-state:running}
   .hero-index{position:absolute;right:var(--pad);bottom:clamp(20px,4vw,34px);z-index:2;display:flex;align-items:center;gap:9px;color:#fff;font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.14em}
@@ -283,7 +284,11 @@
 
   /* reveals */
   .rv{opacity:0;transform:translateY(38px);transition:opacity 1s ease,transform 1.1s var(--ease)}
-  .rv.in{opacity:1;transform:none}.rv.d1{transition-delay:.1s}
+  .rv.in{opacity:1;transform:none}.rv.d1{transition-delay:.24s}
+  .rv:not(.sec-head){transition-delay:.24s}   /* headings lead, content follows slightly later */
+  /* section headings: slide in from the left (override the default bottom rise) */
+  .sec-head.rv{transform:translateX(-46px)}
+  .sec-head.rv.in{transform:none}
   .reveal-media{clip-path:none;opacity:0;transition:opacity .9s ease}
   .reveal-media.in{opacity:1}
 
@@ -366,7 +371,7 @@
 
   @media (prefers-reduced-motion: reduce){
     *{animation:none!important;transition:none!important}
-    .rv{opacity:1;transform:none}.reveal-media{clip-path:none;opacity:1}.gp-tile{opacity:1;transform:none}.work{opacity:1;transform:none}
+    .rv{opacity:1;transform:none}.sec-head.rv{transform:none}.reveal-media{clip-path:none;opacity:1}.gp-tile{opacity:1;transform:none}.work{opacity:1;transform:none}
     .hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}
     .loader{display:none!important}html{scroll-behavior:auto}.menu-nav a{opacity:1;transform:none}.slide{transition:none}
   }
@@ -699,7 +704,7 @@
   .wd-client{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.12em;
     text-transform:uppercase;color:var(--muted)}
   .wd-title{font-family:var(--mincho);font-weight:600;line-height:1.14;
-    font-size:clamp(1.7rem,5.2vw,3rem);letter-spacing:.02em;
+    font-size:clamp(1.25rem,3.8vw,2.2rem);letter-spacing:.02em;
     word-break:keep-all;word-break:auto-phrase}
   .wd-jp{font-family:var(--serif);font-style:italic;color:var(--muted);
     font-size:clamp(1rem,2.4vw,1.35rem);margin-top:10px}
@@ -773,7 +778,7 @@
   }
   .ct-lead{max-width:19em;word-break:normal;text-wrap:pretty}
 </style>
-<noscript><style>.loader{display:none!important}.rv{opacity:1;transform:none}.reveal-media{clip-path:none;opacity:1}.gp-tile{opacity:1;transform:none}.work{opacity:1;transform:none}.hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}.news li.hide{display:block}</style></noscript>
+<noscript><style>.loader{display:none!important}.rv{opacity:1;transform:none}.sec-head.rv{transform:none}.reveal-media{clip-path:none;opacity:1}.gp-tile{opacity:1;transform:none}.work{opacity:1;transform:none}.hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}.news li.hide{display:block}</style></noscript>
 </head>
 <body class="preload">
 
@@ -1391,6 +1396,7 @@
       <figure class="work tall" data-cat="hotel" data-slug="w41"><div class="img ph-portrait" style="--photo:url('images/works/35.jpg')"></div><figcaption><span class="wc">Hotel</span><span class="wt">ホテル PR</span><span class="wclient">Client — EMIL NAKIJIN</span></figcaption></figure>
       <figure class="work wide" data-cat="hotel" data-slug="w42"><div class="img ph-city" style="--photo:url('images/works/36.jpg')"></div><figcaption><span class="wc">Hotel</span><span class="wt">プロモーション</span><span class="wclient">Client — JUNEI HOTEL</span></figcaption></figure>
       <figure class="work tall" data-cat="hotel" data-slug="w43"><div class="img ph-sakura" style="--photo:url('images/works/37.jpg')"></div><figcaption><span class="wc">Hotel</span><span class="wt">ホテル PR</span><span class="wclient">Client — 天橋立 文珠荘</span></figcaption></figure>
+      <figure class="work wide" data-cat="commercial" data-slug="w44"><div class="img ph-city" style="--photo:url('images/works/dji-osmo-pocket4pro.jpg')"></div><figcaption><span class="wc">Commercial</span><span class="wt">Osmo Pocket 4 Pro ティザー先行公開</span><span class="wclient">Client — DJI</span></figcaption></figure>
     </div>
     <p class="works-empty" id="wpEmpty">このカテゴリの作品は準備中です。</p>
   </section>
@@ -1653,7 +1659,7 @@
     });
   })();
   function addIn(el){ el.classList.add('in'); var d=parseFloat(el.style.transitionDelay)||0; if(d){ setTimeout(function(){ el.style.transitionDelay=''; }, (d+1.3)*1000); } }
-  function staggerGrid(sel, childSel, step, cap, jit){ document.querySelectorAll(sel).forEach(function(g){ g.querySelectorAll(childSel).forEach(function(k,i){ var d=Math.min(i*step, cap)+(jit?Math.random()*jit:0); k.style.transitionDelay=d.toFixed(3)+'s'; }); }); }
+  function staggerGrid(sel, childSel, step, cap, jit){ document.querySelectorAll(sel).forEach(function(g){ g.querySelectorAll(childSel).forEach(function(k,i){ var d=0.24+Math.min(i*step, cap)+(jit?Math.random()*jit:0); k.style.transitionDelay=d.toFixed(3)+'s'; }); }); }
   staggerGrid('#worksGrid, #wpGrid', '.work', 0.09, 0.6, 0);
   staggerGrid('#gpGrid', '.gp-tile', 0.06, 0.9, 0.2);
   staggerGrid('.news', 'li.rv', 0.07, 0.6, 0);
@@ -1692,6 +1698,7 @@
     var nav=document.getElementById('nav');
     var hashMap={'gallery-page':'gallery','works-page':'works','contact-page':'contact','news-page':'news'};
     var scrollMem={}, current='home', canBack=false;
+    if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(_){}}
 
     /* ----- work detail data (edit here: 本文 / Instagram投稿URL) ----- */
     var WORKS={
@@ -1737,7 +1744,8 @@
       "w40":{photo:"images/works/34.jpg",cat:"Hotel",catFull:"Hotel",client:"ダブルツリー by ヒルトン東京有明",title:"ホテル PR",img:"ph-okinawa",desc:"ダブルツリー by ヒルトン東京有明｜「ホテル PR」。宿泊体験の世界観が伝わる空間と風景を撮影しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
       "w41":{photo:"images/works/35.jpg",cat:"Hotel",catFull:"Hotel",client:"EMIL NAKIJIN",title:"ホテル PR",img:"ph-portrait",desc:"EMIL NAKIJIN｜「ホテル PR」。宿泊体験の世界観が伝わる空間と風景を撮影しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
       "w42":{photo:"images/works/36.jpg",cat:"Hotel",catFull:"Hotel",client:"JUNEI HOTEL",title:"プロモーション",img:"ph-city",desc:"JUNEI HOTEL｜「プロモーション」。宿泊体験の世界観が伝わる空間と風景を撮影しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
-      "w43":{photo:"images/works/37.jpg",cat:"Hotel",catFull:"Hotel",client:"天橋立 文珠荘",title:"ホテル PR",img:"ph-sakura",desc:"天橋立 文珠荘｜「ホテル PR」。宿泊体験の世界観が伝わる空間と風景を撮影しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''}
+      "w43":{photo:"images/works/37.jpg",cat:"Hotel",catFull:"Hotel",client:"天橋立 文珠荘",title:"ホテル PR",img:"ph-sakura",desc:"天橋立 文珠荘｜「ホテル PR」。宿泊体験の世界観が伝わる空間と風景を撮影しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
+      "w44":{photo:"images/works/dji-osmo-pocket4pro.jpg",cat:"Commercial",catFull:"Commercial / Tie-up",client:"DJI",title:"Osmo Pocket 4 Pro ティザー先行公開",img:"ph-city",desc:"DJI とのコマーシャル / タイアップ。次世代の映像体験「Osmo Pocket 4 Pro」のティザーを先行公開しました。デュアルレンズがもたらす新しい映像の世界を、いち早く体感できる一本です。\n\n本編は下の Instagram 投稿からご覧いただけます。",instagram:'https://www.instagram.com/reel/DZUv3cBg_QA/',images:[{img:'ph-city',ar:'16 / 10',cap:'',link:'https://www.instagram.com/reel/DZUv3cBg_QA/',photo:'images/works/dji-osmo-pocket4pro.jpg'}]}
     };
 
     function setText(id,v){ var el=document.getElementById(id); if(el)el.textContent=v; }
@@ -1756,6 +1764,7 @@
       setText('wdCat',w.cat); setText('wdClient','Client — '+w.client);
       setText('wdTitle',w.title);
       setText('wdDesc',w.desc);
+      if(document.fonts&&document.fonts.load){try{document.fonts.load('1rem "Zen Kaku Gothic New"',w.desc);}catch(_){}}
       var hero=document.getElementById('wdHeroFig'), gal=document.getElementById('wdGallery');
       var imgs=(w.images && w.images.length) ? w.images
                : [{img:w.img, ar:'16 / 10', cap:'', link:IG_PROFILE, photo:w.photo}];
@@ -1766,7 +1775,7 @@
         var body='<div class="img '+im.img+'" style="aspect-ratio:'+(im.ar||'3 / 2')+ph+'"></div>'+(im.cap?'<figcaption class="wd-cap">'+im.cap+'</figcaption>':'');
         return '<a class="wd-shot" href="'+link+'" target="_blank" rel="noopener">'+body+'<span class="wd-shot-go">Instagram \u2197</span></a>';
       }).join(''); }
-      var ig=document.getElementById('wdIg'); if(ig)ig.innerHTML='';
+      renderIG(w.instagram);
       try{document.title=w.title+' — Sawai Kenta';}catch(_){}
       return true;
     }
@@ -1811,6 +1820,7 @@
       var p=POSTS[slug]; if(!p)return false;
       var c=document.getElementById('postCat'); if(c){c.textContent=p.cat;c.className='wd-cat '+p.pill;}
       setText('postDate',p.date); setText('postTitle',p.title); setText('postBody',p.body);
+      if(document.fonts&&document.fonts.load){try{document.fonts.load('1rem "Zen Kaku Gothic New"',p.body);}catch(_){}}
       var row=document.getElementById('postLinkRow');
       if(row){ row.innerHTML = p.link ? '<a class="read-more" href="'+p.link+'" target="_blank" rel="noopener"><span>\u5916\u90e8\u30b5\u30a4\u30c8\u3067\u898b\u308b</span><span class="arr">\u2197</span></a>' : ''; }
       try{document.title=p.title+' \u2014 Sawai Kenta';}catch(_){}
@@ -1833,7 +1843,8 @@
       var restored = opts.restore && scrollMem[name]!=null;
       if(restored){
         var y=scrollMem[name];
-        requestAnimationFrame(function(){ window.scrollTo(0,y); nav.classList.toggle('solid', name!=='home'||y>60); });
+        var applyY=function(){ window.scrollTo(0,y); nav.classList.toggle('solid', name!=='home'||y>60); };
+        applyY(); requestAnimationFrame(applyY); setTimeout(applyY,0); setTimeout(applyY,60);
       } else if(name==='home' && opts.anchor && opts.anchor!=='top'){
         requestAnimationFrame(function(){ var t=document.getElementById(opts.anchor); if(t)t.scrollIntoView(); nav.classList.toggle('solid', window.scrollY>60); });
       } else {
