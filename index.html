@@ -200,10 +200,11 @@
   .about-portrait{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:50%;background:var(--panel2);max-width:228px;width:100%;border:3px solid rgba(255,255,255,.88);box-shadow:0 18px 50px rgba(0,0,0,.5)}
   .about-portrait .img{position:absolute;inset:0;transition:transform 1.4s var(--ease)}
   .about-portrait:hover .img{transform:scale(1.05)}
-  .about-lead{font-family:var(--mincho);font-weight:400;font-size:clamp(1.2rem,2.7vw,1.68rem);line-height:1.85;letter-spacing:.045em;color:var(--text)}
+  .about-copy{container-type:inline-size;width:100%}
+  .about-lead{font-family:var(--mincho);font-weight:400;font-size:min(1.68rem,3.6cqw);line-height:1.85;letter-spacing:.045em;color:var(--text);white-space:nowrap}
   .about-lead .hl{color:var(--accent)}
   .about-lead-en{font-family:var(--serif);font-style:italic;font-size:clamp(.95rem,1.8vw,1.12rem);color:var(--muted);margin-top:11px}
-  .about-body .bio{font-size:.94rem;line-height:1.95;color:var(--muted);margin-top:22px;max-width:50ch}
+  .about-body .bio{font-size:clamp(.78rem,2.4cqw,.94rem);line-height:1.95;color:var(--muted);margin-top:22px;max-width:50ch}
   .amb{margin-top:clamp(24px,3vw,32px);padding-top:clamp(18px,2.4vw,24px);border-top:1px solid var(--line)}
   .amb-lab{display:block;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
   .amb-list{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
@@ -869,9 +870,11 @@
       <div class="img ph-portrait" style="--photo:url('images/about/portrait.jpg')"></div>
     </figure>
     <div class="about-body rv d1">
-      <p class="about-lead">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
-      <p class="about-lead-en">Sharing the scenery that truly moved me.</p>
-      <p class="bio">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
+      <div class="about-copy">
+        <p class="about-lead">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
+        <p class="about-lead-en">Sharing the scenery that truly moved me.</p>
+        <p class="bio">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
+      </div>
       <div class="amb">
         <span class="amb-lab">Official Ambassador</span>
         <ul class="amb-list">
