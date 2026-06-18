@@ -349,14 +349,14 @@
   @media(max-width:600px){.gal{grid-template-columns:repeat(2,1fr)}}
   /* NEWS (rows) */
   .news{list-style:none;border-top:1px solid var(--line-soft)}
-  .news li{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(11px,1.5vw,16px) clamp(12px,2vw,18px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
+  .news li{display:grid;grid-template-columns:auto auto 1fr;grid-template-areas:"date pill new" "title title title";align-items:center;column-gap:clamp(12px,2vw,18px);row-gap:clamp(11px,1.5vw,16px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
   .news li:hover{padding-left:8px}
   .news li.rv{transition:opacity 1s ease,transform 1.1s var(--ease),padding-left .35s var(--ease)}
   .news li[data-slug]{cursor:pointer}
-  .news .ndate{order:1;font-family:var(--sans);font-weight:500;font-size:.82rem;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
-  .news .pill{order:2;display:inline-flex;align-items:center;justify-content:center;line-height:1;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:6px 14px 4px;white-space:nowrap;background:none}
-  .news .new{order:3;margin-left:auto;font-family:var(--sans);font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--bg);background:var(--accent);border-radius:5px;padding:5px 10px;white-space:nowrap}
-  .news .nt{order:4;flex:1 1 100%;width:100%;max-width:100%;min-width:0;font-family:var(--jp);font-weight:500;font-size:clamp(1rem,2.1vw,1.2rem);letter-spacing:.01em;line-height:1.45;color:var(--text);white-space:normal;word-break:normal;overflow-wrap:anywhere}
+  .news .ndate{grid-area:date;font-family:var(--sans);font-weight:500;font-size:.82rem;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
+  .news .pill{grid-area:pill;justify-self:start;display:inline-flex;align-items:center;justify-content:center;line-height:1;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:6px 14px 4px;white-space:nowrap;background:none}
+  .news .new{grid-area:new;justify-self:end;font-family:var(--sans);font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--bg);background:var(--accent);border-radius:5px;padding:5px 10px;white-space:nowrap}
+  .news .nt{grid-area:title;min-width:0;max-width:100%;font-family:var(--jp);font-weight:500;font-size:clamp(1rem,2.1vw,1.2rem);letter-spacing:.01em;line-height:1.45;color:var(--text);white-space:normal;word-break:normal;overflow-wrap:anywhere}
   .news li:hover .nt{color:var(--accent)}
   .pill-media{color:#6CA8FF}.pill-partner{color:var(--accent)}.pill-exhibition{color:#B69CFF}.pill-award{color:#5FCDA0}.pill-workshop{color:#E08A4F}.pill-ambassador{color:#E08AB0}.pill-official{color:#9AA6C9}
   .news li.hide{display:none}
