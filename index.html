@@ -1101,8 +1101,8 @@
   <div class="rv">
     <span class="eyebrow" style="display:block;margin-bottom:22px">Contact</span>
     <h2 class="en-h">Let’s Talk</h2>
-    <p class="jp">撮影・タイアップのご依頼</p>
-    <p class="lead">風景・旅・観光PR、Lightroom現像、講座まで。お仕事のご相談はお気軽にどうぞ。</p>
+    <p class="jp" data-en="For shoots & tie-ups">撮影・タイアップのご依頼</p>
+    <p class="lead" data-en="From landscape, travel, and tourism PR to Lightroom editing and workshops — feel free to reach out about any work.">風景・旅・観光PR、Lightroom現像、講座まで。お仕事のご相談はお気軽にどうぞ。</p>
     <a class="cta" href="#contact-page" data-view="contact"><span data-en="Get in touch →">お問い合わせフォームへ →</span></a>
   </div>
 </section>
@@ -1977,14 +1977,14 @@
         var tries=0;
         var applyY=function(){
           void document.documentElement.offsetHeight;   /* force reflow so height is final */
-          window.scrollTo(0,y);
+          window.scrollTo({top:y,left:0,behavior:'instant'});   /* jump, never animate from top */
           if(Math.abs(window.scrollY-y)>2 && tries++<40){ requestAnimationFrame(applyY); }
         };
         applyY(); setTimeout(applyY,120); setTimeout(applyY,300);
       } else if(name==='home' && opts.anchor && opts.anchor!=='top'){
         requestAnimationFrame(function(){ var t=document.getElementById(opts.anchor); if(t)t.scrollIntoView(); nav.classList.toggle('solid', window.scrollY>60); });
       } else {
-        var goTop=function(){ window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0; };
+        var goTop=function(){ window.scrollTo({top:0,left:0,behavior:'instant'}); document.documentElement.scrollTop=0; document.body.scrollTop=0; };
         goTop(); requestAnimationFrame(goTop);
         nav.classList.toggle('solid', name!=='home');
       }
