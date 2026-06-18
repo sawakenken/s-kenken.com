@@ -83,6 +83,13 @@
   body.menu-open .menu-btn .ico span:last-child{bottom:3px;transform:rotate(-45deg)}
   .menu-btn .lbl-close{display:none}
   body.menu-open .menu-btn .lbl-open{display:none}body.menu-open .menu-btn .lbl-close{display:inline}
+  .lang-toggle{background:none;border:0;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:.72rem;letter-spacing:.1em;display:inline-flex;align-items:center;gap:6px;padding:6px 2px;color:var(--muted);position:relative;z-index:320;text-shadow:0 1px 14px rgba(0,0,0,.4)}
+  .lang-toggle .lt-o{transition:color .3s ease,opacity .3s ease}
+  .lang-toggle .lt-sep{opacity:.4}
+  .lang-toggle[data-lang="ja"] .lt-ja,.lang-toggle[data-lang="en"] .lt-en{color:var(--text);opacity:1}
+  .lang-toggle[data-lang="ja"] .lt-en,.lang-toggle[data-lang="en"] .lt-ja{color:var(--muted);opacity:.55}
+  nav.solid .lang-toggle{text-shadow:none}
+  .nav-actions{display:flex;align-items:center;gap:clamp(14px,3vw,22px)}
 
   /* MENU — full-screen accordion (mobile), full-width rows */
   .menu{position:fixed;inset:0;z-index:190;
@@ -179,7 +186,8 @@
   .hero-jp{font-family:var(--mincho);font-weight:500;font-size:clamp(1rem,3.2vw,1.4rem);letter-spacing:.28em;margin-top:14px;opacity:0;animation:fade 1s ease .5s forwards;animation-play-state:paused}
   .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;flex-wrap:wrap;margin-top:clamp(22px,5vw,46px);opacity:0;animation:fade 1s ease .7s forwards;animation-play-state:paused}
   .hero-tag{max-width:26ch;font-family:var(--mincho);font-size:clamp(1rem,2.4vw,1.2rem);font-weight:400;line-height:1.7}
-  .hero-tag span{white-space:nowrap}
+  html[lang="en"] .hero-tag{max-width:42ch}
+  .hero-tag span{display:block}
   .hero-loc{font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:right;opacity:.9;line-height:1.95;margin-left:auto}
   @media(max-width:720px){.hero-loc{width:100%;text-align:right}}
   @keyframes fade{to{opacity:1}}
@@ -762,6 +770,7 @@
   .nav-links{display:none}
   @media(min-width:900px){
     .menu-btn{display:none}
+    .nav-actions{display:none}
     #menu{display:none!important}              /* accordion = mobile only */
     .nav-links{display:flex;align-items:center;gap:clamp(20px,2.4vw,40px)}
     .nav-links a{position:relative;font-family:var(--sans);font-weight:500;font-size:.74rem;
@@ -795,7 +804,7 @@
 <div class="grain" aria-hidden="true"></div>
 
 <nav id="nav">
-  <a href="#top" class="brand">澤井健太</a>
+  <a href="#top" class="brand" data-en="Sawai Kenta">澤井健太</a>
   <div class="nav-links" aria-label="メインメニュー">
     <a href="#about">About</a>
     <a href="#clients">Clients</a>
@@ -803,31 +812,35 @@
     <a href="#gallery">Gallery</a>
     <a href="#news">News</a>
     <a href="#contact-page">Contact</a>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Language / 言語" data-lang="ja"><span class="lt-o lt-ja">JP</span><span class="lt-sep">/</span><span class="lt-o lt-en">EN</span></button>
   </div>
-  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
-    <span class="ico"><span></span><span></span></span>
-    <span class="lbl-open">Menu</span><span class="lbl-close">Close</span>
-  </button>
+  <div class="nav-actions">
+    <button class="lang-toggle lang-mobile" type="button" aria-label="Language / 言語" data-lang="ja"><span class="lt-o lt-ja">JP</span><span class="lt-sep">/</span><span class="lt-o lt-en">EN</span></button>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
+      <span class="ico"><span></span><span></span></span>
+      <span class="lbl-open">Menu</span><span class="lbl-close">Close</span>
+    </button>
+  </div>
 </nav>
 
 <div class="menu" id="menu" aria-hidden="true">
   <button class="menu-close" id="menuClose" type="button" aria-label="メニューを閉じる"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>
   <nav class="menu-nav" aria-label="メインメニュー">
-    <a href="#about" class="mi"><span class="t">About</span><span class="jp">プロフィール</span></a>
+    <a href="#about" class="mi"><span class="t">About</span><span class="jp" data-en="Profile">プロフィール</span></a>
     <div class="mi-group open" id="miWorks">
-      <button type="button" class="mi-head" aria-expanded="true" aria-controls="miWorksSub"><span class="t">Works</span><span class="jp">作品</span></button>
+      <button type="button" class="mi-head" aria-expanded="true" aria-controls="miWorksSub"><span class="t">Works</span><span class="jp" data-en="Portfolio">作品</span></button>
       <div class="mi-sub" id="miWorksSub">
-        <a href="#works-page" data-wf="ambassador">アンバサダー / Ambassador</a>
-        <a href="#works-page" data-wf="tourism">観光・タイアップ / Tourism</a>
-        <a href="#works-page" data-wf="commercial">ブランドPR / Commercial</a>
-        <a href="#works-page" data-wf="official">オフィシャル / Official</a>
-        <a href="#works-page" data-wf="hotel">ホテル / Hotel</a>
+        <a href="#works-page" data-wf="ambassador" data-en="Ambassador">アンバサダー / Ambassador</a>
+        <a href="#works-page" data-wf="tourism" data-en="Tourism">観光・タイアップ / Tourism</a>
+        <a href="#works-page" data-wf="commercial" data-en="Commercial">ブランドPR / Commercial</a>
+        <a href="#works-page" data-wf="official" data-en="Official">オフィシャル / Official</a>
+        <a href="#works-page" data-wf="hotel" data-en="Hotel">ホテル / Hotel</a>
         <a href="#works-page" class="mi-sub-all">View all works →</a>
       </div>
     </div>
-    <a href="#clients" class="mi"><span class="t">Clients</span><span class="jp">取引先</span></a>
-    <a href="#gallery" class="mi"><span class="t">Gallery</span><span class="jp">ギャラリー</span></a>
-    <a href="#news" class="mi"><span class="t">News</span><span class="jp">お知らせ</span></a>
+    <a href="#clients" class="mi"><span class="t">Clients</span><span class="jp" data-en="Partners">取引先</span></a>
+    <a href="#gallery" class="mi"><span class="t">Gallery</span><span class="jp" data-en="Photographs">ギャラリー</span></a>
+    <a href="#news" class="mi"><span class="t">News</span><span class="jp" data-en="Updates">お知らせ</span></a>
   </nav>
   <a href="#contact-page" class="menu-contact"><span class="lbl"><b>Contact</b><span>お問い合わせ</span></span><span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></span></a>
   <div class="menu-sns">
@@ -858,9 +871,9 @@
   <div class="hero-inner wrap">
     <p class="eyebrow">Travel Photographer</p>
     <h1 class="hero-name"><span class="reveal"><span>Sawai</span></span><span class="reveal"><span>Kenta</span></span></h1>
-    <p class="hero-jp">澤井 健太 ／ けんけん</p>
+    <p class="hero-jp" data-en="Sawai Kenta / Ken-ken">澤井 健太 ／ けんけん</p>
     <div class="hero-foot">
-      <p class="hero-tag"><span>心から感動した景色を、</span><span>世界中の人々に共有したい。</span></p>
+      <p class="hero-tag" data-en="<span>Sharing the scenery that moved me,</span><span>with people all around the world.</span>"><span>心から感動した景色を、</span><span>世界中の人々に共有したい。</span></p>
       <p class="hero-loc">Instagram 285,000+ Followers<br>Samsung / Adobe / Alfa Romeo Ambassador</p>
     </div>
   </div>
@@ -1579,7 +1592,7 @@
 
 <footer>
   <div class="foot-top">
-    <div class="foot-name">Sawai Kenta<small>澤井 健太 ／ けんけん</small></div>
+    <div class="foot-name" data-en="Sawai Kenta<small>Travel Photographer</small>">Sawai Kenta<small>澤井 健太 ／ けんけん</small></div>
     <a class="foot-back" href="#top">Back to top ↑</a>
   </div>
   <div class="foot-social">
@@ -1596,6 +1609,27 @@
 
 <script>
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ===== i18n: JP/EN language toggle ===== */
+  var I18N={lang:'ja'};
+  try{var _sl=localStorage.getItem('lang'); if(_sl==='en'||_sl==='ja') I18N.lang=_sl;}catch(_){}
+  function t(ja,en){ return (I18N.lang==='en' && en!=null && en!=='') ? en : ja; }
+  var rerenderForLang=function(){};   /* assigned once the router exists */
+  function applyLang(lang){
+    I18N.lang = (lang==='en')?'en':'ja';
+    try{localStorage.setItem('lang',I18N.lang);}catch(_){}
+    document.documentElement.lang=I18N.lang;
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(el.__ja==null) el.__ja=el.innerHTML;
+      el.innerHTML = I18N.lang==='en' ? el.getAttribute('data-en') : el.__ja;
+    });
+    document.querySelectorAll('[data-en-ph]').forEach(function(el){
+      if(el.__phja==null) el.__phja=el.getAttribute('placeholder')||'';
+      el.setAttribute('placeholder', I18N.lang==='en' ? el.getAttribute('data-en-ph') : el.__phja);
+    });
+    document.querySelectorAll('.lang-toggle').forEach(function(tg){ tg.setAttribute('data-lang',I18N.lang); });
+    rerenderForLang();
+  }
   (function(){const loader=document.getElementById('loader'),count=document.getElementById('count'),bar=document.getElementById('bar'),line=document.querySelector('.loader-line');
     var de=document.documentElement, bd=document.body;
     var addFr=function(){bd.classList.add('fr');};               /* reveal name only once its font is ready (no swap flicker) */
@@ -1921,6 +1955,17 @@
     });
 
     route();
+
+    /* ----- language toggle wiring ----- */
+    rerenderForLang=function(){
+      var h=(location.hash||'').replace(/^#/,'');
+      if(h.indexOf('work-')===0) populateWork(h.slice(5));
+      else if(h.indexOf('post-')===0) populatePost(h.slice(5));
+    };
+    document.querySelectorAll('.lang-toggle').forEach(function(tg){
+      tg.addEventListener('click',function(e){ e.stopPropagation(); applyLang(I18N.lang==='en'?'ja':'en'); });
+    });
+    applyLang(I18N.lang);
 
     /* generic category filter (gallery page + works page) */
     function bindFilter(filterId,gridId,itemSel,emptyId,countId,defFilter){
