@@ -58,7 +58,7 @@
   /* PRELOADER */
   .loader{position:fixed;inset:0;z-index:1000;background:var(--bg);color:var(--text);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform 1s var(--ease);will-change:transform}
   .loader.done{transform:translateY(-101%)}
-  .loader-name{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,8vw,4.4rem);letter-spacing:.02em;opacity:0;animation:fadeUp .9s var(--ease) .1s forwards}
+  .loader-name{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,8vw,4.4rem);letter-spacing:.02em;opacity:0}
   .loader-jp{font-family:var(--mincho);letter-spacing:.4em;color:var(--muted);margin-top:12px;font-size:.9rem;opacity:0;animation:fadeUp .9s var(--ease) .22s forwards}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   .loader-count{position:absolute;bottom:26px;right:var(--pad);font-family:var(--sans);font-weight:500;font-size:.78rem;letter-spacing:.18em;color:var(--muted)}
@@ -89,12 +89,12 @@
     background:rgba(20,23,24,.985);backdrop-filter:blur(10px) saturate(1.1);
     -webkit-backdrop-filter:blur(10px) saturate(1.1);
     overflow-y:auto;-webkit-overflow-scrolling:touch;
-    padding:clamp(100px,24vw,124px) 0 calc(44px + env(safe-area-inset-bottom,0px));
+    padding:clamp(60px,9vw,70px) 0 calc(44px + env(safe-area-inset-bottom,0px));
     opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s}
   body.menu-open .menu{opacity:1;visibility:visible}
   .menu-nav{position:static;top:auto;left:auto;right:auto;display:flex;flex-direction:column;
     align-items:stretch;justify-content:flex-start;padding:0;background:none;border-bottom:0;
-    border-top:1px solid var(--line)}
+    border-top:0}
   /* top-level rows: direct links (.mi) + expandable headers (.mi-head) */
   .menu-nav .mi,.menu-nav .mi-head{display:flex;align-items:center;width:100%;
     padding:clamp(13px,3.4vw,18px) var(--pad);
@@ -179,6 +179,7 @@
   .hero-jp{font-family:var(--mincho);font-weight:500;font-size:clamp(1rem,3.2vw,1.4rem);letter-spacing:.28em;margin-top:14px;opacity:0;animation:fade 1s ease .5s forwards;animation-play-state:paused}
   .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;flex-wrap:wrap;margin-top:clamp(22px,5vw,46px);opacity:0;animation:fade 1s ease .7s forwards;animation-play-state:paused}
   .hero-tag{max-width:26ch;font-family:var(--mincho);font-size:clamp(1rem,2.4vw,1.2rem);font-weight:400;line-height:1.7}
+  .hero-tag span{white-space:nowrap}
   .hero-loc{font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:right;opacity:.9;line-height:1.95}
   @keyframes fade{to{opacity:1}}
   body:not(.preload) .hero-name .reveal span,body:not(.preload) .hero-jp,body:not(.preload) .hero-foot{animation-play-state:running}
@@ -312,7 +313,7 @@
   .work::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(8,10,11,.8));pointer-events:none}
   .work figcaption{position:absolute;left:18px;right:18px;bottom:16px;z-index:2}
   .work .wc{display:block;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
-  .work .wt{font-family:var(--mincho);font-weight:500;font-size:clamp(1.05rem,2.2vw,1.32rem);color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.55);line-height:1.3;word-break:keep-all;overflow-wrap:break-word}
+  .work .wt{font-family:var(--mincho);font-weight:500;font-size:clamp(1.05rem,2.2vw,1.32rem);color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.55);line-height:1.3;word-break:keep-all;word-break:auto-phrase}
   .works-empty{display:none;color:var(--muted);font-size:.95rem;padding:24px 0}
   .works-empty.show{display:block}
   /* GALLERY (tight square grid) */
@@ -550,7 +551,7 @@
      v15 — upgraded intro / hero entrance
      ============================================================ */
   .loader{transition:transform 1.25s cubic-bezier(.78,0,.22,1)}
-  .loader-name{animation:loadName 1.9s cubic-bezier(.2,.8,.2,1) .12s both}
+  body.fr .loader-name{animation:loadName 1.9s cubic-bezier(.2,.8,.2,1) .12s both}
   @keyframes loadName{
     0%{opacity:0;transform:translateY(18px) scale(.992);filter:blur(8px);text-shadow:0 0 0 rgba(255,255,255,0)}
     45%{opacity:1;filter:blur(0);text-shadow:0 0 18px rgba(255,255,255,.34)}
@@ -697,8 +698,9 @@
     text-transform:uppercase;color:var(--accent)}
   .wd-client{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.12em;
     text-transform:uppercase;color:var(--muted)}
-  .wd-title{font-family:var(--mincho);font-weight:600;line-height:1.12;
-    font-size:clamp(2.1rem,6vw,3.6rem);letter-spacing:.02em;word-break:keep-all;overflow-wrap:break-word}
+  .wd-title{font-family:var(--mincho);font-weight:600;line-height:1.14;
+    font-size:clamp(1.7rem,5.2vw,3rem);letter-spacing:.02em;
+    word-break:keep-all;word-break:auto-phrase}
   .wd-jp{font-family:var(--serif);font-style:italic;color:var(--muted);
     font-size:clamp(1rem,2.4vw,1.35rem);margin-top:10px}
   .wd-info{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,48px);
@@ -848,7 +850,7 @@
     <h1 class="hero-name"><span class="reveal"><span>Sawai</span></span><span class="reveal"><span>Kenta</span></span></h1>
     <p class="hero-jp">澤井 健太 ／ けんけん</p>
     <div class="hero-foot">
-      <p class="hero-tag">心から感動した景色を、世界中の人々に共有したい。</p>
+      <p class="hero-tag"><span>心から感動した景色を、</span><span>世界中の人々に共有したい。</span></p>
       <p class="hero-loc">Instagram 285K+ Followers<br>Samsung / Adobe / Alfa Romeo Ambassador</p>
     </div>
   </div>
@@ -933,6 +935,7 @@
       <div class="logo-cell"><span>VELTRA</span><img src="images/clients/veltra.png" alt="VELTRA" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell"><span>Holafly</span><img src="images/clients/holafly.png" alt="Holafly" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell"><span>NEWT</span><img src="images/clients/newt.png" alt="NEWT" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
+      <div class="logo-cell"><span>K&amp;F Concept</span><img src="images/clients/kf-concept.png" alt="K&amp;F Concept" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>サウジアラビア政府観光局</span><img src="images/clients/saudi-tourism.png" alt="サウジアラビア政府観光局" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>オーストラリア政府観光局</span><img src="images/clients/tourism-australia.png" alt="オーストラリア政府観光局" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>韓国観光公社</span><img src="images/clients/korea-tourism.png" alt="韓国観光公社" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
@@ -940,17 +943,18 @@
       <div class="logo-cell" aria-hidden="true"><span>VELTRA</span><img src="images/clients/veltra.png" alt="VELTRA" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>Holafly</span><img src="images/clients/holafly.png" alt="Holafly" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>NEWT</span><img src="images/clients/newt.png" alt="NEWT" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
+      <div class="logo-cell" aria-hidden="true"><span>K&amp;F Concept</span><img src="images/clients/kf-concept.png" alt="K&amp;F Concept" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
     </div></div>
     <div class="logo-row"><div class="logo-track lt-right">
-      <div class="logo-cell"><span>K&amp;F Concept</span><img src="images/clients/kf-concept.png" alt="K&amp;F Concept" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell"><span>PGYTECH</span><img src="images/clients/pgytech.png" alt="PGYTECH" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
+      <div class="logo-cell"><span>INNOCN</span><img src="images/clients/innocn.png" alt="INNOCN" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell"><span>NAKED, Inc.</span><img src="images/clients/naked.png" alt="NAKED, Inc." loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell"><span>京都府</span><img src="images/clients/kyoto-pref.png" alt="京都府" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell"><span>森の京都</span><img src="images/clients/mori-no-kyoto.png" alt="森の京都" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell"><span>お茶の京都</span><img src="images/clients/ocha-no-kyoto.png" alt="お茶の京都" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell"><span>MKタクシー</span><img src="images/clients/mk-taxi.png" alt="MKタクシー" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
-      <div class="logo-cell" aria-hidden="true"><span>K&amp;F Concept</span><img src="images/clients/kf-concept.png" alt="K&amp;F Concept" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>PGYTECH</span><img src="images/clients/pgytech.png" alt="PGYTECH" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
+      <div class="logo-cell" aria-hidden="true"><span>INNOCN</span><img src="images/clients/innocn.png" alt="INNOCN" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>NAKED, Inc.</span><img src="images/clients/naked.png" alt="NAKED, Inc." loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>京都府</span><img src="images/clients/kyoto-pref.png" alt="京都府" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>森の京都</span><img src="images/clients/mori-no-kyoto.png" alt="森の京都" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
@@ -1582,8 +1586,17 @@
 <script>
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   (function(){const loader=document.getElementById('loader'),count=document.getElementById('count'),bar=document.getElementById('bar'),line=document.querySelector('.loader-line');
-    const finish=()=>{loader.classList.add('done');document.body.classList.remove('preload')};
-    if(reduce){document.body.classList.remove('preload');loader.style.display='none';return;}
+    var de=document.documentElement, bd=document.body;
+    var addFr=function(){bd.classList.add('fr');};               /* reveal name only once its font is ready (no swap flicker) */
+    if(document.fonts&&document.fonts.load){document.fonts.load('500 4rem "Cormorant Garamond"').then(addFr,addFr);document.fonts.ready.then(addFr);}else{addFr();}
+    setTimeout(addFr,600);                                       /* fallback so the name always appears */
+    var unlock=function(){de.style.overflow='';bd.style.overflow='';};
+    const finish=()=>{loader.classList.add('done');bd.classList.remove('preload');
+      var released=false,release=function(){if(released)return;released=true;unlock();};
+      loader.addEventListener('transitionend',function(e){if(e.propertyName==='transform')release();});
+      setTimeout(release,1200);};   /* unlock only after the curtain finishes (≈1s slide + buffer) */
+    if(reduce){bd.classList.remove('preload');loader.style.display='none';return;}
+    de.style.overflow='hidden';bd.style.overflow='hidden';window.scrollTo(0,0);   /* lock scroll while loading */
     const dur=1500,t0=performance.now();
     (function step(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3),v=Math.round(e*100);count.textContent=v;bar.style.width=v+'%';if(line)line.style.width=(v*2.4)+'px';if(k<1)requestAnimationFrame(step);else setTimeout(finish,220);})(t0);
     setTimeout(()=>{if(document.body.classList.contains('preload'))finish();},4200);})();
@@ -1611,13 +1624,9 @@
     var wall=document.querySelector('.logo-wall');
     var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(reduce)return;                 /* leave static for reduced-motion */
-    var paused=false, visible=true;
-    if(wall){
-      wall.addEventListener('mouseenter',function(){paused=true;});
-      wall.addEventListener('mouseleave',function(){paused=false;});
-      if('IntersectionObserver' in window){
-        new IntersectionObserver(function(es){visible=es[0].isIntersecting;},{rootMargin:'150px 0px'}).observe(wall);
-      }
+    var visible=true;
+    if(wall && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(es){visible=es[0].isIntersecting;},{rootMargin:'150px 0px'}).observe(wall);
     }
     tracks.forEach(function(t){
       var dir=t.classList.contains('lt-right')?1:-1;
@@ -1634,7 +1643,7 @@
         if(!last)last=now;
         var dt=(now-last)/1000; last=now;
         if(dt>0.1)dt=0.1;                     /* clamp after tab switch */
-        if(!paused && visible && half>0){
+        if(visible && half>0){
           x+=dir*speed*dt;
           if(x<=-half)x+=half; else if(x>=0)x-=half;
           t.style.transform='translate3d('+x.toFixed(2)+'px,0,0)';
@@ -1998,4 +2007,6 @@
 <script async src="https://www.instagram.com/embed.js"></script>
 </body>
 </html>
+
+
 
