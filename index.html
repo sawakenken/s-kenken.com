@@ -240,7 +240,9 @@
   }
 
   /* CLIENTS — JS-driven transform marquee (iOS-safe: no width:max-content, no keyframe %) */
-  .logo-wall{display:flex;flex-direction:column;gap:clamp(7px,1.1vw,12px)}
+  .logo-wall{display:flex;flex-direction:column;gap:clamp(7px,1.1vw,12px);--fade:clamp(40px,8vw,120px);
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 var(--fade),#000 calc(100% - var(--fade)),transparent 100%);
+    mask-image:linear-gradient(to right,transparent 0,#000 var(--fade),#000 calc(100% - var(--fade)),transparent 100%)}
   .logo-row{overflow:hidden}
   .logo-track{display:flex;flex-wrap:nowrap;will-change:transform;backface-visibility:hidden}
   .logo-cell{flex:0 0 auto;width:clamp(58px,15vw,126px);height:clamp(40px,9.5vw,62px);margin-right:clamp(6px,1.4vw,12px);display:flex;align-items:center;justify-content:center;background:#F4F3EF;border-radius:clamp(7px,1.2vw,11px);padding:0 clamp(7px,1.6vw,13px);overflow:hidden}
