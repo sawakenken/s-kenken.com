@@ -1843,8 +1843,17 @@
       var restored = opts.restore && scrollMem[name]!=null;
       if(restored){
         var y=scrollMem[name];
-        var applyY=function(){ window.scrollTo(0,y); nav.classList.toggle('solid', name!=='home'||y>60); };
-        applyY(); requestAnimationFrame(applyY); setTimeout(applyY,0); setTimeout(applyY,60);
+        nav.classList.toggle('solid', name!=='home'||y>60);
+        /* the view just switched from display:none — keep re-applying until its
+           full height is laid out and we actually reach y (handles large offsets
+           like the bottom of home returning from a short subpage). */
+        var tries=0;
+        var applyY=function(){
+          void document.documentElement.offsetHeight;   /* force reflow so height is final */
+          window.scrollTo(0,y);
+          if(Math.abs(window.scrollY-y)>2 && tries++<40){ requestAnimationFrame(applyY); }
+        };
+        applyY(); setTimeout(applyY,120); setTimeout(applyY,300);
       } else if(name==='home' && opts.anchor && opts.anchor!=='top'){
         requestAnimationFrame(function(){ var t=document.getElementById(opts.anchor); if(t)t.scrollIntoView(); nav.classList.toggle('solid', window.scrollY>60); });
       } else {
