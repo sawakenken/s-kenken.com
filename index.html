@@ -861,7 +861,7 @@
     <p class="hero-jp">澤井 健太 ／ けんけん</p>
     <div class="hero-foot">
       <p class="hero-tag"><span>心から感動した景色を、</span><span>世界中の人々に共有したい。</span></p>
-      <p class="hero-loc">Instagram 285K+ Followers<br>Samsung / Adobe / Alfa Romeo Ambassador</p>
+      <p class="hero-loc">Instagram 285,000+ Followers<br>Samsung / Adobe / Alfa Romeo Ambassador</p>
     </div>
   </div>
   <div class="hero-index" id="heroIndex" aria-hidden="true">
@@ -891,8 +891,8 @@
         </ul>
       </div>
       <div class="about-stats">
-        <div><span class="n accent" data-count="285" data-suffix="K+">0</span><span class="sl">Instagram</span></div>
-        <div><span class="n" data-count="68" data-suffix="K">0</span><span class="sl">Facebook</span></div>
+        <div><span class="n accent" data-count="285000" data-suffix="+">0</span><span class="sl">Instagram</span></div>
+        <div><span class="n" data-count="68000" data-suffix="">0</span><span class="sl">Facebook</span></div>
         <div><span class="n" data-count="30" data-suffix="+">0</span><span class="sl">Clients</span></div>
       </div>
     </div>
@@ -1449,7 +1449,7 @@
         <div class="np-card"><span class="nn accent">100<span class="u">+</span></span><span class="nl">PR Projects</span></div>
         <div class="np-card"><span class="nn">3</span><span class="nl">Ambassadorships</span></div>
         <div class="np-card"><span class="nn">10<span class="u">+</span></span><span class="nl">Countries</span></div>
-        <div class="np-card"><span class="nn">285<span class="u">K+</span></span><span class="nl">Followers</span></div>
+        <div class="np-card"><span class="nn">285,000<span class="u">+</span></span><span class="nl">Followers</span></div>
       </div>
       </div>
     </div>
@@ -1670,7 +1670,7 @@
   staggerGrid('.news', 'li.rv', 0.05, 0.4, 0);
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){addIn(e.target);io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.rv, .reveal-media, .gp-tile, .work').forEach(el=>io.observe(el));
-  const cu=el=>{const t=parseFloat(el.dataset.count),s=el.dataset.suffix||'',d=(t%1)?1:0;if(reduce){el.textContent=t.toFixed(d)+s;return;}const dur=1700,t0=performance.now();(function st(n){const k=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=(e*t).toFixed(d)+s;if(k<1)requestAnimationFrame(st);else el.textContent=t.toFixed(d)+s;})(t0);};
+  const cu=el=>{const t=parseFloat(el.dataset.count),s=el.dataset.suffix||'',d=(t%1)?1:0;var fmt=function(v){return d?v.toFixed(1):Math.round(v).toLocaleString('en-US');};if(reduce){el.textContent=fmt(t)+s;return;}const dur=1700,t0=performance.now();(function st(n){const k=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fmt(e*t)+s;if(k<1)requestAnimationFrame(st);else el.textContent=fmt(t)+s;})(t0);};
   const cio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){cu(e.target);cio.unobserve(e.target);}});},{threshold:.5});
   document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
   (function(){const fil=document.getElementById('worksFilter'),grid=document.getElementById('worksGrid'),empty=document.getElementById('worksEmpty');
