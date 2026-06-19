@@ -1817,7 +1817,7 @@
     }
     function renderPosts(posts){
       var box=document.getElementById('wdIg'); if(!box)return;
-      box.innerHTML='<div class="wd-timeline">'+posts.map(function(po){
+      box.innerHTML='<div class="wd-timeline" style="width:100%"><div class="wd-tl-head">'+t('リンク','Links')+'</div>'+posts.map(function(po){
         var url=po.link||IG_PROFILE;
         var isWeb=!/instagram\.com/i.test(url);
         var label=po.label||(isWeb?'WEB SITE':'Instagram');
@@ -1873,6 +1873,7 @@
       var en=WORKS_EN[slug]||{};
       var title=t(w.title,en.t), client=t(w.client,en.c);
       var desc=w.projects?t(w.desc,w.descEn):((I18N.lang==='en')?workDescEn(w,en):w.desc);
+      if(w.posts&&!w.projects) desc=desc.replace(/\n\n[^\n]*Instagram[^\n]*$/,'');   /* links shown below; drop the redundant IG tail */
       setText('wdCat',w.cat); setText('wdClient','Client — '+client);
       setText('wdTitle',title);
       setText('wdDesc',desc);
