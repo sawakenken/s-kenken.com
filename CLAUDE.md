@@ -109,7 +109,7 @@
    - **済み**: gallery/japan（01-10、横は16:10）＋ TOPギャラリー（images/gallery/01-10、japanのコピー・仮）。
    - **未**: gallery 残り21カテゴリ / works 各画像（souda-kyoto, naked-gaudi, innocn-40u1c, morinokyoto-phototour 等）/ hero / about / クライアントロゴ `images/clients/*.png`。
 2. **インスタURL一括差し替え**（現状プロフィール飛び。対策は要検討）。
-3. **クライアント集約の横展開**: Samsung（Galaxy大量）/サウジ/Adobe/Turkish/Trip.com を NAKED と同じ `projects` 形式へ。
+3. **クライアント集約**: ✅ 完了（NAKED=w30 / Samsung=w7 / Adobe=w10 / Turkish=w13 / Trip.com=w17 / サウジ=w21）。今後の新規投稿は該当カードの `projects[]` に追記。一部案件の日付は暫定/空（要確認）。
 4. 画像が揃ったら**独自ドメイン移転**（GitHub Pages Custom domain + DNS）。
 5. 仮データ確認: NAKED各案件の日付・八坂のデモ投稿、INNOCN投稿日。
 
