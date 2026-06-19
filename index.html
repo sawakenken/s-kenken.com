@@ -1087,14 +1087,7 @@
 <!-- NEWS -->
 <section class="sec wrap" id="news">
   <div class="sec-head rv"><span class="eyebrow">Updates</span><h2 class="en-h">News</h2></div>
-  <ul class="news">
-    <li class="rv"data-slug="p1"><div class="ndate">2025.08</div><span class="pill pill-exhibition">Exhibition</span><h3 class="nt" data-en="Photos exhibited at EKIspot KYOTO, JR Kyoto Station Building.">JR京都駅ビル EKIspot KYOTO にて写真が展示されました。</h3><span class="new">NEW</span></li>
-    <li class="rv"data-slug="p2"><div class="ndate">2025.08</div><span class="pill pill-official">Official</span><h3 class="nt" data-en="NAKED, Inc. — official shoot for Fushimi Inari Taisha & Yasaka Shrine.">NAKED, Inc.｜伏見稲荷大社・八坂神社のオフィシャル撮影を担当。</h3><span class="new">NEW</span></li>
-    <li class="rv"data-slug="p3"><div class="ndate">2025.08</div><span class="pill pill-partner">Tie-up</span><h3 class="nt" data-en="Adobe Partner — PR post for Adobe Lightroom.">Adobe Partner｜Adobe Lightroom の PR 投稿をしました。</h3><span class="new">NEW</span></li>
-    <li class="rv"data-slug="p4"><div class="ndate">2025.07</div><span class="pill pill-official">Official</span><h3 class="nt" data-en="SHONIN PARK — completion shoot for Beppu Shoninga-hama Park.">SHONIN PARK｜別府上人ヶ浜公園 竣工撮影を担当しました。</h3></li>
-    <li class="rv"data-slug="p5"><div class="ndate">2025.07</div><span class="pill pill-partner">Tie-up</span><h3 class="nt" data-en="Invited by Destination NSW (Australia) for a PR post.">オーストラリア NSW 州観光局にご招待いただき PR 投稿。</h3></li>
-    <li class="rv"data-slug="p6"><div class="ndate">2025.04</div><span class="pill pill-media">Media</span><h3 class="nt" data-en="Connect to Turkey — appeared in a film screened at the GALA.">Connect to Turkey｜GALA で上映のムービーに出演しました。</h3></li>
-  </ul>
+  <ul class="news" id="homeNews"></ul>
   <div class="more-row rv">
     <a class="read-more" href="#news-page" data-view="news"><span>View all news</span><span class="arr">→</span></a>
   </div>
@@ -1702,6 +1695,10 @@
   })();
   function addIn(el){ el.classList.add('in'); var d=parseFloat(el.style.transitionDelay)||0; if(d){ setTimeout(function(){ el.style.transitionDelay=''; }, (d+1.3)*1000); } }
   function staggerGrid(sel, childSel, step, cap, jit){ document.querySelectorAll(sel).forEach(function(g){ g.querySelectorAll(childSel).forEach(function(k,i){ var d=0.1+Math.min(i*step, cap)+(jit?Math.random()*jit:0); k.style.transitionDelay=d.toFixed(3)+'s'; }); }); }
+  (function(){ /* TOP News = 新着N件を正本の News ページ(#npGrid)から複製。編集は News 側のみで TOP に自動反映 */
+    var src=document.getElementById('npGrid'), home=document.getElementById('homeNews');
+    if(src && home){ var items=src.querySelectorAll('.news > li'); for(var i=0;i<items.length && i<6;i++){ home.appendChild(items[i].cloneNode(true)); } }
+  })();
   staggerGrid('#worksGrid, #wpGrid', '.work', 0.07, 0.42, 0);
   staggerGrid('#gpGrid', '.gp-tile', 0.05, 0.55, 0.15);
   staggerGrid('.news', 'li.rv', 0.05, 0.4, 0);
@@ -1873,11 +1870,7 @@
     }
     var POSTS={
       "p1":{date:"2025.08",pill:"pill-exhibition",cat:"Exhibition",title:"JR京都駅ビル EKIspot KYOTO にて写真が展示されました。",link:"",body:"写真の展示・掲載に関する記録です。"},
-      "p2":{date:"2025.08",pill:"pill-official",cat:"Official",title:"NAKED, Inc.｜伏見稲荷大社・八坂神社のオフィシャル撮影を担当。",link:"",body:"オフィシャル撮影・制作の実績です。"},
       "p3":{date:"2025.08",pill:"pill-partner",cat:"Tie-up",title:"Adobe Partner｜Adobe Lightroom の PR 投稿をしました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
-      "p4":{date:"2025.07",pill:"pill-official",cat:"Official",title:"SHONIN PARK｜別府上人ヶ浜公園 竣工撮影を担当しました。",link:"",body:"オフィシャル撮影・制作の実績です。"},
-      "p5":{date:"2025.07",pill:"pill-partner",cat:"Tie-up",title:"オーストラリア NSW 州観光局にご招待いただき PR 投稿。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
-      "p6":{date:"2025.04",pill:"pill-media",cat:"Media",title:"Connect to Turkey｜GALA で上映のムービーに出演しました。",link:"",body:"メディア掲載・出演・審査などの記録です。"},
       "p7":{date:"2025.08",pill:"pill-official",cat:"Official",title:"NAKED, Inc.｜伏見稲荷大社・八坂神社のオフィシャル撮影を担当しました。",link:"",body:"オフィシャル撮影・制作の実績です。"},
       "p8":{date:"2025.07",pill:"pill-official",cat:"Official",title:"SHONIN PARK｜別府上人ヶ浜公園 竣工撮影・PR 投稿を担当しました。",link:"",body:"オフィシャル撮影・制作の実績です。"},
       "p9":{date:"2025.07",pill:"pill-partner",cat:"Tie-up",title:"サウジアラビア王国主催イベントの PR 投稿をしました。",link:"",body:"ブランドとのタイアップ・PR 活動の記録です。"},
@@ -1908,11 +1901,7 @@
     };
     var POSTS_EN={
       p1:"Photos exhibited at EKIspot KYOTO, JR Kyoto Station Building.",
-      p2:"NAKED, Inc. — official shoot for Fushimi Inari Taisha & Yasaka Shrine.",
       p3:"Adobe Partner — PR post for Adobe Lightroom.",
-      p4:"SHONIN PARK — completion shoot for Beppu Shoninga-hama Park.",
-      p5:"Invited by Destination NSW (Australia) for a PR post.",
-      p6:"Connect to Turkey — appeared in a film screened at the GALA.",
       p7:"NAKED, Inc. — handled the official shoot for Fushimi Inari Taisha & Yasaka Shrine.",
       p8:"SHONIN PARK — completion shoot and PR post for Beppu Shoninga-hama Park.",
       p9:"PR post for an event hosted by the Kingdom of Saudi Arabia.",
