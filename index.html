@@ -2049,7 +2049,7 @@
       var tl=e.target.closest('.wd-tl-row');
       if(tl){ var it=tl.closest('.wd-tl-item'); if(it){ var op=it.classList.toggle('open'); tl.setAttribute('aria-expanded',op?'true':'false'); } return; }
       var back=e.target.closest('.subpage-back');
-      if(back){ e.preventDefault(); show('home',{restore:true}); try{history.pushState({h:''},'',location.pathname);}catch(_){}; return; }
+      if(back){ e.preventDefault(); if(canBack&&history.length>1){ history.back(); } else { show('home',{restore:true}); try{history.pushState({h:''},'',location.pathname);}catch(_){}; } return; }
       var card=e.target.closest('.work[data-slug]');
       if(card){ e.preventDefault(); go('#work-'+card.dataset.slug); return; }
       var nli=e.target.closest('li[data-slug]');
