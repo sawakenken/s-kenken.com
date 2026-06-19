@@ -755,7 +755,8 @@
   /* work detail — client project timeline (1 client = 1 card, stacked PRs) */
   .wd-timeline{display:flex;flex-direction:column;margin:clamp(26px,3.6vw,40px) 0;border-top:1px solid var(--line-soft)}
   .wd-tl-head{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:18px 2px 6px}
-  .wd-tl-row{display:flex;align-items:center;gap:clamp(12px,2.4vw,18px);padding:14px 4px;border-bottom:1px solid var(--line-soft);text-decoration:none;transition:padding .35s var(--ease),background .35s}
+  .wd-tl-item{border-bottom:1px solid var(--line-soft)}
+  .wd-tl-row{display:flex;align-items:center;gap:clamp(12px,2.4vw,18px);width:100%;text-align:left;background:none;border:0;cursor:pointer;font:inherit;color:inherit;padding:14px 4px;transition:padding .35s var(--ease),background .35s}
   .wd-tl-row:hover{background:rgba(255,255,255,.03);padding-left:12px}
   .wd-tl-thumb{flex:0 0 auto;width:clamp(58px,13vw,86px);aspect-ratio:4/3;background:var(--panel2)}
   .wd-tl-info{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:5px}
@@ -763,9 +764,16 @@
   .wd-tl-meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
   .wd-tl-meta .pill{display:inline-flex;align-items:center;justify-content:center;line-height:1;font-family:var(--sans);font-size:.54rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:5px 13px 4px;white-space:nowrap;background:none}
   .wd-tl-date{font-family:var(--sans);font-size:.6rem;font-weight:500;letter-spacing:.1em;color:var(--muted)}
-  .wd-tl-go{flex:0 0 auto;font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.12em;color:#fff;background:rgba(255,255,255,.07);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.3);padding:7px 13px;border-radius:100px;white-space:nowrap;opacity:0;transform:translateX(4px);transition:.3s}
-  .wd-tl-row:hover .wd-tl-go{opacity:1;transform:none}
-  @media(max-width:600px){.wd-tl-go{opacity:1;transform:none;font-size:.5rem;padding:5px 10px}}
+  .wd-tl-chev{flex:0 0 auto;width:9px;height:9px;border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);transform:rotate(45deg);margin-right:6px;transition:transform .35s var(--ease),border-color .3s}
+  .wd-tl-row:hover .wd-tl-chev{border-color:var(--accent)}
+  .wd-tl-item.open .wd-tl-chev{transform:rotate(-135deg)}
+  .wd-tl-panel{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+  .wd-tl-item.open .wd-tl-panel{max-height:640px}
+  .wd-tl-desc{font-size:.9rem;line-height:1.9;color:var(--muted);padding:2px 4px 16px clamp(70px,15.4vw,104px);white-space:pre-line}
+  .wd-tl-posts{display:flex;flex-wrap:wrap;gap:10px;padding:0 4px 18px clamp(70px,15.4vw,104px)}
+  .wd-tl-post{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.1em;color:var(--text);text-decoration:none;border:1px solid var(--line);padding:8px 13px;transition:border-color .3s,color .3s,background .3s}
+  .wd-tl-post:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,255,255,.03)}
+  .wd-tl-post-date{color:var(--muted);font-weight:500}
   .ig-cta{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:100px;
     border:1px solid var(--line);font-family:var(--sans);font-weight:600;font-size:.78rem;
     letter-spacing:.06em;color:var(--text);transition:border-color .3s,color .3s,background .3s}
@@ -1780,7 +1788,7 @@
       "w27":{photo:"images/works/21.jpg",cat:"Commercial",catFull:"Commercial / Tie-up",client:"Insta360",title:"Ace Pro 2 プロモーション",img:"ph-city",desc:"Insta360 とのコマーシャル / タイアップ「Ace Pro 2 プロモーション」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
       "w28":{photo:"images/works/22.jpg",cat:"Commercial",catFull:"Commercial / Tie-up",client:"奥仲麻琴",title:"ウェディング撮影",img:"ph-sakura",desc:"奥仲麻琴 とのコマーシャル / タイアップ「ウェディング撮影」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
       "w29":{photo:"images/works/23.jpg",cat:"Commercial",catFull:"Commercial / Tie-up",client:"Holafly",title:"eSIM PR",img:"ph-bamboo",desc:"Holafly とのコマーシャル / タイアップ「eSIM PR」。ブランドのトーンに合わせたビジュアルを撮影・制作しました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
-      "w30":{photo:"images/works/24.jpg",cat:"Official",catFull:"Official / 公式撮影",client:"NAKED, Inc.",title:"京都の社寺・イベント オフィシャル撮影",img:"ph-okinawa",desc:"NAKED, Inc. のプロジェクションマッピング演出で、京都の社寺やイベントのオフィシャル撮影を継続して担当。光と空間が織りなす幻想的な世界観を、写真で記録しています。\n\n各案件の様子は下の一覧、最新の作品は Instagram（@s_ken.ken）でご覧いただけます。",instagram:'',projects:[{title:"光の神苑 平安神宮",titleEn:"Heian Shrine “Garden of Light”",date:"",cat:"Official",photo:"images/works/24.jpg",img:"ph-okinawa",link:""},{title:"伏見稲荷大社",titleEn:"Fushimi Inari Taisha",date:"2025.08",cat:"Official",photo:"images/works/25.jpg",img:"ph-portrait",link:""},{title:"八坂神社",titleEn:"Yasaka Shrine",date:"2025.08",cat:"Official",photo:"images/works/26.jpg",img:"ph-city",link:""},{title:"夏まつり 2023 二条城",titleEn:"Summer Festival 2023, Nijo Castle",date:"2023.08",cat:"Official",photo:"images/works/27.jpg",img:"ph-sakura",link:""},{title:"京の七夕 in 宇治",titleEn:"Kyo-no-Tanabata in Uji",date:"",cat:"Official",photo:"images/works/28.jpg",img:"ph-bamboo",link:""}]},
+      "w30":{photo:"images/works/24.jpg",cat:"Official",catFull:"Official / 公式撮影",client:"NAKED, Inc.",title:"京都の社寺・イベント オフィシャル撮影",img:"ph-okinawa",desc:"NAKED, Inc. のプロジェクションマッピング演出で、京都の社寺やイベントのオフィシャル撮影を継続して担当。光と空間が織りなす幻想的な世界観を、写真で記録しています。\n\n各案件の様子は下の一覧、最新の作品は Instagram（@s_ken.ken）でご覧いただけます。",instagram:'',projects:[{title:"光の神苑 平安神宮",titleEn:"Heian Shrine “Garden of Light”",date:"",cat:"Official",photo:"images/works/24.jpg",img:"ph-okinawa",desc:"平安神宮の社殿と神苑を舞台にした夜間特別公開「光の神苑」。ライトアップされた幻想的な空間をオフィシャル撮影しました。",descEn:"Official shoot of “Garden of Light,” a night illumination across the halls and gardens of Heian Shrine.",posts:[]},{title:"伏見稲荷大社",titleEn:"Fushimi Inari Taisha",date:"2025.08",cat:"Official",photo:"images/works/25.jpg",img:"ph-portrait",desc:"千本鳥居で知られる伏見稲荷大社でのオフィシャル撮影。夜の参道と朱色の連なりを切り取りました。",descEn:"Official shoot at Fushimi Inari Taisha, famous for its thousand vermilion torii gates.",posts:[]},{title:"八坂神社",titleEn:"Yasaka Shrine",date:"2025.08",cat:"Official",photo:"images/works/26.jpg",img:"ph-city",desc:"祇園の八坂神社でのオフィシャル撮影。境内のライトアップと祭礼の情景を複数回にわたり記録しました。",descEn:"Official shoot at Yasaka Shrine in Gion — capturing the lit precincts and festival scenes across multiple visits.",posts:[{date:"2025.08",link:""},{date:"2025.08",link:""},{date:"2024.07",link:""}]},{title:"夏まつり 2023 二条城",titleEn:"Summer Festival 2023, Nijo Castle",date:"2023.08",cat:"Official",photo:"images/works/27.jpg",img:"ph-sakura",desc:"世界遺産・二条城で開催された「夏まつり 2023」のオフィシャル撮影。",descEn:"Official shoot of the “Summer Festival 2023” at Nijo Castle, a World Heritage site.",posts:[]},{title:"京の七夕 in 宇治",titleEn:"Kyo-no-Tanabata in Uji",date:"",cat:"Official",photo:"images/works/28.jpg",img:"ph-bamboo",desc:"宇治を舞台にした「京の七夕」イベントのオフィシャル撮影。",descEn:"Official shoot of the “Kyo-no-Tanabata” event held in Uji.",posts:[]}]},
       "w35":{photo:"images/works/29.jpg",cat:"Exhibition",catFull:"Exhibition",client:"K&F Concept",title:"CP+ 2025 作品展示 ＆ PR",img:"ph-okinawa",desc:"「CP+ 2025 作品展示 ＆ PR」（K&F Concept）。作品の展示・掲載に携わりました。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
       "w36":{photo:"images/works/30.jpg",cat:"Official",catFull:"Official",client:"SHONIN PARK",title:"別府上人ヶ浜公園 竣工撮影",img:"ph-portrait",desc:"SHONIN PARK のオフィシャル撮影「別府上人ヶ浜公園 竣工撮影」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
       "w37":{photo:"images/works/31.jpg",cat:"Official",catFull:"Official",client:"勝林寺",title:"秋の特別拝観 PR",img:"ph-city",desc:"勝林寺 のオフィシャル撮影「秋の特別拝観 PR」を担当しました。施設や空間の魅力を、写真で丁寧に記録しています。\n\n最新の作品やメイキングは Instagram（@s_ken.ken）でご覧いただけます。",instagram:''},
@@ -1867,7 +1875,10 @@
             var ph=pr.photo?("--photo:url('"+pr.photo+"')"):'';
             var pc={Ambassador:'pill-ambassador',Tourism:'pill-tourism',Commercial:'pill-commercial',Official:'pill-official',Hotel:'pill-hotel',Exhibition:'pill-exhibition'}[pr.cat]||'pill-official';
             var meta=(pr.cat?'<span class="pill '+pc+'">'+pr.cat+'</span>':'')+(pr.date?'<span class="wd-tl-date">'+pr.date+'</span>':'');
-            return '<a class="wd-tl-row" href="'+link+'" target="_blank" rel="noopener"><span class="wd-tl-thumb img '+(pr.img||'')+'" style="'+ph+'"></span><span class="wd-tl-info"><span class="wd-tl-title">'+ptitle+'</span><span class="wd-tl-meta">'+meta+'</span></span><span class="wd-tl-go">Instagram \u2197</span></a>';
+            var pdesc=t(pr.desc,pr.descEn);
+            var posts=pr.posts||[];
+            var postsHtml=posts.length?('<div class="wd-tl-posts">'+posts.map(function(po){return '<a class="wd-tl-post" href="'+(po.link||IG_PROFILE)+'" target="_blank" rel="noopener">'+(po.date?'<span class="wd-tl-post-date">'+po.date+'</span>':'')+'<span>Instagram \u2197</span></a>';}).join('')+'</div>'):'';
+            return '<div class="wd-tl-item"><button class="wd-tl-row" type="button" aria-expanded="false"><span class="wd-tl-thumb img '+(pr.img||'')+'" style="'+ph+'"></span><span class="wd-tl-info"><span class="wd-tl-title">'+ptitle+'</span><span class="wd-tl-meta">'+meta+'</span></span><span class="wd-tl-chev" aria-hidden="true"></span></button><div class="wd-tl-panel">'+(pdesc?'<p class="wd-tl-desc">'+pdesc+'</p>':'')+postsHtml+'</div></div>';
           }).join(''); }
       } else {
         var imgs=(w.images && w.images.length) ? w.images
@@ -2016,6 +2027,8 @@
     function route(){ applyHash(location.hash,{restore:true}); }
 
     document.addEventListener('click',function(e){
+      var tl=e.target.closest('.wd-tl-row');
+      if(tl){ var it=tl.closest('.wd-tl-item'); if(it){ var op=it.classList.toggle('open'); tl.setAttribute('aria-expanded',op?'true':'false'); } return; }
       var back=e.target.closest('.subpage-back');
       if(back){ e.preventDefault(); show('home',{restore:true}); try{history.pushState({h:''},'',location.pathname);}catch(_){}; return; }
       var card=e.target.closest('.work[data-slug]');
