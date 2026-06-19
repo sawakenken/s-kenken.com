@@ -24,12 +24,18 @@
 ## サイト構造（index.html 内の主要データ）
 
 - **WORKS オブジェクト**: キー `"w1"`〜。`w1`〜`w6` がトップの Selected Works（`highlight-1〜6.jpg`）。`w7`以降が実績ページ一覧（`#wpGrid`）。
-  - エントリ書式: `{photo, cat, catFull, client, title, img, desc, instagram, images?}`
-  - `cat` は `Ambassador | Tourism | Commercial | Official | Hotel` 等。フィルターの `data-cat` は小文字（`ambassador` 等）。
+  - エントリ書式: `{photo, cat, catFull, client, title, img, desc, instagram, images?, projects?}`
+  - `cat` は `Ambassador | Tourism | Commercial | Official | Hotel | Exhibition` 等。フィルターの `data-cat` は小文字（`ambassador` 等）。
   - `desc` の改行はリテラルの `\n\n`（`white-space:pre-line` で表示）。
   - `img` はグラデのプレースホルダー class（`ph-city / ph-sakura / ph-bamboo / ph-okinawa / ph-portrait`）。画像が来るまでこれが表示される。
-- **POSTS オブジェクト**: キー `"p1"`〜（News）。
-- **ルーター**: `#work-<slug>` のハッシュで詳細表示。`populateWork(slug)` が描画。
+- **★ 1クライアント=1カード + 案件タイムライン（重要・新設計）**: 複数案件を持つクライアントは **1エントリに集約**し、`projects:[]` を持たせる。`populateWork` が `projects` 有りのとき詳細を**アコーディオン式タイムライン**で描画（ヒーロー画像＋概要＋案件一覧）。
+  - `projects[]` の各要素: `{title, titleEn, date, cat, photo, img, desc, descEn, posts:[]}`
+  - `posts:[]` の各要素: `{date, link}`（複数インスタ投稿。`link` 空なら ig プロフィールへ）。
+  - 描画は `.wd-timeline / .wd-tl-item / .wd-tl-row(button) / .wd-tl-panel`。行タップで `.wd-tl-item.open` をトグル（document 委譲クリックで処理）。`pc` map が cat→pill クラス（`.pill-official` 等）を引く。
+  - **実例: NAKED, Inc.（w30）が集約済み**（平安神宮/伏見稲荷/八坂/二条城/宇治/ガウディ展）。八坂は複数投稿のデモ3件入り。`projects` 無しのエントリ（w44 DJI 等）は従来の `images[]` ギャラリー描画。
+- **POSTS オブジェクト**: キー `"p1"`〜（News）。`populatePost` が描画。
+- **★ News 単一ソース（重要・新設計）**: News ページ `#npGrid`（年グループ `.np-year-group` ＋ `.news li[data-cat][data-slug]`）が**正本**。TOPの `#homeNews` は空で、起動時に npGrid の**新着6件をクローン**して表示（編集は News 側のみで TOP に自動反映）。`NEW` バッジは最新（2026）だけに付ける運用。
+- **ルーター**: `#work-<slug>` / `#post-<slug>` のハッシュで詳細表示。`populateWork(slug)` / `populatePost(slug)` が描画。クリックは `document` 委譲（`.work[data-slug]` / `li[data-slug]` / `.wd-tl-row` 等を判定）。
 
 ## インスタ埋め込みのルール（重要）
 
@@ -54,10 +60,13 @@
 ## 実績記事をインスタ投稿から作る手順（よくやる作業）
 
 1. けんけんがインスタ投稿のスクショ（キャプション）＋クライアント名を渡す。
-2. WORKS に新しい `wN` エントリを追加（`instagram` に投稿URL、`cat` は内容に応じて）。
-3. `#wpGrid` に対応する `<figure class="work ..." data-cat="..." data-slug="wN">` カードを追加。
+2. **既存クライアントなら** そのカードの `projects:[]` に案件を追加（投稿は `posts:[]`）。**新規クライアントなら** WORKS に新 `wN` エントリ＋`#wpGrid` カードを追加。
+3. News にも載せるべき内容（展示/受賞/メディア/告知性）なら `POSTS`＋`POSTS_EN`＋`#npGrid` カード（年グループ）にも追加。Works と News は両立OK（実績の記録 vs お知らせ）。
 4. 必要なら画像ファイル名を決めて仕様書に追記。
 5. デフォルトはフル一覧に追加（トップ Selected Works には入れない。頼まれたら入れる）。
+6. **どの投稿を取り込んだかは `インスタ取り込みログ.md`（git管理・非公開メモ）に必ず追記**。インスタURL/画像の未対応・バックログもここで管理。
+- ⚠ **インスタURL問題**: スクショに投稿URLが無いため、現状リンクは**全てプロフィール飛び（CTA）**。URLが揃ったら一括差し替え予定（取り込みログ参照）。
+- ⚠ **Galaxy/Team Galaxy 系は投稿が大量**。単独Worksにせず、Samsung を1クライアント集約する時に `projects` へ畳む方針。
 
 ## フォント / 表示の方針メモ
 
@@ -86,10 +95,23 @@
 - 値は curly quote “”/単一引用符を使い、`data-en` 属性内に生の `"` を入れない（属性が壊れる）。
 - SEO用の `<title>`/meta は意図的に日本語のまま（必要なら言語連動可）。
 
+## このセッション（2026-06-19）で入った大きな変更
+- **Works を「1クライアント=1カード→案件→投稿」の3階層に再設計**（上の★参照）。NAKED で試作済み、残りクライアントは横展開待ち。
+- **News を単一ソース化**（TOPは新着自動クローン）。重複キー掃除済み。
+- インスタスクショから取り込み: w45 そうだ京都 / w46 INNOCN / w47 森の京都 / NAKEDにガウディ展案件 / News p36-38（2026グループ）。
+- **クロスデバイス対応**: sticky hover を `@media(hover:hover)` でガード（フィルタ/メニュー/about/SNS等）、`html,body` に `overflow-x:hidden`、`backdrop-filter` に `-webkit-` 併記、スクロール復元の堅牢化、ヒーロー戻り時のズーム再生抑止。
+- メニューのチェブロンを挙動別に: 展開グループ=˅（開くと˄）/ 直リンク=›。
+- **権限**: `.claude/settings.local.json`（gitignore済）で git/sips/python3 等を許可＋`acceptEdits`。`.claude/` は gitignore 済み。
+- **進捗メモ: `インスタ取り込みログ.md`**（取り込み済み/未対応URL・画像/バックログ）。
+
 ## 残タスク
-1. **画像投入**: オーナーが `_intake/`（`.gitignore` 済み）に元画像を入れる。`hero/ about/ works/ gallery/<22カテゴリ>/` に振り分け済み。揃ったら `sips` で長辺1600px・JPEG q80 等に変換し `images/` へ仕様書名（`01.jpg`等）でリネーム配置する。サイズ目安は会話/仕様書参照。
-2. 画像が入ったら**独自ドメイン移転**（GitHub Pages Custom domain + DNS）。
-3. ロゴ（`images/clients/*.png` 透過）も未投入なら追加。
+1. **画像投入（最大の宿題）**: `_intake/`（gitignore済）に元画像 → `sips` で変換 → `images/` へ仕様書名で配置。
+   - **済み**: gallery/japan（01-10、横は16:10）＋ TOPギャラリー（images/gallery/01-10、japanのコピー・仮）。
+   - **未**: gallery 残り21カテゴリ / works 各画像（souda-kyoto, naked-gaudi, innocn-40u1c, morinokyoto-phototour 等）/ hero / about / クライアントロゴ `images/clients/*.png`。
+2. **インスタURL一括差し替え**（現状プロフィール飛び。対策は要検討）。
+3. **クライアント集約の横展開**: Samsung（Galaxy大量）/サウジ/Adobe/Turkish/Trip.com を NAKED と同じ `projects` 形式へ。
+4. 画像が揃ったら**独自ドメイン移転**（GitHub Pages Custom domain + DNS）。
+5. 仮データ確認: NAKED各案件の日付・八坂のデモ投稿、INNOCN投稿日。
 
 ## 画像最適化の指針（軽量化優先）
 - ギャラリー縦=1200×1500 / 横=1600×1000、works 長辺1600、hero スマホ1080×1920・PC2400×1350、OGP 1200×630。各 0.3〜0.5MB 以内、JPEG q80（WebP化も可）。
