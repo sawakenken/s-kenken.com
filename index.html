@@ -776,7 +776,9 @@
   .wd-tl-post{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.06em;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:6px 11px;transition:border-color .3s,color .3s,background .3s}
   @media(hover:hover){.wd-tl-post:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,255,255,.03)}}
   .wd-tl-post-date{color:var(--muted);font-weight:500}
-  .wd-posts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .wd-linkrow .wd-tl-title{font-family:var(--sans);font-weight:600;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase}
+  .wd-link-ext{flex:0 0 auto;margin-right:6px;font-size:1rem;line-height:1;color:var(--muted);transition:color .3s,transform .3s}
+  @media(hover:hover){.wd-linkrow:hover .wd-link-ext{color:var(--accent);transform:translate(2px,-2px)}}
   .ig-cta{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:100px;
     border:1px solid var(--line);font-family:var(--sans);font-weight:600;font-size:.78rem;
     letter-spacing:.06em;color:var(--text);transition:border-color .3s,color .3s,background .3s}
@@ -1815,11 +1817,11 @@
     }
     function renderPosts(posts){
       var box=document.getElementById('wdIg'); if(!box)return;
-      box.innerHTML='<div class="wd-posts">'+posts.map(function(po){
+      box.innerHTML='<div class="wd-timeline">'+posts.map(function(po){
         var url=po.link||IG_PROFILE;
         var isWeb=!/instagram\.com/i.test(url);
         var label=po.label||(isWeb?'WEB SITE':'Instagram');
-        return '<a class="wd-tl-post" href="'+url+'" target="_blank" rel="noopener">'+(po.date?'<span class="wd-tl-post-date">'+po.date+'</span>':'')+'<span>'+label+' ↗</span></a>';
+        return '<div class="wd-tl-item"><a class="wd-tl-row wd-linkrow" href="'+url+'" target="_blank" rel="noopener"><span class="wd-tl-info"><span class="wd-tl-title">'+label+'</span>'+(po.date?'<span class="wd-tl-meta"><span class="wd-tl-date">'+po.date+'</span></span>':'')+'</span><span class="wd-link-ext" aria-hidden="true">↗</span></a></div>';
       }).join('')+'</div>';
     }
     var IG_PROFILE='https://instagram.com/s_ken.ken';
