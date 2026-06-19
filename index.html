@@ -685,15 +685,16 @@
     background:rgba(255,255,255,.03);
     transition:border-color .3s,background .3s,color .3s,transform .3s var(--ease)}
   .sns-btn svg{width:18px;height:18px;display:block}
-  .sns-btn:hover,.sns-btn:focus-visible{border-color:var(--accent);color:var(--accent);
+  .sns-btn:focus-visible{border-color:var(--accent);color:var(--accent);
     background:rgba(224,166,97,.08);transform:translateY(-3px)}
+  @media(hover:hover){.sns-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(224,166,97,.08);transform:translateY(-3px)}}
   /* hero variant — sits on the photo */
   .hero-sns{margin-top:clamp(20px,3vw,30px);opacity:0;
     animation:riseFade 1s ease .86s forwards;animation-play-state:paused}
   body:not(.preload) .hero-sns{animation-play-state:running}
   .hero-sns .sns-btn{border-color:rgba(255,255,255,.35);color:#fff;
     background:rgba(0,0,0,.18);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-  .hero-sns .sns-btn:hover{border-color:#fff;color:#fff;background:rgba(0,0,0,.35)}
+  @media(hover:hover){.hero-sns .sns-btn:hover{border-color:#fff;color:#fff;background:rgba(0,0,0,.35)}}
 
   /* ---------- STRONGER HERO INTRO ---------- */
   @keyframes riseFade{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
