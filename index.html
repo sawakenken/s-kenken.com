@@ -122,7 +122,8 @@
     width:8px;height:8px;border-top:1.6px solid var(--muted);border-right:1.6px solid var(--muted);
     transform:rotate(45deg);transition:border-color .25s ease,transform .3s var(--ease)}
   @media(hover:hover){.menu-nav .mi:hover::after,.menu-nav .mi-head:hover::after{border-color:var(--accent)}}
-  .menu-nav .mi-group.open .mi-head::after{transform:rotate(135deg)}  /* point down when open */
+  .menu-nav .mi-head::after{transform:rotate(135deg)}                 /* expandable group: chevron points DOWN (˅) */
+  .menu-nav .mi-group.open .mi-head::after{transform:rotate(-45deg)}  /* open: points UP (˄); direct .mi links keep the right › */
   /* expandable sub-items (pulldown) */
   .mi-sub{overflow:hidden;max-height:0;transition:max-height .42s var(--ease)}
   .mi-group.open .mi-sub{max-height:60vh}
