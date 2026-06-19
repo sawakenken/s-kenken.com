@@ -361,7 +361,7 @@
   .news .new{grid-area:new;justify-self:end;font-family:var(--sans);font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--bg);background:var(--accent);border-radius:5px;padding:5px 10px;white-space:nowrap}
   .news .nt{grid-area:title;min-width:0;max-width:100%;font-family:var(--jp);font-weight:500;font-size:clamp(1rem,2.1vw,1.2rem);letter-spacing:.01em;line-height:1.45;color:var(--text);white-space:normal;word-break:normal;overflow-wrap:anywhere}
   .news li:hover .nt{color:var(--accent)}
-  .pill-media{color:#6CA8FF}.pill-partner{color:var(--accent)}.pill-exhibition{color:#B69CFF}.pill-award{color:#5FCDA0}.pill-workshop{color:#E08A4F}.pill-ambassador{color:#E08AB0}.pill-official{color:#9AA6C9}
+  .pill-media{color:#6CA8FF}.pill-partner{color:var(--accent)}.pill-exhibition{color:#B69CFF}.pill-award{color:#5FCDA0}.pill-workshop{color:#E08A4F}.pill-ambassador{color:#E08AB0}.pill-official{color:#9AA6C9}.pill-tourism{color:#5FB8C9}.pill-commercial{color:#D9A65A}.pill-hotel{color:#C9A6BE}
   .news li.hide{display:none}
   @media(max-width:680px){
     .news li{gap:9px 12px;padding:18px 0}
@@ -760,10 +760,12 @@
   .wd-tl-thumb{flex:0 0 auto;width:clamp(58px,13vw,86px);aspect-ratio:4/3;background:var(--panel2)}
   .wd-tl-info{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:5px}
   .wd-tl-title{font-family:var(--mincho);font-weight:500;font-size:clamp(.92rem,2.6vw,1.04rem);color:var(--text);line-height:1.3}
-  .wd-tl-meta{font-family:var(--sans);font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .wd-tl-go{flex:0 0 auto;font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.1em;color:var(--accent);white-space:nowrap;opacity:0;transition:opacity .3s}
-  .wd-tl-row:hover .wd-tl-go{opacity:1}
-  @media(max-width:600px){.wd-tl-go{opacity:1}}
+  .wd-tl-meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+  .wd-tl-meta .pill{display:inline-flex;align-items:center;justify-content:center;line-height:1;font-family:var(--sans);font-size:.54rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:5px 13px 4px;white-space:nowrap;background:none}
+  .wd-tl-date{font-family:var(--sans);font-size:.6rem;font-weight:500;letter-spacing:.1em;color:var(--muted)}
+  .wd-tl-go{flex:0 0 auto;font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.12em;color:#fff;background:rgba(255,255,255,.07);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.3);padding:7px 13px;border-radius:100px;white-space:nowrap;opacity:0;transform:translateX(4px);transition:.3s}
+  .wd-tl-row:hover .wd-tl-go{opacity:1;transform:none}
+  @media(max-width:600px){.wd-tl-go{opacity:1;transform:none;font-size:.5rem;padding:5px 10px}}
   .ig-cta{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:100px;
     border:1px solid var(--line);font-family:var(--sans);font-weight:600;font-size:.78rem;
     letter-spacing:.06em;color:var(--text);transition:border-color .3s,color .3s,background .3s}
@@ -1863,7 +1865,8 @@
             var ptitle=t(pr.title,pr.titleEn);
             var link=pr.link||IG_PROFILE;
             var ph=pr.photo?("--photo:url('"+pr.photo+"')"):'';
-            var meta=[pr.cat,pr.date].filter(Boolean).join('\u3000\u30fb\u3000');
+            var pc={Ambassador:'pill-ambassador',Tourism:'pill-tourism',Commercial:'pill-commercial',Official:'pill-official',Hotel:'pill-hotel',Exhibition:'pill-exhibition'}[pr.cat]||'pill-official';
+            var meta=(pr.cat?'<span class="pill '+pc+'">'+pr.cat+'</span>':'')+(pr.date?'<span class="wd-tl-date">'+pr.date+'</span>':'');
             return '<a class="wd-tl-row" href="'+link+'" target="_blank" rel="noopener"><span class="wd-tl-thumb img '+(pr.img||'')+'" style="'+ph+'"></span><span class="wd-tl-info"><span class="wd-tl-title">'+ptitle+'</span><span class="wd-tl-meta">'+meta+'</span></span><span class="wd-tl-go">Instagram \u2197</span></a>';
           }).join(''); }
       } else {
