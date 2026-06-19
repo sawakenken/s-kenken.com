@@ -62,5 +62,35 @@
 ## フォント / 表示の方針メモ
 
 - 日本語は Zen Kaku Gothic New 主体。JS注入テキストは中華フォント化しやすいので、`document.fonts.load('1rem "Zen Kaku Gothic New"', テキスト)` で字形を先読みさせる。
-- 作品タイトルの折り返しは `word-break:keep-all; word-break:auto-phrase`（`overflow-wrap:break-word` は単語途中で割れるので使わない）。
-- 変更後はブラウザのハードリロード（キャッシュ）を案内すること。
+- 作品タイトルの折り返しは `word-break:keep-all; word-break:auto-phrase`（`overflow-wrap:break-word` は単語途中で割れるので使わない）。**ただし News 見出し（`.news .nt`）は長文なので `word-break:normal`。`auto-phrase` は iOS Safari 非対応で `keep-all` だけ効いて折り返さずはみ出すので注意。**
+- 変更後はブラウザのハードリロード（キャッシュ）を案内すること。**iOS はキャッシュが特に強い。`?v=N` 付きURL かプライベートタブで確認してもらう。**
+
+---
+
+# 🟢 引き継ぎ / 現在の状況（最終更新: 2026-06-19）
+
+新しいセッション（アプリ版含む）はここを読めば続きから作業できます。
+
+## デプロイ / 確認URL
+- **作業＆確認用（本番の実体）**: `https://sawakenken.github.io/s-kenken.com/`
+- 独自ドメイン `s-kenken.com` は**まだ旧サイト**（Google系）に向いたまま。**画像を入れてから移転**予定（DNS/Custom domain設定は README 参照）。急がない。
+- 公開フロー: `git push origin main` で GitHub Pages に反映（数十秒〜数分）。コミット/プッシュは頼まれたら実施。
+- git push 認証はオーナーの Mac のキーチェーンに保存済み（このサンドボックスからは push 可。token を URL に焼くフォールバックは使わない）。
+
+## 実装済みの大きな機能：JP/EN 言語切替（i18n）
+1ファイル内で完結。`<script>` 冒頭に `I18N` / `t(ja,en)` / `applyLang()` がある。
+- 静的テキスト: `data-en="..."` 属性（JPがHTML本文、ENが属性）。`applyLang` が `innerHTML` を入替。フォームは `data-en-ph`。
+- 動的データ: `WORKS_EN`（作品の `t`=英題, `c`=英クライアント。説明文は `workDescEn()` がカテゴリ別テンプレで生成）, `POSTS_EN`（ニュース英題）+ `POST_BODY_EN`（pill別の英文本文）。`populateWork/populatePost` が `t()` で出し分け。
+- グリッドの作品カードは `rerenderForLang()` が言語切替時に `.wt`/`.wclient` を更新。
+- トグルUI: デスクトップ=ナビ内 `.lang-toggle`、モバイル=`.nav-actions` 内（ハンバーガーの外）。`localStorage 'lang'` 記憶、`<html lang>` 同期。
+- 値は curly quote “”/単一引用符を使い、`data-en` 属性内に生の `"` を入れない（属性が壊れる）。
+- SEO用の `<title>`/meta は意図的に日本語のまま（必要なら言語連動可）。
+
+## 残タスク
+1. **画像投入**: オーナーが `_intake/`（`.gitignore` 済み）に元画像を入れる。`hero/ about/ works/ gallery/<22カテゴリ>/` に振り分け済み。揃ったら `sips` で長辺1600px・JPEG q80 等に変換し `images/` へ仕様書名（`01.jpg`等）でリネーム配置する。サイズ目安は会話/仕様書参照。
+2. 画像が入ったら**独自ドメイン移転**（GitHub Pages Custom domain + DNS）。
+3. ロゴ（`images/clients/*.png` 透過）も未投入なら追加。
+
+## 画像最適化の指針（軽量化優先）
+- ギャラリー縦=1200×1500 / 横=1600×1000、works 長辺1600、hero スマホ1080×1920・PC2400×1350、OGP 1200×630。各 0.3〜0.5MB 以内、JPEG q80（WebP化も可）。
+- ギャラリーは非表示カテゴリの背景画像はDLされない作りなので、圧縮さえすれば十分軽い。
