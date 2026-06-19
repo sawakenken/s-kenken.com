@@ -71,6 +71,7 @@
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);transition:background .45s ease,padding .45s ease,border-color .45s ease;border-bottom:1px solid transparent}
+  @media(max-width:899px){nav{padding-right:calc(var(--pad) + 14px)}}   /* pull the mobile Menu button in from the right edge */
   nav.solid{background:rgba(23,26,27,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);padding-top:13px;padding-bottom:13px}
   /* menu open: solid bar so scrolled menu content tucks behind it (prevents logo/About overlap) */
   body.menu-open nav{background:rgba(20,23,24,.985);backdrop-filter:blur(10px) saturate(1.1);-webkit-backdrop-filter:blur(10px) saturate(1.1);border-bottom:1px solid var(--line)}
