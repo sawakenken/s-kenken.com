@@ -2042,12 +2042,16 @@
         /* the view just switched from display:none — keep re-applying until its
            full height is laid out and we actually reach y (handles large offsets
            like the bottom of home returning from a short subpage). */
-        var tries=0;
+        var tries=0, done=false;
+        var stopRestore=function(){ done=true; };   /* user took over scrolling — stop forcing the restored position */
+        window.addEventListener('wheel',stopRestore,{passive:true,once:true});
+        window.addEventListener('touchmove',stopRestore,{passive:true,once:true});
         var applyY=function(){
-          if(gen!==show._gen) return;   /* a newer navigation happened — abort stale restore */
+          if(gen!==show._gen||done) return;   /* stale navigation, or user scrolled — abort */
           void document.documentElement.offsetHeight;   /* force reflow so height is final */
           window.scrollTo({top:y,left:0,behavior:'instant'});   /* jump, never animate from top */
-          if(Math.abs(window.scrollY-y)>2 && tries++<80){ requestAnimationFrame(applyY); }
+          if(Math.abs(window.scrollY-y)<=2){ done=true; }   /* reached target — stop retrying so we don't yank the user back */
+          else if(tries++<80){ requestAnimationFrame(applyY); }
         };
         applyY(); setTimeout(applyY,120); setTimeout(applyY,300); setTimeout(applyY,500); setTimeout(applyY,800);
       } else if(name==='home' && opts.anchor && opts.anchor!=='top'){
