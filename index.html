@@ -549,7 +549,7 @@
   .svc-list{margin-top:clamp(26px,3.6vw,42px);display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)}
   .blk{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;border:1px solid var(--line-soft);border-radius:18px;overflow:hidden;background:var(--panel);transition:border-color .45s var(--ease)}
   @media(hover:hover){.blk:hover{border-color:rgba(224,166,97,.42)}}
-  .blk-media{overflow:hidden;aspect-ratio:16/10;background-color:var(--panel2)}
+  .blk-media{overflow:hidden;aspect-ratio:4/5;background-color:var(--panel2)}
   .blk-media>span{display:block;width:100%;height:100%;background-size:cover;background-position:center;transition:transform 1s var(--ease)}
   @media(hover:hover){.blk:hover .blk-media>span{transform:scale(1.04)}}
   .blk:nth-child(even) .blk-media{order:2}
@@ -565,7 +565,6 @@
   @media(max-width:720px){
     .blk{grid-template-columns:38% 1fr}
     .blk:nth-child(even) .blk-media{order:0}        /* always image-left on mobile */
-    .blk-media{aspect-ratio:auto}                   /* stretch to text height (left strip) */
     .blk-txt{padding:clamp(13px,4vw,20px)}
     .blk .num{font-size:1rem}
     .blk h3{font-size:clamp(1.02rem,4.2vw,1.35rem);line-height:1.12}
