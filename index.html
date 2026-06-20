@@ -356,7 +356,14 @@
   @media(max-width:600px){.gal{grid-template-columns:repeat(2,1fr)}}
   /* NEWS (rows) */
   .news{list-style:none;border-top:1px solid var(--line-soft)}
-  .news li{display:grid;grid-template-columns:auto auto 1fr;grid-template-areas:"date pill new" "title title title";align-items:center;column-gap:clamp(12px,2vw,18px);row-gap:clamp(11px,1.5vw,16px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
+  .news li{display:grid;grid-template-columns:auto auto 1fr auto;grid-template-areas:"date pill new chev" "title title title title" "panel panel panel panel";align-items:center;column-gap:clamp(12px,2vw,18px);row-gap:clamp(11px,1.5vw,16px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
+  .np-panel{grid-area:panel;max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+  .news li.np-open .np-panel{max-height:400px}
+  .np-body{font-size:.92rem;line-height:1.9;color:var(--muted);padding:10px 0 2px;white-space:pre-line;word-break:auto-phrase}
+  .np-link{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:7px 14px;transition:border-color .3s,color .3s}
+  @media(hover:hover){.np-link:hover{border-color:var(--accent);color:var(--accent)}}
+  .np-chev{grid-area:chev;justify-self:end;align-self:center;width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);transition:transform .35s var(--ease);opacity:.55}
+  .news li.np-open .np-chev{transform:rotate(-135deg)}
   .news li:hover{padding-left:8px}
   .news li.rv{transition:opacity 1s ease,transform 1.1s var(--ease),padding-left .35s var(--ease)}
   .news li[data-slug]{cursor:pointer}
@@ -1740,6 +1747,7 @@
     var src=document.getElementById('npGrid'), home=document.getElementById('homeNews');
     if(src && home){ var items=src.querySelectorAll('.news > li'); for(var i=0;i<items.length && i<6;i++){ home.appendChild(items[i].cloneNode(true)); } }
   })();
+  document.querySelectorAll('.news li[data-slug]').forEach(function(li){ if(!li.querySelector('.np-chev')){ var c=document.createElement('span'); c.className='np-chev'; li.appendChild(c); } });
   staggerGrid('#worksGrid, #wpGrid', '.work', 0.07, 0.42, 0);
   staggerGrid('#gpGrid', '.gp-tile', 0.05, 0.55, 0.15);
   staggerGrid('.news', 'li.rv', 0.05, 0.4, 0);
@@ -2083,6 +2091,14 @@
     }
     function route(){ applyHash(location.hash,{restore:true}); }
 
+    function buildNewsPanel(li){
+      var p=POSTS[li.dataset.slug]; if(!p)return;
+      var body=(I18N.lang==='en')?(POST_BODY_EN[p.pill]||p.body):p.body;
+      var panel=document.createElement('div'); panel.className='np-panel';
+      var bp=document.createElement('p'); bp.className='np-body'; bp.textContent=body; panel.appendChild(bp);
+      if(p.link){ var a=document.createElement('a'); a.className='np-link'; a.href=p.link; a.target='_blank'; a.rel='noopener'; a.textContent=t('外部サイトで見る','View on external site')+' ↗'; panel.appendChild(a); }
+      li.appendChild(panel);
+    }
     document.addEventListener('click',function(e){
       var tl=e.target.closest('.wd-tl-row');
       if(tl){ var it=tl.closest('.wd-tl-item'); if(it){ var op=it.classList.toggle('open'); tl.setAttribute('aria-expanded',op?'true':'false'); } return; }
@@ -2091,7 +2107,7 @@
       var card=e.target.closest('.work[data-slug]');
       if(card){ e.preventDefault(); go('#work-'+card.dataset.slug); return; }
       var nli=e.target.closest('li[data-slug]');
-      if(nli){ if(e.target.closest('a[href]'))return; e.preventDefault(); go('#post-'+nli.dataset.slug); return; }
+      if(nli){ if(e.target.closest('a[href]'))return; e.preventDefault(); if(!nli._np){ buildNewsPanel(nli); nli._np=1; } nli.classList.toggle('np-open'); return; }
       var wf=e.target.closest('a[data-wf]');
       if(wf){ e.preventDefault(); go('#works-page'); var fb=document.querySelector('#wpFilter button[data-filter="'+wf.dataset.wf+'"]'); if(fb)fb.click(); return; }
       var a=e.target.closest('a[href^="#"]');
