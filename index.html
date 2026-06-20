@@ -819,11 +819,6 @@
   .wd-title{font-family:var(--mincho);font-weight:600;line-height:1.14;
     font-size:clamp(1.25rem,3.8vw,2.2rem);letter-spacing:.02em;
     word-break:keep-all;word-break:auto-phrase}
-  .wd-roles{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:clamp(14px,2vw,18px)}
-  .wd-roles-lab{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-right:2px}
-  .wd-role{font-family:var(--jp);font-size:.74rem;font-weight:500;color:var(--text);border:1px solid var(--line);border-radius:100px;padding:5px 13px}
-  .wd-roles-lab2{margin-left:clamp(4px,1.2vw,14px)}
-  .wd-year{color:var(--muted);font-family:var(--sans);letter-spacing:.04em}
   .wd-jp{font-family:var(--serif);font-style:italic;color:var(--muted);
     font-size:clamp(1rem,2.4vw,1.35rem);margin-top:10px}
   .wd-info{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,48px);
@@ -1631,7 +1626,6 @@
       <span class="wd-client" id="wdClient">—</span>
     </div>
     <h2 class="wd-title" id="wdTitle">—</h2>
-    <div class="wd-roles" id="wdRoles"></div>
     <figure class="wd-hero" id="wdHeroFig" style="margin-top:clamp(20px,3vw,28px)"><div class="img" id="wdImg"></div></figure>
     <div class="wd-gallery" id="wdGallery"></div>
     <div class="wd-body"><p class="wd-desc" id="wdDesc">—</p></div>
@@ -2082,7 +2076,6 @@
     function igThumb(link){ if(!link)return ''; var m=String(link).match(/instagram\.com\/(?:p|reel)\/([A-Za-z0-9_-]+)/); return m?("images/works/ig/"+m[1]+".jpg"):''; }
     function igFromPosts(posts){ if(posts){ for(var i=0;i<posts.length;i++){ var u=igThumb(posts[i].link); if(u) return u; } } return ''; }
     function dnum(d){ if(!d)return -1; var p=String(d).split('.'); return (parseInt(p[0],10)||0)*100+(parseInt(p[1],10)||0); }
-    var VIDEO_WORKS={w7:1,w15:1,w50:1,w64:1};   /* 動画制作も納品した案件（けんけん確認分・随時追加） */
     function populateWork(slug){
       var w=WORKS[slug]; if(!w)return false;
       var en=WORKS_EN[slug]||{};
@@ -2091,12 +2084,6 @@
       if(w.posts&&!w.projects) desc=desc.replace(/\n\n[^\n]*Instagram[^\n]*$/,'');   /* links shown below; drop the redundant IG tail */
       setText('wdCat',w.cat); setText('wdClient','Client — '+client);
       setText('wdTitle',title);
-      var rolesEl=document.getElementById('wdRoles');
-      if(rolesEl){ var roles=[t('写真撮影','Photography')]; if(VIDEO_WORKS[slug])roles.push(t('動画制作','Video'));
-        var yrs=[]; if(w.projects){ w.projects.forEach(function(p){ var y=(String(p.date||'').match(/(20\d\d)/)||[])[1]; if(y)yrs.push(+y); }); }
-        var yr=''; if(yrs.length){ var mn=Math.min.apply(null,yrs),mx=Math.max.apply(null,yrs); yr=(mn===mx)?(''+mn):(mn+'–'+mx); }
-        rolesEl.innerHTML='<span class="wd-roles-lab">'+t('担当領域','Role')+'</span>'+roles.map(function(r){return '<span class="wd-role">'+r+'</span>';}).join('')
-          +(yr?('<span class="wd-roles-lab wd-roles-lab2">'+t('時期','Year')+'</span><span class="wd-role wd-year">'+yr+'</span>'):''); }
       setText('wdDesc',desc);
       if(document.fonts&&document.fonts.load){try{document.fonts.load('1rem "Zen Kaku Gothic New"',desc);}catch(_){}}
       var hero=document.getElementById('wdHeroFig'), gal=document.getElementById('wdGallery');
