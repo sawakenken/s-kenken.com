@@ -464,6 +464,20 @@
   .wd-cta-lead{font-family:var(--jp);font-weight:500;font-size:clamp(1rem,2.4vw,1.16rem);letter-spacing:.02em;color:var(--text);text-align:center}
   .wd-contact-cta{background:var(--accent);border-color:var(--accent)!important;color:#fff!important}
   @media(hover:hover){.wd-contact-cta:hover{background:transparent;color:var(--accent)!important}}
+  /* SERVICES */
+  .sv-intro{margin-top:clamp(14px,2vw,20px);max-width:42em;font-family:var(--jp);font-size:1rem;line-height:1.95;color:var(--muted)}
+  .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(13px,1.7vw,20px);margin-top:clamp(26px,3.6vw,42px)}
+  .sv-card{display:flex;flex-direction:column;gap:clamp(10px,1.4vw,14px);background:var(--panel);border:1px solid var(--line-soft);border-radius:16px;padding:clamp(24px,3vw,38px);transition:border-color .4s var(--ease),transform .55s var(--ease)}
+  @media(hover:hover){.sv-card:hover{border-color:var(--line);transform:translateY(-4px)}}
+  .sv-num{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.22em;color:var(--accent)}
+  .sv-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.55rem,3.5vw,2.1rem);line-height:1.04;color:var(--text)}
+  .sv-lead{font-family:var(--jp);font-size:.86rem;letter-spacing:.02em;color:var(--muted)}
+  .sv-desc{font-family:var(--jp);font-size:.92rem;line-height:1.95;color:var(--text);word-break:auto-phrase}
+  .sv-for{font-family:var(--jp);font-size:.82rem;line-height:1.85;color:var(--muted)}
+  .sv-for b{color:var(--text);font-weight:600}
+  .sv-cta{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:.61rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:10px 18px;transition:border-color .3s,color .3s,gap .3s}
+  @media(hover:hover){.sv-cta:hover{border-color:var(--accent);color:var(--accent);gap:12px}}
+  @media(max-width:720px){.services-grid{grid-template-columns:1fr}}
 
   /* WORKS — filter wraps cleanly, + client credit */
   .works-filter{flex-wrap:wrap;overflow:visible;justify-content:center;
@@ -862,6 +876,7 @@
   <div class="nav-links" aria-label="メインメニュー">
     <a href="#about">About</a>
     <a href="#clients">Partners</a>
+    <a href="#services">Services</a>
     <a href="#selected">Works</a>
     <a href="#gallery">Gallery</a>
     <a href="#news">News</a>
@@ -881,6 +896,7 @@
   <button class="menu-close" id="menuClose" type="button" aria-label="メニューを閉じる"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>
   <nav class="menu-nav" aria-label="メインメニュー">
     <a href="#about" class="mi"><span class="t">About</span><span class="jp" data-en="Profile">プロフィール</span></a>
+    <a href="#services" class="mi"><span class="t">Services</span><span class="jp" data-en="What I do">サービス</span></a>
     <div class="mi-group open" id="miWorks">
       <button type="button" class="mi-head" aria-expanded="true" aria-controls="miWorksSub"><span class="t">Works</span><span class="jp" data-en="Portfolio">実績</span></button>
       <div class="mi-sub" id="miWorksSub">
@@ -1042,6 +1058,46 @@
       <div class="logo-cell" aria-hidden="true"><span>お茶の京都</span><img src="images/clients/ocha-no-kyoto.png" alt="お茶の京都" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
       <div class="logo-cell" aria-hidden="true"><span>MKタクシー</span><img src="images/clients/mk-taxi.png" alt="MKタクシー" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
     </div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec wrap" id="services">
+  <div class="sec-head rv"><span class="eyebrow">What I do</span><h2 class="en-h">Services</h2></div>
+  <p class="sv-intro rv" data-en="Photography at the core — extending to video and SNS, end to end. Open to conversations from the planning stage onward.">写真を軸に、動画・SNS発信までワンストップで。企画段階のご相談から対応します。</p>
+  <div class="services-grid">
+    <div class="sv-card rv">
+      <span class="sv-num">01</span>
+      <h3 class="sv-title">Photography</h3>
+      <p class="sv-lead" data-en="Photography — tourism, hotels, brands &amp; events">写真撮影｜観光・ホテル・ブランド・イベント</p>
+      <p class="sv-desc" data-en="Photography that draws out the world of each subject. National clients assign me for the quality of the images themselves.">被写体の世界観を引き出す写真撮影。「写真のクオリティ」で多くのナショナルクライアントから指名いただいています。</p>
+      <p class="sv-for" data-en="<b>Best for:</b> tourism PR, hotels &amp; venues, brands &amp; products, events, portraits"><b>向いてる案件：</b>観光PR、ホテル・施設、ブランド・製品、イベント、ポートレート</p>
+      <a class="sv-cta" href="#contact-page" data-en="Discuss a shoot →">撮影を相談する →</a>
+    </div>
+    <div class="sv-card rv d1">
+      <span class="sv-num">02</span>
+      <h3 class="sv-title">Video / Short Movie</h3>
+      <p class="sv-lead" data-en="Video — Reels, short movies &amp; vlogs">映像制作｜Reels・Short Movie・Vlog</p>
+      <p class="sv-desc" data-en="From Reels and TikTok shorts to travel vlogs and promotional films — delivering the very atmosphere of a place through motion and sound.">Reels・TikTok 向けのショート動画から、旅Vlog、プロモーション映像まで。動きと音で、その場の空気感ごと届けます。</p>
+      <p class="sv-for" data-en="<b>Best for:</b> travel experiences, product PR, venue intros, event teasers"><b>向いてる案件：</b>観光体験、商品PR、施設紹介、イベント告知</p>
+      <a class="sv-cta" href="#contact-page" data-en="Discuss a video →">映像を相談する →</a>
+    </div>
+    <div class="sv-card rv">
+      <span class="sv-num">03</span>
+      <h3 class="sv-title">SNS Tie-up / PR</h3>
+      <p class="sv-lead" data-en="SNS Tie-up &amp; PR — Instagram &amp; TikTok">SNSタイアップ・PR｜Instagram・TikTok</p>
+      <p class="sv-desc" data-en="Posts, experience-led storytelling and campaign support. As an official ambassador for Samsung, Adobe and Alfa Romeo, reaching some 240,000 followers.">投稿・体験発信・キャンペーン協力まで。Samsung・Adobe・Alfa Romeo の公式アンバサダーとして、約24万人のフォロワーに届けます。</p>
+      <p class="sv-for" data-en="<b>Best for:</b> destination marketing, product &amp; brand awareness, event turnout"><b>向いてる案件：</b>観光誘客、商品認知、ブランド認知、イベント集客</p>
+      <a class="sv-cta" href="#contact-page" data-en="Discuss a tie-up →">タイアップを相談する →</a>
+    </div>
+    <div class="sv-card rv d1">
+      <span class="sv-num">04</span>
+      <h3 class="sv-title">Tourism Promotion</h3>
+      <p class="sv-lead" data-en="Tourism Promotion — experience-led PR">観光・地域プロモーション｜体験型PR</p>
+      <p class="sv-desc" data-en="Experience-led PR for tourism boards, governments, airlines and travel services — touring on location and producing stills, video, SNS posts and editorial assets together.">政府観光局・自治体・航空・旅行サービス向けの体験型PR。現地を巡り、写真・動画・SNS発信・記事/動画素材までトータルで制作します。</p>
+      <p class="sv-for" data-en="<b>Best for:</b> destination PR, transport &amp; travel products, regional campaigns"><b>向いてる案件：</b>観光地PR、交通・旅行商品、地域キャンペーン</p>
+      <a class="sv-cta" href="#contact-page" data-en="Discuss a campaign →">観光PRを相談する →</a>
+    </div>
   </div>
 </section>
 
