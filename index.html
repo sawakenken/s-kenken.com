@@ -509,6 +509,11 @@
   @media(hover:hover){.gp-filter button:hover{color:var(--text)}}
   .gp-filter button.on{color:var(--text)}
   .gp-filter button.on::after{left:0;right:0}
+  @media(max-width:720px){
+    .gp-filter{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:22px;margin-top:clamp(18px,4vw,24px);margin-bottom:clamp(26px,5vw,34px)}
+    .gp-filter::-webkit-scrollbar{display:none}
+    .gp-filter button{flex:0 0 auto;white-space:nowrap}
+  }
   .gp-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-flow:row;gap:clamp(8px,1.2vw,14px)}
   .gp-tile.p{grid-column:span 2;aspect-ratio:4/5}
   .gp-tile.l{grid-column:span 3;aspect-ratio:16/10}
@@ -814,6 +819,7 @@
   .wd-tl-item.open .wd-tl-panel{max-height:1200px}
   .wd-tl-desc{font-size:.9rem;line-height:1.9;color:var(--muted);padding:14px 4px 18px calc(clamp(70px,15.4vw,104px) + 4px);white-space:pre-line}
   .wd-tl-posts{display:flex;flex-wrap:wrap;gap:8px;padding:0 4px 18px calc(clamp(70px,15.4vw,104px) + 4px)}
+  @media(max-width:560px){.wd-tl-desc{padding-left:4px}.wd-tl-posts{padding-left:4px}}
   .wd-tl-post{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.06em;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:6px 11px;transition:border-color .3s,color .3s,background .3s}
   @media(hover:hover){.wd-tl-post:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,255,255,.03)}}
   .wd-tl-post-date{color:var(--muted);font-weight:500}
@@ -901,8 +907,8 @@
   <nav class="menu-nav" aria-label="メインメニュー">
     <a href="#about" class="mi"><span class="t">About</span><span class="jp" data-en="Profile">プロフィール</span></a>
     <a href="#services" class="mi"><span class="t">Services</span><span class="jp" data-en="What I do">サービス</span></a>
-    <div class="mi-group open" id="miWorks">
-      <button type="button" class="mi-head" aria-expanded="true" aria-controls="miWorksSub"><span class="t">Works</span><span class="jp" data-en="Portfolio">実績</span></button>
+    <div class="mi-group" id="miWorks">
+      <button type="button" class="mi-head" aria-expanded="false" aria-controls="miWorksSub"><span class="t">Works</span><span class="jp" data-en="Portfolio">実績</span></button>
       <div class="mi-sub" id="miWorksSub">
         <a href="#works-page" data-wf="ambassador" data-en="Ambassador">アンバサダー / Ambassador</a>
         <a href="#works-page" data-wf="tourism" data-en="Tourism">観光・タイアップ / Tourism</a>
