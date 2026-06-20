@@ -16,6 +16,7 @@
 <link rel="icon" type="image/jpeg" href="images/about/portrait.jpg">
 <link rel="apple-touch-icon" href="images/about/portrait.jpg">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="preload" as="image" href="images/hero/1.jpg" fetchpriority="high">
 
 <!-- Open Graph (LINE / X / Facebook / Slack などのカード表示) -->
 <meta property="og:type" content="website">
@@ -71,6 +72,17 @@
       "name": "Sawai Kenta — Travel Photographer",
       "inLanguage": ["ja", "en"],
       "publisher": { "@id": "https://s-kenken.com/#person" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://s-kenken.com/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "どんな依頼ができますか？", "acceptedAnswer": { "@type": "Answer", "text": "写真撮影・動画／ショート映像・SNSタイアップ・観光PRまで。写真を軸に、企画から制作・発信まで一人で一貫して対応します。" } },
+        { "@type": "Question", "name": "撮影・対応エリアは？", "acceptedAnswer": { "@type": "Answer", "text": "京都・関西を拠点に、国内・海外どこへでも出張対応します。" } },
+        { "@type": "Question", "name": "企画段階でも相談できますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。撮影地・時期・媒体・ご予算感が未確定でも、内容を伺ってから最適なご提案をします。" } },
+        { "@type": "Question", "name": "写真と動画は両方頼めますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。一人で撮影するので、写真と動画で世界観がぶれません。" } },
+        { "@type": "Question", "name": "費用はどのくらいですか？", "acceptedAnswer": { "@type": "Answer", "text": "案件の規模・用途・納品物によって変わります。まずはご相談ください。内容を確認のうえ、お見積もりします。" } }
+      ]
     }
   ]
 }
@@ -545,6 +557,19 @@
     .sv-num{font-size:clamp(1.25rem,6vw,1.6rem)}
     .sv-body{padding-top:clamp(4px,2vw,8px)}
   }
+  /* FAQ */
+  .faq{margin-top:clamp(28px,4vw,46px);border-top:1px solid var(--line)}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:18px;cursor:pointer;
+    padding:clamp(20px,2.8vw,28px) clamp(4px,1vw,12px);font-family:var(--mincho);font-weight:600;
+    font-size:clamp(1rem,2.2vw,1.22rem);line-height:1.4;color:var(--text);transition:color .3s var(--ease)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::marker{content:""}
+  @media(hover:hover){.faq summary:hover{color:var(--accent)}}
+  .faq-chev{flex:0 0 auto;width:9px;height:9px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);transition:transform .35s var(--ease)}
+  .faq-item[open] .faq-chev{transform:rotate(-135deg)}
+  .faq-a{padding:0 clamp(4px,1vw,12px) clamp(20px,2.8vw,26px);max-width:46em}
+  .faq-a p{font-family:var(--jp);font-size:.92rem;line-height:1.95;color:var(--muted);word-break:auto-phrase;margin:0}
 
   /* WORKS — filter wraps cleanly, + client credit */
   .works-filter{flex-wrap:wrap;overflow:visible;justify-content:center;
@@ -1300,6 +1325,33 @@
         <a class="sv-cta" href="#contact-page" data-en="Discuss a campaign →">観光PRを相談する →</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec wrap" id="faq">
+  <div class="sec-head rv"><span class="eyebrow">FAQ</span><h2 class="en-h">Questions</h2></div>
+  <div class="faq rv">
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="What can I commission?">どんな依頼ができますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="Photography, video and short movies, SNS tie-ups, and tourism PR. Photography is the core, and one creator handles everything from planning to production and posting — so the vision stays consistent.">写真撮影・動画／ショート映像・SNSタイアップ・観光PRまで。写真を軸に、企画から制作・発信まで一人で一貫して対応するので、世界観がぶれません。</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="Where do you shoot? Do you travel?">撮影・対応エリアは？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="Based in Kyoto / Kansai, available for travel anywhere — both within Japan and overseas.">京都・関西を拠点に、国内・海外どこへでも出張対応します。</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="Can we talk while things are still being planned?">企画段階でも相談できますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="Absolutely. Even if the location, timing, outlet or budget are undecided, get in touch — I'll suggest the best approach after hearing the details.">はい、大歓迎です。撮影地・時期・媒体・ご予算感が未確定でも、内容を伺ってから最適なご提案をします。</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="Can I commission both photo and video?">写真と動画は両方頼めますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="Yes. One person shoots both, so the look and feel stay consistent across stills and video.">はい。一人で撮影するので、写真と動画で世界観がぶれません。</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="How much does it cost?">費用はどのくらいですか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="It depends on the scope, usage and deliverables. Please reach out first — I'll provide an estimate after understanding the details.">案件の規模・用途・納品物によって変わります。まずはご相談ください。内容を確認のうえ、お見積もりします。</p></div>
+    </details>
   </div>
 </section>
 
