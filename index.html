@@ -563,20 +563,10 @@
   .blk .sv-cta{display:inline-flex;align-items:center;gap:7px;width:fit-content;margin-top:18px;font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--text);text-decoration:none;border-bottom:1px solid var(--line);padding:4px 0 5px;transition:gap .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
   @media(hover:hover){.blk .sv-cta:hover{gap:13px;color:var(--accent);border-color:var(--accent)}}
   @media(max-width:720px){
-    .blk{grid-template-columns:minmax(0,38%) minmax(0,1fr)}
-    .blk:nth-child(even) .blk-media{order:0}        /* always image-left on mobile */
-    .blk-txt{padding:clamp(13px,4vw,20px)}
-    .blk .num{font-size:1rem}
-    .blk h3{font-size:clamp(1.02rem,4.2vw,1.35rem);line-height:1.12}
-    .blk .ja{font-size:.76rem;margin-bottom:8px}
-    .blk .desc{font-size:.78rem;line-height:1.7}
-    .blk .for{font-size:.7rem;margin-top:7px;line-height:1.6}
-    .blk .proof{font-size:.68rem;margin-top:6px;line-height:1.55}
-    .blk .sv-cta{font-size:.56rem;margin-top:12px;letter-spacing:.1em}
-  }
-  @media(max-width:420px){
-    .blk{grid-template-columns:minmax(0,34%) minmax(0,1fr)}
-    .blk .desc{font-size:.74rem}
+    .blk{grid-template-columns:1fr}                 /* stack: image on top, text below */
+    .blk:nth-child(even) .blk-media{order:0}        /* image always first (top) */
+    .blk-media{aspect-ratio:16/10}                  /* full-width landscape — photo stays visible, height contained */
+    .blk-txt{padding:clamp(22px,6vw,32px)}
   }
   /* FAQ */
   .faq{margin-top:clamp(28px,4vw,46px);border-top:1px solid var(--line)}
