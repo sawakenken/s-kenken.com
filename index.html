@@ -482,6 +482,16 @@
     background:var(--accent);color:#15181a;font-family:var(--sans);font-weight:600;font-size:.8rem;
     padding:12px 20px;border-radius:100px;text-decoration:none;transition:transform .25s var(--ease)}
   .skip-link:focus{transform:none}
+  /* scroll progress bar — scroll-driven CSS, only where supported (no JS, can't hide content) */
+  .scroll-prog{display:none}
+  @supports (animation-timeline: scroll()){
+    @media(prefers-reduced-motion:no-preference){
+      .scroll-prog{display:block;position:fixed;top:0;left:0;right:0;height:2px;z-index:400;
+        background:var(--accent);opacity:.9;transform:scaleX(0);transform-origin:0 50%;
+        animation:scrollProgress linear;animation-timeline:scroll(root)}
+      @keyframes scrollProgress{to{transform:scaleX(1)}}
+    }
+  }
   @media(max-width:600px){
     .np-link,.wd-tl-post{min-height:44px}
     .gp-filter button{min-height:44px;display:inline-flex;align-items:center}
@@ -983,6 +993,7 @@
 </head>
 <body class="preload">
 <a class="skip-link" href="#about" data-en="Skip to content">本文へスキップ</a>
+<div class="scroll-prog" aria-hidden="true"></div>
 
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader-name">Sawai Kenta</div>
