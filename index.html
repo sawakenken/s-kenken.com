@@ -550,7 +550,7 @@
   .blk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;border:1px solid var(--line-soft);border-radius:18px;overflow:hidden;background:var(--panel);transition:border-color .45s var(--ease)}
   @media(hover:hover){.blk:hover{border-color:rgba(224,166,97,.42)}}
   .blk-media{position:relative;min-width:0;overflow:hidden;background-color:var(--panel2)}
-  .blk-media>span{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1s var(--ease)}
+  .blk-media>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;transition:transform 1s var(--ease)}
   @media(hover:hover){.blk:hover .blk-media>span{transform:scale(1.04)}}
   .blk:nth-child(even) .blk-media{order:2}
   .blk-txt{min-width:0;overflow-wrap:anywhere;padding:clamp(24px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center}
@@ -566,7 +566,7 @@
   @media(max-width:720px){
     .blk{grid-template-columns:1fr}                 /* stack: image on top, text below */
     .blk:nth-child(even) .blk-media{order:0}        /* image always first (top) */
-    .blk-media{aspect-ratio:16/10}                  /* full-width landscape — photo stays visible, height contained */
+    .blk-media{aspect-ratio:auto;height:clamp(190px,56vw,300px)}   /* explicit height (iOS-safe: grid+aspect-ratio can collapse to 0 on iOS) */
     .blk-txt{padding:clamp(22px,6vw,32px)}
   }
   /* FAQ */
