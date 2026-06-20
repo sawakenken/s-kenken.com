@@ -6,9 +6,9 @@
 <title>澤井 健太 / Sawai Kenta — Travel Photographer</title>
 
 <!-- SEO -->
-<meta name="description" content="澤井健太（けんけん）｜京都を拠点に活動する旅フォトグラファー。Samsung Team Galaxy / Adobe / Alfa Romeo オフィシャルアンバサダー。撮影・タイアップ・観光PR・Lightroom現像・講座のご依頼を承ります。">
+<meta name="description" content="澤井健太（けんけん）｜京都を拠点に活動する旅フォトグラファー・映像クリエイター。Samsung Team Galaxy / Adobe / Alfa Romeo オフィシャルアンバサダー。写真・動画制作・SNSタイアップ・観光PRのご依頼を承ります。">
 <meta name="author" content="Sawai Kenta">
-<meta name="keywords" content="澤井健太, けんけん, フォトグラファー, 夜景, 旅, 京都, photographer, nightscape, travel">
+<meta name="keywords" content="澤井健太, けんけん, フォトグラファー, 映像クリエイター, 動画制作, SNSタイアップ, 観光PR, 京都, 旅, photographer, videographer, travel, Kyoto">
 <meta name="theme-color" content="#171A1B">
 <link rel="canonical" href="https://s-kenken.com/">
 
@@ -21,7 +21,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sawai Kenta — Photographer">
 <meta property="og:title" content="澤井 健太 / Sawai Kenta — Travel Photographer">
-<meta property="og:description" content="心から感動した景色を、世界中の人々に共有したい。京都拠点の夜景・旅フォトグラファー。">
+<meta property="og:description" content="心から感動した景色を、世界中の人々に共有したい。京都拠点の旅フォトグラファー・映像クリエイター。">
 <meta property="og:url" content="https://s-kenken.com/">
 <meta property="og:image" content="https://s-kenken.com/ogp.jpg">
 <meta property="og:image:width" content="1200">
@@ -35,24 +35,43 @@
 <meta name="twitter:description" content="心から感動した景色を、世界中の人々に共有したい。京都拠点の旅フォトグラファー。">
 <meta name="twitter:image" content="https://s-kenken.com/ogp.jpg">
 
-<!-- 構造化データ (Person) -->
+<!-- 構造化データ (Person / WebSite / Services) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "澤井 健太",
-  "alternateName": ["Sawai Kenta", "けんけん"],
-  "jobTitle": "Travel Photographer",
-  "url": "https://s-kenken.com/",
-  "image": "https://s-kenken.com/images/about/portrait.jpg",
-  "description": "京都を拠点に活動する旅フォトグラファー・映像クリエイター。Samsung Team Galaxy / Adobe / Alfa Romeo オフィシャルアンバサダー。",
-  "address": { "@type": "PostalAddress", "addressLocality": "Kyoto", "addressRegion": "Kyoto", "addressCountry": "JP" },
-  "knowsAbout": ["Travel Photography", "Videography", "Short Movie", "SNS Marketing", "Tourism PR"],
-  "sameAs": [
-    "https://instagram.com/s_ken.ken",
-    "https://www.tiktok.com/@s_ken.ken",
-    "https://www.youtube.com/@s_kenken",
-    "https://www.facebook.com/s_ken.ken"
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://s-kenken.com/#person",
+      "name": "澤井 健太",
+      "alternateName": ["Sawai Kenta", "けんけん"],
+      "jobTitle": "Travel Photographer & Videographer",
+      "url": "https://s-kenken.com/",
+      "image": "https://s-kenken.com/images/about/portrait.jpg",
+      "description": "京都を拠点に活動する旅フォトグラファー・映像クリエイター。Samsung Team Galaxy / Adobe / Alfa Romeo オフィシャルアンバサダー。",
+      "address": { "@type": "PostalAddress", "addressLocality": "Kyoto", "addressRegion": "Kyoto", "addressCountry": "JP" },
+      "knowsAbout": ["Travel Photography", "Videography", "Short Movie", "SNS Marketing", "Tourism PR"],
+      "sameAs": [
+        "https://instagram.com/s_ken.ken",
+        "https://www.tiktok.com/@s_ken.ken",
+        "https://www.youtube.com/@s_kenken",
+        "https://www.facebook.com/s_ken.ken"
+      ],
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "写真撮影 / Photography" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "動画・映像制作 / Video & Short Movie" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SNSタイアップ・PR / Social Tie-up" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "観光・地域プロモーション / Tourism Promotion" } }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://s-kenken.com/#website",
+      "url": "https://s-kenken.com/",
+      "name": "Sawai Kenta — Travel Photographer",
+      "inLanguage": ["ja", "en"],
+      "publisher": { "@id": "https://s-kenken.com/#person" }
+    }
   ]
 }
 </script>
