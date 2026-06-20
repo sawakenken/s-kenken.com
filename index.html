@@ -565,8 +565,8 @@
   .blk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;border:1px solid var(--line-soft);overflow:hidden;background:var(--panel);transition:border-color .45s var(--ease)}
   @media(hover:hover){.blk:hover{border-color:rgba(224,166,97,.42)}}
   .blk-media{position:relative;min-width:0;overflow:hidden;background-color:var(--panel2)}
-  .blk-media>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;transition:transform 1s var(--ease)}
-  @media(hover:hover){.blk:hover .blk-media>span{transform:scale(1.04)}}
+  .blk-media>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;transition:filter .45s var(--ease)}
+  @media(hover:hover){.blk:hover .blk-media>span{filter:brightness(1.07) saturate(1.05)}}
   .blk:nth-child(even) .blk-media{order:2}
   .blk-txt{min-width:0;overflow-wrap:anywhere;padding:clamp(24px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center}
   .blk .num{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:1.3rem;line-height:1}
@@ -1036,12 +1036,14 @@
         <a href="#works-page" data-wf="commercial" data-en="Commercial">ブランドPR / Commercial</a>
         <a href="#works-page" data-wf="official" data-en="Official">オフィシャル / Official</a>
         <a href="#works-page" data-wf="hotel" data-en="Hotel">ホテル / Hotel</a>
+        <a href="#works-page" data-wf="exhibition" data-en="Exhibition">展示 / Exhibition</a>
         <a href="#works-page" class="mi-sub-all">View all works →</a>
       </div>
     </div>
     <a href="#clients" class="mi"><span class="t">Partners</span><span class="jp" data-en="Partners">パートナー</span></a>
     <a href="#gallery" class="mi"><span class="t">Gallery</span><span class="jp" data-en="Photographs">ギャラリー</span></a>
     <a href="#news" class="mi"><span class="t">News</span><span class="jp" data-en="Updates">お知らせ</span></a>
+    <a href="#faq-page" class="mi"><span class="t">FAQ</span><span class="jp" data-en="Questions">よくある質問</span></a>
   </nav>
   <a href="#contact-page" class="menu-contact"><span class="lbl"><b>Contact</b><span data-en="Get in touch">お問い合わせ</span></span><span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></span></a>
   <div class="menu-sns">
@@ -1291,7 +1293,6 @@
 <!-- SERVICES -->
 <section class="sec wrap" id="services">
   <div class="sec-head rv"><span class="eyebrow">What I do</span><h2 class="en-h">Services</h2></div>
-  <p class="sv-intro rv" data-en="Photography, video, and social — by one creator, with one consistent vision. Open to talk from the planning stage.">写真・動画・SNSを、一人で一貫して。世界観を崩さず、企画段階のご相談から承ります。</p>
   <div class="svc-list">
     <div class="blk rv">
       <div class="blk-media"><span style="background-image:url('images/gallery/01.jpg')"></span></div>
@@ -1339,33 +1340,6 @@
         <a class="sv-cta" href="#contact-page" data-en="Discuss tourism PR →">観光PRを相談する →</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="sec wrap" id="faq">
-  <div class="sec-head rv"><span class="eyebrow">FAQ</span><h2 class="en-h">Questions</h2></div>
-  <div class="faq rv">
-    <details class="faq-item">
-      <summary><span class="faq-q" data-en="What can I commission?">どんな依頼ができますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p data-en="Photography, video and short movies, SNS tie-ups, and tourism PR. Photography is the core, and one creator handles everything from planning to production and posting — so the vision stays consistent.">写真撮影・動画／ショート映像・SNSタイアップ・観光PRまで。写真を軸に、企画から制作・発信まで一人で一貫して対応するので、世界観がぶれません。</p></div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-q" data-en="Where do you shoot? Do you travel?">撮影・対応エリアは？</span><span class="faq-chev" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p data-en="Based in Kyoto / Kansai, available for travel anywhere — both within Japan and overseas.">京都・関西を拠点に、国内・海外どこへでも出張対応します。</p></div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-q" data-en="Can we talk while things are still being planned?">企画段階でも相談できますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p data-en="Absolutely. Even if the location, timing, outlet or budget are undecided, get in touch — I'll suggest the best approach after hearing the details.">はい、大歓迎です。撮影地・時期・媒体・ご予算感が未確定でも、内容を伺ってから最適なご提案をします。</p></div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-q" data-en="Can I commission both photo and video?">写真と動画は両方頼めますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p data-en="Yes. One person shoots both, so the look and feel stay consistent across stills and video.">はい。一人で撮影するので、写真と動画で世界観がぶれません。</p></div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-q" data-en="How much does it cost?">費用はどのくらいですか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p data-en="It depends on the scope, usage and deliverables. Please reach out first — I'll provide an estimate after understanding the details.">案件の規模・用途・納品物によって変わります。まずはご相談ください。内容を確認のうえ、お見積もりします。</p></div>
-    </details>
   </div>
 </section>
 
@@ -1892,6 +1866,35 @@
   </section>
 </main>
 
+<!-- FAQ (page) -->
+<main id="view-faq" class="view">
+  <section class="sec wrap subpage-top">
+    <div class="sec-head rv"><span class="eyebrow">FAQ</span><h2 class="en-h">Questions</h2><p class="jp" data-en="" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— よくあるご質問</p></div>
+    <div class="faq rv">
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="What can I commission?">どんな依頼ができますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="Photography, video and short movies, SNS tie-ups, and tourism PR. Photography is the core, and one creator handles everything from planning to production and posting — so the vision stays consistent.">写真撮影・動画／ショート映像・SNSタイアップ・観光PRまで。写真を軸に、企画から制作・発信まで一人で一貫して対応するので、世界観がぶれません。</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="Where do you shoot? Do you travel?">撮影・対応エリアは？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="Based in Kyoto / Kansai, available for travel anywhere — both within Japan and overseas.">京都・関西を拠点に、国内・海外どこへでも出張対応します。</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="Can we talk while things are still being planned?">企画段階でも相談できますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="Absolutely. Even if the location, timing, outlet or budget are undecided, get in touch — I'll suggest the best approach after hearing the details.">はい、大歓迎です。撮影地・時期・媒体・ご予算感が未確定でも、内容を伺ってから最適なご提案をします。</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="Can I commission both photo and video?">写真と動画は両方頼めますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="Yes. One person shoots both, so the look and feel stay consistent across stills and video.">はい。一人で撮影するので、写真と動画で世界観がぶれません。</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span class="faq-q" data-en="How much does it cost?">費用はどのくらいですか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p data-en="It depends on the scope, usage and deliverables. Please reach out first — I'll provide an estimate after understanding the details.">案件の規模・用途・納品物によって変わります。まずはご相談ください。内容を確認のうえ、お見積もりします。</p></div>
+    </details>
+  </div>
+  </section>
+</main>
+
 <!-- ===================== PRIVACY POLICY ===================== -->
 <main id="view-privacy" class="view">
   <section class="sec wrap subpage-top">
@@ -1947,7 +1950,7 @@
       <a class="sns-btn" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16.4 5 12 5 12 5s-4.4 0-7.2.2c-.4 0-1.2.1-2 .9C2.2 6.7 2 8.2 2 8.2S1.8 9.9 1.8 11.6v1.6c0 1.7.2 3.4.2 3.4s.2 1.5.8 2.1c.8.8 1.8.8 2.3.9 1.7.2 7 .2 7 .2s4.4 0 7.2-.2c.4 0 1.2-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.7.2-3.4v-1.6c0-1.7-.2-3.4-.2-3.4zM10 14.6V9.4l4.5 2.6-4.5 2.6z"/></svg></a>
     </div>
   </div>
-  <div class="foot-base"><span>© <span id="yr"></span> Sawai Kenta · <a class="foot-priv" href="#privacy-page" data-en="Privacy Policy">プライバシーポリシー</a></span><span>Sharing the scenery that moved me.</span></div>
+  <div class="foot-base"><span>© <span id="yr"></span> Sawai Kenta · <a class="foot-priv" href="#faq-page" data-en="FAQ">FAQ</a> · <a class="foot-priv" href="#privacy-page" data-en="Privacy Policy">プライバシーポリシー</a></span><span>Sharing the scenery that moved me.</span></div>
 </footer>
 
 <script>
@@ -2074,10 +2077,11 @@
       news:document.getElementById('view-news'),
       work:document.getElementById('view-work'),
       post:document.getElementById('view-post'),
-      privacy:document.getElementById('view-privacy')
+      privacy:document.getElementById('view-privacy'),
+      faq:document.getElementById('view-faq')
     };
     var nav=document.getElementById('nav');
-    var hashMap={'gallery-page':'gallery','works-page':'works','contact-page':'contact','news-page':'news','privacy-page':'privacy'};
+    var hashMap={'gallery-page':'gallery','works-page':'works','contact-page':'contact','news-page':'news','privacy-page':'privacy','faq-page':'faq'};
     var scrollMem={}, current='home', canBack=false;
     if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(_){}}
 
@@ -2446,7 +2450,7 @@
     window.addEventListener('popstate',route);
 
     /* back link on every subpage (incl. work detail) */
-    ['gallery','works','contact','news','work','post','privacy'].forEach(function(k){
+    ['gallery','works','contact','news','work','post','privacy','faq'].forEach(function(k){
       if(!views[k])return;
       var sec=views[k].querySelector('.subpage-top');
       if(sec && !sec.querySelector('.subpage-back')){
