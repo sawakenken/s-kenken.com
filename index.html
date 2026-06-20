@@ -323,7 +323,10 @@
   .works-filter button.on::after{transform:scaleX(1)}
   .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,2vw,22px)}
   @media(min-width:760px){.works-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:900px){.works-grid{grid-template-columns:repeat(4,1fr)}}   /* desktop: 4 columns */
   @media(max-width:600px){.works-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+  .work.dt-only{display:none}                                  /* TOP Works: 6 by default… */
+  @media(min-width:900px){.work.dt-only{display:block}}        /* …8 on desktop */
   .work{position:relative;border-radius:0;overflow:hidden;background:var(--panel2);display:block;
     opacity:0;transform:translateY(44px);transition:opacity .85s ease,transform 1.05s var(--ease)}
   .work.in{opacity:1;transform:none}
@@ -1043,6 +1046,10 @@
       <figcaption><span class="wc">Official</span><span class="wt">光の神苑 平安神宮 オフィシャル撮影</span><span class="wclient">Client — NAKED, Inc.</span></figcaption></figure>
     <figure class="work wide" data-cat="ambassador" data-slug="w6"><div class="img ph-city" style="--photo:url('images/works/highlight-6.jpg')"></div>
       <figcaption><span class="wc">Ambassador</span><span class="wt">Alfa Romeo Junior アンバサダー</span><span class="wclient">Client — Alfa Romeo</span></figcaption></figure>
+    <figure class="work tall dt-only" data-cat="tourism" data-slug="w21"><div class="img ph-portrait" style="--photo:url('images/works/15.jpg')"></div>
+      <figcaption><span class="wc">Tourism</span><span class="wt">観光プロモーション</span><span class="wclient">Client — サウジアラビア王国</span></figcaption></figure>
+    <figure class="work wide dt-only" data-cat="commercial" data-slug="w44"><div class="img ph-city" style="--photo:url('images/works/dji-osmo-pocket4pro.jpg')"></div>
+      <figcaption><span class="wc">Commercial</span><span class="wt">Osmo Pocket 4 Pro ティザー先行公開</span><span class="wclient">Client — DJI</span></figcaption></figure>
   </div>
   <div class="more-row rv">
     <a class="read-more" href="#works-page" data-view="works"><span>View all works</span><span class="arr">→</span></a>
