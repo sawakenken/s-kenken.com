@@ -406,6 +406,15 @@
     .loader{display:none!important}html{scroll-behavior:auto}.menu-nav a{opacity:1;transform:none}.slide{transition:none}
   }
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  /* a11y (ui-ux-pro-max): skip link + 44px mobile touch targets */
+  .skip-link{position:fixed;top:10px;left:10px;z-index:400;transform:translateY(-160%);
+    background:var(--accent);color:#15181a;font-family:var(--sans);font-weight:600;font-size:.8rem;
+    padding:12px 20px;border-radius:100px;text-decoration:none;transition:transform .25s var(--ease)}
+  .skip-link:focus{transform:none}
+  @media(max-width:600px){
+    .np-link,.sv-cta,.wd-tl-post{min-height:44px}
+    .gp-filter button{min-height:44px;display:inline-flex;align-items:center}
+  }
 
   /* ============================================================
      v15 — overrides & additions
@@ -876,6 +885,7 @@
 <noscript><style>.loader{display:none!important}.rv{opacity:1;transform:none}.sec-head.rv{transform:none}.reveal-media{clip-path:none;opacity:1}.gp-tile{opacity:1;transform:none}.work{opacity:1;transform:none}.hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}.news li.hide{display:block}</style></noscript>
 </head>
 <body class="preload">
+<a class="skip-link" href="#about" data-en="Skip to content">本文へスキップ</a>
 
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader-name">Sawai Kenta</div>
