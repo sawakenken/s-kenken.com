@@ -476,23 +476,27 @@
   /* SERVICES */
   .sv-intro{margin-top:clamp(14px,2vw,20px);max-width:42em;font-family:var(--jp);font-size:1rem;line-height:1.95;color:var(--muted)}
   .services-list{margin-top:clamp(28px,4vw,48px);border-top:1px solid var(--line)}
-  .sv-row{display:grid;grid-template-columns:minmax(0,0.82fr) minmax(0,1.4fr);gap:clamp(18px,4vw,64px);align-items:start;
-    padding:clamp(26px,3.4vw,44px) clamp(8px,1.4vw,18px);border-bottom:1px solid var(--line);
+  .sv-row{display:grid;grid-template-columns:auto minmax(0,0.78fr) minmax(0,1.32fr);grid-template-areas:"thumb head body";gap:clamp(16px,3vw,48px);align-items:start;
+    padding:clamp(24px,3.2vw,42px) clamp(6px,1.2vw,16px);border-bottom:1px solid var(--line);
     transition:background .45s var(--ease)}
   @media(hover:hover){.sv-row:hover{background:rgba(255,255,255,.018)}}
-  .sv-head{display:flex;gap:clamp(13px,1.5vw,22px);align-items:baseline}
+  .sv-thumb{grid-area:thumb;width:clamp(72px,8vw,108px);aspect-ratio:4/5;border-radius:12px;overflow:hidden;border:1px solid var(--line-soft);background-color:var(--panel2);transition:transform .55s var(--ease)}
+  @media(hover:hover){.sv-row:hover .sv-thumb{transform:scale(1.04)}}
+  .sv-head{grid-area:head;display:flex;gap:clamp(13px,1.5vw,22px);align-items:baseline}
   .sv-num{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.5rem,2.6vw,2.4rem);line-height:.9;color:var(--muted);opacity:.5;transition:color .45s var(--ease),opacity .45s var(--ease)}
   @media(hover:hover){.sv-row:hover .sv-num{color:var(--accent);opacity:1}}
   .sv-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.45rem,3vw,2.05rem);line-height:1.03;letter-spacing:.005em;color:var(--text)}
   .sv-lead{font-family:var(--jp);font-size:.82rem;letter-spacing:.05em;color:var(--muted);margin-top:7px}
-  .sv-body{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(9px,1.3vw,13px);padding-top:4px}
+  .sv-body{grid-area:body;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(9px,1.3vw,13px);padding-top:4px}
   .sv-for{font-family:var(--jp);font-size:.88rem;line-height:1.7;color:var(--text);letter-spacing:.01em}
   .sv-desc{font-family:var(--jp);font-size:.86rem;line-height:1.85;color:var(--muted);word-break:auto-phrase}
   .sv-cta{margin-top:clamp(6px,1vw,10px);display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:11px 20px;min-height:44px;box-sizing:border-box;transition:border-color .3s,color .3s,gap .3s,background .3s}
   @media(hover:hover){.sv-cta:hover{border-color:var(--accent);color:var(--accent);background:rgba(224,166,97,.06);gap:12px}}
   @media(max-width:720px){
-    .sv-row{grid-template-columns:1fr;gap:clamp(13px,3.5vw,18px);padding:clamp(24px,6vw,30px) 2px}
-    .sv-num{font-size:clamp(1.3rem,7vw,1.7rem)}
+    .sv-row{grid-template-columns:auto 1fr;grid-template-areas:"thumb head" "body body";gap:clamp(12px,3vw,16px) clamp(14px,4vw,18px);padding:clamp(22px,6vw,30px) 2px}
+    .sv-thumb{width:clamp(58px,16vw,78px)}
+    .sv-num{font-size:clamp(1.25rem,6vw,1.6rem)}
+    .sv-body{padding-top:clamp(4px,2vw,8px)}
   }
 
   /* WORKS — filter wraps cleanly, + client credit */
@@ -1193,6 +1197,7 @@
   <p class="sv-intro rv" data-en="Photography, video, and social — by one creator, with one consistent vision. Open to talk from the planning stage.">写真・動画・SNSを、一人で一貫して。世界観を崩さず、企画段階のご相談から承ります。</p>
   <div class="services-list">
     <div class="sv-row rv">
+      <div class="sv-thumb img ph-city" style="--photo:url('images/gallery/01.jpg')"></div>
       <div class="sv-head">
         <span class="sv-num">01</span>
         <div class="sv-headtext">
@@ -1207,6 +1212,7 @@
       </div>
     </div>
     <div class="sv-row rv">
+      <div class="sv-thumb img ph-bamboo" style="--photo:url('images/gallery/04.jpg')"></div>
       <div class="sv-head">
         <span class="sv-num">02</span>
         <div class="sv-headtext">
@@ -1221,6 +1227,7 @@
       </div>
     </div>
     <div class="sv-row rv">
+      <div class="sv-thumb img ph-portrait" style="--photo:url('images/gallery/07.jpg')"></div>
       <div class="sv-head">
         <span class="sv-num">03</span>
         <div class="sv-headtext">
@@ -1235,6 +1242,7 @@
       </div>
     </div>
     <div class="sv-row rv">
+      <div class="sv-thumb img ph-sakura" style="--photo:url('images/gallery/09.jpg')"></div>
       <div class="sv-head">
         <span class="sv-num">04</span>
         <div class="sv-headtext">
