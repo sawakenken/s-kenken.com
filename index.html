@@ -460,6 +460,10 @@
   .read-more .arr{display:inline-block;transition:transform .35s var(--ease)}
   .read-more:hover,.read-more:focus-visible{color:var(--accent);border-color:var(--accent)}
   .read-more:hover .arr,.read-more:focus-visible .arr{transform:translateX(6px)}
+  .wd-cta{margin-top:clamp(40px,6vw,68px);padding-top:clamp(28px,4vw,42px);border-top:1px solid var(--line-soft);display:flex;flex-direction:column;align-items:center;gap:clamp(15px,2.2vw,20px)}
+  .wd-cta-lead{font-family:var(--jp);font-weight:500;font-size:clamp(1rem,2.4vw,1.16rem);letter-spacing:.02em;color:var(--text);text-align:center}
+  .wd-contact-cta{background:var(--accent);border-color:var(--accent)!important;color:#fff!important}
+  @media(hover:hover){.wd-contact-cta:hover{background:transparent;color:var(--accent)!important}}
 
   /* WORKS — filter wraps cleanly, + client credit */
   .works-filter{flex-wrap:wrap;overflow:visible;justify-content:center;
@@ -707,6 +711,13 @@
   .hero-sns .sns-btn{border-color:rgba(255,255,255,.35);color:#fff;
     background:rgba(0,0,0,.18);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
   @media(hover:hover){.hero-sns .sns-btn:hover{border-color:#fff;color:#fff;background:rgba(0,0,0,.35)}}
+  .hero-cta{margin-top:clamp(22px,3.2vw,34px);display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:riseFade 1s ease 1.02s forwards;animation-play-state:paused}
+  body:not(.preload) .hero-cta{animation-play-state:running}
+  .hero-btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:100px;padding:14px 28px;transition:background .3s,border-color .3s,color .3s}
+  .hero-btn.primary{background:#fff;color:#15181a;border:1px solid #fff}
+  .hero-btn.ghost{background:rgba(0,0,0,.22);color:#fff;border:1px solid rgba(255,255,255,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  @media(hover:hover){.hero-btn.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff}.hero-btn.ghost:hover{border-color:#fff}}
+  @media(max-width:520px){.hero-btn{flex:1;padding:14px 18px}.hero-btn.ghost{display:none}}
 
   /* ---------- STRONGER HERO INTRO ---------- */
   @keyframes riseFade{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
@@ -918,6 +929,10 @@
     <div class="hero-foot">
       <p class="hero-tag" data-en="<span>Sharing the scenery that moved me,</span><span>with people all around the world.</span>"><span>心から感動した景色を、</span><span>世界中の人々に共有したい。</span></p>
       <p class="hero-loc">Instagram 285,000+ Followers<br>Samsung / Adobe / Alfa Romeo Ambassador</p>
+    </div>
+    <div class="hero-cta">
+      <a class="hero-btn primary" href="#contact-page" data-en="Contact for Work">撮影・PR を相談する</a>
+      <a class="hero-btn ghost" href="#works-page" data-en="View Works">Works を見る</a>
     </div>
   </div>
   <div class="hero-index" id="heroIndex" aria-hidden="true">
@@ -1472,7 +1487,11 @@
     <div class="wd-gallery" id="wdGallery"></div>
     <div class="wd-body"><p class="wd-desc" id="wdDesc">—</p></div>
     <div class="wd-ig" id="wdIg"></div>
-    <div class="more-row" style="margin-top:clamp(34px,5vw,56px)">
+    <div class="wd-cta rv">
+      <p class="wd-cta-lead" data-en="Have a similar project in mind?">近い案件のご相談、お気軽にどうぞ。</p>
+      <a class="read-more wd-contact-cta" href="#contact-page"><span data-en="Discuss a similar project">この実績に近い案件を相談する</span><span class="arr">→</span></a>
+    </div>
+    <div class="more-row" style="margin-top:clamp(20px,3vw,28px)">
       <a class="read-more" href="#works-page"><span>View all works</span><span class="arr">→</span></a>
     </div>
   </section>
@@ -2103,9 +2122,19 @@
       if(p.link){ var a=document.createElement('a'); a.className='np-link'; a.href=p.link; a.target='_blank'; a.rel='noopener'; a.textContent=t('外部サイトで見る','View on external site')+' ↗'; links.appendChild(a); }
       li.appendChild(panel);
     }
+    function prefillContact(){
+      var msg=document.getElementById('cf-msg'); if(!msg)return;
+      var ttl=((document.getElementById('wdTitle')||{}).textContent||'').trim();
+      var cl=((document.getElementById('wdClient')||{}).textContent||'').replace(/^\s*Client\s*[—-]\s*/,'').trim();
+      if(!ttl)return;
+      var ref=t('参考にした実績：','Reference work: ')+(cl?cl+' / ':'')+ttl;
+      if(msg.value.indexOf(ref)<0){ msg.value=ref+'\n\n'+msg.value; }
+    }
     document.addEventListener('click',function(e){
       var tl=e.target.closest('.wd-tl-row');
       if(tl){ var it=tl.closest('.wd-tl-item'); if(it){ var op=it.classList.toggle('open'); tl.setAttribute('aria-expanded',op?'true':'false'); } return; }
+      var cc=e.target.closest('.wd-contact-cta');
+      if(cc){ e.preventDefault(); prefillContact(); go('#contact-page'); return; }
       var back=e.target.closest('.subpage-back');
       if(back){ e.preventDefault(); if(canBack&&history.length>1){ history.back(); } else { show('home',{restore:true}); try{history.pushState({h:''},'',location.pathname);}catch(_){}; } return; }
       var card=e.target.closest('.work[data-slug]');
