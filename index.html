@@ -1892,7 +1892,7 @@
       else lead="“"+title+"” — "+client+".";
       return lead+"\n\n"+ig;
     }
-    function igThumb(link){ if(!link)return ''; var m=String(link).match(/instagram\.com\/(?:p|reel|share)\/([A-Za-z0-9_-]+)/); return m?("images/works/ig/"+m[1]+".jpg"):''; }
+    function igThumb(link){ if(!link)return ''; var m=String(link).match(/instagram\.com\/(?:p|reel)\/([A-Za-z0-9_-]+)/); return m?("images/works/ig/"+m[1]+".jpg"):''; }
     function igFromPosts(posts){ if(posts){ for(var i=0;i<posts.length;i++){ var u=igThumb(posts[i].link); if(u) return u; } } return ''; }
     function populateWork(slug){
       var w=WORKS[slug]; if(!w)return false;
