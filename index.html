@@ -774,8 +774,8 @@
   .wd-tl-item.open .wd-tl-chev{transform:rotate(-135deg)}
   .wd-tl-panel{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
   .wd-tl-item.open .wd-tl-panel{max-height:640px}
-  .wd-tl-desc{font-size:.9rem;line-height:1.9;color:var(--muted);padding:14px 4px 18px clamp(70px,15.4vw,104px);white-space:pre-line}
-  .wd-tl-posts{display:flex;flex-wrap:wrap;gap:8px;padding:0 4px 18px clamp(70px,15.4vw,104px)}
+  .wd-tl-desc{font-size:.9rem;line-height:1.9;color:var(--muted);padding:14px 4px 18px calc(clamp(70px,15.4vw,104px) + 4px);white-space:pre-line}
+  .wd-tl-posts{display:flex;flex-wrap:wrap;gap:8px;padding:0 4px 18px calc(clamp(70px,15.4vw,104px) + 4px)}
   .wd-tl-post{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.06em;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:6px 11px;transition:border-color .3s,color .3s,background .3s}
   @media(hover:hover){.wd-tl-post:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,255,255,.03)}}
   .wd-tl-post-date{color:var(--muted);font-weight:500}
