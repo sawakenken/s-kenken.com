@@ -322,11 +322,11 @@
   .works-filter button.on{color:var(--text)}
   .works-filter button.on::after{transform:scaleX(1)}
   .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,2vw,22px)}
-  @media(min-width:760px){.works-grid{grid-template-columns:repeat(3,1fr)}}
-  @media(min-width:900px){.works-grid{grid-template-columns:repeat(4,1fr)}}   /* desktop: 4 columns */
+  @media(min-width:980px){.works-grid{grid-template-columns:repeat(3,1fr)}}    /* 3 cols only once cards are wide enough that "Team Galaxy アンバサダー" won't wrap */
+  @media(min-width:1300px){.works-grid{grid-template-columns:repeat(4,1fr)}}   /* 4 cols only on wide desktop */
   @media(max-width:600px){.works-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
   .work.dt-only{display:none}                                  /* TOP Works: 6 by default… */
-  @media(min-width:900px){.work.dt-only{display:block}}        /* …8 on desktop */
+  @media(min-width:1300px){.work.dt-only{display:block}}       /* …8 once we're at 4 columns */
   .work{position:relative;border-radius:0;overflow:hidden;background:var(--panel2);display:block;
     opacity:0;transform:translateY(44px);transition:opacity .85s ease,transform 1.05s var(--ease)}
   .work.in{opacity:1;transform:none}
@@ -512,8 +512,8 @@
     margin-bottom:clamp(22px,3vw,30px)}
 
   /* ---------- WORKS PAGE ---------- */
-  .wp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,18px)}
-  @media(max-width:900px){.wp-grid{grid-template-columns:repeat(2,1fr)}}
+  .wp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.6vw,18px)}
+  @media(min-width:980px){.wp-grid{grid-template-columns:repeat(3,1fr)}}   /* 3 cols only once cards are wide enough to avoid title wrap */
   @media(max-width:560px){.wp-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
   @media(max-width:600px){
     .work figcaption{left:11px;right:11px;bottom:11px}
