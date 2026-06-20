@@ -483,7 +483,7 @@
     padding:12px 20px;border-radius:100px;text-decoration:none;transition:transform .25s var(--ease)}
   .skip-link:focus{transform:none}
   @media(max-width:600px){
-    .np-link,.sv-cta,.wd-tl-post{min-height:44px}
+    .np-link,.wd-tl-post{min-height:44px}
     .gp-filter button{min-height:44px;display:inline-flex;align-items:center}
   }
 
@@ -546,29 +546,23 @@
   @media(hover:hover){.wd-contact-cta:hover{background:transparent;color:var(--accent)!important}}
   /* SERVICES */
   .sv-intro{margin-top:clamp(14px,2vw,20px);max-width:42em;font-family:var(--jp);font-size:1rem;line-height:1.95;color:var(--muted)}
-  .services-list{margin-top:clamp(28px,4vw,48px);border-top:1px solid var(--line)}
-  .sv-row{display:grid;grid-template-columns:auto minmax(0,0.78fr) minmax(0,1.32fr);grid-template-areas:"thumb head body";gap:clamp(16px,3vw,48px);align-items:start;
-    padding:clamp(24px,3.2vw,42px) clamp(6px,1.2vw,16px);border-bottom:1px solid var(--line);
-    transition:background .45s var(--ease)}
-  @media(hover:hover){.sv-row:hover{background:rgba(255,255,255,.018)}}
-  .sv-thumb{grid-area:thumb;width:clamp(72px,8vw,108px);aspect-ratio:4/5;border-radius:12px;overflow:hidden;border:1px solid var(--line-soft);background-color:var(--panel2);transition:transform .55s var(--ease)}
-  @media(hover:hover){.sv-row:hover .sv-thumb{transform:scale(1.04)}}
-  .sv-head{grid-area:head;display:flex;gap:clamp(13px,1.5vw,22px);align-items:baseline}
-  .sv-num{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.5rem,2.6vw,2.4rem);line-height:.9;color:var(--muted);opacity:.5;transition:color .45s var(--ease),opacity .45s var(--ease)}
-  @media(hover:hover){.sv-row:hover .sv-num{color:var(--accent);opacity:1}}
-  .sv-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.45rem,3vw,2.05rem);line-height:1.03;letter-spacing:.005em;color:var(--text)}
-  .sv-lead{font-family:var(--jp);font-size:.82rem;letter-spacing:.05em;color:var(--muted);margin-top:7px}
-  .sv-body{grid-area:body;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(9px,1.3vw,13px);padding-top:4px}
-  .sv-for{font-family:var(--jp);font-size:.88rem;line-height:1.7;color:var(--text);letter-spacing:.01em}
-  .sv-desc{font-family:var(--jp);font-size:.86rem;line-height:1.85;color:var(--muted);word-break:auto-phrase}
-  .sv-cta{margin-top:clamp(6px,1vw,10px);display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:11px 20px;min-height:44px;box-sizing:border-box;transition:border-color .3s,color .3s,gap .3s,background .3s}
-  @media(hover:hover){.sv-cta:hover{border-color:var(--accent);color:var(--accent);background:rgba(224,166,97,.06);gap:12px}}
-  @media(max-width:720px){
-    .sv-row{grid-template-columns:auto 1fr;grid-template-areas:"thumb head" "body body";gap:clamp(12px,3vw,16px) clamp(14px,4vw,18px);padding:clamp(22px,6vw,30px) 2px}
-    .sv-thumb{width:clamp(58px,16vw,78px)}
-    .sv-num{font-size:clamp(1.25rem,6vw,1.6rem)}
-    .sv-body{padding-top:clamp(4px,2vw,8px)}
-  }
+  .svc-list{margin-top:clamp(26px,3.6vw,42px);display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)}
+  .blk{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;border:1px solid var(--line-soft);border-radius:18px;overflow:hidden;background:var(--panel);transition:border-color .45s var(--ease)}
+  @media(hover:hover){.blk:hover{border-color:rgba(224,166,97,.42)}}
+  .blk-media{overflow:hidden;aspect-ratio:16/10;background-color:var(--panel2)}
+  .blk-media>span{display:block;width:100%;height:100%;background-size:cover;background-position:center;transition:transform 1s var(--ease)}
+  @media(hover:hover){.blk:hover .blk-media>span{transform:scale(1.04)}}
+  .blk:nth-child(even) .blk-media{order:2}
+  .blk-txt{padding:clamp(24px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center}
+  .blk .num{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:1.3rem;line-height:1}
+  .blk h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,2.3vw,2.05rem);line-height:1.05;margin-top:4px;color:var(--text)}
+  .blk .ja{font-family:var(--mincho);color:var(--muted);margin-bottom:13px;font-size:.95rem}
+  .blk .desc{font-family:var(--jp);color:var(--text);font-size:.92rem;line-height:1.85;word-break:auto-phrase}
+  .blk .for{font-family:var(--jp);color:var(--muted);font-size:.8rem;line-height:1.7;margin-top:10px}
+  .blk .proof{font-family:var(--jp);color:var(--accent2);font-size:.78rem;line-height:1.6;margin-top:8px}
+  .blk .sv-cta{display:inline-flex;align-items:center;gap:7px;width:fit-content;margin-top:18px;font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--text);text-decoration:none;border-bottom:1px solid var(--line);padding:4px 0 5px;transition:gap .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
+  @media(hover:hover){.blk .sv-cta:hover{gap:13px;color:var(--accent);border-color:var(--accent)}}
+  @media(max-width:720px){.blk{grid-template-columns:1fr}.blk:nth-child(even) .blk-media{order:0}}
   /* FAQ */
   .faq{margin-top:clamp(28px,4vw,46px);border-top:1px solid var(--line)}
   .faq-item{border-bottom:1px solid var(--line)}
@@ -1276,65 +1270,51 @@
 <section class="sec wrap" id="services">
   <div class="sec-head rv"><span class="eyebrow">What I do</span><h2 class="en-h">Services</h2></div>
   <p class="sv-intro rv" data-en="Photography, video, and social — by one creator, with one consistent vision. Open to talk from the planning stage.">写真・動画・SNSを、一人で一貫して。世界観を崩さず、企画段階のご相談から承ります。</p>
-  <div class="services-list">
-    <div class="sv-row rv">
-      <div class="sv-thumb img ph-city" style="--photo:url('images/gallery/01.jpg')"></div>
-      <div class="sv-head">
-        <span class="sv-num">01</span>
-        <div class="sv-headtext">
-          <h3 class="sv-title">Photography</h3>
-          <p class="sv-lead" data-en="Photography">写真撮影</p>
-        </div>
-      </div>
-      <div class="sv-body">
-        <p class="sv-for" data-en="Tourism PR · Hotels &amp; venues · Brands &amp; products · Events · Portraits">観光PR・ホテル・ブランド・イベント・ポートレート</p>
-        <p class="sv-desc" data-en="Assigned by national clients for the quality of the images themselves.">写真のクオリティで、ナショナルクライアントから指名される撮影。</p>
+  <div class="svc-list">
+    <div class="blk rv">
+      <div class="blk-media"><span style="background-image:url('images/gallery/01.jpg')"></span></div>
+      <div class="blk-txt">
+        <span class="num">01</span>
+        <h3>Photography</h3>
+        <div class="ja" data-en="Photography">撮影</div>
+        <div class="desc" data-en="Assigned by national clients for the quality of the images themselves.">写真のクオリティで、ナショナルクライアントから指名される撮影。</div>
+        <div class="for" data-en="Tourism PR / Hotels / Brands / Events / Portraits">観光PR・ホテル・ブランド・イベント・ポートレート</div>
         <a class="sv-cta" href="#contact-page" data-en="Discuss a shoot →">撮影を相談する →</a>
       </div>
     </div>
-    <div class="sv-row rv">
-      <div class="sv-thumb img ph-bamboo" style="--photo:url('images/gallery/04.jpg')"></div>
-      <div class="sv-head">
-        <span class="sv-num">02</span>
-        <div class="sv-headtext">
-          <h3 class="sv-title">Video / Short Movie</h3>
-          <p class="sv-lead" data-en="Film &amp; motion">映像制作</p>
-        </div>
-      </div>
-      <div class="sv-body">
-        <p class="sv-for" data-en="Travel experiences · Product PR · Venue intros · Event teasers">観光体験・商品PR・施設紹介・イベント告知</p>
-        <p class="sv-desc" data-en="Reels, short movies and vlogs — delivering the atmosphere of a place through motion and sound.">Reels・Vlog・プロモ映像。動きと音で、その場の空気感ごと届ける。</p>
+    <div class="blk rv">
+      <div class="blk-media"><span style="background-image:url('images/gallery/04.jpg')"></span></div>
+      <div class="blk-txt">
+        <span class="num">02</span>
+        <h3>Video / Short Movie</h3>
+        <div class="ja" data-en="Film &amp; motion">映像制作</div>
+        <div class="desc" data-en="Reels, short movies and vlogs — delivering the atmosphere of a place through motion and sound.">Reels・Vlog・プロモ映像。動きと音で、その場の空気感ごと届ける。</div>
+        <div class="for" data-en="Travel experiences / Product PR / Venue intros / Event teasers">観光体験・商品PR・施設紹介・イベント告知</div>
+        <div class="proof" data-en="Featured work: Coca-Cola PR reel, 1.74M views">代表作：Coca-Cola PRリール 174万再生</div>
         <a class="sv-cta" href="#contact-page" data-en="Discuss a video →">映像を相談する →</a>
       </div>
     </div>
-    <div class="sv-row rv">
-      <div class="sv-thumb img ph-portrait" style="--photo:url('images/gallery/07.jpg')"></div>
-      <div class="sv-head">
-        <span class="sv-num">03</span>
-        <div class="sv-headtext">
-          <h3 class="sv-title">SNS Tie-up / PR</h3>
-          <p class="sv-lead" data-en="Social &amp; ambassador">SNSタイアップ</p>
-        </div>
-      </div>
-      <div class="sv-body">
-        <p class="sv-for" data-en="Destination marketing · Product &amp; brand awareness · Campaigns">観光誘客・商品認知・ブランド認知・キャンペーン</p>
-        <p class="sv-desc" data-en="Official ambassador for Samsung, Adobe and Alfa Romeo — reaching 285,000+ followers.">Samsung・Adobe・Alfa Romeo 公式アンバサダー。約28.5万フォロワーへ届ける。</p>
+    <div class="blk rv">
+      <div class="blk-media"><span style="background-image:url('images/gallery/07.jpg')"></span></div>
+      <div class="blk-txt">
+        <span class="num">03</span>
+        <h3>SNS Tie-up / PR</h3>
+        <div class="ja" data-en="Social &amp; ambassador">SNSタイアップ</div>
+        <div class="desc" data-en="Sharing real experiences and reaching the right audience.">体験を発信し、確かなリーチで届ける。</div>
+        <div class="for" data-en="Destination marketing / Awareness / Campaigns">観光誘客・商品/ブランド認知・キャンペーン</div>
+        <div class="proof" data-en="Official ambassador for Samsung, Adobe and Alfa Romeo / 285,000+ followers">Samsung・Adobe・Alfa Romeo 公式アンバサダー／約28.5万フォロワー</div>
         <a class="sv-cta" href="#contact-page" data-en="Discuss a tie-up →">タイアップを相談する →</a>
       </div>
     </div>
-    <div class="sv-row rv">
-      <div class="sv-thumb img ph-sakura" style="--photo:url('images/gallery/09.jpg')"></div>
-      <div class="sv-head">
-        <span class="sv-num">04</span>
-        <div class="sv-headtext">
-          <h3 class="sv-title">Tourism Promotion</h3>
-          <p class="sv-lead" data-en="Destination PR">観光プロモーション</p>
-        </div>
-      </div>
-      <div class="sv-body">
-        <p class="sv-for" data-en="Tourism boards · Governments · Airlines · Travel services">政府観光局・自治体・航空・旅行サービス</p>
-        <p class="sv-desc" data-en="On-location, experience-led PR — stills, video and SNS, produced together.">現地を巡る体験型PR。写真・動画・SNSをトータルで制作。</p>
-        <a class="sv-cta" href="#contact-page" data-en="Discuss a campaign →">観光PRを相談する →</a>
+    <div class="blk rv">
+      <div class="blk-media"><span style="background-image:url('images/gallery/09.jpg')"></span></div>
+      <div class="blk-txt">
+        <span class="num">04</span>
+        <h3>Tourism Promotion</h3>
+        <div class="ja" data-en="Destination PR">観光プロモーション</div>
+        <div class="desc" data-en="From itinerary experiences to shooting, social and editorial assets. Domestic and overseas travel available.">旅程体験〜撮影〜SNS発信〜記事/動画素材まで一気通貫。国内・海外出張対応可。</div>
+        <div class="for" data-en="Tourism boards / Governments / Airlines / Travel services">政府観光局・自治体・航空・旅行サービス</div>
+        <a class="sv-cta" href="#contact-page" data-en="Discuss tourism PR →">観光PRを相談する →</a>
       </div>
     </div>
   </div>
