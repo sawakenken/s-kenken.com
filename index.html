@@ -599,6 +599,10 @@
   .ct-status{font-family:var(--sans);font-size:.86rem;letter-spacing:.02em;min-height:1.2em;margin-top:2px}
   .ct-status.ok{color:var(--accent2)}
   .ct-status.err{color:#E0795F}
+  .ct-assure{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
+  .ct-assure li{font-family:var(--jp);font-size:.74rem;line-height:1.4;color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:6px 13px}
+  .ct-privacy{font-family:var(--jp);font-size:.72rem;line-height:1.7;color:var(--muted);margin-top:-4px}
+  @media(max-width:520px){.ct-submit{width:100%;text-align:center}}
 
   /* ============================================================
      v15 — upgraded intro / hero entrance
@@ -1203,7 +1207,7 @@
     <span class="eyebrow" style="display:block;margin-bottom:22px">Contact</span>
     <h2 class="en-h">Let’s Talk</h2>
     <p class="jp" data-en="For shoots & tie-ups">撮影・タイアップのご依頼</p>
-    <p class="lead" data-en="From landscape, travel, and tourism PR to Lightroom editing and workshops — feel free to reach out about any work.">風景・旅・観光PR、Lightroom現像、講座まで。お仕事のご相談はお気軽にどうぞ。</p>
+    <p class="lead" data-en="Photography, video, SNS tie-ups and tourism PR. Planning-stage chats are welcome — feel free to reach out.">撮影・動画・SNSタイアップ・観光PRのご依頼。企画段階のご相談もお気軽にどうぞ。</p>
     <a class="cta" href="#contact-page" data-view="contact"><span data-en="Get in touch →">お問い合わせフォームへ →</span></a>
   </div>
 </section>
@@ -1668,7 +1672,11 @@
     <div class="sec-head rv"><span class="eyebrow">Get in touch</span><h2 class="en-h">Contact</h2><p class="jp" data-en="" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— お問い合わせ</p></div>
     <div class="ct-grid rv">
       <div>
-        <p class="ct-lead" data-en="For shoots, tie-ups, and <span class='hl'>workshops</span>,<br>or any other work inquiry — get in touch here.">撮影・タイアップ・<span class="hl">講座</span>のご依頼、<br>その他お仕事のご相談はこちらから。</p>
+        <p class="ct-lead" data-en="Photography, video, SNS tie-ups and tourism PR.<br><span class='hl'>Planning-stage chats</span> are always welcome.">撮影・動画・SNSタイアップ・観光PRのご依頼。<br><span class="hl">企画段階のご相談</span>も大歓迎です。</p>
+        <ul class="ct-assure">
+          <li data-en="Planning-stage chats welcome">企画段階の相談OK</li>
+          <li data-en="Estimate provided as needed">内容確認後にお見積もり</li>
+        </ul>
         <div class="ct-meta">
           <div class="row"><span class="k">Email</span><a class="v" href="mailto:s.kenkenn@gmail.com">s.kenkenn@gmail.com</a></div>
           <div class="row"><span class="k">Based in</span><span class="v" data-en="Kyoto, Japan / Available for travel (domestic & overseas)">Kyoto, Japan ／ 出張対応可（国内・海外）</span></div>
@@ -1695,14 +1703,19 @@
           <div class="field"><label for="cf-type" data-en="Type of inquiry">ご依頼内容 / Type</label>
             <select id="cf-type" name="type">
               <option data-en="Photography / shoot">撮影のご依頼</option>
-              <option data-en="Tie-up / PR">タイアップ・PR</option>
-              <option data-en="Lightroom editing / data">Lightroom 現像・データ提供</option>
-              <option data-en="Workshop / lecture">講座・ワークショップ</option>
+              <option data-en="Video / short movie">動画・映像制作</option>
+              <option data-en="SNS tie-up / PR">SNSタイアップ・PR</option>
+              <option data-en="Tourism / destination PR">観光・地域プロモーション</option>
               <option data-en="Other">その他</option>
             </select>
           </div>
         </div>
-        <div class="field"><label for="cf-msg" data-en="Message<span class='req'>*</span>">メッセージ / Message<span class="req">*</span></label><textarea id="cf-msg" name="message" placeholder="ご予算・希望時期・媒体・撮影地などをお書きください。" data-en-ph="Tell us about your budget, timing, outlet, location, and so on." required></textarea></div>
+        <div class="ct-row">
+          <div class="field"><label for="cf-timing" data-en="Timing<span class='opt'>Optional</span>">希望時期 / Timing<span class="opt">任意</span></label><input id="cf-timing" name="timing" type="text" placeholder="例：2026年8月頃" data-en-ph="e.g. around Aug 2026"></div>
+          <div class="field"><label for="cf-area" data-en="Location / area<span class='opt'>Optional</span>">撮影地・エリア / Area<span class="opt">任意</span></label><input id="cf-area" name="area" type="text" placeholder="例：京都・関西" data-en-ph="e.g. Kyoto / Kansai"></div>
+        </div>
+        <div class="field"><label for="cf-msg" data-en="Message<span class='req'>*</span>">メッセージ / Message<span class="req">*</span></label><textarea id="cf-msg" name="message" placeholder="案件の概要・ご予算感・媒体など、わかる範囲でお書きください。未確定でもOKです。" data-en-ph="Outline the project, budget, outlet, etc. — as much as you know. Undecided is fine." required></textarea></div>
+        <p class="ct-privacy" data-en="Your message is used only to reply to your inquiry.">送信内容はご返信の目的のみに使用します。</p>
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <button class="ct-submit" type="submit"><span data-en="Send →">送信する →</span></button>
         <p class="ct-status" id="ctStatus" role="status" aria-live="polite"></p>
@@ -2318,7 +2331,7 @@
       cf.addEventListener('submit',function(e){
         e.preventDefault();
         var g=function(id){var el=document.getElementById(id);return el?el.value.trim():'';};
-        var name=g('cf-name'),company=g('cf-company'),email=g('cf-email'),type=g('cf-type'),msg=g('cf-msg');
+        var name=g('cf-name'),company=g('cf-company'),email=g('cf-email'),type=g('cf-type'),msg=g('cf-msg'),timing=g('cf-timing'),area=g('cf-area');
         var honey=(cf.querySelector('[name="_honey"]')||{}).value||'';
         if(honey){return;} /* spam bot trap */
         if(!name||!email||!msg){
@@ -2327,7 +2340,7 @@
           return;
         }
         var payload={
-          name:name, company:company||'-', email:email, type:type||'-', message:msg,
+          name:name, company:company||'-', email:email, type:type||'-', timing:timing||'-', area:area||'-', message:msg,
           _subject:'【お仕事のご依頼】'+(type||'お問い合わせ')+' / '+name,
           _template:'table',
           _captcha:'false'
