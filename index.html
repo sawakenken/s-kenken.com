@@ -358,6 +358,18 @@
   .foot-back{font-family:var(--sans);font-weight:500;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .3s}
   .foot-back:hover{color:var(--accent)}
   .foot-base{margin-top:44px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .foot-priv{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+  @media(hover:hover){.foot-priv:hover{color:var(--accent);border-color:var(--accent)}}
+  /* LEGAL / privacy */
+  .legal{max-width:48em;margin-top:clamp(18px,2.6vw,28px)}
+  .legal-intro{font-family:var(--jp);font-size:.95rem;line-height:1.95;color:var(--muted)}
+  .legal h3{font-family:var(--jp);font-weight:600;font-size:1.02rem;color:var(--text);margin:clamp(26px,3.6vw,40px) 0 10px;letter-spacing:.02em}
+  .legal p{font-family:var(--jp);font-size:.9rem;line-height:1.95;color:var(--muted);margin:0 0 8px;word-break:auto-phrase}
+  .legal ul{margin:6px 0 8px;padding-left:1.25em}
+  .legal li{font-family:var(--jp);font-size:.9rem;line-height:1.9;color:var(--muted);margin-bottom:5px}
+  .legal a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
+  @media(hover:hover){.legal a:hover{border-color:var(--accent)}}
+  .legal-date{margin-top:clamp(26px,3.6vw,40px);font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;color:var(--muted)}
 
   /* reveals */
   .rv{opacity:0;transform:translateY(38px);transition:opacity 1s ease,transform 1.15s var(--ease)}
@@ -1878,6 +1890,47 @@
   </section>
 </main>
 
+<!-- ===================== PRIVACY POLICY ===================== -->
+<main id="view-privacy" class="view">
+  <section class="sec wrap subpage-top">
+    <div class="sec-head rv"><span class="eyebrow">Legal</span><h2 class="en-h">Privacy</h2><p class="jp" data-en="" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— プライバシーポリシー</p></div>
+    <div class="legal rv">
+      <p class="legal-intro" data-en="This policy explains how this site (s-kenken.com) handles personal information.">当サイト（s-kenken.com）における個人情報の取り扱いについて、以下のとおり定めます。</p>
+
+      <h3 data-en="1. Information we collect">1. 取得する情報</h3>
+      <p data-en="When you send the contact form, you provide your name, company / outlet, email address, type of inquiry, preferred timing, location / area, and message.">お問い合わせフォームの送信時に、お名前・会社／媒体名・メールアドレス・ご依頼内容・希望時期・撮影地／エリア・メッセージをご入力いただきます。</p>
+
+      <h3 data-en="2. Purpose of use">2. 利用目的</h3>
+      <p data-en="The information is used solely to reply to and handle your inquiry or request. It is not used for any other purpose.">取得した情報は、お問い合わせ・ご依頼への返信および対応のためにのみ利用します。それ以外の目的には利用しません。</p>
+
+      <h3 data-en="3. Third parties &amp; external services">3. 第三者提供・外部サービス</h3>
+      <ul>
+        <li data-en="The contact form is delivered via FormSubmit (formsubmit.co); your input is sent to the owner's email through that service.">お問い合わせフォームの送信には FormSubmit（formsubmit.co）を利用しており、入力内容は同サービスを経由して運営者のメールに送信されます。</li>
+        <li data-en="The site loads external services such as Google Fonts and Instagram embeds; access information such as your IP address may be sent to those providers.">当サイトは Google Fonts や Instagram の埋め込み等の外部サービスを読み込んでおり、これらの提供事業者にIPアドレス等のアクセス情報が送信される場合があります。</li>
+        <li data-en="The site is hosted on GitHub Pages.">ホスティングに GitHub Pages を利用しています。</li>
+        <li data-en="Except as required by law, personal information is never provided to third parties without your consent.">法令に基づく場合を除き、ご本人の同意なく第三者へ個人情報を提供することはありません。</li>
+      </ul>
+
+      <h3 data-en="4. Analytics &amp; cookies">4. アクセス解析・Cookie</h3>
+      <p data-en="This site does not use its own analytics tools. Your language preference is stored in the browser's localStorage; it stays on your device and does not identify you. The external services above may use their own cookies.">当サイトは独自のアクセス解析ツールを使用していません。表示言語の設定をブラウザの localStorage に保存しますが、これは端末内に保存されるもので個人を特定しません。上記の外部サービスが独自に Cookie を使用する場合があります。</p>
+
+      <h3 data-en="5. Managing personal information">5. 個人情報の管理</h3>
+      <p data-en="Collected personal information is managed appropriately, with reasonable care to prevent leakage, loss or damage. Information is deleted appropriately once its purpose is fulfilled.">取得した個人情報は適切に管理し、漏えい・滅失・毀損の防止に努めます。利用目的を達成した情報は適切に消去します。</p>
+
+      <h3 data-en="6. Disclosure, correction &amp; deletion">6. 開示・訂正・削除</h3>
+      <p data-en="Upon request from the individual, we will respond promptly and within reason to disclose, correct or delete personal information, after confirming your identity. Please use the contact below.">ご本人からの個人情報の開示・訂正・削除のご請求には、ご本人であることを確認のうえ、合理的な範囲で速やかに対応します。下記の連絡先までご連絡ください。</p>
+
+      <h3 data-en="7. Revisions">7. 改定</h3>
+      <p data-en="This policy may be revised as needed. Significant changes will be announced on this site.">本ポリシーは、必要に応じて改定することがあります。重要な変更がある場合は当サイト上でお知らせします。</p>
+
+      <h3 data-en="8. Contact">8. お問い合わせ先</h3>
+      <p data-en="Sawai Kenta (Ken-ken)<br>Email: <a href=&quot;mailto:s.kenkenn@gmail.com&quot;>s.kenkenn@gmail.com</a>">澤井 健太（けんけん）<br>Email: <a href="mailto:s.kenkenn@gmail.com">s.kenkenn@gmail.com</a></p>
+
+      <p class="legal-date" data-en="Established: June 20, 2026">制定日：2026年6月20日</p>
+    </div>
+  </section>
+</main>
+
 <footer>
   <div class="foot-top">
     <div class="foot-name" data-en="Sawai Kenta<small>Travel Photographer</small>">Sawai Kenta<small>澤井 健太 ／ けんけん</small></div>
@@ -1892,7 +1945,7 @@
       <a class="sns-btn" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16.4 5 12 5 12 5s-4.4 0-7.2.2c-.4 0-1.2.1-2 .9C2.2 6.7 2 8.2 2 8.2S1.8 9.9 1.8 11.6v1.6c0 1.7.2 3.4.2 3.4s.2 1.5.8 2.1c.8.8 1.8.8 2.3.9 1.7.2 7 .2 7 .2s4.4 0 7.2-.2c.4 0 1.2-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.7.2-3.4v-1.6c0-1.7-.2-3.4-.2-3.4zM10 14.6V9.4l4.5 2.6-4.5 2.6z"/></svg></a>
     </div>
   </div>
-  <div class="foot-base"><span>© <span id="yr"></span> Sawai Kenta</span><span>Sharing the scenery that moved me.</span></div>
+  <div class="foot-base"><span>© <span id="yr"></span> Sawai Kenta · <a class="foot-priv" href="#privacy-page" data-en="Privacy Policy">プライバシーポリシー</a></span><span>Sharing the scenery that moved me.</span></div>
 </footer>
 
 <script>
@@ -2018,10 +2071,11 @@
       contact:document.getElementById('view-contact'),
       news:document.getElementById('view-news'),
       work:document.getElementById('view-work'),
-      post:document.getElementById('view-post')
+      post:document.getElementById('view-post'),
+      privacy:document.getElementById('view-privacy')
     };
     var nav=document.getElementById('nav');
-    var hashMap={'gallery-page':'gallery','works-page':'works','contact-page':'contact','news-page':'news'};
+    var hashMap={'gallery-page':'gallery','works-page':'works','contact-page':'contact','news-page':'news','privacy-page':'privacy'};
     var scrollMem={}, current='home', canBack=false;
     if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(_){}}
 
@@ -2382,7 +2436,7 @@
     window.addEventListener('popstate',route);
 
     /* back link on every subpage (incl. work detail) */
-    ['gallery','works','contact','news','work','post'].forEach(function(k){
+    ['gallery','works','contact','news','work','post','privacy'].forEach(function(k){
       if(!views[k])return;
       var sec=views[k].querySelector('.subpage-top');
       if(sec && !sec.querySelector('.subpage-back')){
