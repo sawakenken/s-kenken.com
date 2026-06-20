@@ -32,7 +32,9 @@
   - `projects[]` の各要素: `{title, titleEn, date, cat, photo, img, desc, descEn, posts:[]}`
   - `posts:[]` の各要素: `{date, link}`（複数インスタ投稿。`link` 空なら ig プロフィールへ）。
   - 描画は `.wd-timeline / .wd-tl-item / .wd-tl-row(button) / .wd-tl-panel`。行タップで `.wd-tl-item.open` をトグル（document 委譲クリックで処理）。`pc` map が cat→pill クラス（`.pill-official` 等）を引く。
-  - **実例: NAKED, Inc.（w30）が集約済み**（平安神宮/伏見稲荷/八坂/二条城/宇治/ガウディ展）。八坂は複数投稿のデモ3件入り。`projects` 無しのエントリ（w44 DJI 等）は従来の `images[]` ギャラリー描画。
+  - **実例: NAKED, Inc.（w30）が集約済み**（平安神宮/伏見稲荷/八坂/二条城/宇治/ガウディ展）。八坂は複数投稿のデモ3件入り。
+  - **★ 全WORKSが projects[] 形式に統一済み（2026-06-20）**: 単発案件のクライアントも `projects:[{...}]`（案件1件）に揃え、全作品が「ヒーロー＋概要＋案件一覧アコーディオン」で描画される。旧 `images[]` ギャラリー描画（w26 Alfa Romeo / w44 DJI）と単発 `posts[]` の `renderPosts()` ボタン列は使われなくなった（関数自体は残置）。新規作品も必ず `projects[]` で作る。
+  - **WEBリンク対応**: `posts[]` の各要素は `{date,link}` のほか `{label:"WEB SITE",link}` も可。`label` 指定時はアコーディオン内ボタンが「WEB SITE ↗」表示（未指定は「Instagram ↗」）。URL未取得は `{date:"",link:""}` でOK（プロフィール飛び）。
 - **POSTS オブジェクト**: キー `"p1"`〜（News）。`populatePost` が描画。
 - **★ News 単一ソース（重要・新設計）**: News ページ `#npGrid`（年グループ `.np-year-group` ＋ `.news li[data-cat][data-slug]`）が**正本**。TOPの `#homeNews` は空で、起動時に npGrid の**新着6件をクローン**して表示（編集は News 側のみで TOP に自動反映）。`NEW` バッジは最新（2026）だけに付ける運用。
 - **ルーター**: `#work-<slug>` / `#post-<slug>` のハッシュで詳細表示。`populateWork(slug)` / `populatePost(slug)` が描画。クリックは `document` 委譲（`.work[data-slug]` / `li[data-slug]` / `.wd-tl-row` 等を判定）。
