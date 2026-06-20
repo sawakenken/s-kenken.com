@@ -2029,6 +2029,7 @@
     }
     function show(name,opts){
       opts=opts||{};
+      var gen=(show._gen=(show._gen||0)+1);   /* bump generation: invalidates any pending scroll-restore from a previous navigation */
       if(views[current]) scrollMem[current]=window.scrollY;   /* remember where we were */
       if(!views[name]) name='home';
       activate(name);
@@ -2043,13 +2044,14 @@
            like the bottom of home returning from a short subpage). */
         var tries=0;
         var applyY=function(){
+          if(gen!==show._gen) return;   /* a newer navigation happened — abort stale restore */
           void document.documentElement.offsetHeight;   /* force reflow so height is final */
           window.scrollTo({top:y,left:0,behavior:'instant'});   /* jump, never animate from top */
           if(Math.abs(window.scrollY-y)>2 && tries++<80){ requestAnimationFrame(applyY); }
         };
         applyY(); setTimeout(applyY,120); setTimeout(applyY,300); setTimeout(applyY,500); setTimeout(applyY,800);
       } else if(name==='home' && opts.anchor && opts.anchor!=='top'){
-        requestAnimationFrame(function(){ var t=document.getElementById(opts.anchor); if(t)t.scrollIntoView(); nav.classList.toggle('solid', window.scrollY>60); });
+        requestAnimationFrame(function(){ if(gen!==show._gen)return; var t=document.getElementById(opts.anchor); if(t)t.scrollIntoView(); nav.classList.toggle('solid', window.scrollY>60); });
       } else {
         var goTop=function(){ window.scrollTo({top:0,left:0,behavior:'instant'}); document.documentElement.scrollTop=0; document.body.scrollTop=0; };
         goTop(); requestAnimationFrame(goTop);
