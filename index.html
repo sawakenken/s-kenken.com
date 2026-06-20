@@ -1892,6 +1892,7 @@
       else lead="“"+title+"” — "+client+".";
       return lead+"\n\n"+ig;
     }
+    function igThumb(link){ if(!link)return ''; var m=String(link).match(/instagram\.com\/(?:p|reel)\/([A-Za-z0-9_-]+)/); return m?("images/works/ig/"+m[1]+".jpg"):''; }
     function populateWork(slug){
       var w=WORKS[slug]; if(!w)return false;
       var en=WORKS_EN[slug]||{};
@@ -1904,12 +1905,12 @@
       if(document.fonts&&document.fonts.load){try{document.fonts.load('1rem "Zen Kaku Gothic New"',desc);}catch(_){}}
       var hero=document.getElementById('wdHeroFig'), gal=document.getElementById('wdGallery');
       if(w.projects && w.projects.length){
-        if(hero){ hero.style.display=''; var hi=document.getElementById('wdImg'); if(hi){ hi.className='img '+(w.img||''); hi.style.cssText=w.photo?("--photo:url('"+w.photo+"')"):''; } }
+        if(hero){ hero.style.display=''; var hi=document.getElementById('wdImg'); if(hi){ hi.className='img '+(w.img||''); var hp0=(w.projects[0]&&w.projects[0].posts&&w.projects[0].posts[0])?w.projects[0].posts[0].link:''; var hsrc=igThumb(hp0)||w.photo; hi.style.cssText=hsrc?("--photo:url('"+hsrc+"')"):''; } }
         if(gal){ gal.className='wd-timeline';
           gal.innerHTML='<div class="wd-tl-head">'+t('\u6848\u4ef6\u4e00\u89a7','Projects')+'</div>'+w.projects.map(function(pr){
             var ptitle=t(pr.title,pr.titleEn);
             var link=pr.link||IG_PROFILE;
-            var ph=pr.photo?("--photo:url('"+pr.photo+"')"):'';
+            var tp0=(pr.posts&&pr.posts[0])?pr.posts[0].link:''; var tsrc=igThumb(tp0)||pr.photo; var ph=tsrc?("--photo:url('"+tsrc+"')"):'';
             var pc={Ambassador:'pill-ambassador',Tourism:'pill-tourism',Commercial:'pill-commercial',Official:'pill-official',Hotel:'pill-hotel',Exhibition:'pill-exhibition'}[pr.cat]||'pill-official';
             var meta=(pr.date?'<span class="wd-tl-date">'+pr.date+'</span>':'')+(pr.cat?'<span class="pill '+pc+'">'+pr.cat+'</span>':'');
             var pdesc=t(pr.desc,pr.descEn);
