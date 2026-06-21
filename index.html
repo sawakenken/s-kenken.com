@@ -626,7 +626,7 @@
   /* 和題から金を撤去（写真上の金の希少性を守る）。ミンチョ字形＋字間で本文と差別化 */
   .bt-jp{font-family:var(--mincho);font-size:.78rem;letter-spacing:.06em;color:rgba(234,232,226,.62);margin-top:6px;text-shadow:0 1px 6px rgba(8,10,11,.5)}
   .bt-for{font-family:var(--jp);font-size:.78rem;line-height:1.7;color:var(--muted);margin-top:9px;max-width:36ch;
-    word-break:normal;overflow-wrap:anywhere;text-shadow:0 1px 6px rgba(8,10,11,.55)}  /* auto-phrase は iOS非対応→keep-all 併記 */
+    word-break:normal;overflow-wrap:anywhere;text-shadow:0 1px 6px rgba(8,10,11,.55)}  /* 長文JP本文は normal で折返す（keep-all/auto-phrase は iOS で折返さず右にはみ出す） */
   /* side の補足文は1段小さく抑えて feat を立てる（SNSタイルにのみ付与し、3枚同形のクローン感を崩す） */
   .bt-side .bt-for{font-size:.72rem;margin-top:7px;max-width:30ch}
 
