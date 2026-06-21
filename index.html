@@ -621,14 +621,12 @@
 
   .bt-title{font-family:var(--serif);font-weight:600;line-height:1;color:#fff;margin:0;
     text-shadow:0 1px 3px rgba(8,10,11,.6),0 2px 14px rgba(8,10,11,.45)}
-  .bt-feat .bt-title{font-size:clamp(2rem,4.4vw,2.75rem)}
+  .bt-feat .bt-title{font-size:clamp(1.7rem,3vw,2.1rem)}
   .bt-side .bt-title{font-size:clamp(1.3rem,2.4vw,1.55rem)}
   /* 和題から金を撤去（写真上の金の希少性を守る）。ミンチョ字形＋字間で本文と差別化 */
   .bt-jp{font-family:var(--mincho);font-size:.78rem;letter-spacing:.06em;color:rgba(234,232,226,.62);margin-top:6px;text-shadow:0 1px 6px rgba(8,10,11,.5)}
   .bt-for{font-family:var(--jp);font-size:.78rem;line-height:1.7;color:var(--muted);margin-top:9px;max-width:36ch;
     word-break:normal;overflow-wrap:anywhere;text-shadow:0 1px 6px rgba(8,10,11,.55)}  /* 長文JP本文は normal で折返す（keep-all/auto-phrase は iOS で折返さず右にはみ出す） */
-  /* side の補足文は1段小さく抑えて feat を立てる（SNSタイルにのみ付与し、3枚同形のクローン感を崩す） */
-  .bt-side .bt-for{font-size:.72rem;margin-top:7px;max-width:30ch}
 
   /* キーボード可視：写真の明部に金リングが埋もれないよう、暗いハロー(box-shadow)で金outlineをサンドして3:1を独立保証 */
   .bt:focus-visible{outline:2px solid var(--accent);outline-offset:-3px;
@@ -655,8 +653,7 @@
     #bento .rv-bt:active{transform:scale(.985);transition:transform .12s var(--ease)}
     .bt:active>span{filter:brightness(1.04)}
     .bt-ru{transform:scaleX(1.15)}  /* touchはhoverが死ぬので罫を常時わずかに長く */
-    .bt-side .bt-title{font-size:clamp(1.2rem,4.8vw,1.5rem)}
-    .bt-feat .bt-title{font-size:clamp(1.6rem,6.6vw,2.2rem)}
+    .bt-feat .bt-title,.bt-side .bt-title{font-size:clamp(1.25rem,4.8vw,1.6rem)}  /* スマホは横長4つ＝同サイズ */
   }
   @media(max-width:720px) and (prefers-reduced-motion:reduce){#bento .rv-bt:active{transform:none}}
 
@@ -1365,7 +1362,7 @@
 
 <!-- SERVICE BENTO (非対称・concept E 正式版) -->
 <section class="sec wrap" id="bento">
-  <div class="sec-head rv"><span class="eyebrow" data-en="What I do">提供できること</span><h2 class="en-h">Services</h2></div>
+  <div class="sec-head rv"><span class="eyebrow">What I do</span><h2 class="en-h">Services</h2></div>
   <!-- タイル種別はフッククラス(.bt-feat/.bt-sns/.bt-tour/.bt-video)で識別。CSSは :nth-of-type に依存しないので並べ替え・要素挿入に強い -->
   <!-- grid に .rv（=これ1個だけがIO監視対象→単一の .in）。各タイルは .rv-bt のみ（個別監視されない）。子cascadeは grid.in 起点で発火 -->
   <div class="bento-grid rv">
@@ -1375,7 +1372,7 @@
     </a>
     <a class="bt bt-side bt-sns rv-bt" href="#works-page">
       <span style="background-image:url('images/gallery/07.jpg')"></span>
-      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Brand Partnerships</h3><p class="bt-jp" data-en="Tie-ups &amp; ambassadorships">ブランドタイアップ／アンバサダー</p><p class="bt-for" data-en="Samsung, Adobe and Alfa Romeo.">Samsung・Adobe・Alfa Romeo ほか。</p></div>
+      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Brand Partnerships</h3><p class="bt-jp" data-en="Tie-ups &amp; ambassadorships">ブランドタイアップ／アンバサダー</p></div>
     </a>
     <a class="bt bt-side bt-tour rv-bt" href="#works-page">
       <span style="background-image:url('images/gallery/09.jpg')"></span>
