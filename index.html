@@ -691,33 +691,6 @@
   #bento .rv-bt .bt-cap{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .9s var(--ease)}
   #bento .bento-grid.in .rv-bt .bt-cap{opacity:1;transform:none;transition-delay:.12s}
 
-  /* ── CREDENTIALS STRIP — bento直下・同一セクション内。既存 .about-stats のDNAを流用 ── */
-  #bento .cred{display:flex;flex-wrap:wrap;align-items:flex-start;
-    gap:clamp(22px,4vw,52px);margin-top:clamp(24px,3.2vw,38px);
-    padding-top:clamp(20px,2.6vw,28px);border-top:1px solid var(--line-soft)}
-  #bento .cred-item{position:relative;display:flex;flex-direction:column;gap:9px;padding-left:clamp(0px,2vw,26px)}
-  /* 項目間の細い縦hairline（中黒/em-dash/装飾罫線を使わず構造線で分離）。先頭は出さない */
-  #bento .cred-item + .cred-item::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:1px;background:var(--line-soft)}
-  /* 数値スロット：金は「定量的実績」に限定。about-stats より一段下げ"足元の静かな帯"に留める。tabular撤去で Cormorant 本来のプロポーショナル字形に */
-  #bento .cred-n{font-family:var(--serif);font-weight:500;line-height:.9;
-    font-size:clamp(2rem,4.2vw,2.85rem);color:var(--accent);letter-spacing:.01em}
-  #bento .cred-n .u{font-size:.5em;letter-spacing:.04em;color:var(--muted);margin-left:.06em;vertical-align:.18em}
-  /* アンバサダーは数値化せず社名を証拠に据える（偽の精密数字を作らない）。テキストスロットで揃える */
-  #bento .cred-amb{font-family:var(--serif);font-weight:500;line-height:1.04;
-    font-size:clamp(1.18rem,2vw,1.42rem);color:var(--text);letter-spacing:.01em}
-  #bento .cred-l{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-  #bento .cred-sub{font-family:var(--sans);font-size:.64rem;font-weight:500;letter-spacing:.05em;color:var(--text)}
-  /* ホバー：bt-ru の幅伸長イディオムを再利用した下線だけ。過剰演出しない */
-  #bento .cred-item::after{content:"";position:absolute;left:clamp(0px,2vw,26px);bottom:-2px;width:0;height:1px;background:var(--accent);transition:width .45s var(--ease)}
-  @media(hover:hover){#bento .cred-item:hover::after{width:26px}}
-  /* 単一カラム化を 640px に引き上げ：561-720px帯で長い社名行(cred-amb)が不揃いに折れる事故を回避 */
-  @media(max-width:640px){
-    #bento .cred{gap:18px}
-    #bento .cred-item{padding-left:0;flex-basis:100%}
-    #bento .cred-item + .cred-item::before{display:none}
-    #bento .cred-item + .cred-item{padding-top:18px;border-top:1px solid var(--line-soft)}
-    #bento .cred-item::after{left:0}
-  }
 
   /* ── MOBILE：feat を主役に昇格、従3枚は縦積みのまま（モザイクは脆いので不採用）。タップ手がかりを補完 ── */
   @media(max-width:720px){
@@ -728,7 +701,6 @@
     .bt-ru{transform:scaleX(1.15)}  /* touchはhoverが死ぬので罫を常時わずかに長く */
     .bt-side .bt-title{font-size:clamp(1.2rem,4.8vw,1.5rem)}
     .bt-feat .bt-title{font-size:clamp(2.1rem,8vw,2.6rem)}
-    #bento .cred-amb{font-size:clamp(1.1rem,3.4vw,1.3rem)}  /* 長い社名行をタブレット帯までコンパクトに */
   }
   @media(max-width:720px) and (prefers-reduced-motion:reduce){#bento .rv-bt:active{transform:none}}
 
@@ -739,7 +711,6 @@
     .bt-feat .bt-ru{filter:drop-shadow(0 1px 2px rgba(8,10,11,.6))}  /* 可読保証は動きでないので残す */
     #bento .rv-bt{opacity:1;transform:none;transition:none}
     #bento .rv-bt>span,#bento .rv-bt .bt-cap{transform:none;opacity:1;transition:none}
-    #bento .cred-item::after,#bento .cred-item:hover::after{transition:none}
   }
 
   /* WORKS — filter wraps cleanly, + client credit */
@@ -1550,25 +1521,6 @@
       <span style="background-image:url('images/gallery/04.jpg')"></span>
       <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Video</h3><p class="bt-jp" data-en="Film, reels &amp; motion">映像・リール制作</p></div>
     </a>
-  </div>
-  <!-- 信頼ストリップ：金は数字のみ。区切りは縦hairline＋余白（中黒/em-dash不使用）。アンバサダーは社名を証拠に据える -->
-  <!-- 桁注意：仮数部も data-en で言語切替（28.5万=285,000 → EN 285K）。.cred-n 自体に data-en は付けない（innerHTML全置換で子の .u が消える） -->
-  <div class="cred rv">
-    <div class="cred-item">
-      <span class="cred-n">1.74<span class="u">M</span></span>
-      <span class="cred-l" data-en="Reel views">リール再生</span>
-      <span class="cred-sub" data-en="Coca-Cola PR reel">Coca-Cola PRリール</span>
-    </div>
-    <div class="cred-item">
-      <span class="cred-amb">Samsung / Adobe / Alfa Romeo</span>
-      <span class="cred-l" data-en="Official ambassador">公式アンバサダー</span>
-      <span class="cred-sub" data-en="Brand partnerships">ブランド公式起用</span>
-    </div>
-    <div class="cred-item">
-      <span class="cred-n"><span data-en="285">28.5</span><span class="u" data-en="K">万</span></span>
-      <span class="cred-l" data-en="Followers">フォロワー</span>
-      <span class="cred-sub">Instagram @s_ken.ken</span>
-    </div>
   </div>
 </section>
 
