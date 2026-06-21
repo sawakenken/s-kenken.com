@@ -605,8 +605,8 @@
   .bt::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;
     background:linear-gradient(to top,rgba(8,10,11,.72),rgba(8,10,11,0) 60%);
     pointer-events:none;transition:opacity .5s var(--ease)}
-  /* hover-zoom は reveal の settle 規則 (#bento .rv-bt.in>span = 1,2,1) に負けないよう #bento 配下に上げる (1,3,1) */
-  @media(hover:hover){#bento .rv-bt:hover>span{transform:scale(1.05)}.bt:hover>span{filter:brightness(1.04)}.bt:hover::after{opacity:.92}}
+  /* hover：写真の微ズーム＋スクリム濃く（hover端末のみ） */
+  @media(hover:hover){.bt:hover>span{transform:scale(1.05);filter:brightness(1.04)}.bt:hover::after{opacity:.92}}
 
   .bt-cap{position:absolute;left:clamp(14px,1.6vw,18px);right:clamp(14px,1.6vw,18px);bottom:clamp(13px,1.5vw,16px);z-index:2}
   /* ★ 明るい写真上でのキャプション可読の保証スクリム。寸法はキャプション帯を必ず覆うこと（縮小・上移動するとbt-jp/bt-forが4.5:1を割る）。トリミング禁止 */
@@ -632,38 +632,24 @@
   .bt:focus-visible{outline:2px solid var(--accent);outline-offset:-3px;
     box-shadow:inset 0 0 0 1px rgba(8,10,11,.9),0 0 0 2px rgba(8,10,11,.9)}
 
-  /* per-tile staggered reveal：個別observeは feat(背高)とsideで発火フレームがズレ主従カスケードが崩れるため、
-     グリッド1個の .in を起点に子へ delay を配る（grid に .rv、タイルは .rv-bt のみ＝個別observe対象にしない） */
-  #bento .rv-bt{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform 1.05s var(--ease);transition-delay:0s}
-  #bento .bento-grid.in .bt-feat.rv-bt{transition-delay:0s}
-  #bento .bento-grid.in .bt-sns.rv-bt{transition-delay:.09s}
-  #bento .bento-grid.in .bt-tour.rv-bt{transition-delay:.17s}
-  #bento .bento-grid.in .bt-video.rv-bt{transition-delay:.25s}
-  #bento .bento-grid.in .rv-bt{opacity:1;transform:none}
-  #bento .rv-bt>span{transform:scale(1.06);transition:transform 1.1s var(--ease),filter .6s var(--ease)}
-  #bento .bento-grid.in .rv-bt>span{transform:scale(1)}
-  #bento .rv-bt .bt-cap{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .9s var(--ease)}
-  #bento .bento-grid.in .rv-bt .bt-cap{opacity:1;transform:none;transition-delay:.12s}
-
+  /* 出現アニメは各タイルを .rv にして個別observe＋staggerGrid（サイト標準パターン）に委譲 */
 
   /* ── MOBILE：feat を主役に昇格、従3枚は縦積みのまま（モザイクは脆いので不採用）。タップ手がかりを補完 ── */
   @media(max-width:720px){
     .bt-feat::before{padding-top:62.5%}  /* スマホも横長(16:10)。横長4つで揃え、featは僅かに背高で主役感 */
-    /* press-scale は reveal settle 規則 (#bento .bento-grid.in .rv-bt = 1,2,0) に負けるため #bento 配下に上げる */
-    #bento .rv-bt:active{transform:scale(.985);transition:transform .12s var(--ease)}
+    /* タップのpress-scale（.rv.in の settle に勝つよう #bento スコープで） */
+    #bento .bt:active{transform:scale(.985);transition:transform .12s var(--ease)}
     .bt:active>span{filter:brightness(1.04)}
     .bt-ru{transform:scaleX(1.15)}  /* touchはhoverが死ぬので罫を常時わずかに長く */
     .bt-feat .bt-title,.bt-side .bt-title{font-size:clamp(1.25rem,4.8vw,1.6rem)}  /* スマホは横長4つ＝同サイズ */
   }
-  @media(max-width:720px) and (prefers-reduced-motion:reduce){#bento .rv-bt:active{transform:none}}
+  @media(max-width:720px) and (prefers-reduced-motion:reduce){#bento .bt:active{transform:none}}
 
   /* reduced-motion：新規 transform/opacity/filter を全て無効化（取りこぼすと初期transformが残り崩れる） */
   @media(prefers-reduced-motion:reduce){
     .bt>span,.bt-ru{transition:none}
-    .bt:hover>span,#bento .rv-bt:hover>span{transform:none}
+    .bt:hover>span{transform:none}
     .bt-feat .bt-ru{filter:drop-shadow(0 1px 2px rgba(8,10,11,.6))}  /* 可読保証は動きでないので残す */
-    #bento .rv-bt{opacity:1;transform:none;transition:none}
-    #bento .rv-bt>span,#bento .rv-bt .bt-cap{transform:none;opacity:1;transition:none}
   }
 
   /* WORKS — filter wraps cleanly, + client credit */
@@ -1059,7 +1045,7 @@
   }
   .ct-lead{max-width:19em;word-break:normal;text-wrap:pretty}
 </style>
-<noscript><style>.loader{display:none!important}.rv{opacity:1;transform:none}.rv-bt{opacity:1!important;transform:none!important}.sec-head.rv{transform:none}.reveal-media{clip-path:none;opacity:1}.gp-tile{opacity:1;transform:none}.work{opacity:1;transform:none}.hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}.news li.hide{display:block}</style></noscript>
+<noscript><style>.loader{display:none!important}.rv{opacity:1;transform:none}.sec-head.rv{transform:none}.reveal-media{clip-path:none;opacity:1}.gp-tile{opacity:1;transform:none}.work{opacity:1;transform:none}.hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}.news li.hide{display:block}</style></noscript>
 </head>
 <body class="preload">
 <a class="skip-link" href="#about" data-en="Skip to content">本文へスキップ</a>
@@ -1364,21 +1350,21 @@
 <section class="sec wrap" id="bento">
   <div class="sec-head rv"><span class="eyebrow">What I do</span><h2 class="en-h">Services</h2></div>
   <!-- タイル種別はフッククラス(.bt-feat/.bt-sns/.bt-tour/.bt-video)で識別。CSSは :nth-of-type に依存しないので並べ替え・要素挿入に強い -->
-  <!-- grid に .rv（=これ1個だけがIO監視対象→単一の .in）。各タイルは .rv-bt のみ（個別監視されない）。子cascadeは grid.in 起点で発火 -->
-  <div class="bento-grid rv">
-    <a class="bt bt-feat rv-bt" href="#works-page">
+  <!-- 出現アニメ：各タイルが .rv（個別IO監視）＋ staggerGrid で stagger。サイト標準パターン -->
+  <div class="bento-grid">
+    <a class="bt bt-feat rv" href="#works-page">
       <span style="background-image:url('images/gallery/01.jpg')"></span>
       <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Photography</h3><p class="bt-jp" data-en="Stills">撮影</p><p class="bt-for" data-en="From tourism, hotels and brands to events and portraits.">観光・ホテル・ブランドの撮影から、イベント記録やポートレートまで。</p></div>
     </a>
-    <a class="bt bt-side bt-sns rv-bt" href="#works-page">
+    <a class="bt bt-side bt-sns rv" href="#works-page">
       <span style="background-image:url('images/gallery/07.jpg')"></span>
       <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Brand Partnerships</h3><p class="bt-jp" data-en="Tie-ups &amp; ambassadorships">ブランドタイアップ／アンバサダー</p></div>
     </a>
-    <a class="bt bt-side bt-tour rv-bt" href="#works-page">
+    <a class="bt bt-side bt-tour rv" href="#works-page">
       <span style="background-image:url('images/gallery/09.jpg')"></span>
       <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Tourism PR</h3><p class="bt-jp" data-en="Destinations &amp; tourism boards">観光・自治体PR</p></div>
     </a>
-    <a class="bt bt-side bt-video rv-bt" href="#works-page">
+    <a class="bt bt-side bt-video rv" href="#works-page">
       <span style="background-image:url('images/gallery/04.jpg')"></span>
       <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Video</h3><p class="bt-jp" data-en="Film, reels &amp; motion">映像・リール制作</p></div>
     </a>
@@ -2092,6 +2078,7 @@
   })();
   document.querySelectorAll('.news li[data-slug]').forEach(function(li){ if(!li.querySelector('.np-chev')){ var c=document.createElement('span'); c.className='np-chev'; li.appendChild(c); } });
   staggerGrid('#worksGrid, #wpGrid', '.work', 0.07, 0.42, 0);
+  staggerGrid('#bento .bento-grid', '.bt', 0.08, 0.4, 0);
   staggerGrid('#gpGrid', '.gp-tile', 0.05, 0.55, 0.15);
   staggerGrid('.news', 'li.rv', 0.05, 0.4, 0);
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){addIn(e.target);io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
