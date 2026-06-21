@@ -616,6 +616,26 @@
   @media(max-width:720px){.ticket-no{font-size:72px;bottom:-18px}.ticket-title{font-size:1.3rem;margin-top:-15px}}
   @media(prefers-reduced-motion:reduce){.ticket,.ticket-photo>span,.ticket-edge{transition:none}.ticket:hover{transform:none;box-shadow:none}.ticket:hover .ticket-photo>span{transform:none}}
 
+  /* SERVICE BENTO (非対称 / desktop=大タイル＋右3 / mobile=単一カラム主従) */
+  #bento .bento-grid{display:grid;grid-template-columns:1fr;gap:clamp(10px,1.6vw,14px);margin-top:clamp(26px,3.6vw,42px)}
+  @media(min-width:721px){#bento .bento-grid{grid-template-columns:1.5fr 1fr;grid-template-rows:repeat(3,minmax(118px,1fr))}.bt-feat{grid-row:1/4}}
+  .bt{position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block;background:var(--panel2);cursor:pointer}
+  .bt-feat::before{content:"";display:block;padding-top:75%}    /* 4:3 高さ確保（iOS aspect-ratio潰れ回避）*/
+  .bt-side::before{content:"";display:block;padding-top:56.25%} /* 16:9 */
+  @media(min-width:721px){.bt-feat::before,.bt-side::before{display:none}}   /* desktop はグリッド行で高さ決定 */
+  .bt>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;transition:transform .9s var(--ease),filter .6s var(--ease)}
+  .bt::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(8,10,11,.85),rgba(8,10,11,.05) 55%);pointer-events:none}
+  @media(hover:hover){.bt:hover>span{transform:scale(1.05);filter:brightness(1.06)}}
+  .bt-cap{position:absolute;left:clamp(14px,1.6vw,18px);right:clamp(14px,1.6vw,18px);bottom:clamp(13px,1.5vw,16px);z-index:2}
+  .bt-ru{width:26px;height:2px;background:var(--accent);margin-bottom:10px;transition:width .45s var(--ease)}
+  @media(hover:hover){.bt:hover .bt-ru{width:46px}}
+  .bt-title{font-family:var(--serif);font-weight:600;line-height:1;color:#fff;margin:0;text-shadow:0 1px 10px rgba(8,10,11,.5)}
+  .bt-feat .bt-title{font-size:clamp(2rem,4.4vw,2.75rem)}
+  .bt-side .bt-title{font-size:clamp(1.3rem,2.4vw,1.55rem)}
+  .bt-jp{font-family:var(--mincho);font-size:.78rem;letter-spacing:.06em;color:var(--accent);margin-top:6px}
+  .bt-for{font-family:var(--jp);font-size:.78rem;line-height:1.7;color:var(--muted);margin-top:9px;max-width:34ch;word-break:auto-phrase}
+  @media(prefers-reduced-motion:reduce){.bt>span,.bt-ru{transition:none}.bt:hover>span{transform:none}}
+
   /* WORKS — filter wraps cleanly, + client credit */
   .works-filter{flex-wrap:wrap;overflow:visible;justify-content:center;
     gap:clamp(13px,2.2vw,18px) clamp(20px,3.4vw,40px)}
@@ -1396,6 +1416,29 @@
         <p class="ticket-jp" data-en="Film &amp; motion">映像制作</p>
         <p class="ticket-for" data-en="Travel / Product PR / Venue intros / Event teasers">観光体験・商品PR・施設紹介・イベント告知</p>
       </div>
+    </a>
+  </div>
+</section>
+
+<!-- SERVICE BENTO (非対称・プロト3) -->
+<section class="sec wrap" id="bento">
+  <div class="sec-head rv"><span class="eyebrow">Services</span><h2 class="en-h">Selected services</h2></div>
+  <div class="bento-grid rv">
+    <a class="bt bt-feat" href="#works-page">
+      <span style="background-image:url('images/gallery/01.jpg')"></span>
+      <div class="bt-cap"><div class="bt-ru"></div><h3 class="bt-title">Photography</h3><p class="bt-jp" data-en="Photography">撮影</p><p class="bt-for" data-en="Tourism PR / Hotels / Brands / Events / Portraits">観光PR・ホテル・ブランド・イベント・ポートレート</p></div>
+    </a>
+    <a class="bt bt-side" href="#works-page">
+      <span style="background-image:url('images/gallery/07.jpg')"></span>
+      <div class="bt-cap"><div class="bt-ru"></div><h3 class="bt-title">SNS Tie-up</h3><p class="bt-jp" data-en="Tie-up &amp; ambassador">タイアップ・アンバサダー</p></div>
+    </a>
+    <a class="bt bt-side" href="#works-page">
+      <span style="background-image:url('images/gallery/09.jpg')"></span>
+      <div class="bt-cap"><div class="bt-ru"></div><h3 class="bt-title">Tourism PR</h3><p class="bt-jp" data-en="Destination PR">観光プロモーション</p></div>
+    </a>
+    <a class="bt bt-side" href="#works-page">
+      <span style="background-image:url('images/gallery/04.jpg')"></span>
+      <div class="bt-cap"><div class="bt-ru"></div><h3 class="bt-title">Video</h3><p class="bt-jp" data-en="Film &amp; motion">映像制作</p></div>
     </a>
   </div>
 </section>
