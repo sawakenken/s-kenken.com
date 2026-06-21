@@ -599,9 +599,10 @@
   /* SERVICE CARDS (横長16:10 / 4・2×2 / ゴースト番号＋オーバーラップ見出し) */
   #tickets .ticket-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.8vw,22px);margin-top:clamp(26px,3.6vw,42px)}
   @media(min-width:721px){#tickets .ticket-grid{grid-template-columns:repeat(4,1fr)}}
-  .ticket{position:relative;background:var(--panel);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+  .ticket{position:relative;background:var(--panel);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;cursor:pointer;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
   @media(hover:hover){.ticket:hover{transform:translateY(-4px);box-shadow:0 16px 36px -20px rgba(0,0,0,.6)}}
-  .ticket-photo{position:relative;aspect-ratio:16/10;overflow:hidden;background-color:var(--panel2)}
+  .ticket-photo{position:relative;overflow:hidden;background-color:var(--panel2)}
+  .ticket-photo::before{content:"";display:block;padding-top:62.5%}   /* 16:10 高さ確保（iOS で aspect-ratio が0潰れする地雷の回避） */
   .ticket-photo>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;transition:transform .6s var(--ease),filter .5s var(--ease)}
   .ticket-photo::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(10,12,13,.7),transparent 60%);pointer-events:none}
   @media(hover:hover){.ticket:hover .ticket-photo>span{transform:scale(1.05);filter:brightness(1.05)}}
@@ -609,7 +610,7 @@
   .ticket-edge{position:absolute;left:0;top:0;width:3px;height:0;background:var(--accent);z-index:3;transition:height .45s var(--ease)}
   @media(hover:hover){.ticket:hover .ticket-edge{height:100%}}
   .ticket-body{position:relative;padding:0 clamp(14px,1.6vw,18px) clamp(15px,1.7vw,18px);display:flex;flex-direction:column;flex:1}
-  .ticket-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.4rem,2.5vw,1.85rem);line-height:1;letter-spacing:.005em;color:var(--text);margin-top:clamp(-20px,-1.4vw,-15px);position:relative;z-index:2}
+  .ticket-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.4rem,2.5vw,1.85rem);line-height:1.05;letter-spacing:.005em;color:var(--text);margin-top:clamp(-20px,-1.4vw,-15px);min-height:2.1em;position:relative;z-index:2;text-shadow:0 1px 8px rgba(10,12,13,.45)}
   .ticket-jp{font-family:var(--mincho);color:var(--accent);font-size:.82rem;letter-spacing:.06em;margin-top:7px}
   .ticket-for{font-family:var(--jp);color:var(--muted);font-size:.74rem;line-height:1.7;margin-top:11px;padding-top:11px;border-top:1px solid var(--line-soft);word-break:auto-phrase}
   @media(max-width:720px){.ticket-no{font-size:72px;bottom:-18px}.ticket-title{font-size:1.3rem;margin-top:-15px}}
@@ -1365,7 +1366,7 @@
   <div class="sec-head rv"><span class="eyebrow">Services</span><h2 class="en-h">Pick a service</h2></div>
   <div class="ticket-grid rv">
     <a class="ticket" href="#works-page">
-      <div class="ticket-photo"><span style="background-image:url('images/gallery/01.jpg')"></span><b class="ticket-no">01</b><i class="ticket-edge"></i></div>
+      <div class="ticket-photo"><span style="background-image:url('images/gallery/01.jpg')"></span><b class="ticket-no" aria-hidden="true">01</b><i class="ticket-edge" aria-hidden="true"></i></div>
       <div class="ticket-body">
         <h3 class="ticket-title">Photography</h3>
         <p class="ticket-jp" data-en="Photography">撮影</p>
@@ -1373,7 +1374,7 @@
       </div>
     </a>
     <a class="ticket" href="#works-page">
-      <div class="ticket-photo"><span style="background-image:url('images/gallery/07.jpg')"></span><b class="ticket-no">02</b><i class="ticket-edge"></i></div>
+      <div class="ticket-photo"><span style="background-image:url('images/gallery/07.jpg')"></span><b class="ticket-no" aria-hidden="true">02</b><i class="ticket-edge" aria-hidden="true"></i></div>
       <div class="ticket-body">
         <h3 class="ticket-title">SNS Tie-up</h3>
         <p class="ticket-jp" data-en="Tie-up &amp; ambassador">タイアップ・アンバサダー</p>
@@ -1381,7 +1382,7 @@
       </div>
     </a>
     <a class="ticket" href="#works-page">
-      <div class="ticket-photo"><span style="background-image:url('images/gallery/09.jpg')"></span><b class="ticket-no">03</b><i class="ticket-edge"></i></div>
+      <div class="ticket-photo"><span style="background-image:url('images/gallery/09.jpg')"></span><b class="ticket-no" aria-hidden="true">03</b><i class="ticket-edge" aria-hidden="true"></i></div>
       <div class="ticket-body">
         <h3 class="ticket-title">Tourism Promotion</h3>
         <p class="ticket-jp" data-en="Destination PR">観光プロモーション</p>
@@ -1389,7 +1390,7 @@
       </div>
     </a>
     <a class="ticket" href="#works-page">
-      <div class="ticket-photo"><span style="background-image:url('images/gallery/04.jpg')"></span><b class="ticket-no">04</b><i class="ticket-edge"></i></div>
+      <div class="ticket-photo"><span style="background-image:url('images/gallery/04.jpg')"></span><b class="ticket-no" aria-hidden="true">04</b><i class="ticket-edge" aria-hidden="true"></i></div>
       <div class="ticket-body">
         <h3 class="ticket-title">Video / Short Movie</h3>
         <p class="ticket-jp" data-en="Film &amp; motion">映像制作</p>
