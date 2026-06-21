@@ -559,30 +559,6 @@
   .wd-cta-lead{font-family:var(--jp);font-weight:500;font-size:clamp(1rem,2.4vw,1.16rem);letter-spacing:.02em;color:var(--text);text-align:center}
   .wd-contact-cta{background:var(--accent);border-color:var(--accent)!important;color:#fff!important}
   @media(hover:hover){.wd-contact-cta:hover{background:transparent;color:var(--accent)!important}}
-  /* SERVICES */
-  .svc-list{margin-top:clamp(26px,3.6vw,42px);display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)}
-  .blk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;border:1px solid var(--line-soft);overflow:hidden;background:var(--panel);transition:border-color .45s var(--ease),opacity 1s ease,transform 1.15s var(--ease)}
-  @media(hover:hover){.blk:hover{border-color:rgba(224,166,97,.42)}}
-  .blk-media{position:relative;min-width:0;overflow:hidden;background-color:var(--panel2)}
-  .blk-media>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;transition:filter .45s var(--ease)}
-  @media(hover:hover){.blk:hover .blk-media>span{filter:brightness(1.07) saturate(1.05)}}
-  .blk:nth-child(even) .blk-media{order:2}
-  .blk-txt{min-width:0;overflow-wrap:anywhere;padding:clamp(24px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center}
-  .blk .num{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:1.3rem;line-height:1}
-  .blk h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,2.3vw,2.05rem);line-height:1.05;margin-top:4px;color:var(--text)}
-  .blk .ja{font-family:var(--mincho);color:var(--muted);margin-bottom:13px;font-size:.95rem}
-  .blk .desc{font-family:var(--jp);color:var(--text);font-size:.92rem;line-height:1.85;word-break:auto-phrase}
-  .blk .for{font-family:var(--jp);color:var(--muted);font-size:.8rem;line-height:1.7;margin-top:10px}
-  .blk .proof{font-family:var(--jp);color:var(--accent2);font-size:.78rem;line-height:1.6;margin-top:8px}
-  .blk .sv-cta{display:inline-flex;align-items:center;gap:7px;width:fit-content;margin-top:18px;font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--text);text-decoration:none;border-bottom:1px solid var(--line);padding:4px 0 5px;transition:gap .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
-  @media(hover:hover){.blk .sv-cta:hover{gap:13px;color:var(--accent);border-color:var(--accent)}}
-  @media(min-width:721px){.blk{min-height:clamp(360px,30vw,460px)}}   /* consistent block height; image fills its half (landscape, contained) */
-  @media(max-width:720px){
-    .blk{grid-template-columns:1fr}                 /* stack: image on top, text below */
-    .blk:nth-child(even) .blk-media{order:0}        /* image always first (top) */
-    .blk-media{aspect-ratio:auto;height:clamp(190px,56vw,300px)}   /* explicit height (iOS-safe: grid+aspect-ratio can collapse to 0 on iOS) */
-    .blk-txt{padding:clamp(22px,6vw,32px)}
-  }
   /* FAQ */
   .faq{margin-top:clamp(28px,4vw,46px);border-top:1px solid var(--line)}
   .faq-item{border-bottom:1px solid var(--line)}
@@ -596,26 +572,6 @@
   .faq-item[open] .faq-chev{transform:rotate(-135deg)}
   .faq-a{padding:0 clamp(4px,1vw,12px) clamp(20px,2.8vw,26px);max-width:46em}
   .faq-a p{font-family:var(--jp);font-size:.92rem;line-height:1.95;color:var(--muted);word-break:auto-phrase;margin:0}
-  /* SERVICE CARDS (横長16:10 / 4・2×2 / ゴースト番号＋オーバーラップ見出し) */
-  #tickets .ticket-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.8vw,22px);margin-top:clamp(26px,3.6vw,42px)}
-  @media(min-width:721px){#tickets .ticket-grid{grid-template-columns:repeat(4,1fr)}}
-  .ticket{position:relative;background:var(--panel);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;cursor:pointer;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-  @media(hover:hover){.ticket:hover{transform:translateY(-4px);box-shadow:0 16px 36px -20px rgba(0,0,0,.6)}}
-  .ticket-photo{position:relative;overflow:hidden;background-color:var(--panel2)}
-  .ticket-photo::before{content:"";display:block;padding-top:62.5%}   /* 16:10 高さ確保（iOS で aspect-ratio が0潰れする地雷の回避） */
-  .ticket-photo>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;transition:transform .6s var(--ease),filter .5s var(--ease)}
-  .ticket-photo::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(10,12,13,.7),transparent 60%);pointer-events:none}
-  @media(hover:hover){.ticket:hover .ticket-photo>span{transform:scale(1.05);filter:brightness(1.05)}}
-  .ticket-no{position:absolute;right:5px;bottom:-22px;z-index:1;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(74px,9vw,100px);line-height:1;color:rgba(234,232,226,.1);pointer-events:none}
-  .ticket-edge{position:absolute;left:0;top:0;width:3px;height:0;background:var(--accent);z-index:3;transition:height .45s var(--ease)}
-  @media(hover:hover){.ticket:hover .ticket-edge{height:100%}}
-  .ticket-body{position:relative;padding:0 clamp(14px,1.6vw,18px) clamp(15px,1.7vw,18px);display:flex;flex-direction:column;flex:1}
-  .ticket-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.4rem,2.5vw,1.85rem);line-height:1.05;letter-spacing:.005em;color:var(--text);margin-top:clamp(-20px,-1.4vw,-15px);min-height:2.1em;position:relative;z-index:2;text-shadow:0 1px 8px rgba(10,12,13,.45)}
-  .ticket-jp{font-family:var(--mincho);color:var(--accent);font-size:.82rem;letter-spacing:.06em;margin-top:7px}
-  .ticket-for{font-family:var(--jp);color:var(--muted);font-size:.74rem;line-height:1.7;margin-top:11px;padding-top:11px;border-top:1px solid var(--line-soft);word-break:auto-phrase}
-  @media(max-width:720px){.ticket-no{font-size:72px;bottom:-18px}.ticket-title{font-size:1.3rem;margin-top:-15px}}
-  @media(prefers-reduced-motion:reduce){.ticket,.ticket-photo>span,.ticket-edge{transition:none}.ticket:hover{transform:none;box-shadow:none}.ticket:hover .ticket-photo>span{transform:none}}
-
   /* SERVICE BENTO (非対称 / desktop=大タイル＋右3 / mobile=単一カラム主従) — concept E 正式版 */
   /* タイル種別は :nth-of-type ではなく明示フッククラス(.bt-sns/.bt-tour/.bt-video)で割る → DOM順に依存しない（並べ替え・要素挿入に強い） */
   #bento .bento-grid{display:grid;grid-template-columns:1fr;gap:clamp(10px,1.6vw,14px);margin-top:clamp(26px,3.6vw,42px)}
@@ -670,7 +626,7 @@
   /* 和題から金を撤去（写真上の金の希少性を守る）。ミンチョ字形＋字間で本文と差別化 */
   .bt-jp{font-family:var(--mincho);font-size:.78rem;letter-spacing:.06em;color:rgba(234,232,226,.62);margin-top:6px;text-shadow:0 1px 6px rgba(8,10,11,.5)}
   .bt-for{font-family:var(--jp);font-size:.78rem;line-height:1.7;color:var(--muted);margin-top:9px;max-width:36ch;
-    word-break:keep-all;word-break:auto-phrase;text-shadow:0 1px 6px rgba(8,10,11,.55)}  /* auto-phrase は iOS非対応→keep-all 併記 */
+    word-break:normal;overflow-wrap:anywhere;text-shadow:0 1px 6px rgba(8,10,11,.55)}  /* auto-phrase は iOS非対応→keep-all 併記 */
   /* side の補足文は1段小さく抑えて feat を立てる（SNSタイルにのみ付与し、3枚同形のクローン感を崩す） */
   .bt-side .bt-for{font-size:.72rem;margin-top:7px;max-width:30ch}
 
@@ -700,7 +656,7 @@
     .bt:active>span{filter:brightness(1.04)}
     .bt-ru{transform:scaleX(1.15)}  /* touchはhoverが死ぬので罫を常時わずかに長く */
     .bt-side .bt-title{font-size:clamp(1.2rem,4.8vw,1.5rem)}
-    .bt-feat .bt-title{font-size:clamp(2.1rem,8vw,2.6rem)}
+    .bt-feat .bt-title{font-size:clamp(1.6rem,6.6vw,2.2rem)}
   }
   @media(max-width:720px) and (prefers-reduced-motion:reduce){#bento .rv-bt:active{transform:none}}
 
