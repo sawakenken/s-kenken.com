@@ -694,7 +694,7 @@
 
   /* ── MOBILE：feat を主役に昇格、従3枚は縦積みのまま（モザイクは脆いので不採用）。タップ手がかりを補完 ── */
   @media(max-width:720px){
-    .bt-feat::before{padding-top:116%}  /* 縦長寄りで主役感。SE級でも 1+3 が視界に収まる比率 */
+    .bt-feat::before{padding-top:62.5%}  /* スマホも横長(16:10)。横長4つで揃え、featは僅かに背高で主役感 */
     /* press-scale は reveal settle 規則 (#bento .bento-grid.in .rv-bt = 1,2,0) に負けるため #bento 配下に上げる */
     #bento .rv-bt:active{transform:scale(.985);transition:transform .12s var(--ease)}
     .bt:active>span{filter:brightness(1.04)}
@@ -899,7 +899,7 @@
     letter-spacing:.04em;color:var(--text)}
   .np-lead .hl{color:var(--accent)}
   .np-sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:clamp(.95rem,1.7vw,1.1rem);margin-top:14px}
-  .np-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .np-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   .np-card{border:1px solid var(--line);border-radius:14px;padding:clamp(18px,2.4vw,24px);
     background:rgba(255,255,255,.015)}
   .np-card .nn{display:block;font-family:var(--sans);font-weight:600;font-size:clamp(1.7rem,3.6vw,2.3rem);
@@ -1124,7 +1124,7 @@
   <div class="nav-links" aria-label="メインメニュー">
     <a href="#about">About</a>
     <a href="#clients">Partners</a>
-    <a href="#services">Services</a>
+    <a href="#bento">Services</a>
     <a href="#selected">Works</a>
     <a href="#gallery">Gallery</a>
     <a href="#news">News</a>
@@ -1144,7 +1144,7 @@
   <button class="menu-close" id="menuClose" type="button" aria-label="メニューを閉じる"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>
   <nav class="menu-nav" aria-label="メインメニュー">
     <a href="#about" class="mi"><span class="t">About</span><span class="jp" data-en="Profile">プロフィール</span></a>
-    <a href="#services" class="mi"><span class="t">Services</span><span class="jp" data-en="What I do">サービス</span></a>
+    <a href="#bento" class="mi"><span class="t">Services</span><span class="jp" data-en="What I do">サービス</span></a>
     <div class="mi-group open" id="miWorks">
       <button type="button" class="mi-head" aria-expanded="true" aria-controls="miWorksSub"><span class="t">Works</span><span class="jp" data-en="Portfolio">実績</span></button>
       <div class="mi-sub" id="miWorksSub">
@@ -1404,98 +1404,6 @@
   <ul class="news" id="homeNews"></ul>
   <div class="more-row rv">
     <a class="read-more" href="#news-page" data-view="news"><span>View all news</span><span class="arr">→</span></a>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="sec wrap" id="services">
-  <div class="sec-head rv"><span class="eyebrow">What I do</span><h2 class="en-h">Services</h2></div>
-  <div class="svc-list">
-    <div class="blk rv">
-      <div class="blk-media"><span style="background-image:url('images/gallery/01.jpg')"></span></div>
-      <div class="blk-txt">
-        <span class="num">01</span>
-        <h3>Photography</h3>
-        <div class="ja" data-en="Photography">撮影</div>
-        <div class="desc" data-en="Photography for tourism, hotel and brand work — capturing the atmosphere of a place or product.">観光・ホテル・ブランド案件で、土地や商品の空気感まで写す撮影。</div>
-        <div class="for" data-en="Tourism PR / Hotels / Brands / Events / Portraits">観光PR・ホテル・ブランド・イベント・ポートレート</div>
-        <a class="sv-cta" href="#contact-page" data-en="Discuss a shoot →">撮影を相談する →</a>
-      </div>
-    </div>
-    <div class="blk rv">
-      <div class="blk-media"><span style="background-image:url('images/gallery/04.jpg')"></span></div>
-      <div class="blk-txt">
-        <span class="num">02</span>
-        <h3>Video / Short Movie</h3>
-        <div class="ja" data-en="Film &amp; motion">映像制作</div>
-        <div class="desc" data-en="Reels, short movies and vlogs — delivering the atmosphere of a place through motion and sound.">Reels・Vlog・プロモ映像。動きと音で、その場の空気感ごと届ける。</div>
-        <div class="for" data-en="Travel experiences / Product PR / Venue intros / Event teasers">観光体験・商品PR・施設紹介・イベント告知</div>
-        <div class="proof" data-en="Featured work: Coca-Cola PR reel, 1.74M views">代表作：Coca-Cola PRリール 174万再生</div>
-        <a class="sv-cta" href="#contact-page" data-en="Discuss a video →">映像を相談する →</a>
-      </div>
-    </div>
-    <div class="blk rv">
-      <div class="blk-media"><span style="background-image:url('images/gallery/07.jpg')"></span></div>
-      <div class="blk-txt">
-        <span class="num">03</span>
-        <h3>SNS Tie-up / PR</h3>
-        <div class="ja" data-en="Social &amp; ambassador">SNSタイアップ</div>
-        <div class="desc" data-en="Sharing the feeling of what I actually experienced — in photos and words.">実際に体験した温度を、写真と言葉で自然に届ける。</div>
-        <div class="for" data-en="Destination marketing / Awareness / Campaigns">観光誘客・商品/ブランド認知・キャンペーン</div>
-        <div class="proof" data-en="Official ambassador for Samsung, Adobe and Alfa Romeo / 285,000+ followers">Samsung・Adobe・Alfa Romeo 公式アンバサダー／約28.5万フォロワー</div>
-        <a class="sv-cta" href="#contact-page" data-en="Discuss a tie-up →">タイアップを相談する →</a>
-      </div>
-    </div>
-    <div class="blk rv">
-      <div class="blk-media"><span style="background-image:url('images/gallery/09.jpg')"></span></div>
-      <div class="blk-txt">
-        <span class="num">04</span>
-        <h3>Tourism Promotion</h3>
-        <div class="ja" data-en="Destination PR">観光プロモーション</div>
-        <div class="desc" data-en="From the trip itself to shooting, social posts and editorial assets. Available for travel in Japan and overseas.">旅程体験から撮影、SNS発信、記事・動画素材まで対応します。国内・海外出張可。</div>
-        <div class="for" data-en="Tourism boards / Governments / Airlines / Travel services">政府観光局・自治体・航空・旅行サービス</div>
-        <a class="sv-cta" href="#contact-page" data-en="Discuss tourism PR →">観光PRを相談する →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICE CARDS (縦型・角しかく) -->
-<section class="sec wrap" id="tickets">
-  <div class="sec-head rv"><span class="eyebrow">Services</span><h2 class="en-h">Pick a service</h2></div>
-  <div class="ticket-grid rv">
-    <a class="ticket" href="#works-page">
-      <div class="ticket-photo"><span style="background-image:url('images/gallery/01.jpg')"></span><b class="ticket-no" aria-hidden="true">01</b><i class="ticket-edge" aria-hidden="true"></i></div>
-      <div class="ticket-body">
-        <h3 class="ticket-title">Photography</h3>
-        <p class="ticket-jp" data-en="Photography">撮影</p>
-        <p class="ticket-for" data-en="Tourism PR / Hotels / Brands / Events / Portraits">観光PR・ホテル・ブランド・イベント・ポートレート</p>
-      </div>
-    </a>
-    <a class="ticket" href="#works-page">
-      <div class="ticket-photo"><span style="background-image:url('images/gallery/07.jpg')"></span><b class="ticket-no" aria-hidden="true">02</b><i class="ticket-edge" aria-hidden="true"></i></div>
-      <div class="ticket-body">
-        <h3 class="ticket-title">SNS Tie-up</h3>
-        <p class="ticket-jp" data-en="Tie-up &amp; ambassador">タイアップ・アンバサダー</p>
-        <p class="ticket-for" data-en="Destination marketing / Awareness / Campaigns">観光誘客・商品/ブランド認知・キャンペーン</p>
-      </div>
-    </a>
-    <a class="ticket" href="#works-page">
-      <div class="ticket-photo"><span style="background-image:url('images/gallery/09.jpg')"></span><b class="ticket-no" aria-hidden="true">03</b><i class="ticket-edge" aria-hidden="true"></i></div>
-      <div class="ticket-body">
-        <h3 class="ticket-title">Tourism Promotion</h3>
-        <p class="ticket-jp" data-en="Destination PR">観光プロモーション</p>
-        <p class="ticket-for" data-en="Tourism boards / Governments / Airlines / Travel services">政府観光局・自治体・航空・旅行サービス</p>
-      </div>
-    </a>
-    <a class="ticket" href="#works-page">
-      <div class="ticket-photo"><span style="background-image:url('images/gallery/04.jpg')"></span><b class="ticket-no" aria-hidden="true">04</b><i class="ticket-edge" aria-hidden="true"></i></div>
-      <div class="ticket-body">
-        <h3 class="ticket-title">Video / Short Movie</h3>
-        <p class="ticket-jp" data-en="Film &amp; motion">映像制作</p>
-        <p class="ticket-for" data-en="Travel / Product PR / Venue intros / Event teasers">観光体験・商品PR・施設紹介・イベント告知</p>
-      </div>
-    </a>
   </div>
 </section>
 
@@ -1904,7 +1812,6 @@
         <div class="np-card"><span class="nn accent">100<span class="u">+</span></span><span class="nl">PR Projects</span></div>
         <div class="np-card"><span class="nn">3</span><span class="nl">Ambassadorships</span></div>
         <div class="np-card"><span class="nn">10<span class="u">+</span></span><span class="nl">Countries</span></div>
-        <div class="np-card"><span class="nn">285,000<span class="u">+</span></span><span class="nl">Followers</span></div>
       </div>
       </div>
     </div>
