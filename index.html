@@ -616,25 +616,131 @@
   @media(max-width:720px){.ticket-no{font-size:72px;bottom:-18px}.ticket-title{font-size:1.3rem;margin-top:-15px}}
   @media(prefers-reduced-motion:reduce){.ticket,.ticket-photo>span,.ticket-edge{transition:none}.ticket:hover{transform:none;box-shadow:none}.ticket:hover .ticket-photo>span{transform:none}}
 
-  /* SERVICE BENTO (非対称 / desktop=大タイル＋右3 / mobile=単一カラム主従) */
+  /* SERVICE BENTO (非対称 / desktop=大タイル＋右3 / mobile=単一カラム主従) — concept E 正式版 */
+  /* タイル種別は :nth-of-type ではなく明示フッククラス(.bt-sns/.bt-tour/.bt-video)で割る → DOM順に依存しない（並べ替え・要素挿入に強い） */
   #bento .bento-grid{display:grid;grid-template-columns:1fr;gap:clamp(10px,1.6vw,14px);margin-top:clamp(26px,3.6vw,42px)}
   @media(min-width:721px){#bento .bento-grid{grid-template-columns:1.5fr 1fr;grid-template-rows:repeat(3,minmax(118px,1fr))}.bt-feat{grid-row:1/4}}
-  .bt{position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block;background:var(--panel2);cursor:pointer}
-  .bt-feat::before{content:"";display:block;padding-top:75%}    /* 4:3 高さ確保（iOS aspect-ratio潰れ回避）*/
+  .bt{position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block;cursor:pointer;border-radius:0;background-color:var(--panel2)}
+
+  /* iOS aspect-ratio 潰れ回避：高さは padding-hack で確保 */
+  .bt-feat::before{content:"";display:block;padding-top:75%}    /* 4:3 */
   .bt-side::before{content:"";display:block;padding-top:56.25%} /* 16:9 */
-  @media(min-width:721px){.bt-feat::before,.bt-side::before{display:none}}   /* desktop はグリッド行で高さ決定 */
-  .bt>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;transition:transform .9s var(--ease),filter .6s var(--ease)}
-  .bt::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(8,10,11,.85),rgba(8,10,11,.05) 55%);pointer-events:none}
-  @media(hover:hover){.bt:hover>span{transform:scale(1.05);filter:brightness(1.06)}}
+  @media(min-width:721px){.bt-feat::before,.bt-side::before{display:none}}  /* desktop はグリッド行で高さ決定 */
+
+  /* span：写真レイヤー。inline の background-image:url() が cascade で下地グラデを上書きする（写真が来れば無害化） */
+  .bt>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;
+    background-color:var(--panel2);
+    background-image:radial-gradient(120% 90% at 30% 22%,rgba(224,166,97,.10),rgba(224,166,97,0) 56%),
+                     linear-gradient(155deg,#2C3031 0%,var(--panel2) 46%,#1B1F1E 100%);
+    transition:transform .9s var(--ease),filter .6s var(--ease)}
+  /* 種別で光だまりの原点・色味を振る → 画像ゼロでも主従1+3の非対称が残る。side 3枚は右下プールで「降順の意図的セット」に揃える */
+  .bt-feat>span{background-image:radial-gradient(110% 80% at 26% 18%,rgba(224,166,97,.13),rgba(224,166,97,0) 58%),
+                     linear-gradient(155deg,#2E3233 0%,var(--panel2) 46%,#1A1E1D 100%)}
+  .bt-sns>span{background-image:radial-gradient(120% 90% at 78% 86%,rgba(224,166,97,.07),rgba(224,166,97,0) 56%),
+                     linear-gradient(150deg,#2A2E2F 0%,var(--panel2) 46%,#1C201F 100%)}
+  .bt-tour>span{background-image:radial-gradient(120% 90% at 82% 90%,rgba(224,166,97,.06),rgba(224,166,97,0) 55%),
+                     linear-gradient(150deg,#292D2E 0%,var(--panel2) 44%,#1B1F1E 100%)}
+  .bt-video>span{background-image:radial-gradient(120% 90% at 80% 88%,rgba(224,166,97,.055),rgba(224,166,97,0) 55%),
+                     linear-gradient(150deg,#282C2D 0%,var(--panel2) 45%,#1B1F1E 100%)}
+  /* 無地時にタイルが --bg に溶けないよう面の縁を担保（装飾でなく構造線） */
+  .bt{box-shadow:inset 0 0 0 1px var(--line-soft)}
+
+  /* スクリム：全面は軽め＋キャプション直下に局所スクリム（正のz重ね。負z+isolationはiOS脆弱なので不採用） */
+  .bt::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;
+    background:linear-gradient(to top,rgba(8,10,11,.72),rgba(8,10,11,0) 60%);
+    pointer-events:none;transition:opacity .5s var(--ease)}
+  /* hover-zoom は reveal の settle 規則 (#bento .rv-bt.in>span = 1,2,1) に負けないよう #bento 配下に上げる (1,3,1) */
+  @media(hover:hover){#bento .rv-bt:hover>span{transform:scale(1.05)}.bt:hover>span{filter:brightness(1.04)}.bt:hover::after{opacity:.92}}
+
   .bt-cap{position:absolute;left:clamp(14px,1.6vw,18px);right:clamp(14px,1.6vw,18px);bottom:clamp(13px,1.5vw,16px);z-index:2}
-  .bt-ru{width:26px;height:2px;background:var(--accent);margin-bottom:10px;transition:width .45s var(--ease)}
-  @media(hover:hover){.bt:hover .bt-ru{width:46px}}
-  .bt-title{font-family:var(--serif);font-weight:600;line-height:1;color:#fff;margin:0;text-shadow:0 1px 10px rgba(8,10,11,.5)}
+  /* ★ 明るい写真上でのキャプション可読の保証スクリム。寸法はキャプション帯を必ず覆うこと（縮小・上移動するとbt-jp/bt-forが4.5:1を割る）。トリミング禁止 */
+  .bt-cap::after{content:"";position:absolute;left:-28px;right:-28px;bottom:-22px;top:-16px;z-index:-1;
+    background:linear-gradient(to top,rgba(8,10,11,.62),rgba(8,10,11,0));pointer-events:none}
+
+  /* アクセント罫：写真上の金はここ1本に集約。feat=金（drop-shadowで明るい写真でも飛ばない）/ side=白で主従を割る */
+  .bt-ru{width:26px;height:2px;background:rgba(255,255,255,.5);margin-bottom:10px;
+    transform-origin:left center;transition:transform .45s var(--ease)}  /* width→scaleX で reflow回避 */
+  .bt-feat .bt-ru{background:var(--accent);filter:drop-shadow(0 1px 2px rgba(8,10,11,.6))}
+  @media(hover:hover){.bt:hover .bt-ru{transform:scaleX(1.77)}.bt-feat:hover .bt-ru{transform:scaleX(2.23)}}
+
+  .bt-title{font-family:var(--serif);font-weight:600;line-height:1;color:#fff;margin:0;
+    text-shadow:0 1px 3px rgba(8,10,11,.6),0 2px 14px rgba(8,10,11,.45)}
   .bt-feat .bt-title{font-size:clamp(2rem,4.4vw,2.75rem)}
   .bt-side .bt-title{font-size:clamp(1.3rem,2.4vw,1.55rem)}
-  .bt-jp{font-family:var(--mincho);font-size:.78rem;letter-spacing:.06em;color:var(--accent);margin-top:6px}
-  .bt-for{font-family:var(--jp);font-size:.78rem;line-height:1.7;color:var(--muted);margin-top:9px;max-width:34ch;word-break:auto-phrase}
-  @media(prefers-reduced-motion:reduce){.bt>span,.bt-ru{transition:none}.bt:hover>span{transform:none}}
+  /* 和題から金を撤去（写真上の金の希少性を守る）。ミンチョ字形＋字間で本文と差別化 */
+  .bt-jp{font-family:var(--mincho);font-size:.78rem;letter-spacing:.06em;color:rgba(234,232,226,.62);margin-top:6px;text-shadow:0 1px 6px rgba(8,10,11,.5)}
+  .bt-for{font-family:var(--jp);font-size:.78rem;line-height:1.7;color:var(--muted);margin-top:9px;max-width:36ch;
+    word-break:keep-all;word-break:auto-phrase;text-shadow:0 1px 6px rgba(8,10,11,.55)}  /* auto-phrase は iOS非対応→keep-all 併記 */
+  /* side の補足文は1段小さく抑えて feat を立てる（SNSタイルにのみ付与し、3枚同形のクローン感を崩す） */
+  .bt-side .bt-for{font-size:.72rem;margin-top:7px;max-width:30ch}
+
+  /* キーボード可視：写真の明部に金リングが埋もれないよう、暗いハロー(box-shadow)で金outlineをサンドして3:1を独立保証 */
+  .bt:focus-visible{outline:2px solid var(--accent);outline-offset:-3px;
+    box-shadow:inset 0 0 0 1px rgba(8,10,11,.9),0 0 0 2px rgba(8,10,11,.9)}
+
+  /* per-tile staggered reveal：個別observeは feat(背高)とsideで発火フレームがズレ主従カスケードが崩れるため、
+     グリッド1個の .in を起点に子へ delay を配る（grid に .rv、タイルは .rv-bt のみ＝個別observe対象にしない） */
+  #bento .rv-bt{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform 1.05s var(--ease);transition-delay:0s}
+  #bento .bento-grid.in .bt-feat.rv-bt{transition-delay:0s}
+  #bento .bento-grid.in .bt-sns.rv-bt{transition-delay:.09s}
+  #bento .bento-grid.in .bt-tour.rv-bt{transition-delay:.17s}
+  #bento .bento-grid.in .bt-video.rv-bt{transition-delay:.25s}
+  #bento .bento-grid.in .rv-bt{opacity:1;transform:none}
+  #bento .rv-bt>span{transform:scale(1.06);transition:transform 1.1s var(--ease),filter .6s var(--ease)}
+  #bento .bento-grid.in .rv-bt>span{transform:scale(1)}
+  #bento .rv-bt .bt-cap{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .9s var(--ease)}
+  #bento .bento-grid.in .rv-bt .bt-cap{opacity:1;transform:none;transition-delay:.12s}
+
+  /* ── CREDENTIALS STRIP — bento直下・同一セクション内。既存 .about-stats のDNAを流用 ── */
+  #bento .cred{display:flex;flex-wrap:wrap;align-items:flex-start;
+    gap:clamp(22px,4vw,52px);margin-top:clamp(24px,3.2vw,38px);
+    padding-top:clamp(20px,2.6vw,28px);border-top:1px solid var(--line-soft)}
+  #bento .cred-item{position:relative;display:flex;flex-direction:column;gap:9px;padding-left:clamp(0px,2vw,26px)}
+  /* 項目間の細い縦hairline（中黒/em-dash/装飾罫線を使わず構造線で分離）。先頭は出さない */
+  #bento .cred-item + .cred-item::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:1px;background:var(--line-soft)}
+  /* 数値スロット：金は「定量的実績」に限定。about-stats より一段下げ"足元の静かな帯"に留める。tabular撤去で Cormorant 本来のプロポーショナル字形に */
+  #bento .cred-n{font-family:var(--serif);font-weight:500;line-height:.9;
+    font-size:clamp(2rem,4.2vw,2.85rem);color:var(--accent);letter-spacing:.01em}
+  #bento .cred-n .u{font-size:.5em;letter-spacing:.04em;color:var(--muted);margin-left:.06em;vertical-align:.18em}
+  /* アンバサダーは数値化せず社名を証拠に据える（偽の精密数字を作らない）。テキストスロットで揃える */
+  #bento .cred-amb{font-family:var(--serif);font-weight:500;line-height:1.04;
+    font-size:clamp(1.18rem,2vw,1.42rem);color:var(--text);letter-spacing:.01em}
+  #bento .cred-l{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  #bento .cred-sub{font-family:var(--sans);font-size:.64rem;font-weight:500;letter-spacing:.05em;color:var(--text)}
+  /* ホバー：bt-ru の幅伸長イディオムを再利用した下線だけ。過剰演出しない */
+  #bento .cred-item::after{content:"";position:absolute;left:clamp(0px,2vw,26px);bottom:-2px;width:0;height:1px;background:var(--accent);transition:width .45s var(--ease)}
+  @media(hover:hover){#bento .cred-item:hover::after{width:26px}}
+  /* 単一カラム化を 640px に引き上げ：561-720px帯で長い社名行(cred-amb)が不揃いに折れる事故を回避 */
+  @media(max-width:640px){
+    #bento .cred{gap:18px}
+    #bento .cred-item{padding-left:0;flex-basis:100%}
+    #bento .cred-item + .cred-item::before{display:none}
+    #bento .cred-item + .cred-item{padding-top:18px;border-top:1px solid var(--line-soft)}
+    #bento .cred-item::after{left:0}
+  }
+
+  /* ── MOBILE：feat を主役に昇格、従3枚は縦積みのまま（モザイクは脆いので不採用）。タップ手がかりを補完 ── */
+  @media(max-width:720px){
+    .bt-feat::before{padding-top:116%}  /* 縦長寄りで主役感。SE級でも 1+3 が視界に収まる比率 */
+    /* press-scale は reveal settle 規則 (#bento .bento-grid.in .rv-bt = 1,2,0) に負けるため #bento 配下に上げる */
+    #bento .rv-bt:active{transform:scale(.985);transition:transform .12s var(--ease)}
+    .bt:active>span{filter:brightness(1.04)}
+    .bt-ru{transform:scaleX(1.15)}  /* touchはhoverが死ぬので罫を常時わずかに長く */
+    .bt-side .bt-title{font-size:clamp(1.2rem,4.8vw,1.5rem)}
+    .bt-feat .bt-title{font-size:clamp(2.1rem,8vw,2.6rem)}
+    #bento .cred-amb{font-size:clamp(1.1rem,3.4vw,1.3rem)}  /* 長い社名行をタブレット帯までコンパクトに */
+  }
+  @media(max-width:720px) and (prefers-reduced-motion:reduce){#bento .rv-bt:active{transform:none}}
+
+  /* reduced-motion：新規 transform/opacity/filter を全て無効化（取りこぼすと初期transformが残り崩れる） */
+  @media(prefers-reduced-motion:reduce){
+    .bt>span,.bt-ru{transition:none}
+    .bt:hover>span,#bento .rv-bt:hover>span{transform:none}
+    .bt-feat .bt-ru{filter:drop-shadow(0 1px 2px rgba(8,10,11,.6))}  /* 可読保証は動きでないので残す */
+    #bento .rv-bt{opacity:1;transform:none;transition:none}
+    #bento .rv-bt>span,#bento .rv-bt .bt-cap{transform:none;opacity:1;transition:none}
+    #bento .cred-item::after,#bento .cred-item:hover::after{transition:none}
+  }
 
   /* WORKS — filter wraps cleanly, + client credit */
   .works-filter{flex-wrap:wrap;overflow:visible;justify-content:center;
@@ -1029,7 +1135,7 @@
   }
   .ct-lead{max-width:19em;word-break:normal;text-wrap:pretty}
 </style>
-<noscript><style>.loader{display:none!important}.rv{opacity:1;transform:none}.sec-head.rv{transform:none}.reveal-media{clip-path:none;opacity:1}.gp-tile{opacity:1;transform:none}.work{opacity:1;transform:none}.hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}.news li.hide{display:block}</style></noscript>
+<noscript><style>.loader{display:none!important}.rv{opacity:1;transform:none}.rv-bt{opacity:1!important;transform:none!important}.sec-head.rv{transform:none}.reveal-media{clip-path:none;opacity:1}.gp-tile{opacity:1;transform:none}.work{opacity:1;transform:none}.hero-name .reveal span{transform:none}.hero-jp,.hero-foot{opacity:1}.news li.hide{display:block}</style></noscript>
 </head>
 <body class="preload">
 <a class="skip-link" href="#about" data-en="Skip to content">本文へスキップ</a>
@@ -1422,26 +1528,47 @@
   </div>
 </section>
 
-<!-- SERVICE BENTO (非対称・プロト3) -->
+<!-- SERVICE BENTO (非対称・concept E 正式版) -->
 <section class="sec wrap" id="bento">
-  <div class="sec-head rv"><span class="eyebrow">Services</span><h2 class="en-h">Selected services</h2></div>
+  <div class="sec-head rv"><span class="eyebrow" data-en="What I do">提供できること</span><h2 class="en-h">Services</h2></div>
+  <!-- タイル種別はフッククラス(.bt-feat/.bt-sns/.bt-tour/.bt-video)で識別。CSSは :nth-of-type に依存しないので並べ替え・要素挿入に強い -->
+  <!-- grid に .rv（=これ1個だけがIO監視対象→単一の .in）。各タイルは .rv-bt のみ（個別監視されない）。子cascadeは grid.in 起点で発火 -->
   <div class="bento-grid rv">
-    <a class="bt bt-feat" href="#works-page">
+    <a class="bt bt-feat rv-bt" href="#works-page">
       <span style="background-image:url('images/gallery/01.jpg')"></span>
-      <div class="bt-cap"><div class="bt-ru"></div><h3 class="bt-title">Photography</h3><p class="bt-jp" data-en="Photography">撮影</p><p class="bt-for" data-en="Tourism PR / Hotels / Brands / Events / Portraits">観光PR・ホテル・ブランド・イベント・ポートレート</p></div>
+      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Photography</h3><p class="bt-jp" data-en="Stills">撮影</p><p class="bt-for" data-en="From tourism, hotels and brands to events and portraits.">観光・ホテル・ブランドの撮影から、イベント記録やポートレートまで。</p></div>
     </a>
-    <a class="bt bt-side" href="#works-page">
+    <a class="bt bt-side bt-sns rv-bt" href="#works-page">
       <span style="background-image:url('images/gallery/07.jpg')"></span>
-      <div class="bt-cap"><div class="bt-ru"></div><h3 class="bt-title">SNS Tie-up</h3><p class="bt-jp" data-en="Tie-up &amp; ambassador">タイアップ・アンバサダー</p></div>
+      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Brand Partnerships</h3><p class="bt-jp" data-en="Tie-ups &amp; ambassadorships">ブランドタイアップ／アンバサダー</p><p class="bt-for" data-en="Samsung, Adobe and Alfa Romeo.">Samsung・Adobe・Alfa Romeo ほか。</p></div>
     </a>
-    <a class="bt bt-side" href="#works-page">
+    <a class="bt bt-side bt-tour rv-bt" href="#works-page">
       <span style="background-image:url('images/gallery/09.jpg')"></span>
-      <div class="bt-cap"><div class="bt-ru"></div><h3 class="bt-title">Tourism PR</h3><p class="bt-jp" data-en="Destination PR">観光プロモーション</p></div>
+      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Tourism PR</h3><p class="bt-jp" data-en="Destinations &amp; tourism boards">観光・自治体PR</p></div>
     </a>
-    <a class="bt bt-side" href="#works-page">
+    <a class="bt bt-side bt-video rv-bt" href="#works-page">
       <span style="background-image:url('images/gallery/04.jpg')"></span>
-      <div class="bt-cap"><div class="bt-ru"></div><h3 class="bt-title">Video</h3><p class="bt-jp" data-en="Film &amp; motion">映像制作</p></div>
+      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Video</h3><p class="bt-jp" data-en="Film, reels &amp; motion">映像・リール制作</p></div>
     </a>
+  </div>
+  <!-- 信頼ストリップ：金は数字のみ。区切りは縦hairline＋余白（中黒/em-dash不使用）。アンバサダーは社名を証拠に据える -->
+  <!-- 桁注意：仮数部も data-en で言語切替（28.5万=285,000 → EN 285K）。.cred-n 自体に data-en は付けない（innerHTML全置換で子の .u が消える） -->
+  <div class="cred rv">
+    <div class="cred-item">
+      <span class="cred-n">1.74<span class="u">M</span></span>
+      <span class="cred-l" data-en="Reel views">リール再生</span>
+      <span class="cred-sub" data-en="Coca-Cola PR reel">Coca-Cola PRリール</span>
+    </div>
+    <div class="cred-item">
+      <span class="cred-amb">Samsung / Adobe / Alfa Romeo</span>
+      <span class="cred-l" data-en="Official ambassador">公式アンバサダー</span>
+      <span class="cred-sub" data-en="Brand partnerships">ブランド公式起用</span>
+    </div>
+    <div class="cred-item">
+      <span class="cred-n"><span data-en="285">28.5</span><span class="u" data-en="K">万</span></span>
+      <span class="cred-l" data-en="Followers">フォロワー</span>
+      <span class="cred-sub">Instagram @s_ken.ken</span>
+    </div>
   </div>
 </section>
 
