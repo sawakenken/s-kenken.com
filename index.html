@@ -938,7 +938,9 @@
   .wd-info .v{font-family:var(--mincho);font-size:1rem;color:var(--text)}
   .wd-hero{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:16px;
     background:var(--panel2);margin:clamp(26px,3.6vw,40px) 0}
-  .wd-hero .img{position:absolute;inset:0}
+  .wd-hero .img{position:absolute;inset:0;background-image:var(--g,none);background-size:cover;background-position:center}
+  .wd-hero .img::before{content:"";position:absolute;inset:0;background-image:var(--photo,none);background-size:cover;background-position:center;background-repeat:no-repeat;filter:blur(26px) saturate(1.2);transform:scale(1.2)}
+  .wd-hero .img::after{content:"";position:absolute;inset:0;background-image:var(--photo,none);background-size:contain;background-position:center;background-repeat:no-repeat}
   .wd-body{max-width:42em}
   .wd-desc{font-size:1rem;line-height:2;color:var(--text);white-space:pre-line;word-break:auto-phrase}
   .wd-ig{margin:clamp(30px,4.4vw,52px) 0 0;display:flex;justify-content:center}
@@ -2321,8 +2323,11 @@
       if(w.projects && w.projects.length){
         w.projects.sort(function(a,b){return dnum(b.date)-dnum(a.date);});   /* always newest-first */
         var igsrc=''; for(var _pi=0;_pi<w.projects.length&&!igsrc;_pi++){ igsrc=igFromPosts(w.projects[_pi].posts); }
-        var hsrc=igsrc||w.photo;   /* per-project thumbnail fallback */
-        var _hlay=[]; if(w.photo)_hlay.push("url('"+w.photo+"')"); if(igsrc&&igsrc!==w.photo)_hlay.push("url('"+igsrc+"')");   /* hero: real cover (1080) wins, ig-thumb fallback, gradient last */
+        var _isPH=/\/works\/\d+\.jpg$/.test(w.photo||'');   /* generic numbered placeholder (01.jpg…), NOT a real per-work cover */
+        var _cover=(w.photo&&!_isPH)?w.photo:'';             /* curated per-work cover (named file) */
+        var hsrc=_cover||igsrc||w.photo;   /* per-project thumbnail fallback */
+        /* hero source priority: real cover → real IG post image → numbered placeholder (last resort). Avoids the recycled-looking placeholder being the enlarged image. */
+        var _hlay=[]; if(_cover)_hlay.push("url('"+_cover+"')"); if(igsrc)_hlay.push("url('"+igsrc+"')"); if(_isPH&&w.photo)_hlay.push("url('"+w.photo+"')");
         if(hero){ hero.style.display=''; var hi=document.getElementById('wdImg'); if(hi){ hi.className='img '+(w.img||''); hi.style.cssText=_hlay.length?("--photo:"+_hlay.join(',')):''; } }
         if(gal){ gal.className='wd-timeline';
           gal.innerHTML='<div class="wd-tl-head">'+t('\u6848\u4ef6\u4e00\u89a7','Projects')+'</div>'+w.projects.map(function(pr){
