@@ -506,7 +506,6 @@
   .view.active{display:block}
   /* View Transitions: quick cross-fade between views (Emil: <=300ms) */
   ::view-transition-old(root),::view-transition-new(root){animation-duration:.26s}
-  ::view-transition-group(vt-work){animation-duration:.34s}   /* thumbnail→hero morph */
   @media(prefers-reduced-motion:reduce){
     ::view-transition-group(*),::view-transition-old(root),::view-transition-new(root){animation:none!important}
   }
@@ -2343,21 +2342,14 @@
     function activate(name){
       Object.keys(views).forEach(function(k){ if(views[k]) views[k].classList.toggle('active',k===name); });
     }
-    var morphSrc=null;   /* thumbnail .img clicked → morph into the work-detail hero */
     function show(name,opts){
       opts=opts||{};
-      /* View Transitions API: cross-fade between SPA views (+ thumbnail→hero morph).
+      /* View Transitions API: quick cross-fade between SPA views.
          Progressive enhancement — unsupported browsers (& reduced-motion) swap instantly. */
       if(!opts._vt && document.startViewTransition && views[name] && current!==name
          && !matchMedia('(prefers-reduced-motion: reduce)').matches){
         opts._vt=true;
-        var _src=(name==='work')?morphSrc:null, _hero=null;
-        morphSrc=null;
-        if(_src){ _hero=document.getElementById('wdImg');
-          _src.style.viewTransitionName='vt-work'; if(_hero)_hero.style.viewTransitionName='vt-work'; }
-        var _t=document.startViewTransition(function(){ show(name,opts); });
-        if(_src){ var _clr=function(){ _src.style.viewTransitionName=''; if(_hero)_hero.style.viewTransitionName=''; };
-          _t.finished.then(_clr,_clr); }
+        document.startViewTransition(function(){ show(name,opts); });
         return;
       }
       var gen=(show._gen=(show._gen||0)+1);   /* bump generation: invalidates any pending scroll-restore from a previous navigation */
@@ -2438,7 +2430,7 @@
       var back=e.target.closest('.subpage-back');
       if(back){ e.preventDefault(); if(canBack&&history.length>1){ history.back(); } else { show('home',{restore:true}); try{history.pushState({h:''},'',location.pathname);}catch(_){}; } return; }
       var card=e.target.closest('.work[data-slug]');
-      if(card){ e.preventDefault(); morphSrc=card.querySelector('.img'); go('#work-'+card.dataset.slug); return; }
+      if(card){ e.preventDefault(); go('#work-'+card.dataset.slug); return; }
       var nw=e.target.closest('.np-work');
       if(nw){ e.preventDefault(); go('#work-'+nw.dataset.work); return; }
       var nli=e.target.closest('li[data-slug]');
@@ -2454,7 +2446,7 @@
     document.addEventListener('keydown',function(e){
       if(e.key!=='Enter')return;
       var card=e.target.closest&&e.target.closest('.work[data-slug]');
-      if(card){ e.preventDefault(); morphSrc=card.querySelector('.img'); go('#work-'+card.dataset.slug); }
+      if(card){ e.preventDefault(); go('#work-'+card.dataset.slug); }
     });
     window.addEventListener('popstate',route);
 
