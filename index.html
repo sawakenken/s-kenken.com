@@ -596,6 +596,21 @@
   .faq-item[open] .faq-chev{transform:rotate(-135deg)}
   .faq-a{padding:0 clamp(4px,1vw,12px) clamp(20px,2.8vw,26px);max-width:46em}
   .faq-a p{font-family:var(--jp);font-size:.92rem;line-height:1.95;color:var(--muted);word-break:auto-phrase;margin:0}
+  /* SERVICE TICKETS (card UI — ticket-stub style on dark) */
+  #tickets .ticket-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:clamp(16px,2.4vw,28px);margin-top:clamp(26px,3.6vw,42px)}
+  .ticket{position:relative;background:#F4EFE6;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 46px -24px rgba(0,0,0,.6);transition:transform .5s var(--ease)}
+  @media(hover:hover){.ticket:hover{transform:translateY(-5px)}}
+  .ticket-photo{position:relative;aspect-ratio:16/10;background-size:cover;background-position:center;background-color:var(--panel2)}
+  .ticket-no{position:absolute;top:9px;right:14px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.4rem;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .ticket-body{position:relative;padding:clamp(20px,2.6vw,26px) clamp(17px,2.1vw,22px) clamp(17px,2.2vw,21px);display:flex;flex-direction:column;border-top:2px dashed rgba(20,18,14,.2)}
+  .ticket-body::before,.ticket-body::after{content:"";position:absolute;top:-11px;width:20px;height:20px;border-radius:50%;background:var(--bg)}
+  .ticket-body::before{left:-10px}
+  .ticket-body::after{right:-10px}
+  .ticket-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.3rem,2.3vw,1.68rem);line-height:1.05;color:#1b1a17}
+  .ticket-jp{font-family:var(--jp);color:#5b564d;font-size:.86rem;margin-top:3px}
+  .ticket-for{font-family:var(--jp);color:#8b8579;font-size:.77rem;line-height:1.6;margin-top:9px;word-break:auto-phrase}
+  .ticket-cta{margin-top:clamp(14px,2vw,18px);display:block;text-align:center;background:#141312;color:#fff;border-radius:100px;padding:13px 18px;font-family:var(--sans);font-weight:600;font-size:.73rem;letter-spacing:.08em;text-decoration:none;transition:background .3s var(--ease),transform .3s var(--ease)}
+  @media(hover:hover){.ticket-cta:hover{background:#000;transform:translateY(-1px)}}
 
   /* WORKS — filter wraps cleanly, + client credit */
   .works-filter{flex-wrap:wrap;overflow:visible;justify-content:center;
@@ -1339,6 +1354,49 @@
         <a class="sv-cta" href="#contact-page" data-en="Discuss tourism PR →">観光PRを相談する →</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SERVICE TICKETS (card UI 試作) -->
+<section class="sec wrap" id="tickets">
+  <div class="sec-head rv"><span class="eyebrow">Card UI</span><h2 class="en-h">Pick a service</h2></div>
+  <div class="ticket-grid rv">
+    <article class="ticket">
+      <div class="ticket-photo" style="background-image:url('images/gallery/01.jpg')"><span class="ticket-no">01</span></div>
+      <div class="ticket-body">
+        <h3 class="ticket-title">Photography</h3>
+        <p class="ticket-jp" data-en="Photography">写真撮影</p>
+        <p class="ticket-for" data-en="Tourism PR · Hotels · Brands · Events">観光PR・ホテル・ブランド・イベント</p>
+        <a class="ticket-cta" href="#contact-page" data-en="Discuss a shoot →">撮影を相談する →</a>
+      </div>
+    </article>
+    <article class="ticket">
+      <div class="ticket-photo" style="background-image:url('images/gallery/04.jpg')"><span class="ticket-no">02</span></div>
+      <div class="ticket-body">
+        <h3 class="ticket-title">Video / Short</h3>
+        <p class="ticket-jp" data-en="Film &amp; motion">映像制作</p>
+        <p class="ticket-for" data-en="Travel · Product PR · Venues · Events">観光体験・商品PR・施設・イベント</p>
+        <a class="ticket-cta" href="#contact-page" data-en="Discuss a video →">映像を相談する →</a>
+      </div>
+    </article>
+    <article class="ticket">
+      <div class="ticket-photo" style="background-image:url('images/gallery/07.jpg')"><span class="ticket-no">03</span></div>
+      <div class="ticket-body">
+        <h3 class="ticket-title">SNS Tie-up</h3>
+        <p class="ticket-jp" data-en="Social &amp; ambassador">SNSタイアップ</p>
+        <p class="ticket-for" data-en="Destination marketing · Awareness">観光誘客・商品/ブランド認知</p>
+        <a class="ticket-cta" href="#contact-page" data-en="Discuss a tie-up →">タイアップを相談する →</a>
+      </div>
+    </article>
+    <article class="ticket">
+      <div class="ticket-photo" style="background-image:url('images/gallery/09.jpg')"><span class="ticket-no">04</span></div>
+      <div class="ticket-body">
+        <h3 class="ticket-title">Tourism PR</h3>
+        <p class="ticket-jp" data-en="Destination PR">観光プロモーション</p>
+        <p class="ticket-for" data-en="Tourism boards · Governments · Airlines">政府観光局・自治体・航空</p>
+        <a class="ticket-cta" href="#contact-page" data-en="Discuss tourism PR →">観光PRを相談する →</a>
+      </div>
+    </article>
   </div>
 </section>
 
