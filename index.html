@@ -1044,19 +1044,19 @@
   }
   .ct-lead{max-width:19em;word-break:normal;text-wrap:pretty}
   @media(max-width:600px){
-    /* About mobile (けんた sketch): name/role top-right, then portrait | gold-spine quote */
-    #about .about-grid{display:grid;grid-template-columns:86px 1fr;grid-template-areas:". id" "portrait quote" "bio bio" "creds creds";column-gap:15px;row-gap:0;align-items:stretch;justify-items:stretch;text-align:left;max-width:none}
+    /* About mobile (案3-B): [portrait + name/role] top row, quote full-width below */
+    #about .about-grid{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"portrait id" "quote quote" "bio bio" "creds creds";column-gap:18px;row-gap:22px;align-items:center;justify-items:stretch;text-align:left;max-width:none}
     #about .about-body{display:contents}
     #about .about-copy{display:contents;container-type:normal}
-    #about .about-portrait{grid-area:portrait;width:86px;max-width:none;min-width:0;margin:0;align-self:start}
-    #about .about-id{grid-area:id;align-self:end;text-align:left;margin:0 0 12px}
-    #about .about-name{font-size:clamp(1.4rem,6.6vw,1.78rem)}
-    #about .about-role{font-size:clamp(.72rem,3.1vw,.84rem);margin-top:6px}
-    #about .about-quote{grid-area:quote;display:block;margin-top:0;padding-left:14px}
-    #about .about-quote::before{top:2px;bottom:2px}
-    #about .about-lead{font-size:clamp(.98rem,4.3vw,1.14rem);line-height:1.68}
-    #about .about-lead-en{font-size:.84rem;margin-top:8px}
-    #about .bio{grid-area:bio;margin-top:26px;max-width:none;text-align:left}
+    #about .about-portrait{grid-area:portrait;width:clamp(92px,27vw,108px);max-width:none;min-width:0;margin:0}
+    #about .about-id{grid-area:id;text-align:left;margin:0}
+    #about .about-name{font-size:1.2rem}
+    #about .about-role{font-size:clamp(.62rem,2.9vw,.7rem);letter-spacing:.03em;margin-top:7px}
+    #about .about-quote{grid-area:quote;display:block;margin-top:0;padding-left:16px}
+    #about .about-quote::before{top:3px;bottom:3px}
+    #about .about-lead{font-size:clamp(1.04rem,4.6vw,1.22rem);line-height:1.68}
+    #about .about-lead-en{font-size:.86rem;margin-top:9px}
+    #about .bio{grid-area:bio;margin-top:4px;max-width:none;text-align:left}
     #about .amb-show{grid-area:creds}
   }
 </style>
