@@ -568,85 +568,29 @@
   .faq-item[open] .faq-chev{transform:rotate(-135deg)}
   .faq-a{padding:0 clamp(4px,1vw,12px) clamp(20px,2.8vw,26px);max-width:46em}
   .faq-a p{font-family:var(--jp);font-size:.92rem;line-height:1.95;color:var(--muted);word-break:auto-phrase;margin:0}
-  /* SERVICE BENTO (非対称 / desktop=大タイル＋右3 / mobile=単一カラム主従) — concept E 正式版 */
-  /* タイル種別は :nth-of-type ではなく明示フッククラス(.bt-sns/.bt-tour/.bt-video)で割る → DOM順に依存しない（並べ替え・要素挿入に強い） */
-  #bento .bento-grid{display:grid;grid-template-columns:1fr;gap:clamp(10px,1.6vw,14px);margin-top:clamp(26px,3.6vw,42px)}
-  @media(min-width:721px){#bento .bento-grid{grid-template-columns:1.5fr 1fr;grid-template-rows:repeat(3,minmax(118px,1fr))}.bt-feat{grid-row:1/4}}
-  .bt{position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block;cursor:pointer;border-radius:0;background-color:var(--panel2)}
-
-  /* iOS aspect-ratio 潰れ回避：高さは padding-hack で確保 */
-  .bt-feat::before{content:"";display:block;padding-top:75%}    /* 4:3 */
-  .bt-side::before{content:"";display:block;padding-top:56.25%} /* 16:9 */
-  @media(min-width:721px){.bt-feat::before,.bt-side::before{display:none}}  /* desktop はグリッド行で高さ決定 */
-
-  /* span：写真レイヤー。inline の background-image:url() が cascade で下地グラデを上書きする（写真が来れば無害化） */
-  .bt>span{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;
-    background-color:var(--panel2);
-    background-image:radial-gradient(120% 90% at 30% 22%,rgba(224,166,97,.10),rgba(224,166,97,0) 56%),
-                     linear-gradient(155deg,#2C3031 0%,var(--panel2) 46%,#1B1F1E 100%);
-    transition:transform .9s var(--ease),filter .6s var(--ease)}
-  /* 種別で光だまりの原点・色味を振る → 画像ゼロでも主従1+3の非対称が残る。side 3枚は右下プールで「降順の意図的セット」に揃える */
-  .bt-feat>span{background-image:radial-gradient(110% 80% at 26% 18%,rgba(224,166,97,.13),rgba(224,166,97,0) 58%),
-                     linear-gradient(155deg,#2E3233 0%,var(--panel2) 46%,#1A1E1D 100%)}
-  .bt-sns>span{background-image:radial-gradient(120% 90% at 78% 86%,rgba(224,166,97,.07),rgba(224,166,97,0) 56%),
-                     linear-gradient(150deg,#2A2E2F 0%,var(--panel2) 46%,#1C201F 100%)}
-  .bt-tour>span{background-image:radial-gradient(120% 90% at 82% 90%,rgba(224,166,97,.06),rgba(224,166,97,0) 55%),
-                     linear-gradient(150deg,#292D2E 0%,var(--panel2) 44%,#1B1F1E 100%)}
-  .bt-video>span{background-image:radial-gradient(120% 90% at 80% 88%,rgba(224,166,97,.055),rgba(224,166,97,0) 55%),
-                     linear-gradient(150deg,#282C2D 0%,var(--panel2) 45%,#1B1F1E 100%)}
-  /* 無地時にタイルが --bg に溶けないよう面の縁を担保（装飾でなく構造線） */
-  .bt{box-shadow:inset 0 0 0 1px var(--line-soft)}
-
-  /* スクリム：全面は軽め＋キャプション直下に局所スクリム（正のz重ね。負z+isolationはiOS脆弱なので不採用） */
-  .bt::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;
-    background:linear-gradient(to top,rgba(8,10,11,.72),rgba(8,10,11,0) 60%);
-    pointer-events:none;transition:opacity .5s var(--ease)}
-  /* hover：写真の微ズーム＋スクリム濃く（hover端末のみ） */
-  @media(hover:hover){.bt:hover>span{transform:scale(1.05);filter:brightness(1.04)}.bt:hover::after{opacity:.92}}
-
-  .bt-cap{position:absolute;left:clamp(14px,1.6vw,18px);right:clamp(14px,1.6vw,18px);bottom:clamp(13px,1.5vw,16px);z-index:2}
-  /* ★ 明るい写真上でのキャプション可読の保証スクリム。寸法はキャプション帯を必ず覆うこと（縮小・上移動するとbt-jp/bt-forが4.5:1を割る）。トリミング禁止 */
-  .bt-cap::after{content:"";position:absolute;left:-28px;right:-28px;bottom:-22px;top:-16px;z-index:-1;
-    background:linear-gradient(to top,rgba(8,10,11,.62),rgba(8,10,11,0));pointer-events:none}
-
-  /* アクセント罫：写真上の金はここ1本に集約。feat=金（drop-shadowで明るい写真でも飛ばない）/ side=白で主従を割る */
-  .bt-ru{width:26px;height:2px;background:rgba(255,255,255,.5);margin-bottom:10px;
-    transform-origin:left center;transition:transform .45s var(--ease)}  /* width→scaleX で reflow回避 */
-  .bt-feat .bt-ru{background:var(--accent);filter:drop-shadow(0 1px 2px rgba(8,10,11,.6))}
-  @media(hover:hover){.bt:hover .bt-ru{transform:scaleX(1.77)}.bt-feat:hover .bt-ru{transform:scaleX(2.23)}}
-
-  .bt-title{font-family:var(--serif);font-weight:600;line-height:1;color:#fff;margin:0;
-    text-shadow:0 1px 3px rgba(8,10,11,.6),0 2px 14px rgba(8,10,11,.45)}
-  .bt-feat .bt-title{font-size:clamp(1.7rem,3vw,2.1rem)}
-  .bt-side .bt-title{font-size:clamp(1.3rem,2.4vw,1.55rem)}
-  /* 和題から金を撤去（写真上の金の希少性を守る）。ミンチョ字形＋字間で本文と差別化 */
-  .bt-jp{font-family:var(--mincho);font-size:.78rem;letter-spacing:.06em;color:rgba(234,232,226,.62);margin-top:6px;text-shadow:0 1px 6px rgba(8,10,11,.5)}
-  .bt-for{font-family:var(--jp);font-size:.78rem;line-height:1.7;color:var(--muted);margin-top:9px;max-width:36ch;
-    word-break:normal;overflow-wrap:anywhere;text-shadow:0 1px 6px rgba(8,10,11,.55)}  /* 長文JP本文は normal で折返す（keep-all/auto-phrase は iOS で折返さず右にはみ出す） */
-
-  /* キーボード可視：写真の明部に金リングが埋もれないよう、暗いハロー(box-shadow)で金outlineをサンドして3:1を独立保証 */
-  .bt:focus-visible{outline:2px solid var(--accent);outline-offset:-3px;
-    box-shadow:inset 0 0 0 1px rgba(8,10,11,.9),0 0 0 2px rgba(8,10,11,.9)}
-
-  /* 出現アニメは各タイルを .rv にして個別observe＋staggerGrid（サイト標準パターン）に委譲 */
-
-  /* ── MOBILE：feat を主役に昇格、従3枚は縦積みのまま（モザイクは脆いので不採用）。タップ手がかりを補完 ── */
+  /* SERVICES — Expanding Cards (アコーディオン式パネル / hover|tapで開く) */
+  #bento .exp{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(7px,1vw,10px);height:clamp(420px,46vw,520px);margin-top:clamp(26px,3.6vw,42px);transition:grid-template-columns .55s var(--ease),opacity 1s ease,transform 1.15s var(--ease)}
+  .exc{position:relative;overflow:hidden;cursor:pointer;background:var(--panel2);min-width:0;min-height:0;display:block}
+  .exc-ph{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;filter:grayscale(1) brightness(.6);transform:scale(1.12);transition:filter .5s var(--ease),transform .6s var(--ease)}
+  .exc[data-active="true"] .exc-ph{filter:grayscale(0) brightness(1);transform:scale(1)}
+  .exc::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(8,10,11,.86),rgba(8,10,11,.18) 55%,transparent);pointer-events:none}
+  .exc-vt{position:absolute;left:0;right:0;top:20px;z-index:2;display:flex;justify-content:center;writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;font-size:clamp(1rem,1.4vw,1.2rem);letter-spacing:.06em;color:rgba(255,255,255,.82);text-shadow:0 1px 8px rgba(0,0,0,.6);transition:opacity .35s var(--ease);pointer-events:none}
+  .exc[data-active="true"] .exc-vt{opacity:0}
+  .exc-body{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:clamp(16px,1.9vw,22px);display:flex;flex-direction:column;gap:6px;opacity:0;transition:opacity .4s var(--ease) .12s;pointer-events:none}
+  .exc[data-active="true"] .exc-body{opacity:1;pointer-events:auto}
+  .exc-ic{width:26px;height:26px;color:var(--accent)}
+  .exc-ic svg{width:100%;height:100%;display:block}
+  .exc-tt{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.02;color:#fff;margin:0;white-space:nowrap}
+  .exc-jp{font-family:var(--mincho);font-size:.82rem;letter-spacing:.06em;color:var(--accent);margin:-1px 0 0}
+  .exc-ds{font-family:var(--jp);font-size:.82rem;line-height:1.65;color:rgba(255,255,255,.84);max-width:36ch;margin:4px 0 0;word-break:normal;word-break:auto-phrase}
+  .exc-go{margin-top:8px;width:fit-content;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.08em;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .exc-go svg{width:15px;height:9px;flex:none;stroke:var(--accent);transition:transform .35s var(--ease)}
+  @media(hover:hover){.exc-go:hover svg{transform:translateX(4px)}}
   @media(max-width:720px){
-    .bt-feat::before{padding-top:62.5%}  /* スマホも横長(16:10)。横長4つで揃え、featは僅かに背高で主役感 */
-    /* タップのpress-scale（.rv.in の settle に勝つよう #bento スコープで） */
-    #bento .bt:active{transform:scale(.985);transition:transform .12s var(--ease)}
-    .bt:active>span{filter:brightness(1.04)}
-    .bt-ru{transform:scaleX(1.15)}  /* touchはhoverが死ぬので罫を常時わずかに長く */
-    .bt-feat .bt-title,.bt-side .bt-title{font-size:clamp(1.25rem,4.8vw,1.6rem)}  /* スマホは横長4つ＝同サイズ */
+    #bento .exp{grid-template-columns:none;grid-template-rows:repeat(4,1fr);height:clamp(470px,122vw,640px);transition:grid-template-rows .55s var(--ease),opacity 1s ease,transform 1.15s var(--ease)}
+    .exc-vt{writing-mode:horizontal-tb;top:auto;bottom:16px;left:18px;right:auto;justify-content:flex-start;font-size:1.15rem}
   }
-  @media(max-width:720px) and (prefers-reduced-motion:reduce){#bento .bt:active{transform:none}}
-
-  /* reduced-motion：新規 transform/opacity/filter を全て無効化（取りこぼすと初期transformが残り崩れる） */
-  @media(prefers-reduced-motion:reduce){
-    .bt>span,.bt-ru{transition:none}
-    .bt:hover>span{transform:none}
-    .bt-feat .bt-ru{filter:drop-shadow(0 1px 2px rgba(8,10,11,.6))}  /* 可読保証は動きでないので残す */
-  }
+  @media(prefers-reduced-motion:reduce){#bento .exp,.exc-ph,.exc-vt,.exc-body{transition:none}}
 
   /* WORKS — filter wraps cleanly, + client credit */
   .works-filter{flex-wrap:wrap;overflow:visible;justify-content:center;
@@ -1345,28 +1289,54 @@
   </div>
 </section>
 
-<!-- SERVICE BENTO (非対称・concept E 正式版) -->
+<!-- SERVICES — Expanding Cards -->
 <section class="sec wrap" id="bento">
   <div class="sec-head rv"><span class="eyebrow">What I do</span><h2 class="en-h">Services</h2></div>
-  <!-- タイル種別はフッククラス(.bt-feat/.bt-sns/.bt-tour/.bt-video)で識別。CSSは :nth-of-type に依存しないので並べ替え・要素挿入に強い -->
-  <!-- 出現アニメ：各タイルが .rv（個別IO監視）＋ staggerGrid で stagger。サイト標準パターン -->
-  <div class="bento-grid">
-    <a class="bt bt-feat rv" href="#works-page">
-      <span style="background-image:url('images/gallery/01.jpg')"></span>
-      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Photography</h3><p class="bt-jp" data-en="Stills">撮影</p><p class="bt-for" data-en="From tourism, hotels and brands to events and portraits.">観光・ホテル・ブランドの撮影から、イベント記録やポートレートまで。</p></div>
-    </a>
-    <a class="bt bt-side bt-sns rv" href="#works-page">
-      <span style="background-image:url('images/gallery/07.jpg')"></span>
-      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Brand Partnerships</h3><p class="bt-jp" data-en="Tie-ups &amp; ambassadorships">ブランドタイアップ／アンバサダー</p></div>
-    </a>
-    <a class="bt bt-side bt-tour rv" href="#works-page">
-      <span style="background-image:url('images/gallery/09.jpg')"></span>
-      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Tourism PR</h3><p class="bt-jp" data-en="Destinations &amp; tourism boards">観光・自治体PR</p></div>
-    </a>
-    <a class="bt bt-side bt-video rv" href="#works-page">
-      <span style="background-image:url('images/gallery/04.jpg')"></span>
-      <div class="bt-cap"><div class="bt-ru" aria-hidden="true"></div><h3 class="bt-title">Video</h3><p class="bt-jp" data-en="Film, reels &amp; motion">映像・リール制作</p></div>
-    </a>
+  <div class="exp rv" id="svcExp">
+    <article class="exc" data-active="true">
+      <div class="exc-ph" style="background-image:url('images/gallery/01.jpg')"></div>
+      <div class="exc-vt">Photography</div>
+      <div class="exc-body">
+        <span class="exc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg></span>
+        <h3 class="exc-tt">Photography</h3>
+        <p class="exc-jp" data-en="Stills">撮影</p>
+        <p class="exc-ds" data-en="From tourism, hotels and brands to events and portraits.">観光・ホテル・ブランドの撮影から、イベント記録やポートレートまで。</p>
+        <a class="exc-go" href="#works-page"><span data-en="View work">実績を見る</span><svg viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M.5 4.5h13M9.5.5 13.5 4.5 9.5 8.5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </article>
+    <article class="exc" data-active="false">
+      <div class="exc-ph" style="background-image:url('images/gallery/07.jpg')"></div>
+      <div class="exc-vt">Brand Partnerships</div>
+      <div class="exc-body">
+        <span class="exc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l2.2 6L20 11l-5.8 2L12 19l-2.2-6L4 11l5.8-2z"/></svg></span>
+        <h3 class="exc-tt">Brand Partnerships</h3>
+        <p class="exc-jp" data-en="Tie-ups &amp; ambassadorships">タイアップ・アンバサダー</p>
+        <p class="exc-ds" data-en="Samsung, Adobe and Alfa Romeo, among others.">Samsung・Adobe・Alfa Romeo ほか、ブランド公式起用。</p>
+        <a class="exc-go" href="#works-page"><span data-en="View work">実績を見る</span><svg viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M.5 4.5h13M9.5.5 13.5 4.5 9.5 8.5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </article>
+    <article class="exc" data-active="false">
+      <div class="exc-ph" style="background-image:url('images/gallery/09.jpg')"></div>
+      <div class="exc-vt">Tourism PR</div>
+      <div class="exc-body">
+        <span class="exc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4-4.4 6-7.6 6-10a6 6 0 1 0-12 0c0 2.4 2 5.6 6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span>
+        <h3 class="exc-tt">Tourism PR</h3>
+        <p class="exc-jp" data-en="Destinations &amp; tourism boards">観光・自治体PR</p>
+        <p class="exc-ds" data-en="Invited shoots for tourism boards and destination promotion.">政府観光局・自治体の招へい撮影、観光プロモーション。</p>
+        <a class="exc-go" href="#works-page"><span data-en="View work">実績を見る</span><svg viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M.5 4.5h13M9.5.5 13.5 4.5 9.5 8.5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </article>
+    <article class="exc" data-active="false">
+      <div class="exc-ph" style="background-image:url('images/gallery/04.jpg')"></div>
+      <div class="exc-vt">Video</div>
+      <div class="exc-body">
+        <span class="exc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="12" height="12" rx="1.5"/><path d="M15 10l6-3v10l-6-3"/></svg></span>
+        <h3 class="exc-tt">Video</h3>
+        <p class="exc-jp" data-en="Film, reels &amp; motion">映像・リール制作</p>
+        <p class="exc-ds" data-en="Reels, vlogs and promo film — delivering the atmosphere through motion and sound.">Reels・Vlog・プロモ映像。動きと音でその場の空気を届ける。</p>
+        <a class="exc-go" href="#works-page"><span data-en="View work">実績を見る</span><svg viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M.5 4.5h13M9.5.5 13.5 4.5 9.5 8.5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -2073,7 +2043,24 @@
   })();
   document.querySelectorAll('.news li[data-slug]').forEach(function(li){ if(!li.querySelector('.np-chev')){ var c=document.createElement('span'); c.className='np-chev'; li.appendChild(c); } });
   staggerGrid('#worksGrid, #wpGrid', '.work', 0.07, 0.42, 0);
-  staggerGrid('#bento .bento-grid', '.bt', 0.08, 0.4, 0);
+  (function(){
+    var exp=document.getElementById('svcExp'); if(!exp) return;
+    var cards=[].slice.call(exp.querySelectorAll('.exc'));
+    var mq=window.matchMedia('(max-width:720px)');
+    function set(i){
+      cards.forEach(function(c,k){ c.setAttribute('data-active', k===i?'true':'false'); });
+      var tr=cards.map(function(_,k){ return k===i?'5fr':'1fr'; }).join(' ');
+      if(mq.matches){ exp.style.gridTemplateRows=tr; exp.style.gridTemplateColumns=''; }
+      else { exp.style.gridTemplateColumns=tr; exp.style.gridTemplateRows=''; }
+    }
+    cards.forEach(function(c,i){
+      c.addEventListener('mouseenter',function(){ if(!mq.matches) set(i); });
+      c.addEventListener('click',function(e){ if(e.target.closest('.exc-go')) return; set(i); });
+    });
+    set(0);
+    var onMq=function(){ var a=-1; cards.forEach(function(c,k){ if(c.getAttribute('data-active')==='true') a=k; }); set(a<0?0:a); };
+    if(mq.addEventListener) mq.addEventListener('change',onMq); else if(mq.addListener) mq.addListener(onMq);
+  })();
   staggerGrid('#gpGrid', '.gp-tile', 0.05, 0.55, 0.15);
   staggerGrid('.news', 'li.rv', 0.05, 0.4, 0);
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){addIn(e.target);io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
