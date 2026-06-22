@@ -316,7 +316,13 @@
   @media(hover:hover){#about .ab-hi:hover{border-color:rgba(224,166,97,.4);transform:translateY(-2px)}#about .ab-hi:hover::before{opacity:1}}
   #about .ab-hi .k{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
   #about .ab-hi .v{font-family:var(--jp);font-size:.82rem;line-height:1.65;color:var(--text);margin-top:5px;word-break:keep-all}
-  #about .ab-glass .sns-btns{margin-top:clamp(22px,2.8vw,28px)}
+  #about .ab-soc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:clamp(22px,2.8vw,28px);max-width:430px}
+  #about .ab-s{display:flex;align-items:center;gap:11px;border:1px solid var(--line-soft);background:rgba(255,255,255,.03);border-radius:14px;padding:11px 15px;text-decoration:none;transition:border-color .3s,transform .3s var(--ease),background .3s}
+  @media(hover:hover){#about .ab-s:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(224,166,97,.06)}}
+  #about .ab-s .ic{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--text);transition:color .3s,border-color .3s}
+  @media(hover:hover){#about .ab-s:hover .ic{color:var(--accent);border-color:var(--accent)}}
+  #about .ab-s .ic svg{width:17px;height:17px;display:block}
+  #about .ab-s .nm{font-family:var(--sans);font-size:.78rem;font-weight:600;color:var(--text);letter-spacing:.02em}
   @media(max-width:760px){
     #about .ab-grid{grid-template-columns:1fr;justify-items:center;gap:24px}
     #about .ab-av{justify-self:center}
@@ -326,7 +332,7 @@
     #about .ab-lead{font-size:1.16rem}
     #about .ab-bio{max-width:none;text-align:left}
     #about .ab-hl{text-align:left}
-    #about .ab-glass .sns-btns{justify-content:center}
+    #about .ab-soc{max-width:360px;margin-left:auto;margin-right:auto}
   }
   @media(prefers-reduced-transparency:reduce){#about .ab-glass{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--panel)}#about .ab-bd{filter:blur(44px) brightness(.3)}}
 
@@ -1147,11 +1153,11 @@
             <div class="ab-hi"><div class="k">Qualified</div><div class="v" data-en="Certified Domestic Travel Services Manager.">国内旅行業務取扱管理者</div></div>
             <div class="ab-hi"><div class="k">Awards · Exhibition</div><div class="v" data-en="Adobe Year-End Creative Contest 2022 — selected; Calbee &#8220;Yorukata&#8221; Contest — Autumn Award; Expo 2025 Osaka-Kansai, Kyoto corner.">Adobe「年末クリエイティブコンテスト 2022」入賞／カルビー よる堅フォトコンテスト 秋の賞／大阪・関西万博 京都コーナー展示</div></div>
           </div>
-          <div class="sns-btns">
-            <a class="sns-btn" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a class="sns-btn" href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V14h2.4v7h2.8z"/></svg></a>
-            <a class="sns-btn" href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4c.6 2.5 2.3 4 4.5 4.3V11c-1.7 0-3.2-.5-4.5-1.4V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v2.7a2.3 2.3 0 1 0 1.5 2.2V4z" stroke-linejoin="round"/></svg></a>
-            <a class="sns-btn" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg></a>
+          <div class="ab-soc">
+            <a class="ab-s" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><span class="nm">Instagram</span></a>
+            <a class="ab-s" href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V14h2.4v7h2.8z"/></svg></span><span class="nm">Facebook</span></a>
+            <a class="ab-s" href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4c.6 2.5 2.3 4 4.5 4.3V11c-1.7 0-3.2-.5-4.5-1.4V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v2.7a2.3 2.3 0 1 0 1.5 2.2V4z" stroke-linejoin="round"/></svg></span><span class="nm">TikTok</span></a>
+            <a class="ab-s" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg></span><span class="nm">YouTube</span></a>
           </div>
         </div>
       </div>
