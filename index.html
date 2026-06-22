@@ -505,11 +505,6 @@
   /* multi-view routing */
   .view{display:none}
   .view.active{display:block}
-  /* View Transitions: quick cross-fade between views (Emil: <=300ms) */
-  ::view-transition-old(root),::view-transition-new(root){animation-duration:.26s}
-  @media(prefers-reduced-motion:reduce){
-    ::view-transition-group(*),::view-transition-old(root),::view-transition-new(root){animation:none!important}
-  }
   .subpage-top{padding-top:clamp(84px,13vw,168px)}
 
   /* CLIENTS — do NOT pause on hover */
@@ -2373,14 +2368,9 @@
     }
     function show(name,opts){
       opts=opts||{};
-      /* View Transitions API: quick cross-fade between SPA views.
-         Progressive enhancement — unsupported browsers (& reduced-motion) swap instantly. */
-      if(!opts._vt && document.startViewTransition && views[name] && current!==name
-         && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-        opts._vt=true;
-        document.startViewTransition(function(){ show(name,opts); });
-        return;
-      }
+      /* View Transition のクロスフェードは廃止：新ビューの .rv が opacity:0 の瞬間を
+         スナップショットして「空白→中身」のチカッが出る＋戻る時にスクロール復元と競合する。
+         各ビューの .rv リビールアニメ自体が入場演出になるので、ここは同期スワップにする。 */
       var gen=(show._gen=(show._gen||0)+1);   /* bump generation: invalidates any pending scroll-restore from a previous navigation */
       if(views[current]) scrollMem[current]=window.scrollY;   /* remember where we were */
       if(!views[name]) name='home';
@@ -2397,7 +2387,9 @@
         var tries=0, done=false;
         var stopRestore=function(){ done=true; };   /* user took over scrolling — stop forcing the restored position */
         window.addEventListener('wheel',stopRestore,{passive:true,once:true});
-        window.addEventListener('touchmove',stopRestore,{passive:true,once:true});
+        /* iOS: the back-swipe gesture emits residual touchmove that would instantly cancel
+           the restore (→ lands at top / hero). Delay arming touch-cancel so the jump lands first. */
+        setTimeout(function(){ window.addEventListener('touchmove',stopRestore,{passive:true,once:true}); }, 280);
         var applyY=function(){
           if(gen!==show._gen||done) return;   /* stale navigation, or user scrolled — abort */
           void document.documentElement.offsetHeight;   /* force reflow so height is final */
