@@ -994,6 +994,9 @@
   .wd-tl-post{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.06em;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:6px 11px;transition:border-color .3s,color .3s,background .3s}
   @media(hover:hover){.wd-tl-post:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,255,255,.03)}}
   .wd-tl-post-date{color:var(--muted);font-weight:500}
+  .wd-tl-posts-h{flex-basis:100%;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1px}
+  .wd-tl-post-n{font-family:var(--serif);font-style:italic;font-weight:600;font-size:.86rem;line-height:1;color:var(--accent)}
+  .wd-tl-post-ar{color:var(--muted)}
   .wd-linkrow .wd-tl-title{font-family:var(--sans);font-weight:600;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase}
   .wd-link-ext{flex:0 0 auto;margin-right:6px;font-size:1rem;line-height:1;color:var(--muted);transition:color .3s,transform .3s}
   @media(hover:hover){.wd-linkrow:hover .wd-link-ext{color:var(--accent);transform:translate(2px,-2px)}}
@@ -2256,7 +2259,8 @@
             var meta=(pr.date?'<span class="wd-tl-date">'+pr.date+'</span>':'')+(pr.cat?'<span class="pill '+pc+'">'+pr.cat+'</span>':'');
             var pdesc=t(pr.desc,pr.descEn);
             var posts=pr.posts||[];
-            var postsHtml=posts.length?('<div class="wd-tl-posts">'+posts.map(function(po){return '<a class="wd-tl-post" href="'+(po.link||IG_PROFILE)+'" target="_blank" rel="noopener">'+(po.date?'<span class="wd-tl-post-date">'+po.date+'</span>':'')+'<span>'+(po.label||'Instagram')+' \u2197</span></a>';}).join('')+'</div>'):'';
+            var multi=posts.length>1;
+            var postsHtml=posts.length?('<div class="wd-tl-posts">'+(multi?'<span class="wd-tl-posts-h">'+t('Instagram ｜ '+posts.length+' 投稿',posts.length+' Instagram posts')+'</span>':'')+posts.map(function(po,pi){var main=po.label?('<span>'+po.label+'</span>'):(multi?('<span class="wd-tl-post-n">'+(pi+1<10?'0':'')+(pi+1)+'</span>'):'<span>Instagram</span>');return '<a class="wd-tl-post" href="'+(po.link||IG_PROFILE)+'" target="_blank" rel="noopener">'+main+(po.date?'<span class="wd-tl-post-date">'+po.date+'</span>':'')+'<span class="wd-tl-post-ar" aria-hidden="true">\u2197</span></a>';}).join('')+'</div>'):'';
             return '<div class="wd-tl-item"><button class="wd-tl-row" type="button" aria-expanded="false"><span class="wd-tl-thumb img '+(pr.img||'')+'" style="'+ph+'"></span><span class="wd-tl-info"><span class="wd-tl-title">'+ptitle+'</span><span class="wd-tl-meta">'+meta+'</span></span><span class="wd-tl-chev" aria-hidden="true"></span></button><div class="wd-tl-panel">'+(pdesc?'<p class="wd-tl-desc">'+pdesc+'</p>':'')+postsHtml+'</div></div>';
           }).join(''); }
       } else {
