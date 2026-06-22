@@ -302,7 +302,9 @@
   #about .ab-bd{position:absolute;inset:0;z-index:0;background-image:url('images/about/portrait.jpg');background-size:cover;background-position:50% 30%;filter:blur(42px) brightness(.42) saturate(1.12);transform:scale(1.2)}
   #about .ab-bd::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 80% 26%,rgba(224,166,97,.16),transparent 60%),linear-gradient(150deg,rgba(23,26,27,.28),rgba(23,26,27,.56))}
   #about .ab-glass{position:relative;z-index:1;background:rgba(23,26,27,.5);backdrop-filter:blur(20px) saturate(1.1);-webkit-backdrop-filter:blur(20px) saturate(1.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);padding:clamp(22px,3.4vw,42px)}
-  #about .ab-grid{display:grid;grid-template-columns:1.25fr .92fr;gap:clamp(20px,2.8vw,36px)}
+  #about .ab-grid{display:grid;grid-template-columns:.92fr 1.25fr;gap:clamp(20px,2.8vw,36px)}
+  #about .ab-pcard{order:1}
+  #about .ab-left{order:2}
   #about .ab-name{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.04;color:var(--text);margin:0;letter-spacing:.01em}
   #about .ab-role{display:block;font-family:var(--mincho);font-size:clamp(.82rem,1.1vw,.95rem);letter-spacing:.1em;color:var(--accent);margin-top:8px}
   #about .ab-bio{font-family:var(--jp);font-size:.9rem;line-height:1.95;color:rgba(234,232,226,.82);margin:15px 0 0;max-width:44ch;word-break:normal;word-break:auto-phrase}
@@ -318,6 +320,7 @@
   #about .ab-pn{font-family:var(--serif);font-weight:600;font-size:1.5rem;color:var(--text)}
   #about .ab-pr{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-top:5px}
   #about .ab-pt{font-family:var(--mincho);font-size:.86rem;line-height:1.75;color:rgba(234,232,226,.82);margin:13px 0 0;max-width:30ch}
+  #about .ab-pt .hl{color:var(--accent)}
   #about .ab-soc{width:100%;display:flex;flex-direction:column;gap:9px;margin-top:20px}
   #about .ab-s{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line-soft);background:rgba(255,255,255,.03);border-radius:14px;padding:10px 13px;text-decoration:none;transition:border-color .3s,transform .3s var(--ease),background .3s}
   @media(hover:hover){#about .ab-s:hover{border-color:rgba(224,166,97,.4);transform:translateY(-2px);background:rgba(255,255,255,.05)}}
@@ -1143,16 +1146,17 @@
             <div class="ab-hi"><div class="k">Official Ambassador</div><div class="v">Samsung Team Galaxy ／ Adobe Partner ／ Alfa Romeo</div></div>
             <div class="ab-hi"><div class="k">Base · Roots</div><div class="v" data-en="Based in Kyoto, from Hokkaido — traveling the world since 2021.">京都拠点・北海道出身／2021年から世界へ</div></div>
             <div class="ab-hi"><div class="k">Qualified</div><div class="v" data-en="Certified Domestic Travel Services Manager.">国内旅行業務取扱管理者</div></div>
-            <div class="ab-hi"><div class="k">Awards · Exhibition</div><div class="v" data-en="Miyama Photo Contest — Winter Award; Calbee &#8220;Yorukata&#8221; Contest — Autumn Award; Adobe-selected; Expo 2025 Osaka-Kansai, Kyoto corner.">美山フォトコンテスト 冬の季節賞／カルビー よる堅フォトコンテスト 秋の賞／Adobe入賞・大阪関西万博 京都コーナー展示</div></div>
+            <div class="ab-hi"><div class="k">Awards · Exhibition</div><div class="v" data-en="Calbee &#8220;Yorukata&#8221; Contest — Autumn Award; Adobe-selected; Expo 2025 Osaka-Kansai, Kyoto corner.">カルビー よる堅フォトコンテスト 秋の賞／Adobe入賞／大阪関西万博 京都コーナー展示</div></div>
           </div>
         </div>
         <div class="ab-pcard">
           <div class="ab-av"><div class="img"></div></div>
           <div class="ab-pn">Sawai Kenta</div>
           <div class="ab-pr">Photographer · Filmmaker</div>
-          <p class="ab-pt" data-en="&#8220;Sharing the scenery that truly moved me with the world.&#8221;">「心から感動した景色を、世界中の人々に共有したい」</p>
+          <p class="ab-pt" data-en="&#8220;Sharing the scenery that <span class='hl'>truly moved me</span> with the world.&#8221;">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
           <div class="ab-soc">
         <a class="ab-s" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><span><span class="nm">Instagram</span><span class="hd" data-en="@s_ken.ken · 285K">@s_ken.ken · 28.5万</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="ab-s" href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V14h2.4v7h2.8z"/></svg></span><span><span class="nm">Facebook</span><span class="hd" data-en="@s_ken.ken Â· 69K">@s_ken.ken Â· 6.9ä¸</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <a class="ab-s" href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4c.6 2.5 2.3 4 4.5 4.3V11c-1.7 0-3.2-.5-4.5-1.4V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v2.7a2.3 2.3 0 1 0 1.5 2.2V4z" stroke-linejoin="round"/></svg></span><span><span class="nm">TikTok</span><span class="hd">@s_ken.ken</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <a class="ab-s" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg></span><span><span class="nm">YouTube</span><span class="hd">@s_kenken</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
           </div>
