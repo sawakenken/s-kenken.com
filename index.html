@@ -305,13 +305,16 @@
   #about .ab-grid{display:grid;grid-template-columns:.92fr 1.25fr;gap:clamp(20px,2.8vw,36px)}
   #about .ab-pcard{order:1}
   #about .ab-left{order:2}
-  #about .ab-name{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.04;color:var(--text);margin:0;letter-spacing:.01em}
-  #about .ab-role{display:block;font-family:var(--mincho);font-size:clamp(.82rem,1.1vw,.95rem);letter-spacing:.1em;color:var(--accent);margin-top:8px}
+  #about .ab-badge{display:inline-flex;align-items:center;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:100px;padding:6px 15px;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
+  #about .ab-name{font-family:var(--mincho);font-weight:600;font-size:clamp(2rem,3.8vw,2.95rem);line-height:1.12;color:var(--text);margin:16px 0 0;letter-spacing:.02em}
+  #about .ab-role{display:block;font-family:var(--mincho);font-weight:500;font-size:clamp(.85rem,1.2vw,1rem);letter-spacing:.12em;color:var(--accent);margin-top:11px}
   #about .ab-lead{font-family:var(--mincho);font-weight:500;font-size:clamp(1.15rem,2.1vw,1.6rem);line-height:1.6;letter-spacing:.01em;color:var(--text);margin:0}
   #about .ab-lead .hl{color:var(--accent)}
-  #about .ab-bio{font-family:var(--jp);font-size:.9rem;line-height:1.95;color:rgba(234,232,226,.82);margin:16px 0 0;max-width:44ch;word-break:normal;word-break:auto-phrase}
+  #about .ab-bio{font-family:var(--jp);font-size:.9rem;line-height:1.95;color:rgba(234,232,226,.82);margin:18px 0 0;max-width:44ch;word-break:normal;word-break:auto-phrase}
   #about .ab-hl{display:flex;flex-direction:column;gap:10px;margin:20px 0 0}
-  #about .ab-hi{border:1px solid var(--line-soft);background:rgba(255,255,255,.03);border-radius:14px;padding:13px 16px;transition:border-color .35s var(--ease),transform .35s var(--ease)}
+  #about .ab-hi{position:relative;overflow:hidden;border:1px solid var(--line-soft);background:rgba(255,255,255,.03);border-radius:14px;padding:13px 16px;transition:border-color .35s var(--ease),transform .35s var(--ease)}
+  #about .ab-hi::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(224,166,97,.07),transparent 58%);opacity:0;transition:opacity .35s var(--ease);pointer-events:none}
+  @media(hover:hover){#about .ab-hi:hover::before{opacity:1}}
   @media(hover:hover){#about .ab-hi:hover{border-color:rgba(224,166,97,.4);transform:translateY(-2px)}}
   #about .ab-hi .k{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
   #about .ab-hi .v{font-family:var(--jp);font-size:.82rem;line-height:1.65;color:var(--text);margin-top:5px;word-break:normal;word-break:auto-phrase}
@@ -1136,13 +1139,13 @@
 
 <!-- ABOUT — glass profile -->
 <section class="sec wrap about" id="about">
-  <div class="sec-head rv"><span class="eyebrow">Profile</span><h2 class="en-h">About</h2></div>
   <div class="ab-wrap rv">
     <div class="ab-bd"></div>
     <div class="ab-glass">
       <div class="ab-grid">
         <div class="ab-left">
-          <p class="ab-lead" data-en="&#8220;Sharing the scenery that <span class='hl'>truly moved me</span> with the world.&#8221;">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
+          <span class="ab-badge">Profile</span>
+          <h2 class="ab-name"><span data-en="Sawai Kenta">澤井健太</span><span class="ab-role" data-en="Photographer / Filmmaker">フォトグラファー ／ 映像クリエイター</span></h2>
           <p class="ab-bio" data-en="A photographer born in Hokkaido and based in Kyoto. Traveling the world since 2021, he keeps capturing light and landscapes — working across film production, Lightroom editing, and workshops, and holding a Domestic Travel Services Manager qualification.">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
           <div class="ab-hl">
             <div class="ab-hi"><div class="k">Official Ambassador</div><div class="v">Samsung Team Galaxy ／ Adobe Partner ／ Alfa Romeo</div></div>
@@ -1155,11 +1158,12 @@
           <div class="ab-av"><div class="img"></div></div>
           <div class="ab-pn">Sawai Kenta</div>
           <div class="ab-pr">Photographer · Filmmaker</div>
+          <p class="ab-pt" data-en="&#8220;Sharing the scenery that <span class='hl'>truly moved me</span> with the world.&#8221;">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
           <div class="ab-soc">
-        <a class="ab-s" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><span><span class="nm">Instagram</span><span class="hd" data-en="@s_ken.ken · 285K">@s_ken.ken · 28.5万</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <a class="ab-s" href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V14h2.4v7h2.8z"/></svg></span><span><span class="nm">Facebook</span><span class="hd" data-en="@s_ken.ken Â· 69K">@s_ken.ken Â· 6.9ä¸</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <a class="ab-s" href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4c.6 2.5 2.3 4 4.5 4.3V11c-1.7 0-3.2-.5-4.5-1.4V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v2.7a2.3 2.3 0 1 0 1.5 2.2V4z" stroke-linejoin="round"/></svg></span><span><span class="nm">TikTok</span><span class="hd">@s_ken.ken</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <a class="ab-s" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg></span><span><span class="nm">YouTube</span><span class="hd">@s_kenken</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+            <a class="ab-s" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><span><span class="nm">Instagram</span><span class="hd" data-en="@s_ken.ken · 285K">@s_ken.ken · 28.5万</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+            <a class="ab-s" href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V14h2.4v7h2.8z"/></svg></span><span><span class="nm">Facebook</span><span class="hd" data-en="@s_ken.ken · 69K">@s_ken.ken · 6.9万</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+            <a class="ab-s" href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4c.6 2.5 2.3 4 4.5 4.3V11c-1.7 0-3.2-.5-4.5-1.4V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v2.7a2.3 2.3 0 1 0 1.5 2.2V4z" stroke-linejoin="round"/></svg></span><span><span class="nm">TikTok</span><span class="hd">@s_ken.ken</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+            <a class="ab-s" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg></span><span><span class="nm">YouTube</span><span class="hd">@s_kenken</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
           </div>
         </div>
       </div>
