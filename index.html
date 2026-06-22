@@ -587,13 +587,14 @@
   .exc-go svg{width:15px;height:9px;flex:none;stroke:var(--accent);transition:transform .35s var(--ease)}
   @media(hover:hover){.exc-go:hover svg{transform:translateX(4px)}}
   @media(max-width:720px){
-    #bento .exp{height:clamp(440px,130vw,580px)}   /* スマホも横並び維持・縦長の帯に */
-    .exc-vt{top:14px;font-size:.95rem}
-    .exc-body{padding:13px 12px}
-    .exc-tt{font-size:1.22rem;white-space:normal;line-height:1.06}
-    .exc-jp{font-size:.74rem}
-    .exc-ds{font-size:.72rem;line-height:1.5;max-width:none}
-    .exc-go{font-size:.68rem}
+    #bento .exp{height:clamp(250px,66vw,330px)}   /* 横並び維持・縦長にしない（横長の帯） */
+    .exc-vt{top:12px;font-size:.9rem}
+    .exc-ic{display:none}
+    .exc-body{padding:12px 11px;gap:4px}
+    .exc-tt{font-size:1.08rem;white-space:normal;line-height:1.05}
+    .exc-jp{font-size:.72rem}
+    .exc-ds{font-size:.7rem;line-height:1.45;max-width:none}
+    .exc-go{font-size:.66rem;margin-top:4px}
   }
   @media(prefers-reduced-motion:reduce){#bento .exp,.exc-ph,.exc-vt,.exc-body{transition:none}}
 
