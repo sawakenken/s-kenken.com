@@ -307,7 +307,9 @@
   #about .ab-left{order:2}
   #about .ab-name{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.04;color:var(--text);margin:0;letter-spacing:.01em}
   #about .ab-role{display:block;font-family:var(--mincho);font-size:clamp(.82rem,1.1vw,.95rem);letter-spacing:.1em;color:var(--accent);margin-top:8px}
-  #about .ab-bio{font-family:var(--jp);font-size:.9rem;line-height:1.95;color:rgba(234,232,226,.82);margin:15px 0 0;max-width:44ch;word-break:normal;word-break:auto-phrase}
+  #about .ab-lead{font-family:var(--mincho);font-weight:500;font-size:clamp(1.15rem,2.1vw,1.6rem);line-height:1.6;letter-spacing:.01em;color:var(--text);margin:0}
+  #about .ab-lead .hl{color:var(--accent)}
+  #about .ab-bio{font-family:var(--jp);font-size:.9rem;line-height:1.95;color:rgba(234,232,226,.82);margin:16px 0 0;max-width:44ch;word-break:normal;word-break:auto-phrase}
   #about .ab-hl{display:flex;flex-direction:column;gap:10px;margin:20px 0 0}
   #about .ab-hi{border:1px solid var(--line-soft);background:rgba(255,255,255,.03);border-radius:14px;padding:13px 16px;transition:border-color .35s var(--ease),transform .35s var(--ease)}
   @media(hover:hover){#about .ab-hi:hover{border-color:rgba(224,166,97,.4);transform:translateY(-2px)}}
@@ -331,17 +333,7 @@
   #about .ab-s .hd{display:block;font-family:var(--sans);font-size:.64rem;color:var(--muted);margin-top:1px}
   #about .ab-s .ar{flex:none;color:var(--muted);transition:transform .3s,color .3s}
   @media(hover:hover){#about .ab-s:hover .ar{color:var(--accent);transform:translate(2px,-2px)}}
-  @media(max-width:820px){
-    #about .ab-grid{grid-template-columns:1fr;gap:22px}
-    #about .ab-pcard{max-width:460px;margin:0 auto;width:100%}
-    #about .ab-left{max-width:460px;margin:0 auto;width:100%}
-    #about .ab-left .ab-name{display:none}   /* カードが名前/肩書を出すので本文側の重複を消す（冗長解消） */
-    #about .ab-bio{max-width:none}
-    #about .ab-soc{display:grid;grid-template-columns:1fr 1fr;gap:8px}   /* SNSを2×2に圧縮 */
-    #about .ab-s{padding:9px 11px}
-    #about .ab-s .ar{display:none}
-    #about .ab-s .hd{font-size:.58rem}
-  }
+  @media(max-width:820px){#about .ab-grid{grid-template-columns:1fr;gap:26px}#about .ab-pcard{max-width:440px;margin:0 auto;width:100%}#about .ab-left{max-width:440px;margin:0 auto;width:100%}#about .ab-bio{max-width:none}}
   @media(prefers-reduced-transparency:reduce){#about .ab-glass,#about .ab-pcard{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--panel)}#about .ab-bd{filter:blur(42px) brightness(.3)}}
 
 
@@ -1150,7 +1142,7 @@
     <div class="ab-glass">
       <div class="ab-grid">
         <div class="ab-left">
-          <h2 class="ab-name"><span data-en="Sawai Kenta">澤井健太</span><span class="ab-role" data-en="Photographer / Filmmaker">フォトグラファー ／ 映像クリエイター</span></h2>
+          <p class="ab-lead" data-en="&#8220;Sharing the scenery that <span class='hl'>truly moved me</span> with the world.&#8221;">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
           <p class="ab-bio" data-en="A photographer born in Hokkaido and based in Kyoto. Traveling the world since 2021, he keeps capturing light and landscapes — working across film production, Lightroom editing, and workshops, and holding a Domestic Travel Services Manager qualification.">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
           <div class="ab-hl">
             <div class="ab-hi"><div class="k">Official Ambassador</div><div class="v">Samsung Team Galaxy ／ Adobe Partner ／ Alfa Romeo</div></div>
@@ -1163,7 +1155,6 @@
           <div class="ab-av"><div class="img"></div></div>
           <div class="ab-pn">Sawai Kenta</div>
           <div class="ab-pr">Photographer · Filmmaker</div>
-          <p class="ab-pt" data-en="&#8220;Sharing the scenery that <span class='hl'>truly moved me</span> with the world.&#8221;">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
           <div class="ab-soc">
         <a class="ab-s" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><span><span class="nm">Instagram</span><span class="hd" data-en="@s_ken.ken · 285K">@s_ken.ken · 28.5万</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <a class="ab-s" href="https://www.facebook.com/s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8.3V14h2.4v7h2.8z"/></svg></span><span><span class="nm">Facebook</span><span class="hd" data-en="@s_ken.ken Â· 69K">@s_ken.ken Â· 6.9ä¸</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
