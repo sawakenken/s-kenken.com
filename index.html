@@ -313,11 +313,12 @@
   /* the ledger sits to the right of a single deliberate gold hairline (the "spine") */
   #about .amb-row{position:relative;padding-left:clamp(18px,2vw,24px)}
   #about .amb-row::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--accent),rgba(224,166,97,.18))}
-  #about .amb-item{position:relative;display:grid;grid-template-columns:1fr auto;align-items:baseline;column-gap:clamp(16px,2.4vw,30px);padding:clamp(13px,1.5vw,18px) 0}
+  #about .amb-item{position:relative;display:flex;align-items:center;gap:clamp(12px,1.6vw,18px);padding:clamp(14px,1.6vw,19px) 0}
+  #about .amb-ln{flex:1 1 auto;height:1px;min-width:20px;background:var(--line-soft)}
   #about .amb-item + .amb-item{border-top:1px solid var(--line-soft)}
-  #about .amb-item .bn{font-family:var(--mincho);font-weight:600;font-size:clamp(1rem,1.15vw,1.18rem);letter-spacing:.012em;line-height:1.15;color:var(--text);transition:color .45s var(--ease)}
+  #about .amb-item .bn{flex:0 0 auto;font-family:var(--mincho);font-weight:600;font-size:clamp(1.05rem,1.25vw,1.28rem);letter-spacing:.012em;line-height:1.15;color:var(--text);transition:color .45s var(--ease)}
   #about .amb-item .bn img{max-height:30px;max-width:150px;width:auto;object-fit:contain;opacity:.92;vertical-align:middle;transition:opacity .4s}
-  #about .amb-item .rl{font-family:var(--sans);font-size:.74rem;font-weight:600;letter-spacing:.01em;color:var(--muted);white-space:nowrap;transition:color .45s var(--ease)}
+  #about .amb-item .rl{flex:0 0 auto;font-family:var(--sans);font-size:.74rem;font-weight:600;letter-spacing:.01em;color:var(--muted);white-space:nowrap;transition:color .45s var(--ease)}
   #about .amb-item .rl::before{content:"";display:inline-block;width:5px;height:5px;border:1px solid var(--accent);transform:rotate(45deg);margin-right:9px;vertical-align:middle;transition:background .45s var(--ease)}
   @media(hover:hover){
     #about .amb-item:hover .bn{color:var(--accent)}
@@ -335,7 +336,7 @@
   @media(max-width:560px){
     #about .amb-row{padding-left:15px}
     #about .amb-row::before{width:2px}
-    #about .amb-item{grid-template-columns:1fr;align-items:start;row-gap:6px;padding:15px 0}
+    #about .amb-item{padding:15px 0}
     #about .amb-item .bn{font-size:clamp(.95rem,3.4vw,1.08rem)}
     #about .amb-item .rl{letter-spacing:.01em}
   }
@@ -1167,9 +1168,9 @@
           <span class="amb-show-cap" data-en="Three brands">3 brands</span>
         </div>
         <div class="amb-row">
-          <div class="amb-item"><span class="bn"><span>Samsung</span><img src="images/clients/samsung.png" alt="Samsung TeamGalaxy" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></span><span class="rl">TeamGalaxy</span></div>
-          <div class="amb-item"><span class="bn"><span>Adobe</span><img src="images/clients/adobe.png" alt="Adobe Partner" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></span><span class="rl">Partner</span></div>
-          <div class="amb-item"><span class="bn"><span>Alfa Romeo</span><img src="images/clients/alfa-romeo.png" alt="Alfa Romeo" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></span><span class="rl">Ambassador</span></div>
+          <div class="amb-item"><span class="bn"><span>Samsung</span><img src="images/clients/samsung.png" alt="Samsung TeamGalaxy" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></span><span class="amb-ln"></span><span class="rl">TeamGalaxy</span></div>
+          <div class="amb-item"><span class="bn"><span>Adobe</span><img src="images/clients/adobe.png" alt="Adobe Partner" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></span><span class="amb-ln"></span><span class="rl">Partner</span></div>
+          <div class="amb-item"><span class="bn"><span>Alfa Romeo</span><img src="images/clients/alfa-romeo.png" alt="Alfa Romeo" loading="lazy" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></span><span class="amb-ln"></span><span class="rl">Ambassador</span></div>
         </div>
       </div>
     </div>
