@@ -297,6 +297,41 @@
   .about-stats .sl{display:block;margin-top:10px;font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:32px}.about-portrait{max-width:196px;margin:0 auto}}
 
+  /* ABOUT — glass two-column over blurred portrait */
+  #about .ab-wrap{position:relative;border-radius:22px;overflow:hidden;margin-top:clamp(22px,3vw,36px);border:1px solid var(--line);box-shadow:0 34px 72px -36px rgba(0,0,0,.78)}
+  #about .ab-bd{position:absolute;inset:0;z-index:0;background-image:url('images/about/portrait.jpg');background-size:cover;background-position:50% 30%;filter:blur(42px) brightness(.42) saturate(1.12);transform:scale(1.2)}
+  #about .ab-bd::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 80% 26%,rgba(224,166,97,.16),transparent 60%),linear-gradient(150deg,rgba(23,26,27,.28),rgba(23,26,27,.56))}
+  #about .ab-glass{position:relative;z-index:1;background:rgba(23,26,27,.5);backdrop-filter:blur(20px) saturate(1.1);-webkit-backdrop-filter:blur(20px) saturate(1.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);padding:clamp(22px,3.4vw,42px)}
+  #about .ab-grid{display:grid;grid-template-columns:1.25fr .92fr;gap:clamp(20px,2.8vw,36px)}
+  #about .ab-name{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.04;color:var(--text);margin:0;letter-spacing:.01em}
+  #about .ab-role{display:block;font-family:var(--mincho);font-size:clamp(.82rem,1.1vw,.95rem);letter-spacing:.1em;color:var(--accent);margin-top:8px}
+  #about .ab-bio{font-family:var(--jp);font-size:.9rem;line-height:1.95;color:rgba(234,232,226,.82);margin:15px 0 0;max-width:44ch;word-break:normal;word-break:auto-phrase}
+  #about .ab-hl{display:flex;flex-direction:column;gap:10px;margin:20px 0 0}
+  #about .ab-hi{border:1px solid var(--line-soft);background:rgba(255,255,255,.03);border-radius:14px;padding:13px 16px;transition:border-color .35s var(--ease),transform .35s var(--ease)}
+  @media(hover:hover){#about .ab-hi:hover{border-color:rgba(224,166,97,.4);transform:translateY(-2px)}}
+  #about .ab-hi .k{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  #about .ab-hi .v{font-family:var(--jp);font-size:.82rem;line-height:1.65;color:var(--text);margin-top:5px;word-break:normal;word-break:auto-phrase}
+  #about .ab-pcard{position:relative;border-radius:18px;border:1px solid var(--line);background:rgba(31,35,36,.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:clamp(22px,2.6vw,30px) clamp(18px,2.2vw,24px);display:flex;flex-direction:column;align-items:center;text-align:center}
+  #about .ab-av{position:relative;margin-bottom:16px}
+  #about .ab-av::before{content:"";position:absolute;left:50%;top:50%;width:130px;height:130px;transform:translate(-50%,-50%);border-radius:50%;background:rgba(224,166,97,.22);filter:blur(30px)}
+  #about .ab-av .img{position:relative;width:clamp(96px,11vw,116px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.6);background-image:url('images/about/portrait.jpg');background-size:cover;background-position:center;box-shadow:0 22px 50px -18px rgba(0,0,0,.7)}
+  #about .ab-pn{font-family:var(--serif);font-weight:600;font-size:1.5rem;color:var(--text)}
+  #about .ab-pr{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+  #about .ab-pt{font-family:var(--mincho);font-size:.86rem;line-height:1.75;color:rgba(234,232,226,.82);margin:13px 0 0;max-width:30ch}
+  #about .ab-soc{width:100%;display:flex;flex-direction:column;gap:9px;margin-top:20px}
+  #about .ab-s{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line-soft);background:rgba(255,255,255,.03);border-radius:14px;padding:10px 13px;text-decoration:none;transition:border-color .3s,transform .3s var(--ease),background .3s}
+  @media(hover:hover){#about .ab-s:hover{border-color:rgba(224,166,97,.4);transform:translateY(-2px);background:rgba(255,255,255,.05)}}
+  #about .ab-s .l{display:flex;align-items:center;gap:11px;min-width:0}
+  #about .ab-s .ic{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--text)}
+  #about .ab-s .ic svg{width:17px;height:17px}
+  #about .ab-s .nm{display:block;font-family:var(--sans);font-size:.78rem;font-weight:600;color:var(--text);text-align:left}
+  #about .ab-s .hd{display:block;font-family:var(--sans);font-size:.64rem;color:var(--muted);margin-top:1px}
+  #about .ab-s .ar{flex:none;color:var(--muted);transition:transform .3s,color .3s}
+  @media(hover:hover){#about .ab-s:hover .ar{color:var(--accent);transform:translate(2px,-2px)}}
+  @media(max-width:820px){#about .ab-grid{grid-template-columns:1fr;gap:26px}#about .ab-pcard{max-width:430px;margin:0 auto;width:100%}}
+  @media(prefers-reduced-transparency:reduce){#about .ab-glass,#about .ab-pcard{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--panel)}#about .ab-bd{filter:blur(42px) brightness(.3)}}
+
+
   /* ACHIEVEMENTS (airy timeline) */
   .ach{list-style:none}
   .ach li{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:clamp(16px,3vw,44px);padding:clamp(20px,3vw,30px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
@@ -1094,31 +1129,34 @@
   </div>
 </header>
 
-<!-- ABOUT -->
+<!-- ABOUT — glass profile -->
 <section class="sec wrap about" id="about">
   <div class="sec-head rv"><span class="eyebrow">Profile</span><h2 class="en-h">About</h2></div>
-  <div class="about-grid">
-    <figure class="about-portrait reveal-media">
-      <div class="img ph-portrait" style="--photo:url('images/about/portrait.jpg')"></div>
-    </figure>
-    <div class="about-body rv d1">
-      <div class="about-copy">
-        <p class="about-lead" data-en="<span class='ll'>“Sharing the scenery that <span class='hl'>truly moved me</span></span> <span class='ll'>with the world.”</span>"><span class="ll">「心から感動した景色を、</span><wbr><span class="ll"><span class="hl">世界中の人々に共有したい</span>」</span></p>
-        <p class="about-lead-en" data-en="">Sharing the scenery that truly moved me.</p>
-        <p class="bio" data-en="A photographer born in Hokkaido and based in Kyoto. Traveling the world since 2021, he keeps capturing light and landscapes — working across film production, Lightroom editing, and workshops, and holding a Domestic Travel Services Manager qualification.">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
-      </div>
-      <div class="amb">
-        <span class="amb-lab">Official Ambassador</span>
-        <ul class="amb-list">
-          <li>Samsung Team Galaxy</li>
-          <li>Adobe Partner</li>
-          <li>Alfa Romeo</li>
-        </ul>
-      </div>
-      <div class="about-stats">
-        <div><span class="n accent" data-count="285000" data-suffix="+">0</span><span class="sl">Instagram</span></div>
-        <div><span class="n" data-count="68000" data-suffix="">0</span><span class="sl">Facebook</span></div>
-        <div><span class="n" data-count="30" data-suffix="+">0</span><span class="sl">Clients</span></div>
+  <div class="ab-wrap rv">
+    <div class="ab-bd"></div>
+    <div class="ab-glass">
+      <div class="ab-grid">
+        <div class="ab-left">
+          <h2 class="ab-name"><span data-en="Sawai Kenta">澤井健太</span><span class="ab-role" data-en="Photographer / Filmmaker">フォトグラファー ／ 映像クリエイター</span></h2>
+          <p class="ab-bio" data-en="A photographer born in Hokkaido and based in Kyoto. Traveling the world since 2021, he keeps capturing light and landscapes — working across film production, Lightroom editing, and workshops, and holding a Domestic Travel Services Manager qualification.">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
+          <div class="ab-hl">
+            <div class="ab-hi"><div class="k">Official Ambassador</div><div class="v">Samsung Team Galaxy ／ Adobe Partner ／ Alfa Romeo</div></div>
+            <div class="ab-hi"><div class="k">Base · Roots</div><div class="v" data-en="Based in Kyoto, from Hokkaido — traveling the world since 2021.">京都拠点・北海道出身／2021年から世界へ</div></div>
+            <div class="ab-hi"><div class="k">Qualified</div><div class="v" data-en="Certified Domestic Travel Services Manager.">国内旅行業務取扱管理者</div></div>
+            <div class="ab-hi"><div class="k">Awards · Exhibition</div><div class="v" data-en="Miyama Photo Contest — Winter Award; Calbee &#8220;Yorukata&#8221; Contest — Autumn Award; Adobe-selected; Expo 2025 Osaka-Kansai, Kyoto corner.">美山フォトコンテスト 冬の季節賞／カルビー よる堅フォトコンテスト 秋の賞／Adobe入賞・大阪関西万博 京都コーナー展示</div></div>
+          </div>
+        </div>
+        <div class="ab-pcard">
+          <div class="ab-av"><div class="img"></div></div>
+          <div class="ab-pn">Sawai Kenta</div>
+          <div class="ab-pr">Photographer · Filmmaker</div>
+          <p class="ab-pt" data-en="&#8220;Sharing the scenery that truly moved me with the world.&#8221;">「心から感動した景色を、世界中の人々に共有したい」</p>
+          <div class="ab-soc">
+        <a class="ab-s" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><span><span class="nm">Instagram</span><span class="hd" data-en="@s_ken.ken · 285K">@s_ken.ken · 28.5万</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="ab-s" href="https://www.tiktok.com/@s_ken.ken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4c.6 2.5 2.3 4 4.5 4.3V11c-1.7 0-3.2-.5-4.5-1.4V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v2.7a2.3 2.3 0 1 0 1.5 2.2V4z" stroke-linejoin="round"/></svg></span><span><span class="nm">TikTok</span><span class="hd">@s_ken.ken</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="ab-s" href="https://www.youtube.com/@s_kenken" target="_blank" rel="noopener"><span class="l"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg></span><span><span class="nm">YouTube</span><span class="hd">@s_kenken</span></span></span><span class="ar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 10 10 4M5 4h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
