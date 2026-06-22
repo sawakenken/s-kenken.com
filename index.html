@@ -587,8 +587,13 @@
   .exc-go svg{width:15px;height:9px;flex:none;stroke:var(--accent);transition:transform .35s var(--ease)}
   @media(hover:hover){.exc-go:hover svg{transform:translateX(4px)}}
   @media(max-width:720px){
-    #bento .exp{grid-template-columns:none;grid-template-rows:repeat(4,1fr);height:clamp(470px,122vw,640px);transition:grid-template-rows .55s var(--ease),opacity 1s ease,transform 1.15s var(--ease)}
-    .exc-vt{writing-mode:horizontal-tb;top:auto;bottom:16px;left:18px;right:auto;justify-content:flex-start;font-size:1.15rem}
+    #bento .exp{height:clamp(440px,130vw,580px)}   /* スマホも横並び維持・縦長の帯に */
+    .exc-vt{top:14px;font-size:.95rem}
+    .exc-body{padding:13px 12px}
+    .exc-tt{font-size:1.22rem;white-space:normal;line-height:1.06}
+    .exc-jp{font-size:.74rem}
+    .exc-ds{font-size:.72rem;line-height:1.5;max-width:none}
+    .exc-go{font-size:.68rem}
   }
   @media(prefers-reduced-motion:reduce){#bento .exp,.exc-ph,.exc-vt,.exc-body{transition:none}}
 
@@ -2049,9 +2054,7 @@
     var mq=window.matchMedia('(max-width:720px)');
     function set(i){
       cards.forEach(function(c,k){ c.setAttribute('data-active', k===i?'true':'false'); });
-      var tr=cards.map(function(_,k){ return k===i?'5fr':'1fr'; }).join(' ');
-      if(mq.matches){ exp.style.gridTemplateRows=tr; exp.style.gridTemplateColumns=''; }
-      else { exp.style.gridTemplateColumns=tr; exp.style.gridTemplateRows=''; }
+      exp.style.gridTemplateColumns=cards.map(function(_,k){ return k===i?'5fr':'1fr'; }).join(' ');   /* 横並び維持（スマホも） */
     }
     cards.forEach(function(c,i){
       c.addEventListener('mouseenter',function(){ if(!mq.matches) set(i); });
