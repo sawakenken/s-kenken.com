@@ -301,9 +301,9 @@
   #about .ab-wrap{position:relative;border-radius:22px;overflow:hidden;margin-top:clamp(22px,3vw,36px);border:1px solid var(--line);box-shadow:0 34px 72px -36px rgba(0,0,0,.78)}
   #about .ab-bd{position:absolute;inset:0;z-index:0;background-image:url('images/about/portrait.jpg');background-size:cover;background-position:50% 24%;filter:blur(44px) brightness(.4) saturate(1.12);transform:scale(1.22)}
   #about .ab-bd::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 82% 22%,rgba(224,166,97,.16),transparent 60%),linear-gradient(150deg,rgba(23,26,27,.3),rgba(23,26,27,.58))}
-  #about .ab-glass{position:relative;z-index:1;background:rgba(23,26,27,.5);backdrop-filter:blur(20px) saturate(1.1);-webkit-backdrop-filter:blur(20px) saturate(1.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);padding:clamp(26px,3.6vw,46px)}
-  #about .ab-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,4vw,56px);align-items:start}
-  #about .ab-av{position:relative;align-self:start}
+  #about .ab-glass{position:relative;z-index:1;background:rgba(23,26,27,.5);backdrop-filter:blur(20px) saturate(1.1);-webkit-backdrop-filter:blur(20px) saturate(1.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);padding:clamp(34px,4.4vw,56px) clamp(26px,3.6vw,46px) clamp(28px,3.6vw,46px)}
+  #about .ab-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,4vw,56px);align-items:center}
+  #about .ab-av{position:relative;align-self:center}
   #about .ab-av::before{content:"";position:absolute;left:50%;top:50%;width:118%;height:118%;transform:translate(-50%,-50%);border-radius:50%;background:rgba(224,166,97,.2);filter:blur(34px)}
   #about .ab-av .img{position:relative;width:clamp(150px,17vw,208px);aspect-ratio:1;border-radius:50%;border:2px solid rgba(255,255,255,.7);background-image:url('images/about/portrait.jpg');background-size:cover;background-position:center;box-shadow:0 26px 56px -20px rgba(0,0,0,.72)}
   #about .ab-name{font-family:var(--mincho);font-weight:600;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.08;color:var(--text);margin:0;letter-spacing:.02em}
@@ -311,7 +311,12 @@
   #about .ab-lead{font-family:var(--mincho);font-weight:500;font-size:clamp(1.1rem,1.8vw,1.42rem);line-height:1.6;letter-spacing:.01em;color:var(--text);margin:clamp(16px,2vw,22px) 0 0}
   #about .ab-lead .hl{color:var(--accent)}
   #about .ab-bio{font-family:var(--jp);font-size:.9rem;line-height:1.95;color:rgba(234,232,226,.82);margin:14px 0 0;max-width:62ch;word-break:normal;line-break:normal}
-  #about .ab-glass .amb:first-of-type{margin-top:clamp(20px,2.6vw,28px)}
+  #about .ab-hl{display:flex;flex-direction:column;gap:10px;margin:clamp(20px,2.6vw,26px) 0 0}
+  #about .ab-hi{position:relative;overflow:hidden;border:1px solid var(--line-soft);background:rgba(255,255,255,.03);border-radius:14px;padding:13px 16px;transition:border-color .35s var(--ease),transform .35s var(--ease)}
+  #about .ab-hi::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(224,166,97,.07),transparent 58%);opacity:0;transition:opacity .35s var(--ease);pointer-events:none}
+  @media(hover:hover){#about .ab-hi:hover{border-color:rgba(224,166,97,.4);transform:translateY(-2px)}#about .ab-hi:hover::before{opacity:1}}
+  #about .ab-hi .k{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  #about .ab-hi .v{font-family:var(--jp);font-size:.82rem;line-height:1.65;color:var(--text);margin-top:5px;word-break:normal}
   #about .ab-soc{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(22px,2.8vw,28px)}
   #about .ab-s{display:inline-flex;align-items:center;gap:11px;border:1px solid var(--line-soft);background:rgba(255,255,255,.03);border-radius:14px;padding:11px 15px;text-decoration:none;transition:border-color .3s,transform .3s var(--ease),background .3s}
   @media(hover:hover){#about .ab-s:hover{border-color:rgba(224,166,97,.4);transform:translateY(-2px);background:rgba(255,255,255,.05)}}
@@ -321,13 +326,14 @@
   #about .ab-s .nm{font-family:var(--sans);font-size:.78rem;font-weight:600;color:var(--text);line-height:1.2}
   #about .ab-s .hd{font-family:var(--sans);font-size:.64rem;color:var(--muted);margin-top:2px;line-height:1.2}
   @media(max-width:760px){
-    #about .ab-grid{grid-template-columns:1fr;justify-items:center;text-align:center;gap:22px}
+    #about .ab-grid{grid-template-columns:1fr;justify-items:center;gap:24px}
+    #about .ab-av{justify-self:center}
     #about .ab-av .img{width:clamp(148px,42vw,190px)}
+    #about .ab-body{text-align:center;width:100%}
     #about .ab-name{font-size:clamp(1.7rem,7vw,2.1rem)}
     #about .ab-lead{font-size:1.16rem}
     #about .ab-bio{max-width:none;text-align:left}
-    #about .ab-glass .amb{width:100%}
-    #about .ab-glass .amb-list{justify-content:center}
+    #about .ab-hl{text-align:left}
     #about .ab-soc{justify-content:center}
   }
   @media(prefers-reduced-transparency:reduce){#about .ab-glass{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--panel)}#about .ab-bd{filter:blur(44px) brightness(.3)}}
@@ -1143,13 +1149,11 @@
           <span class="ab-role" data-en="Photographer / Filmmaker">フォトグラファー ／ 映像クリエイター</span>
           <p class="ab-lead" data-en="&#8220;Sharing the scenery that <span class='hl'>truly moved me</span> with the world.&#8221;">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
           <p class="ab-bio" data-en="A photographer born in Hokkaido and based in Kyoto. Traveling the world since 2021, he keeps capturing light and landscapes — working across film production, Lightroom editing and workshops, and holds a Domestic Travel Services Manager qualification.">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
-          <div class="amb">
-            <span class="amb-lab">Official Ambassador</span>
-            <ul class="amb-list"><li>Samsung Team Galaxy</li><li>Adobe Partner</li><li>Alfa Romeo</li></ul>
-          </div>
-          <div class="amb">
-            <span class="amb-lab">Awards · Exhibition</span>
-            <ul class="amb-list"><li data-en="Adobe Year-End Creative Contest 2022 — selected">Adobe「年末クリエイティブコンテスト 2022」入賞</li><li data-en="Calbee &#8220;Yorukata&#8221; Contest — Autumn Award">カルビー よる堅フォトコンテスト 秋の賞</li><li data-en="Expo 2025 Osaka-Kansai — Kyoto corner">大阪・関西万博 京都コーナー展示</li></ul>
+          <div class="ab-hl">
+            <div class="ab-hi"><div class="k">Official Ambassador</div><div class="v">Samsung Team Galaxy ／ Adobe Partner ／ Alfa Romeo</div></div>
+            <div class="ab-hi"><div class="k">Base · Roots</div><div class="v" data-en="Based in Kyoto, from Hokkaido — traveling the world since 2021.">京都拠点・北海道出身／2021年から世界へ</div></div>
+            <div class="ab-hi"><div class="k">Qualified</div><div class="v" data-en="Certified Domestic Travel Services Manager.">国内旅行業務取扱管理者</div></div>
+            <div class="ab-hi"><div class="k">Awards · Exhibition</div><div class="v" data-en="Adobe Year-End Creative Contest 2022 — selected; Calbee &#8220;Yorukata&#8221; Contest — Autumn Award; Expo 2025 Osaka-Kansai, Kyoto corner.">Adobe「年末クリエイティブコンテスト 2022」入賞／カルビー よる堅フォトコンテスト 秋の賞／大阪・関西万博 京都コーナー展示</div></div>
           </div>
           <div class="ab-soc">
           <a class="ab-s" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><span class="tx"><span class="nm">Instagram</span><span class="hd">@s_ken.ken</span></span></a>
