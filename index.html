@@ -298,66 +298,87 @@
   @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:32px}.about-portrait{max-width:196px;margin:0 auto}}
 
   /* ABOUT — glass profile (full-bleed card, identity rail + content zone) */
-  /* Balance: card fills the section width (no max-width cap). Inside, a fixed
-     identity rail (portrait+name+role+lead) is anchored left; the flexible
-     content zone holds the bio at a capped reading measure AND a 2-col
-     credential grid that consumes the remaining width — so the canvas is used
-     without stretching body text. */
+  /* Composition: the card fills the section content box (no max-width cap, no
+     auto-centering). Inside, a fixed-width identity rail (portrait, name, role,
+     gold rule, manifesto quote) is anchored left; a flexible content zone holds
+     the bio at a capped reading measure, then the credentials.
+     EMPTY-CELL FIX: credentials are split into (a) a 3-equal-column row of the
+     three short items — exactly 3 cells for 3 items, so no orphan track — and
+     (b) the long Awards / Exhibition item promoted to a single full-width
+     feature card below. This both fills the canvas edge-to-edge and gives the
+     prestige item real hierarchy. VOID FIX: the right zone distributes its
+     blocks so the feature card's baseline settles near the rail's quote, and
+     both columns stretch to equal height. STRETCH FIX: the bio is capped at a
+     readable ~46ch measure rather than spanning the full width. */
   #about .ab-wrap{position:relative;margin:clamp(22px,3vw,36px) 0 0;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 34px 72px -36px rgba(0,0,0,.78);contain:paint}
   #about .ab-bd{position:absolute;inset:0;z-index:0;background-image:url('images/about/portrait.jpg');background-size:cover;background-position:50% 22%;filter:blur(46px) brightness(.4) saturate(1.12);transform:scale(1.24)}
   #about .ab-bd::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 18% 14%,rgba(224,166,97,.14),transparent 58%),linear-gradient(150deg,rgba(23,26,27,.34),rgba(23,26,27,.62))}
-  #about .ab-glass{position:relative;z-index:1;background:rgba(23,26,27,.5);backdrop-filter:blur(20px) saturate(1.1);-webkit-backdrop-filter:blur(20px) saturate(1.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);padding:clamp(38px,3.8vw,56px)}
-  /* top-level split: identity rail + content zone, divided by a hairline */
-  #about .ab-cols{display:grid;grid-template-columns:minmax(290px,350px) 1fr;column-gap:clamp(40px,4.6vw,68px);align-items:start}
+  #about .ab-glass{position:relative;z-index:1;background:rgba(23,26,27,.5);backdrop-filter:blur(20px) saturate(1.1);-webkit-backdrop-filter:blur(20px) saturate(1.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);padding:clamp(38px,3.8vw,58px)}
+  /* top-level split: identity rail + content zone, divided by a hairline.
+     align-items:stretch makes both columns equal height for baseline balance. */
+  #about .ab-cols{display:grid;grid-template-columns:minmax(288px,348px) 1fr;column-gap:clamp(40px,4.6vw,72px);align-items:stretch}
   #about .ab-col-l{display:flex;flex-direction:column;align-items:flex-start}
-  #about .ab-col-r{min-width:0;display:flex;flex-direction:column;gap:clamp(26px,2.8vw,34px);padding-left:clamp(40px,4.6vw,68px);border-left:1px solid var(--line-soft)}
+  #about .ab-col-l .ab-lead{margin-top:auto}            /* pin quote to rail bottom → balances the feature card */
+  #about .ab-col-r{min-width:0;display:flex;flex-direction:column;gap:clamp(24px,2.6vw,32px);padding-left:clamp(40px,4.6vw,72px);border-left:1px solid var(--line-soft)}
+  #about .ab-creds{margin-top:auto}                     /* sink credentials so the feature card aligns near the quote */
   #about .ab-av{width:clamp(168px,15vw,212px);margin:0}
   #about .ab-av .img{width:100%;aspect-ratio:1;border-radius:50%;border:2px solid rgba(255,255,255,.7);background-image:url('images/about/portrait.jpg');background-size:cover;background-position:center;box-shadow:0 24px 54px -20px rgba(0,0,0,.72)}
   #about .ab-name{font-family:var(--mincho);font-weight:600;font-size:clamp(1.9rem,3.2vw,2.5rem);line-height:1.12;color:var(--text);margin:clamp(20px,2.2vw,26px) 0 0;letter-spacing:.02em}
   #about .ab-role{display:block;font-family:var(--mincho);font-weight:500;font-size:clamp(.85rem,1.2vw,1rem);letter-spacing:.1em;color:var(--accent);margin-top:10px}
-  #about .ab-lead{font-family:var(--mincho);font-weight:500;font-size:clamp(1.14rem,1.55vw,1.4rem);line-height:1.6;letter-spacing:.01em;color:var(--text);margin:clamp(20px,2.2vw,26px) 0 0;word-break:normal;overflow-wrap:anywhere}
+  #about .ab-lead{font-family:var(--mincho);font-weight:500;font-size:clamp(1.14rem,1.55vw,1.4rem);line-height:1.62;letter-spacing:.01em;color:var(--text);margin:clamp(24px,2.6vw,30px) 0 0;word-break:normal;overflow-wrap:anywhere}
   #about .ab-lead::before{content:"";display:block;width:34px;height:2px;background:var(--accent);opacity:.85;margin:0 0 clamp(16px,1.8vw,20px)}
   #about .ab-lead .hl{color:var(--accent)}
   /* content zone: bio holds a capped reading measure (never one long line) */
   #about .ab-bio{font-family:var(--jp);font-size:.96rem;line-height:1.95;color:rgba(234,232,226,.84);margin:0;max-width:46ch;text-align:left;word-break:normal}
-  /* credentials: 2-col grid fills the rest of the wide canvas */
-  #about .ab-hl{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.3vw,16px);margin:0;text-align:left}
-  #about .ab-hi{position:relative;overflow:hidden;border:1px solid var(--line-soft);background:rgba(255,255,255,.035);border-radius:14px;padding:clamp(15px,1.5vw,19px) clamp(16px,1.6vw,20px);transition:border-color .35s var(--ease),transform .35s var(--ease)}
+  /* credentials wrapper: 3-col row of short items + full-width feature below */
+  #about .ab-creds{display:flex;flex-direction:column;gap:clamp(12px,1.3vw,16px)}
+  /* three short credentials — exactly 3 equal columns, equal heights, no orphan */
+  #about .ab-hl{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.3vw,16px);margin:0;text-align:left}
+  #about .ab-hi{position:relative;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line-soft);background:rgba(255,255,255,.035);border-radius:14px;padding:clamp(16px,1.5vw,20px) clamp(16px,1.6vw,20px);transition:border-color .35s var(--ease),transform .35s var(--ease)}
   #about .ab-hi::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(224,166,97,.07),transparent 58%);opacity:0;transition:opacity .35s var(--ease);pointer-events:none}
   @media(hover:hover){#about .ab-hi:hover{border-color:rgba(224,166,97,.4);transform:translateY(-2px)}#about .ab-hi:hover::before{opacity:1}}
   #about .ab-hi .k{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  #about .ab-hi .v{font-family:var(--jp);font-size:.85rem;line-height:1.72;color:var(--text);margin-top:7px;word-break:normal}
-  /* the long Awards card spans both columns so it never reads as a thin bar */
-  #about .ab-hi.ab-hi-wide{grid-column:1 / -1}
-  /* TABLET: rail narrows, drop the divider, keep 2-col credentials */
+  #about .ab-hi .v{font-family:var(--jp);font-size:.85rem;line-height:1.74;color:var(--text);margin-top:9px;word-break:normal}
+  /* AWARDS feature card — full width, elevated: gold edge rule + label, richer fill */
+  #about .ab-feat{position:relative;overflow:hidden;border:1px solid rgba(224,166,97,.26);background:linear-gradient(135deg,rgba(224,166,97,.07),rgba(255,255,255,.03) 46%);border-radius:16px;padding:clamp(20px,2vw,26px) clamp(20px,2.1vw,28px) clamp(20px,2vw,26px) clamp(24px,2.4vw,32px);transition:border-color .35s var(--ease),transform .35s var(--ease)}
+  #about .ab-feat::after{content:"";position:absolute;left:0;top:14%;bottom:14%;width:3px;border-radius:0 3px 3px 0;background:var(--accent);opacity:.9}
+  #about .ab-feat::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(224,166,97,.1),transparent 60%);opacity:0;transition:opacity .35s var(--ease);pointer-events:none}
+  @media(hover:hover){#about .ab-feat:hover{border-color:rgba(224,166,97,.5);transform:translateY(-2px)}#about .ab-feat:hover::before{opacity:1}}
+  #about .ab-feat .k{display:block;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+  #about .ab-feat .v{font-family:var(--jp);font-size:.92rem;line-height:1.85;color:var(--text);margin-top:11px;word-break:normal}
+  /* TABLET: rail narrows, keep the 3-col credential row */
   @media(max-width:960px){
-    #about .ab-cols{grid-template-columns:minmax(240px,300px) 1fr;column-gap:clamp(32px,4vw,48px)}
-    #about .ab-col-r{padding-left:clamp(32px,4vw,48px)}
+    #about .ab-cols{grid-template-columns:minmax(238px,300px) 1fr;column-gap:clamp(32px,4vw,52px)}
+    #about .ab-col-r{padding-left:clamp(32px,4vw,52px)}
     #about .ab-bio{max-width:52ch}
   }
-  /* MOBILE: clean single-column stack — portrait→name→role→lead→bio→credentials */
+  /* MOBILE: clean single-column stack — portrait→name→role→rule→lead→bio→credentials */
   @media(max-width:760px){
-    #about .ab-glass{padding:clamp(30px,5vw,40px)}
-    #about .ab-cols{grid-template-columns:1fr;row-gap:clamp(26px,4vw,32px)}
+    #about .ab-glass{padding:clamp(30px,5vw,42px)}
+    #about .ab-cols{grid-template-columns:1fr;row-gap:clamp(28px,4.5vw,34px);align-items:stretch}
     #about .ab-col-l{align-items:center;text-align:center}
+    #about .ab-col-l .ab-lead{margin-top:clamp(22px,4vw,28px)}   /* drop the desktop bottom-pin in the stack */
     #about .ab-col-r{padding-left:0;border-left:0;margin-left:0;gap:clamp(22px,4vw,28px)}
+    #about .ab-creds{margin-top:0}
     #about .ab-av{width:clamp(150px,38vw,188px)}
     #about .ab-lead::before{margin-left:auto;margin-right:auto}
     #about .ab-bio{max-width:none;text-align:left}
-    #about .ab-hl{grid-template-columns:1fr 1fr;text-align:left}
+    #about .ab-hl{grid-template-columns:repeat(3,1fr)}
   }
+  /* PHONE: single-column credentials, tightened paddings/sizes, zero overflow */
   @media(max-width:600px){
     #about .ab-wrap{margin-left:0;margin-right:0;border-radius:16px}
-    #about .ab-glass{padding:28px 20px 32px}
+    #about .ab-glass{padding:30px 20px 34px}
     #about .ab-av{width:clamp(132px,42vw,168px)}
     #about .ab-name{font-size:clamp(1.7rem,8vw,2.05rem)}
     #about .ab-role{font-size:.82rem}
     #about .ab-lead{font-size:clamp(1.04rem,4.6vw,1.22rem)}
     #about .ab-bio{font-size:.9rem}
     #about .ab-hl{grid-template-columns:1fr;gap:10px}
-    #about .ab-hi{padding:13px 15px}
-    #about .ab-hi.ab-hi-wide{grid-column:auto}
-    #about .ab-hi .v{font-size:.82rem}
+    #about .ab-hi{padding:14px 16px}
+    #about .ab-hi .v{font-size:.84rem}
+    #about .ab-feat{padding:16px 18px 16px 22px}
+    #about .ab-feat .v{font-size:.86rem}
   }
   @media(prefers-reduced-transparency:reduce){#about .ab-glass{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--panel)}#about .ab-bd{filter:blur(46px) brightness(.3)}}
 
@@ -1173,12 +1194,14 @@
       <p class="ab-lead" data-en="&#8220;Sharing the scenery that <span class='hl'>truly moved me</span> with the world.&#8221;">「心から感動した景色を、<span class="hl">世界中の人々に共有したい</span>」</p>
         </div>
         <div class="ab-col-r">
-          <p class="ab-bio" data-en="A photographer born in Hokkaido and based in Kyoto. Traveling the world since 2021, he keeps capturing light and landscapes — working across film production, Lightroom editing and workshops, and holds a Domestic Travel Services Manager qualification.">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
-      <div class="ab-hl">
-        <div class="ab-hi"><div class="k">Official Ambassador</div><div class="v">Samsung Team Galaxy ／ Adobe Partner ／ Alfa Romeo</div></div>
-        <div class="ab-hi"><div class="k">Base · Roots</div><div class="v" data-en="Based in Kyoto, from Hokkaido — traveling the world since 2021.">京都拠点・北海道出身／2021年から世界へ</div></div>
-        <div class="ab-hi"><div class="k">Qualified</div><div class="v" data-en="Certified Domestic Travel Services Manager.">国内旅行業務取扱管理者</div></div>
-        <div class="ab-hi ab-hi-wide"><div class="k">Awards · Exhibition</div><div class="v" data-en="Adobe Year-End Creative Contest 2022, selected. Calbee &#8220;Yorukata&#8221; Photo Contest, Autumn Award. Expo 2025 Osaka-Kansai, Kyoto corner exhibition.">Adobe「年末クリエイティブコンテスト 2022」入賞／カルビー よる堅フォトコンテスト 秋の賞／大阪・関西万博 京都コーナー展示</div></div>
+          <p class="ab-bio" data-en="A photographer born in Hokkaido and based in Kyoto. Traveling the world since 2021, he keeps capturing light and landscapes. He works across film production, Lightroom editing and workshops, and holds a Domestic Travel Services Manager qualification.">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
+      <div class="ab-creds">
+        <div class="ab-hl">
+          <div class="ab-hi"><div class="k">Official Ambassador</div><div class="v">Samsung Team Galaxy ／ Adobe Partner ／ Alfa Romeo</div></div>
+          <div class="ab-hi"><div class="k">Base · Roots</div><div class="v" data-en="Based in Kyoto, from Hokkaido. Traveling the world since 2021.">京都拠点・北海道出身／2021年から世界へ</div></div>
+          <div class="ab-hi"><div class="k">Qualified</div><div class="v" data-en="Certified Domestic Travel Services Manager.">国内旅行業務取扱管理者</div></div>
+        </div>
+        <div class="ab-feat"><div class="k">Awards · Exhibition</div><div class="v" data-en="Adobe Year-End Creative Contest 2022, selected. Calbee &#8220;Yorukata&#8221; Photo Contest, Autumn Award. Expo 2025 Osaka-Kansai, Kyoto corner exhibition.">Adobe「年末クリエイティブコンテスト 2022」入賞／カルビー よる堅フォトコンテスト 秋の賞／大阪・関西万博 京都コーナー展示</div></div>
       </div>
         </div>
       </div>
