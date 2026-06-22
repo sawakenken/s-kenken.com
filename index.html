@@ -325,16 +325,20 @@
   #about .ab-s .ic svg{width:17px;height:17px;display:block}
   #about .ab-s .nm{font-family:var(--sans);font-size:.78rem;font-weight:600;color:var(--text);letter-spacing:.02em}
   @media(max-width:760px){
-    #about .ab-grid{grid-template-columns:1fr;justify-items:center;gap:26px}
-    #about .ab-side{align-items:center;width:100%;max-width:360px}
-    #about .ab-av{width:clamp(150px,44vw,196px)}
-    #about .ab-soc{flex-direction:row;flex-wrap:wrap;justify-content:center}
-    #about .ab-s{flex:1 1 46%}
-    #about .ab-body{text-align:center;width:100%}
-    #about .ab-name{font-size:clamp(1.7rem,7vw,2.1rem)}
-    #about .ab-lead{font-size:1.16rem}
+    /* stack order: avatar -> name/info -> SNS(last). ab-side dissolves so its children reorder. */
+    #about .ab-grid{display:flex;flex-direction:column;align-items:center;gap:20px}
+    #about .ab-side{display:contents}
+    #about .ab-av{order:1;width:clamp(132px,38vw,168px)}
+    #about .ab-body{order:2;text-align:center;width:100%}
+    #about .ab-name{font-size:clamp(1.65rem,7vw,2.05rem)}
+    #about .ab-lead{font-size:1.12rem}
     #about .ab-bio{max-width:none;text-align:left}
     #about .ab-hl{text-align:left}
+    #about .ab-soc{order:3;width:100%;max-width:380px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    #about .ab-s{padding:9px 12px}
+    #about .ab-s .ic{width:30px;height:30px}
+    #about .ab-s .ic svg{width:15px;height:15px}
+    #about .ab-s .nm{font-size:.72rem}
   }
   @media(prefers-reduced-transparency:reduce){#about .ab-glass{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--panel)}#about .ab-bd{filter:blur(44px) brightness(.3)}}
 
