@@ -397,6 +397,7 @@
   .contact .ct-card::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(62%,360px);height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
   .contact .eyebrow{display:block;margin-bottom:18px}
   .contact .en-h{font-size:clamp(2.6rem,7vw,4.4rem)}
+  .contact .ct-mbr{display:none}
   .contact .jp{font-family:var(--mincho);font-weight:500;font-size:clamp(1.1rem,2.6vw,1.5rem);letter-spacing:.08em;margin-top:12px}
   .contact p.lead{max-width:40ch;margin:16px auto 0;color:var(--muted)}
   .contact .ct-rea{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin:24px auto 0;max-width:520px;font-family:var(--sans);font-size:.74rem;letter-spacing:.02em;color:var(--muted)}
@@ -407,25 +408,39 @@
   .contact .ct-btn-fill{background:var(--accent);color:#161412;border:1px solid var(--accent)}
   .contact .ct-btn-out{background:transparent;color:var(--text);border:1px solid var(--line)}
   @media(hover:hover){.contact .ct-btn-fill:hover{transform:translateY(-2px);background:#e7b372}.contact .ct-btn-out:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}}
-  @media(max-width:560px){.contact .ct-card{padding:36px 22px 40px}.contact .ct-btns{flex-direction:column}.contact .ct-btn{justify-content:center}}
-  /* desktop = 全幅バンド(案2)+右上は案1の安心材料リスト ; mobile(<=720)は現行カードを維持 */
-  .contact .ct-band{display:none}
-  @media(min-width:721px){
-    .contact .ct-card{display:none}
-    .contact .ct-band{display:block;text-align:left;border-top:1px solid var(--line);padding-top:clamp(28px,4vw,48px)}
+  @media(max-width:560px){
+    .contact .ct-card{padding:34px 22px 38px}
+    .contact .en-h{font-size:clamp(2.2rem,9.6vw,2.7rem);line-height:1.05}
+    .contact .jp{font-size:.88rem;margin-top:10px}
+    .contact p.lead{font-size:.78rem;margin-top:12px}
+    .contact .ct-rea{font-size:.7rem;margin-top:20px}
+    .contact .ct-btns{flex-direction:column;margin-top:26px}
+    .contact .ct-btn{justify-content:center;font-size:.8rem;padding:13px 26px}
   }
-  .contact .ct-band-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
+  /* desktop(>720)=全幅エディトリアルバンド(見出し80px=全セクション統一・4項目スペック行) / mobile(<=720)=現行グラスカード維持 */
+  .contact .ct-band{display:none;text-align:left;border-top:1px solid var(--line);padding-top:clamp(28px,4vw,48px)}
+  @media(min-width:721px){.contact .ct-card{display:none}.contact .ct-band{display:block}}
   .contact .ct-band .eyebrow{display:block;margin-bottom:14px}
-  .contact .ct-band-h{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,8vw,6.2rem);line-height:.9;letter-spacing:.02em;color:var(--text)}
-  .contact .ct-band-rea{list-style:none;margin:0;padding:10px 0 0;flex:none;width:clamp(280px,32%,360px);font-family:var(--sans);letter-spacing:.02em}
-  .contact .ct-band-rea li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-top:1px solid var(--line-soft);color:var(--text);font-size:.86rem}
-  .contact .ct-band-rea li:last-child{border-bottom:1px solid var(--line-soft)}
-  .contact .ct-band-rea li span:last-child{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
-  .contact .ct-band-rule{display:flex;justify-content:space-between;align-items:center;gap:28px;margin-top:clamp(34px,5vw,60px);padding-top:26px;border-top:1px solid var(--line-soft)}
-  .contact .ct-band-lead{font-family:var(--jp);font-size:1rem;line-height:1.8;color:var(--muted);max-width:42ch;margin:0;text-align:left}
-  .contact .ct-band-lead b{display:block;font-family:var(--mincho);font-weight:500;font-size:1.2rem;color:var(--text);letter-spacing:.06em;margin-bottom:8px}
+  .contact .ct-band-h{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,8.5vw,5rem);line-height:1;letter-spacing:.03em;color:var(--text)}
+  .contact .ct-band-strip{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(30px,4.5vw,52px);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);font-family:var(--sans);list-style:none;padding:0}
+  .contact .ct-band-strip li{display:flex;flex-direction:column;gap:7px;padding:18px clamp(18px,2.2vw,30px) 18px 0}
+  .contact .ct-band-strip li + li{border-left:1px solid var(--line-soft);padding-left:clamp(18px,2.2vw,30px)}
+  .contact .ct-band-strip .tag{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  .contact .ct-band-strip .txt{font-size:.9rem;color:var(--text)}
+  .contact .ct-band-rule{display:flex;justify-content:space-between;align-items:center;gap:28px;margin-top:clamp(24px,3.2vw,38px)}
+  .contact .ct-band-lead{font-family:var(--jp);font-size:1rem;line-height:1.8;color:var(--muted);max-width:42ch;margin:0}
+  .contact .ct-band-lead b{display:block;font-family:var(--mincho);font-weight:500;font-size:1.18rem;color:var(--text);letter-spacing:.06em;margin-bottom:8px}
   .contact .ct-band-btns{display:flex;gap:12px;flex:none}
-  @media(min-width:721px) and (max-width:880px){.contact .ct-band-rule{flex-direction:column;align-items:stretch;gap:24px}}
+  @media(max-width:720px){
+    .contact .ct-band-strip{grid-template-columns:1fr 1fr;column-gap:clamp(18px,5vw,28px);padding:4px 0}
+    .contact .ct-band-strip li{padding:15px 0}
+    .contact .ct-band-strip li + li{border-left:none;padding-left:0}
+    .contact .ct-band-strip li:nth-child(even){padding-left:clamp(18px,5vw,28px);border-left:1px solid var(--line-soft)}
+    .contact .ct-band-strip li:nth-child(n+3){border-top:1px solid var(--line-soft)}
+    .contact .ct-band-rule{flex-direction:column;align-items:flex-start;gap:22px}
+    .contact .ct-band-btns{flex-direction:column;width:100%}
+    .contact .ct-band-btns .ct-btn{justify-content:center;width:100%}
+  }
   .cta{display:inline-block;margin-top:34px;padding:16px 42px;border:1px solid var(--text);border-radius:100px;font-family:var(--sans);font-weight:500;font-size:.9rem;letter-spacing:.06em;position:relative;overflow:hidden;z-index:0;transition:color .4s}
   .cta span{position:relative;z-index:2}
   .cta::before{content:"";position:absolute;inset:0;z-index:1;background:var(--text);transform:translateY(101%);transition:transform .45s var(--ease)}
@@ -1464,31 +1479,29 @@
 <section class="sec wrap contact" id="contact">
   <div class="ct-card rv">
     <span class="eyebrow">Contact</span>
-    <h2 class="en-h">Let’s Talk</h2>
+    <h2 class="en-h">Where to Next?</h2>
     <p class="jp" data-en="For shoots & tie-ups">撮影・タイアップのご依頼</p>
     <p class="lead" data-en="Photography, video, SNS tie-ups and tourism PR. Planning-stage chats are welcome.">撮影・動画・SNSタイアップ・観光PRのご依頼。企画段階のご相談もお気軽にどうぞ。</p>
     <div class="ct-rea"><span data-en="Planning-stage chats welcome">企画段階の相談OK</span><span data-en="Available in Japan &amp; worldwide">国内外の撮影に対応</span></div>
     <div class="ct-btns">
       <a class="ct-btn ct-btn-fill" href="#contact-page" data-view="contact" data-en="Contact form →">お問い合わせフォーム →</a>
-      <a class="ct-btn ct-btn-out" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener" data-en="Ask via Instagram ↗">Instagram で相談 ↗</a>
     </div>
   </div>
   <div class="ct-band rv">
-    <div class="ct-band-top">
-      <div class="ct-band-head">
-        <span class="eyebrow">Contact</span>
-        <h2 class="ct-band-h">Let’s Talk</h2>
-      </div>
-      <ul class="ct-band-rea">
-        <li><span data-en="Planning-stage chats welcome">企画段階の相談OK</span><span>Pre-planning</span></li>
-        <li><span data-en="Available in Japan &amp; worldwide">国内外の撮影に対応</span><span>JP &amp; Worldwide</span></li>
-      </ul>
+    <div class="ct-band-head">
+      <span class="eyebrow">Contact</span>
+      <h2 class="ct-band-h">Where to Next?</h2>
     </div>
+    <ul class="ct-band-strip">
+      <li><span class="tag">Pre-planning</span><span class="txt" data-en="Planning-stage chats welcome">企画段階の相談OK</span></li>
+      <li><span class="tag">Photo &amp; Video</span><span class="txt" data-en="Photo &amp; video">写真・動画 両対応</span></li>
+      <li><span class="tag">Social</span><span class="txt" data-en="SNS &amp; tie-ups">SNS発信まで対応</span></li>
+      <li><span class="tag">JP &amp; Worldwide</span><span class="txt" data-en="Japan &amp; worldwide">国内外の撮影に対応</span></li>
+    </ul>
     <div class="ct-band-rule">
       <p class="ct-band-lead"><b data-en="For shoots &amp; tie-ups">撮影・タイアップのご依頼</b><span data-en="Photography, video, SNS tie-ups and tourism PR. Planning-stage chats are welcome.">撮影・動画・SNSタイアップ・観光PRのご依頼。企画段階のご相談もお気軽にどうぞ。</span></p>
       <div class="ct-band-btns">
         <a class="ct-btn ct-btn-fill" href="#contact-page" data-view="contact" data-en="Contact form →">お問い合わせフォーム →</a>
-        <a class="ct-btn ct-btn-out" href="https://instagram.com/s_ken.ken" target="_blank" rel="noopener" data-en="Ask via Instagram ↗">Instagram で相談 ↗</a>
       </div>
     </div>
   </div>
