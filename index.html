@@ -2137,12 +2137,13 @@
     var exp=document.getElementById('svcExp'); if(!exp) return;
     var cards=[].slice.call(exp.querySelectorAll('.exc'));
     var mq=window.matchMedia('(max-width:720px)');
+    var canHover=window.matchMedia('(hover:hover)');
     function set(i){
       cards.forEach(function(c,k){ c.setAttribute('data-active', k===i?'true':'false'); });
       exp.style.gridTemplateColumns=cards.map(function(_,k){ return k===i?'5fr':'1fr'; }).join(' ');   /* 横並び維持（スマホも） */
     }
     cards.forEach(function(c,i){
-      c.addEventListener('mouseenter',function(){ if(!mq.matches) set(i); });
+      c.addEventListener('mouseenter',function(){ if(canHover.matches) set(i); });
       c.addEventListener('click',function(e){ if(e.target.closest('.exc-go')) return; set(i); });
     });
     set(0);
