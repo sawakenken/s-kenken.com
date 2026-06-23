@@ -1043,6 +1043,17 @@
     .about-body .bio{max-width:60ch;line-height:2;word-break:auto-phrase;text-wrap:pretty}
   }
   .ct-lead{max-width:19em;word-break:normal;text-wrap:pretty}
+  @media(min-width:601px){
+    /* About desktop: portrait sits beside [name + quote]; bio + ambassador full-width below (no more lonely portrait column) */
+    #about .about-grid{display:grid;grid-template-columns:minmax(168px,206px) 1fr;grid-template-areas:"portrait id" "portrait quote" "bio bio" "creds creds";column-gap:clamp(36px,4.2vw,64px);row-gap:0;align-items:start;max-width:none}
+    #about .about-body{display:contents}
+    #about .about-copy{display:contents;container-type:normal}
+    #about .about-portrait{grid-area:portrait;align-self:start;width:100%;max-width:none;margin:0}
+    #about .about-id{grid-area:id;align-self:end;margin:0 0 clamp(14px,1.7vw,20px)}
+    #about .about-quote{grid-area:quote;align-self:start;margin-top:0}
+    #about .bio{grid-area:bio;margin:clamp(28px,3.2vw,38px) 0 0;max-width:64ch;text-wrap:pretty}
+    #about .amb-show{grid-area:creds}
+  }
   @media(max-width:600px){
     /* About mobile (A改 swap): [portrait + quote] top, name/role below-left, quote spine off */
     #about .about-grid{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"portrait quote" "id id" "bio bio" "creds creds";column-gap:15px;row-gap:16px;align-items:center;justify-items:stretch;text-align:left;max-width:none}
@@ -1167,19 +1178,19 @@
     <figure class="about-portrait reveal-media">
       <div class="img ph-portrait" style="--photo:url('images/about/portrait.jpg')"></div>
     </figure>
-    <div class="about-body rv d1">
-      <div class="about-id">
+    <div class="about-body">
+      <div class="about-id rv">
         <h3 class="about-name"><span data-en="Sawai Kenta">Sawai Kenta / 澤井 健太</span></h3>
         <span class="about-role" data-en="Photographer / Filmmaker">フォトグラファー ／ 映像クリエイター</span>
       </div>
       <div class="about-copy">
-        <div class="about-quote">
+        <div class="about-quote rv d1">
         <p class="about-lead" data-en="&#8220;Sharing the scenery that <span class='hl'>truly moved me</span> with the world.&#8221;"><span class="lq">「心から感動した景色を、</span><span class="lq"><span class="hl">世界中の人々に共有したい</span>」</span></p>
         <p class="about-lead-en" data-en="">Sharing the scenery that truly moved me.</p>
         </div>
-        <p class="bio" data-en="A photographer born in Hokkaido and based in Kyoto. Traveling the world since 2021, he keeps capturing light and landscapes, working across film production, Lightroom editing, and workshops, and holds a Domestic Travel Services Manager qualification.">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
+        <p class="bio rv d1" data-en="A photographer born in Hokkaido and based in Kyoto. Traveling the world since 2021, he keeps capturing light and landscapes, working across film production, Lightroom editing, and workshops, and holds a Domestic Travel Services Manager qualification.">北海道生まれ、京都を拠点に活動するフォトグラファー。2021年から世界を歩き、光と景色を撮り続けています。映像制作・Lightroom現像・講座まで手がけ、国内旅行業務取扱管理者の資格を保有。</p>
       </div>
-      <div class="amb-show">
+      <div class="amb-show rv d1">
         <div class="amb-show-head">
           <span class="amb-show-lab" data-en="Official Ambassador">Official Ambassador</span>
           <span class="amb-show-rule"></span>
