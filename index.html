@@ -620,9 +620,9 @@
   .faq-a{padding:0 clamp(4px,1vw,12px) clamp(20px,2.8vw,26px);max-width:46em}
   .faq-a p{font-family:var(--jp);font-size:.92rem;line-height:1.95;color:var(--muted);word-break:auto-phrase;margin:0}
   /* SERVICES — Expanding Cards (アコーディオン式パネル / hover|tapで開く) */
-  #bento .exp{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(7px,1vw,10px);height:clamp(420px,46vw,520px);margin-top:clamp(26px,3.6vw,42px);transition:grid-template-columns .55s var(--ease),opacity 1s ease,transform 1.15s var(--ease)}
+  #bento .exp{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(7px,1vw,10px);height:clamp(420px,46vw,520px);margin-top:clamp(26px,3.6vw,42px);container-type:inline-size;transition:grid-template-columns .55s var(--ease),opacity 1s ease,transform 1.15s var(--ease)}
   .exc{position:relative;overflow:hidden;cursor:pointer;background:var(--panel2);min-width:0;min-height:0;display:block}
-  .exc-ph{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:center;filter:grayscale(1) brightness(.6);transform:scale(1.12);transition:filter .5s var(--ease),transform .6s var(--ease)}
+  .exc-ph{position:absolute;top:0;left:0;bottom:0;width:64cqw;background-size:cover;background-position:center;filter:grayscale(1) brightness(.6);transform:scale(1.12);transform-origin:left center;transition:filter .5s var(--ease),transform .6s var(--ease)}
   .exc[data-active="true"] .exc-ph{filter:grayscale(0) brightness(1);transform:scale(1)}
   .exc::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(8,10,11,.86),rgba(8,10,11,.18) 55%,transparent);pointer-events:none}
   .exc-vt{position:absolute;left:0;right:0;top:20px;z-index:2;display:flex;justify-content:center;writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;font-size:clamp(1rem,1.4vw,1.2rem);letter-spacing:.06em;color:rgba(255,255,255,.82);text-shadow:0 1px 8px rgba(0,0,0,.6);transition:opacity .35s var(--ease);pointer-events:none}
