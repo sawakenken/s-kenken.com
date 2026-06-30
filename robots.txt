@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://s-kenken.com/sitemap.xml
+Sitemap: https://s-kenken.com/sitemap-images.xml
