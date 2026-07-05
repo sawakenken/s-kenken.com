@@ -633,24 +633,11 @@
   @media(hover:hover){.mi-sub a:hover{color:var(--text);background:rgba(255,255,255,.06)}}
   .mi-sub a.mi-sub-all{font-family:var(--sans);font-weight:600;font-size:.74rem;
     letter-spacing:.1em;color:var(--accent)}
-  /* prominent Contact button — modern */
-  .menu-contact{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;
-    margin:clamp(22px,5vw,32px) var(--pad) 0;padding:clamp(15px,4vw,19px) clamp(18px,4vw,22px);
-    border-radius:16px;color:var(--text);overflow:hidden;
-    background:linear-gradient(135deg,rgba(224,166,97,.16),rgba(224,166,97,.03));
-    border:1px solid rgba(224,166,97,.42);
-    transition:border-color .35s ease,background .35s ease,transform .35s var(--ease)}
-  .menu-contact:hover,.menu-contact:focus-visible{border-color:var(--accent);transform:translateY(-2px);
-    background:linear-gradient(135deg,rgba(224,166,97,.26),rgba(224,166,97,.07))}
-  .menu-contact .lbl{display:flex;flex-direction:column;gap:4px}
-  .menu-contact .lbl b{font-family:var(--serif);font-weight:500;line-height:1;
-    font-size:clamp(1.35rem,5.4vw,1.7rem)}
-  .menu-contact .lbl span{font-family:var(--sans);font-weight:600;font-size:.6rem;
-    letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .menu-contact .arw{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
-    background:var(--accent);color:#16191a;transition:transform .35s var(--ease)}
-  .menu-contact .arw svg{width:19px;height:19px}
-  @media(hover:hover){.menu-contact:hover .arw{transform:translateX(4px)}}
+  /* Contact＝proto _design_final_proto.html item#7：他項目と同形式の最下行。文字色は金、右ラベル GET IN TOUCH、シェブロン無し */
+  .menu-nav .mi-contact .t{color:var(--accent)}
+  .menu-nav .mi-contact .jp-right{margin-left:auto;color:var(--accent);opacity:.85;
+    font-family:var(--sans);font-weight:600;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
+  .menu-nav .mi-contact::after{display:none}   /* 導線行なのでシェブロンは出さない（右ラベルが指標） */
 
   /* close button — modern circular, rotates on hover */
   .menu-close{position:fixed;top:clamp(13px,3.4vw,19px);right:var(--pad);z-index:330;
@@ -715,9 +702,18 @@
   /* these follow a section ending in a right-aligned "View all" button, which
      leaves extra empty space above their heading — trim their top to match. */
   #gallery,#news{padding-top:clamp(10px,1.6vw,24px)}
-  .sec-head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(34px,5vw,60px)}
+  /* C-type section head (ported from _design_final_proto.html item#1):
+     飾り英字eyebrow → 金の細罫線 → 大セリフ見出し（和文サブは付けない） */
+  .sec-head{display:block;margin-bottom:clamp(38px,6vw,60px)}
+  .sec-head .eyebrow{font-size:10px;font-weight:500;letter-spacing:.42em}
+  .sec-head .eyebrow::after{content:"";display:block;width:2.4rem;height:1px;background:var(--line);margin-top:14px}
   .jp-h{font-family:var(--mincho);font-weight:500;font-size:clamp(2.1rem,7vw,4.2rem);line-height:1.08;letter-spacing:.02em}
   .en-h{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,8.5vw,5rem);line-height:1;letter-spacing:.045em}
+  .sec-head .en-h{letter-spacing:.01em;line-height:1.04;font-size:clamp(2.9rem,12vw,5.4rem);margin-top:20px}
+  @media(min-width:769px){
+    .sec-head{margin-bottom:80px}
+    .sec-head .en-h{font-size:clamp(3.2rem,6.4vw,5.4rem);margin-top:24px}
+  }
 
   /* ABOUT (refined / minimal) */
   .about{background:var(--panel)}
@@ -851,6 +847,14 @@
   .contact .ct-rea{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin:24px auto 0;max-width:520px;font-family:var(--sans);font-size:.74rem;letter-spacing:.02em;color:var(--muted)}
   .contact .ct-rea span{display:inline-flex;align-items:center;gap:8px}
   .contact .ct-rea span::before{content:"";width:6px;height:6px;border:1px solid var(--accent);transform:rotate(45deg);flex:none}
+  /* 補助2項目＝proto _design_final_proto.html 形式（item#6）：極小英字ラベル＋和文・縦罫区切り・スマホでも横並び維持 */
+  .contact .ct-aux{display:flex;justify-content:center;align-items:stretch;gap:clamp(20px,4.5vw,64px);margin:clamp(24px,3.4vw,34px) auto 0}
+  .contact .ct-aux-item{display:flex;flex-direction:column;gap:8px;flex:0 1 auto;min-width:0;text-align:left}
+  .contact .ct-aux-item .lbl{font-family:var(--sans);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+  .contact .ct-aux-item p{font-family:var(--mincho);font-weight:500;font-size:clamp(.75rem,3vw,.84rem);letter-spacing:.08em;word-break:keep-all;line-height:1.7;color:var(--text)}
+  .contact .ct-aux-sep{width:1px;background:var(--line-soft);flex:none;align-self:stretch}
+  @media(min-width:769px){.contact .ct-aux{gap:64px}.contact .ct-aux-item p{font-size:.84rem;letter-spacing:.1em}}
+  .contact .ct-band .ct-aux{margin:clamp(26px,3.4vw,34px) auto 0}
   .contact .ct-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:30px}
   .contact .ct-btn{font-family:var(--sans);font-weight:600;font-size:.84rem;letter-spacing:.04em;border-radius:100px;padding:14px 30px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:transform .3s var(--ease),background .3s,color .3s,border-color .3s}
   .contact .ct-btn-fill{background:var(--accent);color:#161412;border:1px solid var(--accent)}
@@ -971,7 +975,8 @@
   .news li[data-slug]{cursor:pointer}
   .news .ndate{grid-area:date;font-family:var(--sans);font-weight:500;font-size:.82rem;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
   .news .pill{grid-area:pill;justify-self:start;display:inline-flex;align-items:center;justify-content:center;line-height:1;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:5px 14px 4px;white-space:nowrap;background:none}
-  .news .new{grid-area:new;justify-self:end;font-family:var(--sans);font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--bg);background:var(--accent);border-radius:5px;padding:5px 10px;white-space:nowrap}
+  /* NEW＝proto _design_final_proto.html item#4：金のインラインテキストのみ（背景・枠なし） */
+  .news .new{grid-area:new;justify-self:end;font-family:var(--sans);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
   .news .nt{grid-area:title;min-width:0;max-width:100%;font-family:var(--jp);font-weight:500;font-size:clamp(1rem,2.1vw,1.2rem);letter-spacing:.01em;line-height:1.45;color:var(--text);white-space:normal;word-break:normal;overflow-wrap:anywhere}
   @media(hover:hover){.news li:hover .nt{color:var(--accent)}}
   .pill-media{color:#6CA8FF}.pill-partner{color:var(--accent)}.pill-exhibition{color:#B69CFF}.pill-award{color:#5FCDA0}.pill-workshop{color:#E08A4F}.pill-ambassador{color:#E08AB0}.pill-official{color:#9AA6C9}.pill-tourism{color:#5FB8C9}.pill-commercial{color:#D9A65A}.pill-hotel{color:#C9A6BE}
@@ -980,7 +985,7 @@
     .news li{gap:9px 12px;padding:18px 0}
     .news .ndate{font-size:.76rem}
     .news .pill{font-size:.5rem;padding:3px 9px 2px;letter-spacing:.1em}
-    .news .new{font-size:.5rem;padding:3px 7px}
+    .news .new{font-size:.52rem;letter-spacing:.1em}
     .news .nt{font-size:.9rem}
   }
 
@@ -1011,16 +1016,14 @@
     background:var(--accent);color:#15181a;font-family:var(--sans);font-weight:600;font-size:.8rem;
     padding:12px 20px;border-radius:100px;text-decoration:none;transition:transform .25s var(--ease)}
   .skip-link:focus{transform:none}
-  /* scroll progress bar — scroll-driven CSS, only where supported (no JS, can't hide content) */
-  .scroll-prog{display:none}
-  @supports (animation-timeline: scroll()){
-    @media(prefers-reduced-motion:no-preference){
-      .scroll-prog{display:block;position:fixed;top:0;left:0;right:0;height:2px;z-index:400;
-        background:var(--accent);opacity:.9;transform:scaleX(0);transform-origin:0 50%;
-        animation:scrollProgress linear;animation-timeline:scroll(root)}
-      @keyframes scrollProgress{to{transform:scaleX(1)}}
-    }
-  }
+  /* scroll progress bar — JS 直接追従（item#3根治）。
+     旧実装 animation-timeline:scroll(root) は iOS の慣性停止/ラバーバンド時に
+     timeline が過渡的に小さいオフセットをサンプリングしてバーが巻き戻る。
+     JS で Math.max(0,scrollY) を毎フレーム直読み＝負値クランプ・補間なし＝scrollY が
+     変わらない限り後退しない。 */
+  .scroll-prog{display:none;position:fixed;top:0;left:0;right:0;height:2px;z-index:400;
+    background:var(--accent);opacity:.9;transform:scaleX(0);transform-origin:0 50%;will-change:transform}
+  @media(prefers-reduced-motion:no-preference){.scroll-prog.on{display:block}}
   @media(max-width:600px){
     .np-link,.wd-tl-post{min-height:44px}
     .gp-filter button{min-height:44px;display:inline-flex;align-items:center}
@@ -1100,9 +1103,10 @@
   /* SERVICES — Expanding Cards (アコーディオン式パネル / hover|tapで開く) */
   #bento .exp{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(7px,1vw,10px);height:clamp(420px,46vw,520px);margin-top:clamp(26px,3.6vw,42px);container-type:inline-size;transition:grid-template-columns .55s var(--ease),opacity 1s ease,transform 1.15s var(--ease)}
   .exc{position:relative;overflow:hidden;cursor:pointer;background:var(--panel2);min-width:0;min-height:0;display:block}
-  .exc-ph{position:absolute;top:0;left:0;bottom:0;width:64cqw;background-size:cover;background-position:center;filter:grayscale(1) brightness(.6);transition:filter .5s var(--ease)}
+  /* 非アクティブ＝proto _design_final_proto.html item#5：白黒(grayscale)をやめ色付きのまま軽く減光。アクティブはフルカラー明るく */
+  .exc-ph{position:absolute;top:0;left:0;bottom:0;width:64cqw;background-size:cover;background-position:center;filter:brightness(.5) saturate(.85);transition:filter .5s var(--ease)}
   .exc:last-child .exc-ph{left:auto;right:0}   /* 右端は左方向に展開するので右アンカー＝スライド方向を合わせる */
-  .exc[data-active="true"] .exc-ph{filter:grayscale(0) brightness(1)}
+  .exc[data-active="true"] .exc-ph{filter:brightness(1) saturate(1)}
   .exc::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(8,10,11,.86),rgba(8,10,11,.18) 55%,transparent);pointer-events:none}
   .exc-vt{position:absolute;left:0;right:0;top:20px;z-index:2;display:flex;justify-content:center;writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;font-size:clamp(1rem,1.4vw,1.2rem);letter-spacing:.06em;color:rgba(255,255,255,.82);text-shadow:0 1px 8px rgba(0,0,0,.6);transition:opacity .35s var(--ease);pointer-events:none}
   .exc[data-active="true"] .exc-vt{opacity:0}
@@ -2660,8 +2664,9 @@
     <a href="#gallery" class="mi"><span class="t">Gallery</span><span class="jp" data-en="Photographs">ギャラリー</span></a>
     <a href="#news" class="mi"><span class="t">News</span><span class="jp" data-en="Updates">お知らせ</span></a>
     <a href="#faq-page" class="mi"><span class="t">FAQ</span><span class="jp" data-en="Questions">よくある質問</span></a>
+    <!-- Contact＝proto _design_final_proto.html item#7：金の全幅ボタンをやめ、リスト最下行に他項目と同形式の行で統合。右ラベル GET IN TOUCH・文字色金 -->
+    <a href="#contact-page" class="mi mi-contact"><span class="t">Contact</span><span class="jp jp-right" data-en="Get in touch">Get in touch</span></a>
   </nav>
-  <a href="#contact-page" class="menu-contact"><span class="lbl"><b>Contact</b><span data-en="Get in touch">お問い合わせ</span></span><span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></span></a>
   <div class="menu-sns">
     <span class="lab">Follow</span>
     <div class="sns-btns">
@@ -2965,7 +2970,11 @@
     <h2 class="en-h">Where to Next?</h2>
     <p class="jp" data-en="For shoots & tie-ups">撮影・タイアップのご依頼</p>
     <p class="lead" data-en="Photography, video, SNS tie-ups and tourism PR. Planning-stage chats are welcome.">撮影・動画・SNSタイアップ・観光PRのご依頼。企画段階のご相談もお気軽にどうぞ。</p>
-    <div class="ct-rea"><span data-en="Planning-stage chats welcome">企画段階の相談OK</span><span data-en="Available in Japan &amp; worldwide">国内外の撮影に対応</span></div>
+    <div class="ct-aux">
+      <div class="ct-aux-item"><span class="lbl">Worldwide</span><p data-en="Shooting at home and abroad">国内外の撮影に対応</p></div>
+      <div class="ct-aux-sep"></div>
+      <div class="ct-aux-item"><span class="lbl">Early Stage</span><p data-en="Early-stage consultations welcome">企画段階のご相談も歓迎</p></div>
+    </div>
     <div class="ct-btns">
       <a class="ct-btn ct-btn-fill" href="#contact-page" data-view="contact" data-en="Contact form →">お問い合わせフォーム →</a>
     </div>
@@ -2975,7 +2984,11 @@
     <h2 class="ct-band-h">Where to Next?</h2>
     <p class="ct-band-jp" data-en="For shoots &amp; tie-ups">撮影・タイアップのご依頼</p>
     <p class="ct-band-lead" data-en="Photography, video, SNS tie-ups and tourism PR. Planning-stage chats are welcome.">撮影・動画・SNSタイアップ・観光PRのご依頼。企画段階のご相談もお気軽にどうぞ。</p>
-    <div class="ct-rea"><span data-en="Planning-stage chats welcome">企画段階の相談OK</span><span data-en="Available in Japan &amp; worldwide">国内外の撮影に対応</span></div>
+    <div class="ct-aux">
+      <div class="ct-aux-item"><span class="lbl">Worldwide</span><p data-en="Shooting at home and abroad">国内外の撮影に対応</p></div>
+      <div class="ct-aux-sep"></div>
+      <div class="ct-aux-item"><span class="lbl">Early Stage</span><p data-en="Early-stage consultations welcome">企画段階のご相談も歓迎</p></div>
+    </div>
     <a class="ct-btn ct-btn-fill ct-band-cta" href="#contact-page" data-view="contact" data-en="Contact form →">お問い合わせフォーム →</a>
   </div>
 </section>
@@ -2985,7 +2998,7 @@
 <!-- ===================== GALLERY PAGE ===================== -->
 <main id="view-gallery" class="view">
   <section class="sec wrap subpage-top">
-    <div class="sec-head rv"><span class="eyebrow">Photographs</span><h2 class="en-h">Gallery</h2><p class="jp" data-en="" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— ギャラリー</p></div>
+    <div class="sec-head rv"><span class="eyebrow">Photographs</span><h2 class="en-h">Gallery</h2></div>
     <div class="gp-filter rv" id="gpFilter">
       <button class="on" data-filter="japan">Japan</button>
       <button data-filter="france">France</button>
@@ -3239,7 +3252,7 @@
 <!-- ===================== WORKS PAGE ===================== -->
 <main id="view-works" class="view">
   <section class="sec wrap subpage-top">
-    <div class="sec-head rv"><span class="eyebrow">Portfolio</span><h2 class="en-h">Works</h2><p class="jp" data-en="" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— 実績一覧</p></div>
+    <div class="sec-head rv"><span class="eyebrow">Portfolio</span><h2 class="en-h">Works</h2></div>
     <div class="works-filter rv" id="wpFilter">
       <button class="on" data-filter="all">All</button>
       <button data-filter="ambassador">Ambassador</button>
@@ -3336,7 +3349,7 @@
 <!-- ===================== NEWS PAGE ===================== -->
 <main id="view-news" class="view">
   <section class="sec wrap subpage-top">
-    <div class="sec-head rv"><span class="eyebrow">Updates</span><h2 class="en-h">News</h2><p class="jp" data-en="" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— お知らせ・活動記録</p></div>
+    <div class="sec-head rv"><span class="eyebrow">Updates</span><h2 class="en-h">News</h2></div>
 
     <div class="np-summary rv">
       <div>
@@ -3447,7 +3460,7 @@
 <!-- ===================== CONTACT PAGE ===================== -->
 <main id="view-contact" class="view">
   <section class="sec wrap subpage-top">
-    <div class="sec-head rv"><span class="eyebrow">Get in touch</span><h2 class="en-h">Contact</h2><p class="jp" data-en="" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— お問い合わせ</p></div>
+    <div class="sec-head rv"><span class="eyebrow">Get in touch</span><h2 class="en-h">Contact</h2></div>
     <div class="ct-grid rv">
       <div>
         <p class="ct-lead" data-en="Photography, video, SNS tie-ups and tourism PR.<br><span class='hl'>Planning-stage chats</span> are welcome too.">撮影・動画・SNSタイアップ・観光PRのご依頼。<br><span class="hl">企画段階のご相談</span>も承ります。</p>
@@ -3505,7 +3518,7 @@
 <!-- FAQ (page) -->
 <main id="view-faq" class="view">
   <section class="sec wrap subpage-top">
-    <div class="sec-head rv"><span class="eyebrow">FAQ</span><h2 class="en-h">Questions</h2><p class="jp" data-en="" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— よくあるご質問</p></div>
+    <div class="sec-head rv"><span class="eyebrow">FAQ</span><h2 class="en-h">Questions</h2></div>
     <div class="faq rv">
     <details class="faq-item">
       <summary><span class="faq-q" data-en="What can I commission?">どんな依頼ができますか？</span><span class="faq-chev" aria-hidden="true"></span></summary>
@@ -3534,7 +3547,7 @@
 <!-- ===================== PRIVACY POLICY ===================== -->
 <main id="view-privacy" class="view">
   <section class="sec wrap subpage-top">
-    <div class="sec-head rv"><span class="eyebrow">Legal</span><h2 class="en-h">Privacy</h2><p class="jp" data-en="" style="font-family:var(--mincho);color:var(--muted);margin-top:6px;letter-spacing:.06em">— プライバシーポリシー</p></div>
+    <div class="sec-head rv"><span class="eyebrow">Legal</span><h2 class="en-h">Privacy</h2></div>
     <div class="legal rv">
       <p class="legal-intro" data-en="This policy explains how this site (s-kenken.com) handles personal information.">当サイト（s-kenken.com）における個人情報の取り扱いについて、以下のとおり定めます。</p>
 
@@ -3631,7 +3644,42 @@
     (function step(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);if(bar)bar.style.transform='scaleX('+e.toFixed(4)+')';if(k<1)requestAnimationFrame(step);else setTimeout(finish,220);})(t0);
     setTimeout(()=>{if(document.body.classList.contains('preload'))finish();},4200);})();
   document.getElementById('yr').textContent=new Date().getFullYear();
-  new IntersectionObserver(([e])=>{document.getElementById('nav').classList.toggle('solid',!e.isIntersecting);},{rootMargin:'-70px 0px 0px 0px'}).observe(document.getElementById('top'));
+  /* 半透明化タイミング＝proto _design_final_proto.html item#2：ホームでは scrollY>40px を境に背景+blur。
+     旧実装は #top(全高ヒーロー)を IntersectionObserver で監視＝ヒーローをほぼ抜けるまで solid にならず
+     proto の「40pxで即半透明」と一致しなかった。ホームview表示中は scrollY を直接見て40px閾値で切替、
+     サブページ表示中は router 側が solid を管理するので触らない（display:none のホームに引きずられない）。 */
+  (function(){
+    var nav=document.getElementById('nav'), homeView=document.getElementById('view-home');
+    var raf=0;
+    function paint(){ raf=0; if(homeView&&homeView.classList.contains('active')) nav.classList.toggle('solid', window.scrollY>40); }
+    function req(){ if(!raf) raf=requestAnimationFrame(paint); }
+    addEventListener('scroll',req,{passive:true});
+    paint();
+    window.__navSolidPaint=paint;   /* router が view 切替後にホーム閾値を再評価できるよう公開 */
+  })();
+
+  /* ---------- スクロール進捗バー：JS直接追従（item#3根治） ----------
+     scrollY を Math.max(0,…) でクランプし（iOSラバーバンドの負値を無視）、
+     scrollHeight-innerHeight で割った進捗を補間なしで scaleX に直代入。
+     lerp を使わないため慣性停止時に古いtargetへ逆走しない＝scrollYが変わらない限り後退しない。 */
+  (function(){
+    if(reduce) return;
+    var bar=document.querySelector('.scroll-prog'); if(!bar) return;
+    bar.classList.add('on');
+    var raf=0, last=-1;
+    function paint(){
+      raf=0;
+      var de=document.documentElement;
+      var max=(de.scrollHeight - window.innerHeight);
+      var y=window.scrollY; if(y<0)y=0; if(y>max)y=max;            /* 負値(ラバーバンド)と超過をクランプ */
+      var p=max>0 ? y/max : 0;
+      if(p!==last){ last=p; bar.style.transform='scaleX('+p.toFixed(5)+')'; }  /* 直接追従・補間なし */
+    }
+    function req(){ if(!raf) raf=requestAnimationFrame(paint); }
+    addEventListener('scroll',req,{passive:true});
+    addEventListener('resize',req,{passive:true});
+    paint();
+  })();
   (function(){const btn=document.getElementById('menuBtn'),menu=document.getElementById('menu'),closeBtn=document.getElementById('menuClose');
     const set=o=>{document.body.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',o);menu.setAttribute('aria-hidden',!o);};
     btn.addEventListener('click',e=>{e.stopPropagation();set(!document.body.classList.contains('menu-open'));});
@@ -4045,7 +4093,7 @@
       var restored = opts.restore && scrollMem[name]!=null;
       if(restored){
         var y=scrollMem[name];
-        nav.classList.toggle('solid', name!=='home'||y>60);
+        nav.classList.toggle('solid', name!=='home'||y>40);   /* proto item#2: ホーム閾値40px */
         /* the view just switched from display:none — keep re-applying until its
            full height is laid out and we actually reach y (handles large offsets
            like the bottom of home returning from a short subpage). */
@@ -4064,7 +4112,7 @@
         };
         applyY(); setTimeout(applyY,120); setTimeout(applyY,300); setTimeout(applyY,500); setTimeout(applyY,800);
       } else if(name==='home' && opts.anchor && opts.anchor!=='top'){
-        requestAnimationFrame(function(){ if(gen!==show._gen)return; var t=document.getElementById(opts.anchor); if(t)t.scrollIntoView(); nav.classList.toggle('solid', window.scrollY>60); });
+        requestAnimationFrame(function(){ if(gen!==show._gen)return; var t=document.getElementById(opts.anchor); if(t)t.scrollIntoView(); nav.classList.toggle('solid', window.scrollY>40); });
       } else {
         var goTop=function(){ window.scrollTo({top:0,left:0,behavior:'instant'}); document.documentElement.scrollTop=0; document.body.scrollTop=0; };
         goTop(); requestAnimationFrame(goTop);
