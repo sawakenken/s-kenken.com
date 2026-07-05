@@ -946,18 +946,95 @@
   .work .wt{font-family:var(--mincho);font-weight:500;font-size:clamp(1.05rem,5cqw,1.32rem);color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.55);line-height:1.3;word-break:normal;word-break:auto-phrase;text-wrap:pretty}
   .works-empty{display:none;color:var(--muted);font-size:.95rem;padding:24px 0}
   .works-empty.show{display:block}
-  /* GALLERY (tight square grid) */
-  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1vw,12px)}
-  .gtile{position:relative;border-radius:0;overflow:hidden;aspect-ratio:1/1;background:var(--panel2)}
-  .gtile .img{position:absolute;inset:0;transition:transform 1s var(--ease)}
-  @media(hover:hover){.gtile:hover .img{transform:scale(1.06)}}
-  .gtile::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 52%,rgba(0,0,0,.6));opacity:0;transition:opacity .4s}
-  @media(hover:hover){.gtile:hover::after{opacity:1}}
-  .gtile figcaption{position:absolute;left:12px;bottom:10px;z-index:2;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
-  @media(hover:hover){.gtile:hover figcaption{opacity:1;transform:none}}
-  .gtile .gt{font-family:var(--mincho);font-weight:600;font-size:.9rem;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.6)}
-  .gtile .gl{font-family:var(--sans);font-size:.58rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:2px}
-  @media(max-width:600px){.gal{grid-template-columns:repeat(2,1fr)}}
+  /* ===== TOP Selected Works — 序列グリッド（プロト移植・キャプションは画像下） =====
+     モバイル(2列)：F F / s s / s s / s s（Feature=全幅・以降ペア）。
+     .work[data-slug] 構造は維持。overlay系(.work::after/figcaption absolute)を #selected 内で無効化し、
+     画像下キャプション（pill＋client＋和題＋金罫）に組み直す。 */
+  .sel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(30px,5vw,40px) clamp(12px,2vw,16px);
+    grid-template-areas:"F F" "s1 s2" "s3 s4" "s5 s5";}
+  .sel-grid .work.sel-feat{grid-area:F}
+  .sel-grid .work.sel-c:nth-of-type(2){grid-area:s1}   /* Alfa Romeo */
+  .sel-grid .work.sel-c:nth-of-type(3){grid-area:s2}   /* Turkish */
+  .sel-grid .work.sel-c:nth-of-type(4){grid-area:s3}   /* DJI */
+  .sel-grid .work.sel-c:nth-of-type(5){grid-area:s4}   /* Australia */
+  .sel-grid .work.sel-c:nth-of-type(6){grid-area:s5}   /* Adobe (mobile 全幅で余り解消) */
+  .sel-grid .work.sel-c:nth-of-type(7){grid-area:s6}   /* JR西 (dt-only) */
+  .sel-grid .work.sel-c:nth-of-type(8){grid-area:s7}   /* Coca-Cola (dt-only) */
+  .sel-grid .work{position:relative;container-type:inline-size;background:none;border-radius:0;display:flex;flex-direction:column;overflow:visible;
+    opacity:0;transform:translateY(44px);transition:opacity .85s ease,transform 1.05s var(--ease)}
+  .sel-grid .work.in{opacity:1;transform:none}
+  .sel-grid .work .img{position:relative;width:100%;aspect-ratio:4/5;border-radius:0;overflow:hidden;background-color:var(--panel2);background-image:var(--photo,none),var(--g,none);background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform 1.1s var(--ease)}
+  .sel-grid .work.sel-feat .img{aspect-ratio:5/4}
+  .sel-grid .work.sel-c:nth-of-type(6) .img{aspect-ratio:16/10}   /* mobile 全幅カード(Adobe)は横長で高さを抑える */
+  .sel-grid .work::after{display:none}                       /* overlayグラデ無効（キャプションは下） */
+  .sel-grid .work figcaption.sel-cap{position:static;left:auto;right:auto;bottom:auto;z-index:auto;padding-top:14px;display:block}
+  .sel-grid .sel-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:9px}
+  .sel-grid .work .wc{display:inline-flex;align-items:center;font-family:var(--sans);font-size:.5rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:2px;padding:4px 9px 3px;margin-bottom:0;white-space:nowrap}
+  .sel-grid .work.sel-feat .wc{color:var(--accent);border-color:rgba(224,166,97,.35)}
+  .sel-grid .work .wclient{display:inline;font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:0;transition:color .6s ease;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sel-grid .work .wt{display:block;font-family:var(--mincho);font-weight:500;font-size:clamp(.98rem,4cqw,1.06rem);letter-spacing:.03em;line-height:1.6;color:var(--text);text-shadow:none;word-break:keep-all}
+  .sel-grid .work.sel-feat .wt{font-size:clamp(1.18rem,5cqw,1.5rem);letter-spacing:.05em}
+  .sel-grid .sel-rule{display:block;height:1px;background:var(--line-soft);margin-top:13px;position:relative}
+  .sel-grid .sel-rule::before{content:"";position:absolute;left:0;top:0;height:1px;width:28px;background:var(--accent);transition:width 1s var(--ease)}
+  @media(hover:hover){
+    .sel-grid .work:hover .wclient{color:var(--accent)}
+    .sel-grid .work:hover .sel-rule::before{width:100%}
+  }
+  .sel-grid .work.dt-only{display:none}
+  @media(min-width:900px){
+    /* 3カラム：Feature=2×2、下段に従属を横一列。dt-only 2枚はまだ非表示（6枚構成）。 */
+    .sel-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,4vw,56px) clamp(20px,2.4vw,26px);
+      grid-template-areas:"F F s1" "F F s2" "s3 s4 s5";}
+    .sel-grid .work.sel-feat{display:flex}
+    .sel-grid .work.sel-feat .img{aspect-ratio:auto;flex:1;min-height:0}
+    .sel-grid .work.sel-c:nth-of-type(6) .img{aspect-ratio:4/5}   /* Adobe は他従属と同比率に戻す */
+    .sel-grid .work .wclient{font-size:.6rem;letter-spacing:.18em}
+    .sel-grid .work .wt{font-size:1.02rem;line-height:1.55}
+    .sel-grid .work.sel-feat .wt{font-size:clamp(1.3rem,2vw,1.5rem)}
+  }
+  @media(min-width:1180px){
+    /* 4カラム：Feature=2×2、従属7枚（dt-only 2枚含む）を右2列＋下段4枚に。8枚を隙間なく。
+       s7(Coca)は下段の余り1セルを埋めるため span2。 */
+    .sel-grid{grid-template-columns:repeat(4,minmax(0,1fr));
+      grid-template-areas:"F F s1 s2" "F F s3 s4" "s5 s6 s7 s7";}
+    .sel-grid .work.dt-only{display:flex}
+    .sel-grid .work.sel-c:nth-of-type(8) .img{aspect-ratio:16/10}   /* 全幅寄りセルは横長で */
+  }
+  .sel-grid .work .img{transition:transform 1.1s var(--ease)}
+  @media(hover:hover){.sel-grid .work:hover .img{transform:scale(1.04)}}
+  /* ===== TOP GALLERY — 向きで揃う純行（プロト移植・キャプション画像下・ナンバリング無し） =====
+     モバイル(2列)：縦=ペア/エース縦(東寺)=全幅、横=全幅、エース横(河口湖)=全幅パノラマ。
+     dense は使わず DOM順（縦5→横3）で並べる。 */
+  .gtop{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(30px,6vw,44px) clamp(12px,2vw,14px)}
+  figure.gi{display:block;margin:0}
+  figure.gi .ph{position:relative;overflow:hidden;background:var(--panel2)}
+  figure.gi .ph .img{transition:transform 1.2s var(--ease)}
+  figure.gi-p .ph::before{content:"";display:block;padding-top:133%}          /* 縦=3:4 */
+  figure.gi-l{grid-column:span 2}
+  figure.gi-l .ph::before{content:"";display:block;padding-top:60%}            /* 横=16:10 全幅 */
+  figure.gi-p.gi--ace{grid-column:span 2}
+  figure.gi-p.gi--ace .ph::before{padding-top:116%}                           /* エース縦=全幅の見せ札 */
+  figure.gi-l.gi--ace .ph::before{padding-top:56%}                            /* エース横=全幅パノラマ */
+  .gcap{display:block;padding-top:12px}
+  .gcap .cap-ttl{display:block;font-family:var(--mincho);font-weight:500;font-size:1rem;letter-spacing:.05em;line-height:1.55;color:var(--text);word-break:keep-all}
+  figure.gi--ace .cap-ttl{font-size:1.16rem}
+  .gcap .cap-rule{display:block;height:1px;background:var(--line-soft);margin:11px 0 8px;position:relative}
+  .gcap .cap-rule::before{content:"";position:absolute;left:0;top:0;height:1px;width:28px;background:var(--accent);transition:width 1s var(--ease)}
+  .gcap .cap-meta{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .gcap .cap-en{font-family:var(--sans);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .gcap .cap-loc{font-family:var(--sans);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);flex:none;transition:color .6s ease}
+  @media(hover:hover){
+    figure.gi:hover .ph .img{transform:scale(1.055)}
+    figure.gi:hover .cap-loc{color:var(--accent)}
+    figure.gi:hover .cap-rule::before{width:100%}
+  }
+  @media(min-width:481px){
+    .gtop{gap:clamp(34px,5vw,52px) 18px}
+    .gcap{padding-top:16px}
+    .gcap .cap-ttl{font-size:1.08rem}
+    figure.gi--ace .cap-ttl{font-size:1.3rem}
+    .gcap .cap-en{letter-spacing:.22em}
+  }
   /* NEWS (rows) */
   .news{list-style:none;border-top:1px solid var(--line-soft)}
   .news li{display:grid;grid-template-columns:auto auto 1fr auto;grid-template-areas:"date pill new chev" "title title title title" "panel panel panel panel";align-items:center;column-gap:clamp(12px,2vw,18px);row-gap:clamp(11px,1.5vw,16px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--line-soft);transition:padding-left .35s var(--ease)}
@@ -1139,14 +1216,24 @@
   .work .wclient{display:block;font-family:var(--sans);font-size:.55rem;font-weight:600;
     letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:7px}
 
-  /* GALLERY (home) — editorial rhythm: 3 portrait / 2 landscape, repeating */
-  #view-home .gal{grid-template-columns:repeat(6,1fr);gap:clamp(8px,1.3vw,16px)}
-  #view-home .gal .gtile{aspect-ratio:auto;border-radius:0}
-  #view-home .gal .gtile.p{grid-column:span 2;aspect-ratio:4/5}
-  #view-home .gal .gtile.l{grid-column:span 3;aspect-ratio:16/10}
-  @media(max-width:760px){
-    #view-home .gal{gap:6px}
-    #view-home .gal .gtile{border-radius:0}
+  /* GALLERY (home) — デスクトップ(≥1024)：向きで揃った純行に組む（プロト移植・施主指示#6）。
+     DOM順＝縦5(東寺ace/二寧坂/八坂/蹴上/伊根夜桜)→横3(伊根舟屋/奈良井/河口湖ace)。6カラム上で：
+       行1＝縦3枚 各span2（3:4）／行2＝縦2枚(f,g) 各span3（同3:4・一回り大）／
+       行3＝横2枚 各span3（16:10）／行4＝横エース span6 全幅パノラマ。各行が内部で均一＝行末の空き無し。 */
+  @media(min-width:1024px){
+    .gtop{grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:auto;gap:52px 30px}
+    figure.gi-p{grid-column:span 2}
+    figure.gi-p .ph::before{padding-top:133%}
+    figure.gi-f,figure.gi-g{grid-column:span 3}
+    figure.gi-f .ph::before,figure.gi-g .ph::before{padding-top:133%}
+    figure.gi-l{grid-column:span 3}
+    figure.gi-l .ph::before{padding-top:62.5%}
+    figure.gi-p.gi--ace{grid-column:span 2}
+    figure.gi-p.gi--ace .ph::before{padding-top:133%}
+    figure.gi-l.gi--ace{grid-column:span 6}
+    figure.gi-l.gi--ace .ph::before{padding-top:44%}
+    figure.gi--ace .cap-ttl{font-size:1.3rem}
+    .gcap .cap-loc{letter-spacing:.3em}
   }
 
   /* ---------- GALLERY PAGE ---------- */
@@ -1192,6 +1279,40 @@
   .gp-tile.hide{display:none}
   .gp-empty{display:none;text-align:center;color:var(--muted);font-size:.95rem;padding:30px 0}
   .gp-empty.show{display:block}
+  /* ===== GALLERY ALL — ハイブリッド：カバーグリッド（入口）＋国別ビュー ===== */
+  .gp-cover-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .gp-cover{position:relative;display:block;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:0;
+    background:var(--panel2);cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left;padding:0;border:0;
+    opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .8s var(--ease)}
+  .gp-cover.in{opacity:1;transform:none}
+  .gp-cover .cimg{position:absolute;inset:0;background-image:var(--photo,none),var(--g,none);background-size:cover;background-position:center;
+    transform:scale(1.02);transition:transform 1.1s cubic-bezier(.16,.68,.28,1)}
+  .gp-cover .scrim{position:absolute;inset:0;z-index:1;
+    background:linear-gradient(to top,rgba(9,10,11,.8) 0%,rgba(9,10,11,.34) 42%,rgba(9,10,11,.1) 74%,rgba(9,10,11,.2) 100%);transition:background .5s ease}
+  .gp-cover .ctext{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:15px 14px 14px}
+  .gp-cover .cen{font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;line-height:1.15;transition:color .45s ease}
+  .gp-cover .cjp{font-family:var(--mincho);font-size:.68rem;font-weight:500;color:rgba(255,255,255,.82);margin-top:3px;letter-spacing:.04em}
+  .gp-cover .ccount{display:block;font-family:var(--sans);font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-top:9px}
+  .gp-cover .cline{position:absolute;left:14px;bottom:40px;z-index:2;width:22px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+  @media(hover:hover){
+    .gp-cover:hover .cimg{transform:scale(1.08)}
+    .gp-cover:hover .cen{color:var(--accent)}
+    .gp-cover:hover .cline{transform:scaleX(1)}
+  }
+  .gp-cover:active .cimg{transform:scale(1.06)}
+  .gp-cover.gp-empty-cat{cursor:default}
+  .gp-cover.gp-empty-cat .cen{opacity:.66}
+  .gp-cover.gp-empty-cat .csoon{display:block;font-family:var(--sans);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-top:9px;opacity:.85}
+  /* 国別ビュー：戻る＋大見出し＋純行（.gtop/.gi を再利用） */
+  .gp-back{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:12px 0;min-height:44px;transition:color .3s ease;cursor:pointer;background:none;border:0}
+  .gp-back .ar{font-size:1rem;transition:transform .3s ease}
+  @media(hover:hover){.gp-back:hover{color:var(--accent)}.gp-back:hover .ar{transform:translateX(-4px)}}
+  .gp-dest-head{padding:20px 0 clamp(30px,5vw,44px)}
+  .gp-dest-en{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,10vw,4.4rem);line-height:1;letter-spacing:.01em;color:var(--text)}
+  .gp-dest-jp{font-family:var(--mincho);font-size:.8rem;color:var(--muted);letter-spacing:.22em;margin-top:12px}
+  @media(min-width:481px){.gp-cover-grid{grid-template-columns:repeat(3,1fr);gap:16px}
+    .gp-cover .cen{font-size:.94rem}.gp-cover .cjp{font-size:.74rem}.gp-cover .cline{bottom:48px}.gp-cover .ctext{padding:20px 18px 18px}}
+  @media(min-width:1024px){.gp-cover-grid{grid-template-columns:repeat(4,1fr)}}
   .gp-count{text-align:center;font-family:var(--sans);font-size:.66rem;font-weight:500;
     letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
     margin-bottom:clamp(22px,3vw,30px)}
@@ -2818,24 +2939,26 @@
 
 <!-- SELECTED -->
 <section class="sec wrap" id="selected">
-  <div class="sec-head rv"><span class="eyebrow">Portfolio</span><h2 class="en-h">Works</h2></div>
-  <div class="works-grid" id="worksGrid">
-    <figure class="work tall" data-cat="ambassador" data-slug="w7"><div class="img ph-city" style="--photo:image-set(url('images/works/01.webp') type('image/webp'), url('images/works/01.jpg') type('image/jpeg'))"></div>
-      <figcaption><span class="wc">Ambassador</span><span class="wt">TeamGalaxy アンバサダー</span><span class="wclient">Client — Samsung</span></figcaption></figure>
-    <figure class="work wide" data-cat="ambassador" data-slug="w10"><div class="img ph-okinawa" style="--photo:image-set(url('images/works/04.webp') type('image/webp'), url('images/works/04.jpg') type('image/jpeg'))"></div>
-      <figcaption><span class="wc">Ambassador</span><span class="wt">公式アンバサダー</span><span class="wclient">Client — Adobe</span></figcaption></figure>
-    <figure class="work tall" data-cat="ambassador" data-slug="w26"><div class="img ph-portrait" style="--photo:image-set(url('images/works/20.webp') type('image/webp'), url('images/works/20.jpg') type('image/jpeg'))"></div>
-      <figcaption><span class="wc">Ambassador</span><span class="wt">公式アンバサダー</span><span class="wclient">Client — Alfa Romeo</span></figcaption></figure>
-    <figure class="work wide" data-cat="tourism" data-slug="w13"><div class="img ph-sakura" style="--photo:image-set(url('images/works/07.webp') type('image/webp'), url('images/works/07.jpg') type('image/jpeg'))"></div>
-      <figcaption><span class="wc">Tourism</span><span class="wt">観光プロモーション</span><span class="wclient">Client — Turkish Airlines</span></figcaption></figure>
-    <figure class="work tall" data-cat="commercial" data-slug="w44"><div class="img ph-city" style="--photo:image-set(url('images/works/dji-osmo-pocket4pro.webp') type('image/webp'), url('images/works/dji-osmo-pocket4pro.jpg') type('image/jpeg'))"></div>
-      <figcaption><span class="wc">Commercial</span><span class="wt">プロモーション</span><span class="wclient">Client — DJI</span></figcaption></figure>
-    <figure class="work wide" data-cat="tourism" data-slug="w19"><div class="img ph-bamboo" style="--photo:image-set(url('images/works/13.webp') type('image/webp'), url('images/works/13.jpg') type('image/jpeg'))"></div>
-      <figcaption><span class="wc">Tourism</span><span class="wt">観光プロモーション</span><span class="wclient">Client — オーストラリア政府観光局</span></figcaption></figure>
-    <figure class="work tall dt-only" data-cat="commercial" data-slug="w15"><div class="img ph-okinawa" style="--photo:image-set(url('images/works/09.webp') type('image/webp'), url('images/works/09.jpg') type('image/jpeg'))"></div>
-      <figcaption><span class="wc">Commercial</span><span class="wt">プロモーション</span><span class="wclient">Client — JR 西日本</span></figcaption></figure>
-    <figure class="work wide dt-only" data-cat="commercial" data-slug="w12"><div class="img ph-city" style="--photo:image-set(url('images/works/06.webp') type('image/webp'), url('images/works/06.jpg') type('image/jpeg'))"></div>
-      <figcaption><span class="wc">Commercial</span><span class="wt">クリスマス ドローンショー 2024</span><span class="wclient">Client — Coca-Cola</span></figcaption></figure>
+  <div class="sec-head rv"><span class="eyebrow">Portfolio</span><h2 class="en-h">Selected Works</h2><p class="sh-sub" data-en="Turning light into work, with brands and tourism boards.">企業・観光局とともに、光を仕事に。</p></div>
+  <!-- 序列グリッド：Samsung=フィーチャー大 / 他=従属サイズ。キャプションは画像下（pill＋クライアント＋和題＋金の細罫）。
+       .work[data-slug] 構造・.wc/.wt/.wclient は維持（ルーター＋i18n 非破壊）。dt-only 2枚はデスクトップのみ。 -->
+  <div class="sel-grid" id="worksGrid">
+    <figure class="work sel-c sel-feat" data-cat="ambassador" data-slug="w7"><div class="img ph-city" style="--photo:image-set(url('images/works/01.webp') type('image/webp'), url('images/works/01.jpg') type('image/jpeg'))"></div>
+      <figcaption class="sel-cap"><span class="sel-meta"><span class="wc">Ambassador</span><span class="wclient">Client — Samsung</span></span><span class="wt">TeamGalaxy アンバサダー</span><span class="sel-rule"></span></figcaption></figure>
+    <figure class="work sel-c" data-cat="ambassador" data-slug="w26"><div class="img ph-portrait" style="--photo:image-set(url('images/works/20.webp') type('image/webp'), url('images/works/20.jpg') type('image/jpeg'))"></div>
+      <figcaption class="sel-cap"><span class="sel-meta"><span class="wc">Ambassador</span><span class="wclient">Client — Alfa Romeo</span></span><span class="wt">公式アンバサダー</span><span class="sel-rule"></span></figcaption></figure>
+    <figure class="work sel-c" data-cat="tourism" data-slug="w13"><div class="img ph-sakura" style="--photo:image-set(url('images/works/07.webp') type('image/webp'), url('images/works/07.jpg') type('image/jpeg'))"></div>
+      <figcaption class="sel-cap"><span class="sel-meta"><span class="wc">Tourism</span><span class="wclient">Client — Turkish Airlines</span></span><span class="wt">観光プロモーション</span><span class="sel-rule"></span></figcaption></figure>
+    <figure class="work sel-c" data-cat="commercial" data-slug="w44"><div class="img ph-city" style="--photo:image-set(url('images/works/dji-osmo-pocket4pro.webp') type('image/webp'), url('images/works/dji-osmo-pocket4pro.jpg') type('image/jpeg'))"></div>
+      <figcaption class="sel-cap"><span class="sel-meta"><span class="wc">Commercial</span><span class="wclient">Client — DJI</span></span><span class="wt">プロモーション</span><span class="sel-rule"></span></figcaption></figure>
+    <figure class="work sel-c" data-cat="tourism" data-slug="w19"><div class="img ph-bamboo" style="--photo:image-set(url('images/works/13.webp') type('image/webp'), url('images/works/13.jpg') type('image/jpeg'))"></div>
+      <figcaption class="sel-cap"><span class="sel-meta"><span class="wc">Tourism</span><span class="wclient">Client — オーストラリア政府観光局</span></span><span class="wt">観光プロモーション</span><span class="sel-rule"></span></figcaption></figure>
+    <figure class="work sel-c" data-cat="ambassador" data-slug="w10"><div class="img ph-okinawa" style="--photo:image-set(url('images/works/04.webp') type('image/webp'), url('images/works/04.jpg') type('image/jpeg'))"></div>
+      <figcaption class="sel-cap"><span class="sel-meta"><span class="wc">Ambassador</span><span class="wclient">Client — Adobe</span></span><span class="wt">公式アンバサダー</span><span class="sel-rule"></span></figcaption></figure>
+    <figure class="work sel-c dt-only" data-cat="commercial" data-slug="w15"><div class="img ph-okinawa" style="--photo:image-set(url('images/works/09.webp') type('image/webp'), url('images/works/09.jpg') type('image/jpeg'))"></div>
+      <figcaption class="sel-cap"><span class="sel-meta"><span class="wc">Commercial</span><span class="wclient">Client — JR 西日本</span></span><span class="wt">プロモーション</span><span class="sel-rule"></span></figcaption></figure>
+    <figure class="work sel-c dt-only" data-cat="commercial" data-slug="w12"><div class="img ph-city" style="--photo:image-set(url('images/works/06.webp') type('image/webp'), url('images/works/06.jpg') type('image/jpeg'))"></div>
+      <figcaption class="sel-cap"><span class="sel-meta"><span class="wc">Commercial</span><span class="wclient">Client — Coca-Cola</span></span><span class="wt">クリスマス ドローンショー 2024</span><span class="sel-rule"></span></figcaption></figure>
   </div>
   <div class="more-row rv">
     <a class="read-more" href="#works-page" data-view="works"><span>View all works</span><span class="arr">→</span></a>
@@ -2845,57 +2968,49 @@
 <!-- GALLERY -->
 <section class="sec wrap" id="gallery">
   <div class="sec-head rv"><span class="eyebrow">Photographs</span><h2 class="en-h">Gallery</h2></div>
-  <div class="gal rv" id="galGrid">
-    <!-- リズム: 縦3 → 横2 → 縦3 → 横2（.p=縦/portrait・.l=横/landscape） -->
-    <!-- 縦 1 -->
-    <figure class="gtile p rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#1a2a1a,#3e5e2e,#6ea04a);--photo:image-set(url('images/gallery/01.webp') type('image/webp'), url('images/gallery/01.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Toji Pagoda in Snow">雪の東寺 五重塔</div><div class="gl">Kyoto</div></figcaption>
+  <!-- プロト移植：向きで行を揃える（縦の行=縦だけ / 横の行=横だけ）。ナンバリング無し・
+       実名和題＋英題＋地名・ホバーでゆっくりズーム＋地名が金。画像は images/gallery/japan の実画像。
+       DOM順＝縦5(東寺ace/二寧坂/八坂/蹴上/伊根夜桜)→横3(伊根舟屋/奈良井/河口湖ace)。 -->
+  <div class="gtop rv" id="galGrid">
+    <!-- 縦①（ACE）：雪の東寺 -->
+    <figure class="gi gi-p gi--ace">
+      <div class="ph"><div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#1a2a1a,#3e5e2e,#6ea04a);--photo:image-set(url('images/gallery/japan/01.webp') type('image/webp'), url('images/gallery/japan/01.jpg') type('image/jpeg'))"></div></div>
+      <figcaption class="gcap"><span class="cap-ttl gt" data-en="Toji Pagoda in Snow">雪の東寺 五重塔</span><span class="cap-rule"></span><span class="cap-meta"><span class="cap-en" data-en="Kyoto, Japan">Toji Pagoda in Snow</span><span class="cap-loc gl">Kyoto</span></span></figcaption>
     </figure>
-    <!-- 縦 2 -->
-    <figure class="gtile p rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#3a1f2a,#7e4a5e,#c98aa0);--photo:image-set(url('images/gallery/02.webp') type('image/webp'), url('images/gallery/02.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Ninenzaka, Snowy Night">雪夜の二寧坂</div><div class="gl">Kyoto</div></figcaption>
+    <!-- 縦②：雪夜の二寧坂 -->
+    <figure class="gi gi-p">
+      <div class="ph"><div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#3a1f2a,#7e4a5e,#c98aa0);--photo:image-set(url('images/gallery/japan/02.webp') type('image/webp'), url('images/gallery/japan/02.jpg') type('image/jpeg'))"></div></div>
+      <figcaption class="gcap"><span class="cap-ttl gt" data-en="Ninenzaka, Snowy Night">雪夜の二寧坂</span><span class="cap-rule"></span><span class="cap-meta"><span class="cap-en" data-en="Kyoto, Japan">Ninenzaka, Snowy Night</span><span class="cap-loc gl">Kyoto</span></span></figcaption>
     </figure>
-    <!-- 縦 3 -->
-    <figure class="gtile p rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#16181a,#2a2e38,#4a5266);--photo:image-set(url('images/gallery/03.webp') type('image/webp'), url('images/gallery/03.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Yasaka Pagoda at Dusk">八坂の塔 夕景</div><div class="gl">Kyoto</div></figcaption>
+    <!-- 縦③：八坂の塔 夕景 -->
+    <figure class="gi gi-p">
+      <div class="ph"><div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#16181a,#2a2e38,#4a5266);--photo:image-set(url('images/gallery/japan/03.webp') type('image/webp'), url('images/gallery/japan/03.jpg') type('image/jpeg'))"></div></div>
+      <figcaption class="gcap"><span class="cap-ttl gt" data-en="Yasaka Pagoda at Dusk">八坂の塔 夕景</span><span class="cap-rule"></span><span class="cap-meta"><span class="cap-en" data-en="Kyoto, Japan">Yasaka Pagoda at Dusk</span><span class="cap-loc gl">Kyoto</span></span></figcaption>
     </figure>
-    <!-- 横 1 -->
-    <figure class="gtile l rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#1a3a4a,#2d6e7e,#4a9fb0);--photo:image-set(url('images/gallery/04.webp') type('image/webp'), url('images/gallery/04.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Ine Boathouses">伊根の舟屋</div><div class="gl">Ine</div></figcaption>
+    <!-- 縦④：蹴上インクライン 桜 -->
+    <figure class="gi gi-p gi-f">
+      <div class="ph"><div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#3a1f2a,#7e4a5e,#c98aa0);--photo:image-set(url('images/gallery/japan/06.webp') type('image/webp'), url('images/gallery/japan/06.jpg') type('image/jpeg'))"></div></div>
+      <figcaption class="gcap"><span class="cap-ttl gt" data-en="Keage Incline in Bloom">蹴上インクライン 桜</span><span class="cap-rule"></span><span class="cap-meta"><span class="cap-en" data-en="Kyoto, Japan">Keage Incline in Bloom</span><span class="cap-loc gl">Kyoto</span></span></figcaption>
     </figure>
-    <!-- 横 2 -->
-    <figure class="gtile l rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#16181a,#2a2e38,#4a5266);--photo:image-set(url('images/gallery/05.webp') type('image/webp'), url('images/gallery/05.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Kurama Fire Festival">鞍馬の火祭</div><div class="gl">Kurama</div></figcaption>
+    <!-- 縦⑤：伊根の舟屋 夜桜 -->
+    <figure class="gi gi-p gi-g">
+      <div class="ph"><div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#1a2a1a,#3e5e2e,#6ea04a);--photo:image-set(url('images/gallery/japan/07.webp') type('image/webp'), url('images/gallery/japan/07.jpg') type('image/jpeg'))"></div></div>
+      <figcaption class="gcap"><span class="cap-ttl gt" data-en="Ine Funaya, Sakura Night">伊根の舟屋 夜桜</span><span class="cap-rule"></span><span class="cap-meta"><span class="cap-en" data-en="Ine, Japan">Ine Funaya, Sakura Night</span><span class="cap-loc gl">Ine</span></span></figcaption>
     </figure>
-    <!-- 縦 4 -->
-    <figure class="gtile p rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#3a1f2a,#7e4a5e,#c98aa0);--photo:image-set(url('images/gallery/06.webp') type('image/webp'), url('images/gallery/06.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Keage Incline in Bloom">蹴上インクライン 桜</div><div class="gl">Kyoto</div></figcaption>
+    <!-- 横①：伊根の舟屋 -->
+    <figure class="gi gi-l">
+      <div class="ph"><div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#1a3a4a,#2d6e7e,#4a9fb0);--photo:image-set(url('images/gallery/japan/04.webp') type('image/webp'), url('images/gallery/japan/04.jpg') type('image/jpeg'))"></div></div>
+      <figcaption class="gcap"><span class="cap-ttl gt" data-en="Ine Boathouses">伊根の舟屋</span><span class="cap-rule"></span><span class="cap-meta"><span class="cap-en" data-en="Ine, Japan">Ine Boathouses</span><span class="cap-loc gl">Ine</span></span></figcaption>
     </figure>
-    <!-- 縦 5 -->
-    <figure class="gtile p rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#1a2a1a,#3e5e2e,#6ea04a);--photo:image-set(url('images/gallery/07.webp') type('image/webp'), url('images/gallery/07.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Ine Boathouses at Night">伊根の舟屋 夜桜</div><div class="gl">Ine</div></figcaption>
+    <!-- 横②：奈良井宿 -->
+    <figure class="gi gi-l">
+      <div class="ph"><div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#16181a,#2a2e38,#4a5266);--photo:image-set(url('images/gallery/japan/08.webp') type('image/webp'), url('images/gallery/japan/08.jpg') type('image/jpeg'))"></div></div>
+      <figcaption class="gcap"><span class="cap-ttl gt" data-en="Narai-juku Post Town">奈良井宿</span><span class="cap-rule"></span><span class="cap-meta"><span class="cap-en" data-en="Nagano, Japan">Narai-juku Post Town</span><span class="cap-loc gl">Nagano</span></span></figcaption>
     </figure>
-    <!-- 縦 6 -->
-    <figure class="gtile p rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#1a3a4a,#2d6e7e,#4a9fb0);--photo:image-set(url('images/gallery/08.webp') type('image/webp'), url('images/gallery/08.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Narai-juku Post Town">奈良井宿</div><div class="gl">Nagano</div></figcaption>
-    </figure>
-    <!-- 横 3 -->
-    <figure class="gtile l rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#1a3a4a,#2d6e7e,#4a9fb0);--photo:image-set(url('images/gallery/09.webp') type('image/webp'), url('images/gallery/09.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Tateyama Ropeway in Autumn">立山ロープウェイ 紅葉</div><div class="gl">Toyama</div></figcaption>
-    </figure>
-    <!-- 横 4 -->
-    <figure class="gtile l rv">
-      <div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#16181a,#2a2e38,#4a5266);--photo:image-set(url('images/gallery/10.webp') type('image/webp'), url('images/gallery/10.jpg') type('image/jpeg'))"></div>
-      <figcaption><div class="gt" data-en="Mt. Fuji over Lake Kawaguchi">河口湖と富士山</div><div class="gl">Yamanashi</div></figcaption>
+    <!-- 横③（ACE）：河口湖と富士山 -->
+    <figure class="gi gi-l gi--ace">
+      <div class="ph"><div class="img" style="position:absolute;inset:0;--g:linear-gradient(135deg,#1a3a4a,#2d6e7e,#4a9fb0);--photo:image-set(url('images/gallery/japan/10.webp') type('image/webp'), url('images/gallery/japan/10.jpg') type('image/jpeg'))"></div></div>
+      <figcaption class="gcap"><span class="cap-ttl gt" data-en="Mt. Fuji over Lake Kawaguchi">河口湖と富士山</span><span class="cap-rule"></span><span class="cap-meta"><span class="cap-en" data-en="Yamanashi, Japan">Mt. Fuji over Lake Kawaguchi</span><span class="cap-loc gl">Yamanashi</span></span></figcaption>
     </figure>
   </div>
   <div class="more-row rv">
@@ -2998,252 +3113,26 @@
 <!-- ===================== GALLERY PAGE ===================== -->
 <main id="view-gallery" class="view">
   <section class="sec wrap subpage-top">
+    <!-- 見出しは現行のまま（Photographs / Gallery）。C型化・センター化はしない（施主指示）。 -->
     <div class="sec-head rv"><span class="eyebrow">Photographs</span><h2 class="en-h">Gallery</h2></div>
-    <div class="gp-filter rv" id="gpFilter">
-      <button class="on" data-filter="japan">Japan</button>
-      <button data-filter="france">France</button>
-      <button data-filter="uk">United Kingdom</button>
-      <button data-filter="netherlands">Netherlands</button>
-      <button data-filter="spain">Spain</button>
-      <button data-filter="italy">Italy</button>
-      <button data-filter="germany">Germany</button>
-      <button data-filter="denmark">Denmark</button>
-      <button data-filter="sweden">Sweden</button>
-      <button data-filter="turkey">Turkey</button>
-      <button data-filter="australia">Australia</button>
-      <button data-filter="hawaii">Hawaii</button>
-      <button data-filter="saudi">Saudi Arabia</button>
-      <button data-filter="hongkong">Hong Kong</button>
-      <button data-filter="korea">Korea</button>
-      <button data-filter="thailand">Thailand</button>
-      <button data-filter="philippines">Philippines</button>
-      <button data-filter="china">China</button>
-      <button data-filter="macao">Macao</button>
-      <button data-filter="wedding">Wedding</button>
-      <button data-filter="events">Events</button>
-      <button data-filter="hotels">Hotels</button>
+
+    <!-- ハイブリッド構造：入口=カバーグリッド（22カテゴリ・地域グルーピング）→タップで国別ビュー。
+         japan/france は実データ（実画像・実名キャプション）、他20は画像未投入＝グラデカバー＋準備中（非リンク）。
+         カバー枚数・タイル・キャプションは JS がデータ駆動で描画（下の gpData スクリプト）。 -->
+    <div id="gpCoverView">
+      <div class="gp-cover-grid" id="gpCoverGrid"></div>
     </div>
-    <div class="gp-grid" id="gpGrid">
-      <figure class="gp-tile p" data-cat="japan"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/japan/01.webp') type('image/webp'), url('images/gallery/japan/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Toji Pagoda in Snow">雪の東寺 五重塔</div><div class="gl">Kyoto</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="japan"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/japan/02.webp') type('image/webp'), url('images/gallery/japan/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Ninenzaka, Snowy Night">雪夜の二寧坂</div><div class="gl">Kyoto</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="japan"><div class="img ph-city" style="--photo:image-set(url('images/gallery/japan/03.webp') type('image/webp'), url('images/gallery/japan/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Yasaka Pagoda at Dusk">八坂の塔 夕景</div><div class="gl">Kyoto</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="japan"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/japan/04.webp') type('image/webp'), url('images/gallery/japan/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Ine Boathouses">伊根の舟屋</div><div class="gl">Ine</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="japan"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/japan/05.webp') type('image/webp'), url('images/gallery/japan/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Kurama Fire Festival">鞍馬の火祭</div><div class="gl">Kurama</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="japan"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/japan/06.webp') type('image/webp'), url('images/gallery/japan/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Keage Incline in Bloom">蹴上インクライン 桜</div><div class="gl">Kyoto</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="japan"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/japan/07.webp') type('image/webp'), url('images/gallery/japan/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Ine Boathouses at Night">伊根の舟屋 夜桜</div><div class="gl">Ine</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="japan"><div class="img ph-city" style="--photo:image-set(url('images/gallery/japan/08.webp') type('image/webp'), url('images/gallery/japan/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Narai-juku Post Town">奈良井宿</div><div class="gl">Nagano</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="japan"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/japan/09.webp') type('image/webp'), url('images/gallery/japan/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Tateyama Ropeway in Autumn">立山ロープウェイ 紅葉</div><div class="gl">Toyama</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="japan"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/japan/10.webp') type('image/webp'), url('images/gallery/japan/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Mt. Fuji over Lake Kawaguchi">河口湖と富士山</div><div class="gl">Yamanashi</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="france"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/france/01.webp') type('image/webp'), url('images/gallery/france/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Eiffel Tower">エッフェル塔</div><div class="gl">Paris</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="france"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/france/02.webp') type('image/webp'), url('images/gallery/france/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Palais Garnier">オペラ・ガルニエ</div><div class="gl">Paris</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="france"><div class="img ph-city" style="--photo:image-set(url('images/gallery/france/03.webp') type('image/webp'), url('images/gallery/france/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Rennes at Christmas">レンヌの街（クリスマス）</div><div class="gl">Rennes</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="france"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/france/04.webp') type('image/webp'), url('images/gallery/france/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Mont-Saint-Michel">モン・サン＝ミシェル</div><div class="gl">Normandy</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="france"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/france/05.webp') type('image/webp'), url('images/gallery/france/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Sainte-Chapelle">サント・シャペル</div><div class="gl">Paris</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="france"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/france/06.webp') type('image/webp'), url('images/gallery/france/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Galeries Lafayette">ギャラリー・ラファイエット</div><div class="gl">Paris</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="france"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/france/07.webp') type('image/webp'), url('images/gallery/france/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Dior Maison in Winter">冬のディオール本店</div><div class="gl">Paris</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="france"><div class="img ph-city" style="--photo:image-set(url('images/gallery/france/08.webp') type('image/webp'), url('images/gallery/france/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Boulevard des Capucines">キャプシーヌ大通り</div><div class="gl">Paris</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="france"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/france/09.webp') type('image/webp'), url('images/gallery/france/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Palais Garnier Staircase">オペラ・ガルニエ 大階段</div><div class="gl">Paris</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="france"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/france/10.webp') type('image/webp'), url('images/gallery/france/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt" data-en="Rennes Old Town">レンヌ旧市街</div><div class="gl">Rennes</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="uk"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/uk/01.webp') type('image/webp'), url('images/gallery/uk/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 01</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="uk"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/uk/02.webp') type('image/webp'), url('images/gallery/uk/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 02</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="uk"><div class="img ph-city" style="--photo:image-set(url('images/gallery/uk/03.webp') type('image/webp'), url('images/gallery/uk/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 03</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="uk"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/uk/04.webp') type('image/webp'), url('images/gallery/uk/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 04</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="uk"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/uk/05.webp') type('image/webp'), url('images/gallery/uk/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 05</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="uk"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/uk/06.webp') type('image/webp'), url('images/gallery/uk/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 06</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="uk"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/uk/07.webp') type('image/webp'), url('images/gallery/uk/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 07</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="uk"><div class="img ph-city" style="--photo:image-set(url('images/gallery/uk/08.webp') type('image/webp'), url('images/gallery/uk/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 08</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="uk"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/uk/09.webp') type('image/webp'), url('images/gallery/uk/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 09</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="uk"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/uk/10.webp') type('image/webp'), url('images/gallery/uk/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">United Kingdom 10</div><div class="gl">UK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="netherlands"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/netherlands/01.webp') type('image/webp'), url('images/gallery/netherlands/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 01</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="netherlands"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/netherlands/02.webp') type('image/webp'), url('images/gallery/netherlands/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 02</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="netherlands"><div class="img ph-city" style="--photo:image-set(url('images/gallery/netherlands/03.webp') type('image/webp'), url('images/gallery/netherlands/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 03</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="netherlands"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/netherlands/04.webp') type('image/webp'), url('images/gallery/netherlands/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 04</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="netherlands"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/netherlands/05.webp') type('image/webp'), url('images/gallery/netherlands/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 05</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="netherlands"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/netherlands/06.webp') type('image/webp'), url('images/gallery/netherlands/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 06</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="netherlands"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/netherlands/07.webp') type('image/webp'), url('images/gallery/netherlands/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 07</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="netherlands"><div class="img ph-city" style="--photo:image-set(url('images/gallery/netherlands/08.webp') type('image/webp'), url('images/gallery/netherlands/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 08</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="netherlands"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/netherlands/09.webp') type('image/webp'), url('images/gallery/netherlands/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 09</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="netherlands"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/netherlands/10.webp') type('image/webp'), url('images/gallery/netherlands/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Netherlands 10</div><div class="gl">NETHERLANDS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="spain"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/spain/01.webp') type('image/webp'), url('images/gallery/spain/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 01</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="spain"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/spain/02.webp') type('image/webp'), url('images/gallery/spain/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 02</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="spain"><div class="img ph-city" style="--photo:image-set(url('images/gallery/spain/03.webp') type('image/webp'), url('images/gallery/spain/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 03</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="spain"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/spain/04.webp') type('image/webp'), url('images/gallery/spain/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 04</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="spain"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/spain/05.webp') type('image/webp'), url('images/gallery/spain/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 05</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="spain"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/spain/06.webp') type('image/webp'), url('images/gallery/spain/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 06</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="spain"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/spain/07.webp') type('image/webp'), url('images/gallery/spain/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 07</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="spain"><div class="img ph-city" style="--photo:image-set(url('images/gallery/spain/08.webp') type('image/webp'), url('images/gallery/spain/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 08</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="spain"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/spain/09.webp') type('image/webp'), url('images/gallery/spain/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 09</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="spain"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/spain/10.webp') type('image/webp'), url('images/gallery/spain/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Spain 10</div><div class="gl">SPAIN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="italy"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/italy/01.webp') type('image/webp'), url('images/gallery/italy/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 01</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="italy"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/italy/02.webp') type('image/webp'), url('images/gallery/italy/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 02</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="italy"><div class="img ph-city" style="--photo:image-set(url('images/gallery/italy/03.webp') type('image/webp'), url('images/gallery/italy/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 03</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="italy"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/italy/04.webp') type('image/webp'), url('images/gallery/italy/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 04</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="italy"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/italy/05.webp') type('image/webp'), url('images/gallery/italy/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 05</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="italy"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/italy/06.webp') type('image/webp'), url('images/gallery/italy/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 06</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="italy"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/italy/07.webp') type('image/webp'), url('images/gallery/italy/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 07</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="italy"><div class="img ph-city" style="--photo:image-set(url('images/gallery/italy/08.webp') type('image/webp'), url('images/gallery/italy/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 08</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="italy"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/italy/09.webp') type('image/webp'), url('images/gallery/italy/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 09</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="italy"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/italy/10.webp') type('image/webp'), url('images/gallery/italy/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Italy 10</div><div class="gl">ITALY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="germany"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/germany/01.webp') type('image/webp'), url('images/gallery/germany/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 01</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="germany"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/germany/02.webp') type('image/webp'), url('images/gallery/germany/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 02</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="germany"><div class="img ph-city" style="--photo:image-set(url('images/gallery/germany/03.webp') type('image/webp'), url('images/gallery/germany/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 03</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="germany"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/germany/04.webp') type('image/webp'), url('images/gallery/germany/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 04</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="germany"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/germany/05.webp') type('image/webp'), url('images/gallery/germany/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 05</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="germany"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/germany/06.webp') type('image/webp'), url('images/gallery/germany/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 06</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="germany"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/germany/07.webp') type('image/webp'), url('images/gallery/germany/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 07</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="germany"><div class="img ph-city" style="--photo:image-set(url('images/gallery/germany/08.webp') type('image/webp'), url('images/gallery/germany/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 08</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="germany"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/germany/09.webp') type('image/webp'), url('images/gallery/germany/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 09</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="germany"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/germany/10.webp') type('image/webp'), url('images/gallery/germany/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Germany 10</div><div class="gl">GERMANY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="denmark"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/denmark/01.webp') type('image/webp'), url('images/gallery/denmark/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 01</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="denmark"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/denmark/02.webp') type('image/webp'), url('images/gallery/denmark/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 02</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="denmark"><div class="img ph-city" style="--photo:image-set(url('images/gallery/denmark/03.webp') type('image/webp'), url('images/gallery/denmark/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 03</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="denmark"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/denmark/04.webp') type('image/webp'), url('images/gallery/denmark/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 04</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="denmark"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/denmark/05.webp') type('image/webp'), url('images/gallery/denmark/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 05</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="denmark"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/denmark/06.webp') type('image/webp'), url('images/gallery/denmark/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 06</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="denmark"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/denmark/07.webp') type('image/webp'), url('images/gallery/denmark/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 07</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="denmark"><div class="img ph-city" style="--photo:image-set(url('images/gallery/denmark/08.webp') type('image/webp'), url('images/gallery/denmark/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 08</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="denmark"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/denmark/09.webp') type('image/webp'), url('images/gallery/denmark/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 09</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="denmark"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/denmark/10.webp') type('image/webp'), url('images/gallery/denmark/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Denmark 10</div><div class="gl">DENMARK</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="sweden"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/sweden/01.webp') type('image/webp'), url('images/gallery/sweden/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 01</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="sweden"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/sweden/02.webp') type('image/webp'), url('images/gallery/sweden/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 02</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="sweden"><div class="img ph-city" style="--photo:image-set(url('images/gallery/sweden/03.webp') type('image/webp'), url('images/gallery/sweden/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 03</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="sweden"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/sweden/04.webp') type('image/webp'), url('images/gallery/sweden/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 04</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="sweden"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/sweden/05.webp') type('image/webp'), url('images/gallery/sweden/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 05</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="sweden"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/sweden/06.webp') type('image/webp'), url('images/gallery/sweden/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 06</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="sweden"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/sweden/07.webp') type('image/webp'), url('images/gallery/sweden/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 07</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="sweden"><div class="img ph-city" style="--photo:image-set(url('images/gallery/sweden/08.webp') type('image/webp'), url('images/gallery/sweden/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 08</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="sweden"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/sweden/09.webp') type('image/webp'), url('images/gallery/sweden/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 09</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="sweden"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/sweden/10.webp') type('image/webp'), url('images/gallery/sweden/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Sweden 10</div><div class="gl">SWEDEN</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="turkey"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/turkey/01.webp') type('image/webp'), url('images/gallery/turkey/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 01</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="turkey"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/turkey/02.webp') type('image/webp'), url('images/gallery/turkey/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 02</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="turkey"><div class="img ph-city" style="--photo:image-set(url('images/gallery/turkey/03.webp') type('image/webp'), url('images/gallery/turkey/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 03</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="turkey"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/turkey/04.webp') type('image/webp'), url('images/gallery/turkey/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 04</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="turkey"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/turkey/05.webp') type('image/webp'), url('images/gallery/turkey/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 05</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="turkey"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/turkey/06.webp') type('image/webp'), url('images/gallery/turkey/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 06</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="turkey"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/turkey/07.webp') type('image/webp'), url('images/gallery/turkey/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 07</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="turkey"><div class="img ph-city" style="--photo:image-set(url('images/gallery/turkey/08.webp') type('image/webp'), url('images/gallery/turkey/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 08</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="turkey"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/turkey/09.webp') type('image/webp'), url('images/gallery/turkey/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 09</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="turkey"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/turkey/10.webp') type('image/webp'), url('images/gallery/turkey/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Türkiye 10</div><div class="gl">TURKEY</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="australia"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/australia/01.webp') type('image/webp'), url('images/gallery/australia/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 01</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="australia"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/australia/02.webp') type('image/webp'), url('images/gallery/australia/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 02</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="australia"><div class="img ph-city" style="--photo:image-set(url('images/gallery/australia/03.webp') type('image/webp'), url('images/gallery/australia/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 03</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="australia"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/australia/04.webp') type('image/webp'), url('images/gallery/australia/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 04</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="australia"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/australia/05.webp') type('image/webp'), url('images/gallery/australia/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 05</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="australia"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/australia/06.webp') type('image/webp'), url('images/gallery/australia/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 06</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="australia"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/australia/07.webp') type('image/webp'), url('images/gallery/australia/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 07</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="australia"><div class="img ph-city" style="--photo:image-set(url('images/gallery/australia/08.webp') type('image/webp'), url('images/gallery/australia/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 08</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="australia"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/australia/09.webp') type('image/webp'), url('images/gallery/australia/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 09</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="australia"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/australia/10.webp') type('image/webp'), url('images/gallery/australia/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Australia 10</div><div class="gl">AUSTRALIA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hawaii"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/hawaii/01.webp') type('image/webp'), url('images/gallery/hawaii/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 01</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hawaii"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/hawaii/02.webp') type('image/webp'), url('images/gallery/hawaii/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 02</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hawaii"><div class="img ph-city" style="--photo:image-set(url('images/gallery/hawaii/03.webp') type('image/webp'), url('images/gallery/hawaii/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 03</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hawaii"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/hawaii/04.webp') type('image/webp'), url('images/gallery/hawaii/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 04</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hawaii"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/hawaii/05.webp') type('image/webp'), url('images/gallery/hawaii/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 05</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hawaii"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/hawaii/06.webp') type('image/webp'), url('images/gallery/hawaii/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 06</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hawaii"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/hawaii/07.webp') type('image/webp'), url('images/gallery/hawaii/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 07</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hawaii"><div class="img ph-city" style="--photo:image-set(url('images/gallery/hawaii/08.webp') type('image/webp'), url('images/gallery/hawaii/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 08</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hawaii"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/hawaii/09.webp') type('image/webp'), url('images/gallery/hawaii/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 09</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hawaii"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/hawaii/10.webp') type('image/webp'), url('images/gallery/hawaii/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hawaii 10</div><div class="gl">HAWAII</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="saudi"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/saudi/01.webp') type('image/webp'), url('images/gallery/saudi/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 01</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="saudi"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/saudi/02.webp') type('image/webp'), url('images/gallery/saudi/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 02</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="saudi"><div class="img ph-city" style="--photo:image-set(url('images/gallery/saudi/03.webp') type('image/webp'), url('images/gallery/saudi/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 03</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="saudi"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/saudi/04.webp') type('image/webp'), url('images/gallery/saudi/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 04</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="saudi"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/saudi/05.webp') type('image/webp'), url('images/gallery/saudi/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 05</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="saudi"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/saudi/06.webp') type('image/webp'), url('images/gallery/saudi/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 06</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="saudi"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/saudi/07.webp') type('image/webp'), url('images/gallery/saudi/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 07</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="saudi"><div class="img ph-city" style="--photo:image-set(url('images/gallery/saudi/08.webp') type('image/webp'), url('images/gallery/saudi/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 08</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="saudi"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/saudi/09.webp') type('image/webp'), url('images/gallery/saudi/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 09</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="saudi"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/saudi/10.webp') type('image/webp'), url('images/gallery/saudi/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Saudi Arabia 10</div><div class="gl">SAUDI</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hongkong"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/hongkong/01.webp') type('image/webp'), url('images/gallery/hongkong/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 01</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hongkong"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/hongkong/02.webp') type('image/webp'), url('images/gallery/hongkong/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 02</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hongkong"><div class="img ph-city" style="--photo:image-set(url('images/gallery/hongkong/03.webp') type('image/webp'), url('images/gallery/hongkong/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 03</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hongkong"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/hongkong/04.webp') type('image/webp'), url('images/gallery/hongkong/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 04</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hongkong"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/hongkong/05.webp') type('image/webp'), url('images/gallery/hongkong/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 05</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hongkong"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/hongkong/06.webp') type('image/webp'), url('images/gallery/hongkong/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 06</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hongkong"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/hongkong/07.webp') type('image/webp'), url('images/gallery/hongkong/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 07</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hongkong"><div class="img ph-city" style="--photo:image-set(url('images/gallery/hongkong/08.webp') type('image/webp'), url('images/gallery/hongkong/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 08</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hongkong"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/hongkong/09.webp') type('image/webp'), url('images/gallery/hongkong/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 09</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hongkong"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/hongkong/10.webp') type('image/webp'), url('images/gallery/hongkong/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hong Kong 10</div><div class="gl">HONGKONG</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="korea"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/korea/01.webp') type('image/webp'), url('images/gallery/korea/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 01</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="korea"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/korea/02.webp') type('image/webp'), url('images/gallery/korea/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 02</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="korea"><div class="img ph-city" style="--photo:image-set(url('images/gallery/korea/03.webp') type('image/webp'), url('images/gallery/korea/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 03</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="korea"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/korea/04.webp') type('image/webp'), url('images/gallery/korea/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 04</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="korea"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/korea/05.webp') type('image/webp'), url('images/gallery/korea/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 05</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="korea"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/korea/06.webp') type('image/webp'), url('images/gallery/korea/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 06</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="korea"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/korea/07.webp') type('image/webp'), url('images/gallery/korea/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 07</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="korea"><div class="img ph-city" style="--photo:image-set(url('images/gallery/korea/08.webp') type('image/webp'), url('images/gallery/korea/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 08</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="korea"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/korea/09.webp') type('image/webp'), url('images/gallery/korea/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 09</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="korea"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/korea/10.webp') type('image/webp'), url('images/gallery/korea/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Korea 10</div><div class="gl">KOREA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="thailand"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/thailand/01.webp') type('image/webp'), url('images/gallery/thailand/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 01</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="thailand"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/thailand/02.webp') type('image/webp'), url('images/gallery/thailand/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 02</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="thailand"><div class="img ph-city" style="--photo:image-set(url('images/gallery/thailand/03.webp') type('image/webp'), url('images/gallery/thailand/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 03</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="thailand"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/thailand/04.webp') type('image/webp'), url('images/gallery/thailand/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 04</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="thailand"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/thailand/05.webp') type('image/webp'), url('images/gallery/thailand/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 05</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="thailand"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/thailand/06.webp') type('image/webp'), url('images/gallery/thailand/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 06</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="thailand"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/thailand/07.webp') type('image/webp'), url('images/gallery/thailand/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 07</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="thailand"><div class="img ph-city" style="--photo:image-set(url('images/gallery/thailand/08.webp') type('image/webp'), url('images/gallery/thailand/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 08</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="thailand"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/thailand/09.webp') type('image/webp'), url('images/gallery/thailand/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 09</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="thailand"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/thailand/10.webp') type('image/webp'), url('images/gallery/thailand/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Thailand 10</div><div class="gl">THAILAND</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/philippines/01.webp') type('image/webp'), url('images/gallery/philippines/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 01</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/philippines/02.webp') type('image/webp'), url('images/gallery/philippines/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 02</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-city" style="--photo:image-set(url('images/gallery/philippines/03.webp') type('image/webp'), url('images/gallery/philippines/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 03</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/philippines/04.webp') type('image/webp'), url('images/gallery/philippines/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 04</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/philippines/05.webp') type('image/webp'), url('images/gallery/philippines/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 05</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/philippines/06.webp') type('image/webp'), url('images/gallery/philippines/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 06</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/philippines/07.webp') type('image/webp'), url('images/gallery/philippines/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 07</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="philippines"><div class="img ph-city" style="--photo:image-set(url('images/gallery/philippines/08.webp') type('image/webp'), url('images/gallery/philippines/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 08</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/philippines/09.webp') type('image/webp'), url('images/gallery/philippines/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 09</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="philippines"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/philippines/10.webp') type('image/webp'), url('images/gallery/philippines/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Philippines 10</div><div class="gl">PHILIPPINES</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="china"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/china/01.webp') type('image/webp'), url('images/gallery/china/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 01</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="china"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/china/02.webp') type('image/webp'), url('images/gallery/china/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 02</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="china"><div class="img ph-city" style="--photo:image-set(url('images/gallery/china/03.webp') type('image/webp'), url('images/gallery/china/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 03</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="china"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/china/04.webp') type('image/webp'), url('images/gallery/china/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 04</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="china"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/china/05.webp') type('image/webp'), url('images/gallery/china/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 05</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="china"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/china/06.webp') type('image/webp'), url('images/gallery/china/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 06</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="china"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/china/07.webp') type('image/webp'), url('images/gallery/china/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 07</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="china"><div class="img ph-city" style="--photo:image-set(url('images/gallery/china/08.webp') type('image/webp'), url('images/gallery/china/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 08</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="china"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/china/09.webp') type('image/webp'), url('images/gallery/china/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 09</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="china"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/china/10.webp') type('image/webp'), url('images/gallery/china/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">China 10</div><div class="gl">CHINA</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="macao"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/macao/01.webp') type('image/webp'), url('images/gallery/macao/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 01</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="macao"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/macao/02.webp') type('image/webp'), url('images/gallery/macao/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 02</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="macao"><div class="img ph-city" style="--photo:image-set(url('images/gallery/macao/03.webp') type('image/webp'), url('images/gallery/macao/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 03</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="macao"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/macao/04.webp') type('image/webp'), url('images/gallery/macao/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 04</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="macao"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/macao/05.webp') type('image/webp'), url('images/gallery/macao/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 05</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="macao"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/macao/06.webp') type('image/webp'), url('images/gallery/macao/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 06</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="macao"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/macao/07.webp') type('image/webp'), url('images/gallery/macao/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 07</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="macao"><div class="img ph-city" style="--photo:image-set(url('images/gallery/macao/08.webp') type('image/webp'), url('images/gallery/macao/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 08</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="macao"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/macao/09.webp') type('image/webp'), url('images/gallery/macao/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 09</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="macao"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/macao/10.webp') type('image/webp'), url('images/gallery/macao/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Macao 10</div><div class="gl">MACAO</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="wedding"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/wedding/01.webp') type('image/webp'), url('images/gallery/wedding/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 01</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="wedding"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/wedding/02.webp') type('image/webp'), url('images/gallery/wedding/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 02</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="wedding"><div class="img ph-city" style="--photo:image-set(url('images/gallery/wedding/03.webp') type('image/webp'), url('images/gallery/wedding/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 03</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="wedding"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/wedding/04.webp') type('image/webp'), url('images/gallery/wedding/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 04</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="wedding"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/wedding/05.webp') type('image/webp'), url('images/gallery/wedding/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 05</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="wedding"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/wedding/06.webp') type('image/webp'), url('images/gallery/wedding/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 06</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="wedding"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/wedding/07.webp') type('image/webp'), url('images/gallery/wedding/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 07</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="wedding"><div class="img ph-city" style="--photo:image-set(url('images/gallery/wedding/08.webp') type('image/webp'), url('images/gallery/wedding/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 08</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="wedding"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/wedding/09.webp') type('image/webp'), url('images/gallery/wedding/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 09</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="wedding"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/wedding/10.webp') type('image/webp'), url('images/gallery/wedding/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Wedding 10</div><div class="gl">WEDDING</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="events"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/events/01.webp') type('image/webp'), url('images/gallery/events/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 01</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="events"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/events/02.webp') type('image/webp'), url('images/gallery/events/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 02</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="events"><div class="img ph-city" style="--photo:image-set(url('images/gallery/events/03.webp') type('image/webp'), url('images/gallery/events/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 03</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="events"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/events/04.webp') type('image/webp'), url('images/gallery/events/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 04</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="events"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/events/05.webp') type('image/webp'), url('images/gallery/events/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 05</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="events"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/events/06.webp') type('image/webp'), url('images/gallery/events/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 06</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="events"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/events/07.webp') type('image/webp'), url('images/gallery/events/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 07</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="events"><div class="img ph-city" style="--photo:image-set(url('images/gallery/events/08.webp') type('image/webp'), url('images/gallery/events/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 08</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="events"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/events/09.webp') type('image/webp'), url('images/gallery/events/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 09</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="events"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/events/10.webp') type('image/webp'), url('images/gallery/events/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Events 10</div><div class="gl">EVENTS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hotels"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/hotels/01.webp') type('image/webp'), url('images/gallery/hotels/01.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 01</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hotels"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/hotels/02.webp') type('image/webp'), url('images/gallery/hotels/02.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 02</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hotels"><div class="img ph-city" style="--photo:image-set(url('images/gallery/hotels/03.webp') type('image/webp'), url('images/gallery/hotels/03.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 03</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hotels"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/hotels/04.webp') type('image/webp'), url('images/gallery/hotels/04.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 04</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hotels"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/hotels/05.webp') type('image/webp'), url('images/gallery/hotels/05.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 05</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hotels"><div class="img ph-bamboo" style="--photo:image-set(url('images/gallery/hotels/06.webp') type('image/webp'), url('images/gallery/hotels/06.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 06</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hotels"><div class="img ph-sakura" style="--photo:image-set(url('images/gallery/hotels/07.webp') type('image/webp'), url('images/gallery/hotels/07.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 07</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile p" data-cat="hotels"><div class="img ph-city" style="--photo:image-set(url('images/gallery/hotels/08.webp') type('image/webp'), url('images/gallery/hotels/08.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 08</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hotels"><div class="img ph-okinawa" style="--photo:image-set(url('images/gallery/hotels/09.webp') type('image/webp'), url('images/gallery/hotels/09.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 09</div><div class="gl">HOTELS</div></figcaption></figure>
-      <figure class="gp-tile l" data-cat="hotels"><div class="img ph-portrait" style="--photo:image-set(url('images/gallery/hotels/10.webp') type('image/webp'), url('images/gallery/hotels/10.jpg') type('image/jpeg'))"></div><figcaption><div class="gt">Hotels 10</div><div class="gl">HOTELS</div></figcaption></figure>
+    <div id="gpDestView" hidden>
+      <button class="gp-back" id="gpBack" type="button"><span class="ar">←</span> <span data-en="All destinations">すべての行き先</span></button>
+      <div class="gp-dest-head">
+        <div class="gp-dest-en" id="gpDestEn">Japan</div>
+        <div class="gp-dest-jp" id="gpDestJp">日本</div>
+      </div>
+      <div class="gtop" id="gpDestRows"></div>
+    </div>
+
+    <!-- 旧フラット格子は撤去。bindFilter('gpFilter','gpGrid',...) は要素が無く no-op（ルーター非破壊）。 -->
+    <div class="gp-grid" id="gpGrid" hidden>
     </div>
     <p class="gp-empty" id="gpEmpty"><span data-en="Photos in this category are coming soon.">このカテゴリの写真は準備中です。</span></p>
   </section>
@@ -4078,6 +3967,7 @@
     }
     function activate(name){
       Object.keys(views).forEach(function(k){ if(views[k]) views[k].classList.toggle('active',k===name); });
+      if(name==='gallery' && typeof window.__gpReset==='function') window.__gpReset();   /* ギャラリーALL：入るたびカバーグリッドに戻す */
     }
     function show(name,opts){
       opts=opts||{};
@@ -4321,6 +4211,160 @@
           if(btn){btn.disabled=false;} if(btnLabel){btnLabel.textContent=t('送信する →',"Send →");}
         });
       });
+    }
+  })();
+
+  /* ===== GALLERY ALL — ハイブリッド（カバーグリッド → 国別ビュー）データ駆動 ===== */
+  (function(){
+    var coverGrid=document.getElementById('gpCoverGrid');
+    var coverView=document.getElementById('gpCoverView');
+    var destView=document.getElementById('gpDestView');
+    var destRows=document.getElementById('gpDestRows');
+    var destEn=document.getElementById('gpDestEn'), destJp=document.getElementById('gpDestJp');
+    var backBtn=document.getElementById('gpBack');
+    if(!coverGrid||!destView||!destRows) return;
+
+    /* カテゴリ＝地域グルーピングの自然な旅の流れ（施主指示）。
+       日本→アジア→中東→ヨーロッパ→オセアニア→ハワイ→テーマ系。
+       real:true = 実データ（japan/france）。他は画像未投入＝準備中カバー（非リンク）。
+       cover = カバー代表画像（japan/france は実画像、他はグラデ流用でカバー面は成立）。 */
+    var CATS=[
+      {id:'japan',      en:'Japan',          jp:'日本',          cover:'images/gallery/japan/01', real:true},
+      {id:'korea',      en:'Korea',          jp:'韓国',          cover:'images/gallery/japan/03'},
+      {id:'china',      en:'China',          jp:'中国',          cover:'images/gallery/japan/08'},
+      {id:'hongkong',   en:'Hong Kong',      jp:'香港',          cover:'images/gallery/france/08'},
+      {id:'macao',      en:'Macao',          jp:'マカオ',        cover:'images/gallery/france/06'},
+      {id:'thailand',   en:'Thailand',       jp:'タイ',          cover:'images/gallery/japan/05'},
+      {id:'philippines',en:'Philippines',    jp:'フィリピン',    cover:'images/gallery/japan/09'},
+      {id:'turkey',     en:'Turkey',         jp:'トルコ',        cover:'images/gallery/france/02'},
+      {id:'saudi',      en:'Saudi Arabia',   jp:'サウジアラビア',cover:'images/gallery/japan/06'},
+      {id:'france',     en:'France',         jp:'フランス',      cover:'images/gallery/france/04', real:true},
+      {id:'uk',         en:'United Kingdom', jp:'イギリス',      cover:'images/gallery/france/03'},
+      {id:'spain',      en:'Spain',          jp:'スペイン',      cover:'images/gallery/france/07'},
+      {id:'italy',      en:'Italy',          jp:'イタリア',      cover:'images/gallery/france/09'},
+      {id:'germany',    en:'Germany',        jp:'ドイツ',        cover:'images/gallery/france/05'},
+      {id:'netherlands',en:'Netherlands',    jp:'オランダ',      cover:'images/gallery/japan/07'},
+      {id:'denmark',    en:'Denmark',        jp:'デンマーク',    cover:'images/gallery/france/10'},
+      {id:'sweden',     en:'Sweden',         jp:'スウェーデン',  cover:'images/gallery/japan/02'},
+      {id:'australia',  en:'Australia',      jp:'オーストラリア',cover:'images/gallery/japan/10'},
+      {id:'hawaii',     en:'Hawaii',         jp:'ハワイ',        cover:'images/gallery/japan/04'},
+      {id:'hotels',     en:'Hotels',         jp:'ホテル',        cover:'images/gallery/france/01'},
+      {id:'events',     en:'Events',         jp:'イベント',      cover:'images/gallery/japan/01'},
+      {id:'wedding',    en:'Wedding',        jp:'ウェディング',  cover:'images/gallery/france/04'}
+    ];
+
+    /* 実データ：写真集（o=向き p/l, jp=和題, en=英題, loc=地名）。dir=画像フォルダ。 */
+    var GAL={
+      japan:{dir:'japan',shots:[
+        {n:'01',o:'p',jp:'雪の東寺 五重塔',      en:'Toji Pagoda in Snow',         loc:'Kyoto'},
+        {n:'02',o:'p',jp:'雪夜の二寧坂',         en:'Ninenzaka, Snowy Night',      loc:'Kyoto'},
+        {n:'03',o:'p',jp:'八坂の塔 夕景',        en:'Yasaka Pagoda at Dusk',       loc:'Kyoto'},
+        {n:'06',o:'p',jp:'蹴上インクライン 桜',  en:'Keage Incline in Bloom',      loc:'Kyoto'},
+        {n:'07',o:'p',jp:'伊根の舟屋 夜桜',      en:'Ine Funaya, Sakura Night',    loc:'Ine'},
+        {n:'08',o:'p',jp:'奈良井宿',            en:'Narai-juku Post Town',        loc:'Nagano'},
+        {n:'04',o:'l',jp:'伊根の舟屋',          en:'Ine Boathouses',              loc:'Ine'},
+        {n:'05',o:'l',jp:'鞍馬の火祭',          en:'Kurama Fire Festival',        loc:'Kurama'},
+        {n:'09',o:'l',jp:'立山ロープウェイ 紅葉',en:'Tateyama Ropeway in Autumn',  loc:'Toyama'},
+        {n:'10',o:'l',jp:'河口湖と富士山',       en:'Mt. Fuji over Lake Kawaguchi',loc:'Yamanashi'}
+      ]},
+      france:{dir:'france',shots:[
+        {n:'01',o:'p',jp:'エッフェル塔',          en:'Eiffel Tower',            loc:'Paris'},
+        {n:'02',o:'p',jp:'オペラ・ガルニエ',       en:'Palais Garnier',          loc:'Paris'},
+        {n:'03',o:'p',jp:'レンヌの街（クリスマス）',en:'Rennes at Christmas',     loc:'Rennes'},
+        {n:'06',o:'p',jp:'ギャラリー・ラファイエット',en:'Galeries Lafayette',    loc:'Paris'},
+        {n:'07',o:'p',jp:'冬のディオール本店',      en:'Dior Maison in Winter',   loc:'Paris'},
+        {n:'08',o:'p',jp:'キャプシーヌ大通り',      en:'Boulevard des Capucines', loc:'Paris'},
+        {n:'04',o:'l',jp:'モン・サン＝ミシェル',    en:'Mont-Saint-Michel',       loc:'Normandy'},
+        {n:'05',o:'l',jp:'サント・シャペル',       en:'Sainte-Chapelle',         loc:'Paris'},
+        {n:'09',o:'l',jp:'オペラ・ガルニエ 大階段',  en:'Palais Garnier Staircase',loc:'Paris'},
+        {n:'10',o:'l',jp:'レンヌ旧市街',          en:'Rennes Old Town',         loc:'Rennes'}
+      ]}
+    };
+    /* 未投入カテゴリの想定枚数（データ駆動の枚数表示用・実画像投入時は GAL に定義すれば実数に切替） */
+    var PLANNED=10;
+    function photoCount(c){ return (GAL[c.id]&&GAL[c.id].shots.length) || PLANNED; }
+
+    function imgStyle(base){
+      return "--photo:image-set(url('"+base+".webp') type('image/webp'), url('"+base+".jpg') type('image/jpeg'))";
+    }
+    var PH=['ph-city','ph-sakura','ph-bamboo','ph-okinawa','ph-portrait'];
+
+    /* ---- カバーグリッド描画 ---- */
+    CATS.forEach(function(c,i){
+      var b=document.createElement('button');
+      b.type='button';
+      b.className='gp-cover'+(c.real?'':' gp-empty-cat');
+      b.setAttribute('data-cat',c.id);
+      var cnt=photoCount(c);
+      var soon = c.real ? '' : '<span class="csoon" data-en="Coming soon">準備中</span>';
+      var countLine = c.real
+        ? '<span class="ccount">'+cnt+(cnt===1?' Photo':' Photos')+'</span>'
+        : '';
+      b.innerHTML=
+        '<div class="cimg '+(c.real?'':PH[i%PH.length])+'" style="'+imgStyle(c.cover)+'"></div>'+
+        '<div class="scrim"></div>'+
+        '<div class="cline"></div>'+
+        '<div class="ctext">'+
+          '<div class="cen">'+c.en+'</div>'+
+          '<div class="cjp">'+c.jp+'</div>'+
+          countLine+soon+
+        '</div>';
+      if(c.real){ b.addEventListener('click',function(){ openDest(c.id); }); }
+      coverGrid.appendChild(b);
+    });
+
+    /* ---- 国別ビュー：純行（縦は縦だけ / 横は横だけ）を .gtop/.gi で描画 ---- */
+    function shotHTML(s,dir){
+      var base='images/gallery/'+dir+'/'+s.n;
+      var cls='gi gi-'+s.o;
+      return '<figure class="'+cls+'">'+
+        '<div class="ph"><div class="img" style="position:absolute;inset:0;'+imgStyle(base)+'"></div></div>'+
+        '<figcaption class="gcap">'+
+          '<span class="cap-ttl" data-en="'+s.en+'">'+s.jp+'</span>'+
+          '<span class="cap-rule"></span>'+
+          '<span class="cap-meta"><span class="cap-en">'+s.en+'</span><span class="cap-loc">'+s.loc+'</span></span>'+
+        '</figcaption>'+
+      '</figure>';
+    }
+    function buildRows(data){
+      var dir=data.dir, shots=data.shots, html='';
+      shots.filter(function(s){return s.o==='p';}).forEach(function(s){ html+=shotHTML(s,dir); });
+      shots.filter(function(s){return s.o==='l';}).forEach(function(s){ html+=shotHTML(s,dir); });
+      return html;
+    }
+    function openDest(catId){
+      var meta=null; CATS.forEach(function(c){ if(c.id===catId) meta=c; });
+      var data=GAL[catId]; if(!data||!meta) return;
+      destEn.textContent=meta.en;
+      destJp.textContent=meta.jp;
+      destRows.innerHTML=buildRows(data);
+      /* 生成した [data-en] を現在の言語に合わせる */
+      if(typeof applyLang==='function') applyLang(I18N.lang);
+      coverView.hidden=true;
+      destView.hidden=false;
+      window.scrollTo({top:0,left:0,behavior:'instant'});
+    }
+    function resetToCover(){
+      destView.hidden=true;
+      coverView.hidden=false;
+      destRows.innerHTML='';
+    }
+    backBtn.addEventListener('click',function(){ resetToCover(); window.scrollTo({top:0,left:0,behavior:'instant'}); });
+    /* ルーターがギャラリーALLに入るたびカバーへ戻す（activate 内から呼ばれる） */
+    window.__gpReset=resetToCover;
+
+    /* カバーのリビール（IntersectionObserver・既存演出と同トーン） */
+    if(!reduce && 'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -6% 0px',threshold:.06});
+      coverGrid.querySelectorAll('.gp-cover').forEach(function(el){ io.observe(el); });
+    } else {
+      coverGrid.querySelectorAll('.gp-cover').forEach(function(el){ el.classList.add('in'); });
+    }
+
+    /* 和文字形の先読み（中華フォント化防止） */
+    if(document.fonts&&document.fonts.load){
+      document.fonts.load('500 1rem "Shippori Mincho"','雪の東寺五重塔伊根舟屋夜桜奈良井宿河口湖富士山エッフェル塔オペラガルニエ');
+      document.fonts.load('500 1rem "Zen Kaku Gothic New"','日本韓国中国香港マカオタイフィリピントルコサウジアラビアフランスイギリス準備中');
     }
   })();
 </script>
