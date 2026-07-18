@@ -3781,7 +3781,8 @@
       w51:{t:"Hotel PR",c:"MUNI KYOTO"},
       w52:{t:"Hotel PR",c:"Hilton Garden Inn Yokohama"},
       w53:{t:"Brand Event Appearance",c:"Korean Air"},w54:{t:"TikTok Lite Promotion",c:"TikTok"},w55:{t:"Hotel PR",c:"Hyatt Regency Tokyo"},w56:{t:"Luggage Storage Service PR",c:"Bounce"},w57:{t:"Overseas Tour PR",c:"JTB"},w58:{t:"Elite Plus Product PR",c:"TourBox"},w59:{t:"Hotel PR",c:"Conrad Osaka"},w60:{t:"Camera Bag Product PR",c:"PGYTECH"},w61:{t:"Premium Night Tour — Tourism PR",c:"Wakayama Prefecture"},w62:{t:"LARK MAX 2 Product PR",c:"Hollyland"},w63:{t:"Light-Up PR",c:"Arashiyama Tsukitouro"},
-      w64:{t:"Light-Up & Katana Video",c:"Kodaiji Temple"},w65:{t:"Biovortex Kyoto — Shoot",c:"teamLab"}
+      w64:{t:"Light-Up & Katana Video",c:"Kodaiji Temple"},w65:{t:"Biovortex Kyoto — Shoot",c:"teamLab"},
+      w66:{t:"Executive Portraits",c:"FURYU"},w67:{t:"Photo Meet-up Tour — Instructor",c:"Ocha no Kyoto DMO"}
     };
     function workDescEn(w,en){
       var client=(en&&en.c)?en.c:w.client, title=(en&&en.t)?en.t:w.title;
@@ -4296,7 +4297,7 @@
       b.className='gp-cover'+(c.real?'':' gp-empty-cat');
       b.setAttribute('data-cat',c.id);
       var cnt=photoCount(c);
-      var soon = c.real ? '' : '<span class="csoon" data-en="Coming soon">準備中</span>';
+      var soon = c.real ? '' : '<span class="csoon" data-en="Coming soon">'+t('準備中','Coming soon')+'</span>';
       var countLine = c.real
         ? '<span class="ccount">'+cnt+(cnt===1?' Photo':' Photos')+'</span>'
         : '';
