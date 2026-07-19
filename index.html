@@ -1015,6 +1015,9 @@
   figure.gi-p.gi--ace{grid-column:span 2}
   figure.gi-p.gi--ace .ph::before{padding-top:116%}                           /* エース縦=全幅の見せ札 */
   figure.gi-l.gi--ace .ph::before{padding-top:56%}                            /* エース横=全幅パノラマ */
+  /* 国別ビュー（#gpDestRows）はデータ順で縦3/横2が交互に来るため、モバイル2列ペアだと
+     縦3枚目が奇数で余って半端行になる。1024px未満は縦も全幅スタックにして常に隙間ゼロにする。 */
+  #gpDestRows figure.gi-p{grid-column:span 2}
   .gcap{display:block;padding-top:12px}
   .gcap .cap-ttl{display:block;font-family:var(--mincho);font-weight:500;font-size:1rem;letter-spacing:.05em;line-height:1.55;color:var(--text);word-break:keep-all}
   figure.gi--ace .cap-ttl{font-size:1.16rem}
@@ -4220,11 +4223,11 @@
         {n:'01',o:'p',jp:'雪の東寺 五重塔',      en:'Toji Pagoda in Snow',         loc:'Kyoto'},
         {n:'02',o:'p',jp:'雪夜の二寧坂',         en:'Ninenzaka, Snowy Night',      loc:'Kyoto'},
         {n:'03',o:'p',jp:'八坂の塔 夕景',        en:'Yasaka Pagoda at Dusk',       loc:'Kyoto'},
+        {n:'04',o:'l',jp:'伊根の舟屋',          en:'Ine Boathouses',              loc:'Ine'},
+        {n:'05',o:'l',jp:'鞍馬の火祭',          en:'Kurama Fire Festival',        loc:'Kurama'},
         {n:'06',o:'p',jp:'蹴上インクライン 桜',  en:'Keage Incline in Bloom',      loc:'Kyoto'},
         {n:'07',o:'p',jp:'伊根の舟屋 夜桜',      en:'Ine Funaya, Sakura Night',    loc:'Ine'},
         {n:'08',o:'p',jp:'奈良井宿',            en:'Narai-juku Post Town',        loc:'Nagano'},
-        {n:'04',o:'l',jp:'伊根の舟屋',          en:'Ine Boathouses',              loc:'Ine'},
-        {n:'05',o:'l',jp:'鞍馬の火祭',          en:'Kurama Fire Festival',        loc:'Kurama'},
         {n:'09',o:'l',jp:'立山ロープウェイ 紅葉',en:'Tateyama Ropeway in Autumn',  loc:'Toyama'},
         {n:'10',o:'l',jp:'河口湖と富士山',       en:'Mt. Fuji over Lake Kawaguchi',loc:'Yamanashi'}
       ]},
@@ -4232,11 +4235,11 @@
         {n:'01',o:'p',jp:'エッフェル塔',          en:'Eiffel Tower',            loc:'Paris'},
         {n:'02',o:'p',jp:'オペラ・ガルニエ',       en:'Palais Garnier',          loc:'Paris'},
         {n:'03',o:'p',jp:'レンヌの街（クリスマス）',en:'Rennes at Christmas',     loc:'Rennes'},
+        {n:'04',o:'l',jp:'モン・サン＝ミシェル',    en:'Mont-Saint-Michel',       loc:'Normandy'},
+        {n:'05',o:'l',jp:'サント・シャペル',       en:'Sainte-Chapelle',         loc:'Paris'},
         {n:'06',o:'p',jp:'ギャラリー・ラファイエット',en:'Galeries Lafayette',    loc:'Paris'},
         {n:'07',o:'p',jp:'冬のディオール本店',      en:'Dior Maison in Winter',   loc:'Paris'},
         {n:'08',o:'p',jp:'キャプシーヌ大通り',      en:'Boulevard des Capucines', loc:'Paris'},
-        {n:'04',o:'l',jp:'モン・サン＝ミシェル',    en:'Mont-Saint-Michel',       loc:'Normandy'},
-        {n:'05',o:'l',jp:'サント・シャペル',       en:'Sainte-Chapelle',         loc:'Paris'},
         {n:'09',o:'l',jp:'オペラ・ガルニエ 大階段',  en:'Palais Garnier Staircase',loc:'Paris'},
         {n:'10',o:'l',jp:'レンヌ旧市街',          en:'Rennes Old Town',         loc:'Rennes'}
       ]},
@@ -4244,11 +4247,11 @@
         {n:'01',o:'p',jp:'ビッグ・ベンの黄昏',        en:'Big Ben at Dusk',            loc:'London'},
         {n:'02',o:'p',jp:'ストランドの夜',            en:'The Strand at Night',        loc:'London'},
         {n:'03',o:'p',jp:'コヴェント・ガーデンの聖夜', en:'Covent Garden at Christmas', loc:'London'},
+        {n:'07',o:'l',jp:'タワーブリッジ',            en:'Tower Bridge',               loc:'London'},
+        {n:'08',o:'l',jp:'ザ・シャードとテムズ',       en:'The Shard over the Thames',  loc:'London'},
         {n:'04',o:'p',jp:'電話ボックス越しに',        en:'Through the Phone Box',      loc:'London'},
         {n:'05',o:'p',jp:'雨上がりの路地',            en:'Alley After the Rain',       loc:'London'},
         {n:'06',o:'p',jp:'ブルワーズ・グリーン',       en:"Brewer's Green",             loc:'London'},
-        {n:'07',o:'l',jp:'タワーブリッジ',            en:'Tower Bridge',               loc:'London'},
-        {n:'08',o:'l',jp:'ザ・シャードとテムズ',       en:'The Shard over the Thames',  loc:'London'},
         {n:'09',o:'l',jp:'雨のウエストエンド',         en:'West End in the Rain',       loc:'London'},
         {n:'10',o:'l',jp:'ピカデリーの店先',           en:'Piccadilly Storefront',      loc:'London'}
       ]},
@@ -4256,11 +4259,11 @@
         {n:'01',o:'p',jp:'サグラダ・ファミリアの天井', en:'Ceiling of Sagrada Família',   loc:'Barcelona'},
         {n:'02',o:'p',jp:'アーチ越しのサグラダ',       en:'Sagrada Família Framed',      loc:'Barcelona'},
         {n:'03',o:'p',jp:'バルセロナ俯瞰',            en:'Barcelona from Above',        loc:'Barcelona'},
+        {n:'07',o:'l',jp:'グエル公園',               en:'Park Güell',                  loc:'Barcelona'},
+        {n:'08',o:'l',jp:'光のステンドグラス',        en:'Stained Glass Light',         loc:'Barcelona'},
         {n:'04',o:'p',jp:'カサ・ミラの中庭',          en:'Courtyard of Casa Milà',      loc:'Barcelona'},
         {n:'05',o:'p',jp:'カサ・バトリョの階段',       en:'Inside Casa Batlló',          loc:'Barcelona'},
         {n:'06',o:'p',jp:'グエル公園の大階段',        en:'Grand Staircase, Park Güell', loc:'Barcelona'},
-        {n:'07',o:'l',jp:'グエル公園',               en:'Park Güell',                  loc:'Barcelona'},
-        {n:'08',o:'l',jp:'光のステンドグラス',        en:'Stained Glass Light',         loc:'Barcelona'},
         {n:'09',o:'l',jp:'バルセロナの夜景',          en:'Barcelona by Night',          loc:'Barcelona'},
         {n:'10',o:'l',jp:'ビルバオの黄昏',            en:'Bilbao at Dusk',              loc:'Bilbao'}
       ]},
@@ -4268,11 +4271,11 @@
         {n:'01',o:'p',jp:'花の自転車と運河',          en:'Flower Bike on the Canal',    loc:'Amsterdam'},
         {n:'02',o:'p',jp:'聖ニコラス教会の夜',        en:'St. Nicholas at Night',       loc:'Amsterdam'},
         {n:'03',o:'p',jp:'クリスマスの通り',          en:'Christmas Streets',           loc:'Amsterdam'},
+        {n:'07',o:'l',jp:'ダムラックの夜',            en:'Damrak at Night',             loc:'Amsterdam'},
+        {n:'08',o:'l',jp:'運河の夕暮れ',             en:'Canal at Dusk',               loc:'Amsterdam'},
         {n:'04',o:'p',jp:'ダムラックの船着場',        en:'Damrak Pier',                 loc:'Amsterdam'},
         {n:'05',o:'p',jp:'ネオンの街角',             en:'Neon Corner',                 loc:'Amsterdam'},
         {n:'06',o:'p',jp:'夜歩きの路地',             en:'Night Alley',                 loc:'Amsterdam'},
-        {n:'07',o:'l',jp:'ダムラックの夜',            en:'Damrak at Night',             loc:'Amsterdam'},
-        {n:'08',o:'l',jp:'運河の夕暮れ',             en:'Canal at Dusk',               loc:'Amsterdam'},
         {n:'09',o:'l',jp:'アムステルダムのトラム',     en:'Tram in Amsterdam',           loc:'Amsterdam'},
         {n:'10',o:'l',jp:'古書店の窓灯り',            en:'Antiquarian Bookshop',        loc:'Amsterdam'}
       ]},
@@ -4280,11 +4283,11 @@
         {n:'01',o:'p',jp:'クイーン・ヴィクトリア・ビルディング',en:'Queen Victoria Building', loc:'Sydney'},
         {n:'02',o:'p',jp:'カモメとオペラハウス',      en:'Seagull over the Opera House',loc:'Sydney'},
         {n:'03',o:'p',jp:'ヴィヴィッド・シドニーの夜', en:'Vivid Sydney at Night',       loc:'Sydney'},
+        {n:'07',o:'l',jp:'オペラハウスの夜',          en:'Sydney Opera House at Night', loc:'Sydney'},
+        {n:'08',o:'l',jp:'ハーバーブリッジの夜',       en:'Sydney Harbour Bridge at Night',loc:'Sydney'},
         {n:'04',o:'p',jp:'ハーバーブリッジ 光の夜景',  en:'Harbour Bridge in Lights',    loc:'Sydney'},
         {n:'05',o:'p',jp:'タロンガ動物園のキリン',     en:'Giraffes at Taronga Zoo',     loc:'Sydney'},
         {n:'06',o:'p',jp:'ロッジのラウンジ',          en:'Lodge Lounge',                loc:'Australia'},
-        {n:'07',o:'l',jp:'オペラハウスの夜',          en:'Sydney Opera House at Night', loc:'Sydney'},
-        {n:'08',o:'l',jp:'ハーバーブリッジの夜',       en:'Sydney Harbour Bridge at Night',loc:'Sydney'},
         {n:'09',o:'l',jp:'ハーバーブリッジ空撮',       en:'Harbour Bridge from Above',   loc:'Sydney'},
         {n:'10',o:'l',jp:'客船とオペラハウス',        en:'Cruise Ship by the Opera House',loc:'Sydney'}
       ]},
@@ -4292,11 +4295,11 @@
         {n:'01',o:'p',jp:'モンスターマンションの谷間',   en:'Monster Building Canyon',    loc:'Hong Kong'},
         {n:'02',o:'p',jp:'路面電車と街並み',           en:'Streets and Tram',           loc:'Hong Kong'},
         {n:'03',o:'p',jp:'彩虹邨のバスケットコート',     en:'Choi Hung Estate Court',     loc:'Hong Kong'},
+        {n:'07',o:'l',jp:'ビクトリア・ピークの夜景',     en:'Victoria Peak at Night',     loc:'Hong Kong'},
+        {n:'08',o:'l',jp:'ビクトリア・ハーバーの夜',     en:'Victoria Harbour at Night',  loc:'Hong Kong'},
         {n:'04',o:'p',jp:'光跡と摩天楼の夜',           en:'City Lights and Traffic',    loc:'Hong Kong'},
         {n:'05',o:'p',jp:'ビクトリア・ハーバー俯瞰',     en:'Victoria Harbour from Above',loc:'Hong Kong'},
         {n:'06',o:'p',jp:'廟街のネオン',              en:'Temple Street Neon',         loc:'Hong Kong'},
-        {n:'07',o:'l',jp:'ビクトリア・ピークの夜景',     en:'Victoria Peak at Night',     loc:'Hong Kong'},
-        {n:'08',o:'l',jp:'ビクトリア・ハーバーの夜',     en:'Victoria Harbour at Night',  loc:'Hong Kong'},
         {n:'09',o:'l',jp:'廟街の夜',                 en:'Temple Street at Night',     loc:'Hong Kong'},
         {n:'10',o:'l',jp:'廟街の屋台',                en:'Temple Street Food Stall',   loc:'Hong Kong'}
       ]},
@@ -4306,9 +4309,12 @@
         {n:'03',o:'p',jp:'ローマの通り',               en:'Roman Street',               loc:'Rome'},
         {n:'04',o:'l',jp:'フィレンツェの丘から',         en:'Florence from the Hills',    loc:'Florence'},
         {n:'05',o:'l',jp:'ミラノ大聖堂',               en:'Milan Cathedral',            loc:'Milan'},
+        {n:'11',o:'l',jp:'大聖堂の鐘楼から望む大空',      en:'Vast Sky from the Bell Tower',loc:'Florence'},
         {n:'06',o:'l',jp:'コロッセオ',                en:'The Colosseum',              loc:'Rome'},
         {n:'07',o:'l',jp:'トレビの泉',                en:'Trevi Fountain',             loc:'Rome'},
+        {n:'12',o:'l',jp:'サンタ・クローチェ聖堂の遠景',   en:'Santa Croce in the Distance',loc:'Florence'},
         {n:'08',o:'l',jp:'アルノ川の夕暮れ',           en:'Arno River at Dusk',         loc:'Florence'},
+        {n:'13',o:'l',jp:'ドゥオモ広場のストリートアート', en:'Street Art at Piazza del Duomo',loc:'Florence'},
         {n:'09',o:'l',jp:'大聖堂の身廊',              en:'Cathedral Nave',             loc:'Florence'},
         {n:'10',o:'l',jp:'大聖堂の装飾',              en:'Cathedral Interior',         loc:'Florence'}
       ]},
@@ -4316,11 +4322,11 @@
         {n:'01',o:'p',jp:'マリエン広場 新市庁舎',       en:'New Town Hall, Marienplatz', loc:'Munich'},
         {n:'02',o:'p',jp:'教会の天井装飾',             en:'Baroque Ceiling Fresco',     loc:'Bavaria'},
         {n:'03',o:'p',jp:'ノイシュヴァンシュタイン城',   en:'Neuschwanstein Castle',      loc:'Bavaria'},
+        {n:'07',o:'l',jp:'ノイシュヴァンシュタイン城と平原',en:'Neuschwanstein over the Plains',loc:'Bavaria'},
+        {n:'08',o:'l',jp:'ノイシュヴァンシュタイン城と湖',en:'Neuschwanstein and Alpine Lake',loc:'Bavaria'},
         {n:'04',o:'p',jp:'リンダーホーフ城の庭園',      en:'Linderhof Palace Gardens',   loc:'Bavaria'},
         {n:'05',o:'p',jp:'ミュンヘンの夜明けの通り',     en:'Munich Street at Dawn',      loc:'Munich'},
         {n:'06',o:'p',jp:'ホフブロイハウス外観',        en:'Hofbräuhaus Exterior',       loc:'Munich'},
-        {n:'07',o:'l',jp:'ノイシュヴァンシュタイン城と平原',en:'Neuschwanstein over the Plains',loc:'Bavaria'},
-        {n:'08',o:'l',jp:'ノイシュヴァンシュタイン城と湖',en:'Neuschwanstein and Alpine Lake',loc:'Bavaria'},
         {n:'09',o:'l',jp:'ミュンヘンの歩行者天国',       en:'Munich Pedestrian Street',   loc:'Munich'},
         {n:'10',o:'l',jp:'ホフブロイハウスの夜',        en:'Hofbräuhaus at Night',       loc:'Munich'}
       ]},
@@ -4328,11 +4334,11 @@
         {n:'01',o:'p',jp:'釜山の高層ビル群 水面反射',    en:'Busan Skyline Reflection',   loc:'Busan'},
         {n:'02',o:'p',jp:'海雲台の夕暮れ',             en:'Haeundae at Dusk',           loc:'Busan'},
         {n:'03',o:'p',jp:'高層ビルの見上げ',            en:'Looking Up at Skyscrapers',  loc:'Busan'},
+        {n:'07',o:'l',jp:'広安大橋の夜景',             en:'Gwangan Bridge at Night',    loc:'Busan'},
+        {n:'08',o:'l',jp:'慶州 大陵苑 古墳群',          en:'Royal Tombs, Gyeongju',      loc:'Gyeongju'},
         {n:'04',o:'p',jp:'慶州 古墳の並木道',           en:'Tomb Park Pathway',          loc:'Gyeongju'},
         {n:'05',o:'p',jp:'海沿いの道',                en:'Coastal Road',               loc:'Busan'},
         {n:'06',o:'p',jp:'瞻星台と韓服',               en:'Cheomseongdae with Hanbok',  loc:'Gyeongju'},
-        {n:'07',o:'l',jp:'広安大橋の夜景',             en:'Gwangan Bridge at Night',    loc:'Busan'},
-        {n:'08',o:'l',jp:'慶州 大陵苑 古墳群',          en:'Royal Tombs, Gyeongju',      loc:'Gyeongju'},
         {n:'09',o:'l',jp:'海雲台の夜景 水面反射',        en:'Haeundae Night Reflection',  loc:'Busan'},
         {n:'10',o:'l',jp:'高層ビル群の水面反射',         en:'High-Rise Reflections',      loc:'Busan'}
       ]},
@@ -4340,11 +4346,11 @@
         {n:'01',o:'p',jp:'グランド・リスボア',          en:'Grand Lisboa',               loc:'Macao'},
         {n:'02',o:'p',jp:'聖ポール天主堂跡',            en:"Ruins of St. Paul's",        loc:'Macao'},
         {n:'03',o:'p',jp:'カラフルな石畳の坂道',         en:'Colorful Cobblestone Lane',  loc:'Macao'},
+        {n:'07',o:'l',jp:'世界遺産エリアの広場',         en:'World Heritage Square',      loc:'Macao'},
+        {n:'08',o:'l',jp:'セナド広場の通り',            en:'Senado Square Street',       loc:'Macao'},
         {n:'04',o:'p',jp:'聖ポール天主堂跡への階段',      en:"Steps to St. Paul's Ruins",  loc:'Macao'},
         {n:'05',o:'p',jp:'屋台街の賑わい',             en:'Bustling Street Market',     loc:'Macao'},
         {n:'06',o:'p',jp:'パステルカラーの建物',         en:'Pastel-Colored Facade',      loc:'Macao'},
-        {n:'07',o:'l',jp:'世界遺産エリアの広場',         en:'World Heritage Square',      loc:'Macao'},
-        {n:'08',o:'l',jp:'セナド広場の通り',            en:'Senado Square Street',       loc:'Macao'},
         {n:'09',o:'l',jp:'ヴェネチアン・マカオの運河',    en:'The Venetian Macao Canal',   loc:'Macao'},
         {n:'10',o:'l',jp:'パステルカラーの家並み',       en:'Pastel Row Houses',          loc:'Macao'}
       ]},
@@ -4352,11 +4358,11 @@
         {n:'01',o:'p',jp:'ホテルライブラリーラウンジ',    en:'Hotel Library Lounge',       loc:'Tokyo'},
         {n:'02',o:'p',jp:'レストランの窓辺の席',         en:'Restaurant Window Seat',     loc:'Tokyo'},
         {n:'03',o:'p',jp:'バーカウンター',              en:'Bar Counter',                loc:'Tokyo'},
+        {n:'07',o:'l',jp:'バーラウンジ',               en:'Bar Lounge',                 loc:'Tokyo'},
+        {n:'08',o:'l',jp:'バーの一角',                 en:'Bar Corner',                 loc:'Tokyo'},
         {n:'04',o:'p',jp:'渋谷ストリームホテル ネオン',    en:'Shibuya Stream Hotel Neon',  loc:'Tokyo'},
         {n:'05',o:'p',jp:'ラウンジのソファ席',           en:'Lounge Sofa Seating',        loc:'Tokyo'},
         {n:'06',o:'p',jp:'客室ベッドルーム',             en:'Guest Room',                 loc:'Tokyo'},
-        {n:'07',o:'l',jp:'バーラウンジ',               en:'Bar Lounge',                 loc:'Tokyo'},
-        {n:'08',o:'l',jp:'バーの一角',                 en:'Bar Corner',                 loc:'Tokyo'},
         {n:'09',o:'l',jp:'シャンパンボトルの並ぶバー',     en:'Champagne Bar',              loc:'Tokyo'},
         {n:'10',o:'l',jp:'客室からの夜景',              en:'Guest Room Night View',      loc:'Tokyo'}
       ]}
@@ -4409,8 +4415,7 @@
     }
     function buildRows(data){
       var dir=data.dir, shots=data.shots, html='';
-      shots.filter(function(s){return s.o==='p';}).forEach(function(s){ html+=shotHTML(s,dir); });
-      shots.filter(function(s){return s.o==='l';}).forEach(function(s){ html+=shotHTML(s,dir); });
+      shots.forEach(function(s){ html+=shotHTML(s,dir); });
       return html;
     }
     function openDest(catId){
