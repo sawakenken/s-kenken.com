@@ -1103,7 +1103,6 @@
   @media(prefers-reduced-motion:no-preference){.scroll-prog.on{display:block}}
   @media(max-width:600px){
     .np-link,.wd-tl-post{min-height:44px}
-    .gp-filter button{min-height:44px;display:inline-flex;align-items:center}
   }
 
   /* ============================================================
@@ -1237,46 +1236,6 @@
   }
 
   /* ---------- GALLERY PAGE ---------- */
-  .gp-filter{display:flex;flex-wrap:wrap;justify-content:center;
-    gap:clamp(10px,1.6vw,15px) clamp(16px,2.4vw,30px);
-    max-width:980px;margin:clamp(22px,4vw,40px) auto clamp(34px,5vw,56px);
-    padding-bottom:clamp(24px,3vw,32px);border-bottom:1px solid var(--line-soft)}
-  .gp-filter button{background:none;border:0;padding:0;cursor:pointer;position:relative;
-    font-family:var(--sans);font-weight:500;font-size:.7rem;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--muted);transition:color .3s;line-height:1.4}
-  .gp-filter button::after{content:"";position:absolute;left:50%;right:50%;bottom:-6px;height:1.5px;
-    background:var(--accent);transition:left .35s var(--ease),right .35s var(--ease)}
-  @media(hover:hover){.gp-filter button:hover{color:var(--text)}}
-  .gp-filter button.on{color:var(--text)}
-  .gp-filter button.on::after{left:0;right:0}
-  @media(max-width:720px){
-    .gp-filter{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:22px;margin-top:clamp(18px,4vw,24px);margin-bottom:clamp(26px,5vw,34px)}
-    .gp-filter::-webkit-scrollbar{display:none}
-    .gp-filter button{flex:0 0 auto;white-space:nowrap}
-  }
-  .gp-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-flow:row;gap:clamp(8px,1.2vw,14px)}
-  .gp-tile.p{grid-column:span 2;aspect-ratio:4/5}
-  .gp-tile.l{grid-column:span 3;aspect-ratio:16/10}
-  @media(max-width:760px){.gp-grid{gap:6px}}
-  @media(max-width:430px){.gp-grid{gap:5px}}
-  .gp-tile{position:relative;border-radius:0;overflow:hidden;background:var(--panel2);
-    aspect-ratio:4/5;opacity:0;transform:translateY(34px) scale(.97);transition:opacity .9s ease,transform 1.05s var(--ease)}
-  .gp-tile.in{opacity:1;transform:none}
-  .gp-tile.tall{aspect-ratio:3/4}
-  .gp-tile .img{position:absolute;inset:0;transition:transform 1s var(--ease)}
-  @media(hover:hover){.gp-tile:hover .img{transform:scale(1.06)}}
-  .gp-tile::after{content:"";position:absolute;inset:0;z-index:1;
-    background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.62));
-    opacity:0;transition:opacity .4s}
-  @media(hover:hover){.gp-tile:hover::after{opacity:1}}
-  .gp-tile figcaption{position:absolute;left:13px;right:13px;bottom:12px;z-index:2;
-    opacity:0;transform:translateY(7px);transition:opacity .4s,transform .4s}
-  @media(hover:hover){.gp-tile:hover figcaption{opacity:1;transform:none}}
-  .gp-tile .gt{font-family:var(--mincho);font-weight:600;font-size:.92rem;color:#fff;
-    text-shadow:0 1px 10px rgba(0,0,0,.6)}
-  .gp-tile .gl{font-family:var(--sans);font-size:.56rem;font-weight:500;letter-spacing:.1em;
-    text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:2px}
-  .gp-tile.hide{display:none}
   .gp-empty{display:none;text-align:center;color:var(--muted);font-size:.95rem;padding:30px 0}
   .gp-empty.show{display:block}
   /* ===== GALLERY ALL — ハイブリッド：カバーグリッド（入口）＋国別ビュー ===== */
@@ -3131,9 +3090,6 @@
       <div class="gtop" id="gpDestRows"></div>
     </div>
 
-    <!-- 旧フラット格子は撤去。bindFilter('gpFilter','gpGrid',...) は要素が無く no-op（ルーター非破壊）。 -->
-    <div class="gp-grid" id="gpGrid" hidden>
-    </div>
     <p class="gp-empty" id="gpEmpty"><span data-en="Photos in this category are coming soon.">このカテゴリの写真は準備中です。</span></p>
   </section>
 </main>
@@ -3499,6 +3455,7 @@
   try{var _sl=localStorage.getItem('lang'); if(_sl==='en'||_sl==='ja') I18N.lang=_sl;}catch(_){}
   function t(ja,en){ return (I18N.lang==='en' && en!=null && en!=='') ? en : ja; }
   var rerenderForLang=function(){};   /* assigned once the router exists */
+  var BASE_TITLE=document.title;   /* "澤井 健太 / Sawai Kenta — Travel Photographer" — restored whenever a non-detail view activates */
   function applyLang(lang){
     I18N.lang = (lang==='en')?'en':'ja';
     try{localStorage.setItem('lang',I18N.lang);}catch(_){}
@@ -3979,6 +3936,7 @@
       if(views[current]) scrollMem[current]=window.scrollY;   /* remember where we were */
       if(!views[name]) name='home';
       activate(name);
+      if(name!=='work' && name!=='post'){ try{document.title=BASE_TITLE;}catch(_){} }   /* detail views set their own title in populateWork/populatePost — every other view falls back to the base title */
       if(name==='home' && current!=='home'){ var _act=document.querySelector('.hero-slides .slide.is-active'); if(_act) _act.style.animation='none'; }   /* freeze hero zoom so it doesn't replay (the "どぅん") on return */
       document.body.classList.remove('menu-open');
       var restored = opts.restore && scrollMem[name]!=null;
@@ -4032,6 +3990,7 @@
     function buildNewsPanel(li){
       var p=POSTS[li.dataset.slug]; if(!p)return;
       var body=(I18N.lang==='en')?(POST_BODY_EN[p.pill]||p.body):p.body;
+      var old=li.querySelector('.np-panel'); if(old) old.remove();   /* rebuildable so a language switch can refresh an already-open panel */
       var panel=document.createElement('div'); panel.className='np-panel';
       var bp=document.createElement('p'); bp.className='np-body'; bp.textContent=body; panel.appendChild(bp);
       var links=document.createElement('div'); links.className='np-links'; panel.appendChild(links);
@@ -4102,13 +4061,15 @@
       var h=(location.hash||'').replace(/^#/,'');
       if(h.indexOf('work-')===0) populateWork(h.slice(5));
       else if(h.indexOf('post-')===0) populatePost(h.slice(5));
+      /* re-render any News pulldown left open so its body + buttons match the new language */
+      document.querySelectorAll('li[data-slug].np-open').forEach(function(li){ buildNewsPanel(li); });
     };
     document.querySelectorAll('.lang-toggle').forEach(function(tg){
       tg.addEventListener('click',function(e){ e.stopPropagation(); applyLang(I18N.lang==='en'?'ja':'en'); });
     });
     applyLang(I18N.lang);
 
-    /* generic category filter (gallery page + works page) */
+    /* generic category filter (works page) */
     function bindFilter(filterId,gridId,itemSel,emptyId,countId,defFilter){
       var fil=document.getElementById(filterId), grid=document.getElementById(gridId);
       if(!fil||!grid)return;
@@ -4133,7 +4094,6 @@
       });
       apply(defFilter||'all');
     }
-    bindFilter('gpFilter','gpGrid','.gp-tile','gpEmpty',null,'japan');
     bindFilter('wpFilter','wpGrid','.work','wpEmpty',null);
 
     /* news page category filter */
