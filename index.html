@@ -967,7 +967,7 @@
   .sel-grid .work.sel-feat .img{aspect-ratio:5/4}
   .sel-grid .work.sel-c:nth-of-type(6) .img{aspect-ratio:16/10}   /* mobile 全幅カード(Adobe)は横長で高さを抑える */
   .sel-grid .work::after{display:none}                       /* overlayグラデ無効（キャプションは下） */
-  .sel-grid .work figcaption.sel-cap{position:static;left:auto;right:auto;bottom:auto;z-index:auto;padding-top:14px;display:block}
+  .sel-grid .work figcaption.sel-cap{position:static;left:auto;right:auto;bottom:auto;z-index:auto;padding-top:14px;display:block;margin-top:auto}   /* 行内で画像高さが異なっても(Coca-Colaのパノラマ比など)キャプション/金線を行の下端に揃える */
   .sel-grid .sel-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:9px}
   .sel-grid .work .wc{display:inline-flex;align-items:center;font-family:var(--sans);font-size:.5rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:2px;padding:4px 9px 3px;margin-bottom:0;white-space:nowrap}
   .sel-grid .work.sel-feat .wc{color:var(--accent);border-color:rgba(224,166,97,.35)}
@@ -1255,7 +1255,7 @@
   .gp-cover .cen{font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;line-height:1.15;transition:color .45s ease}
   .gp-cover .cjp{font-family:var(--mincho);font-size:.68rem;font-weight:500;color:rgba(255,255,255,.82);margin-top:3px;letter-spacing:.04em}
   .gp-cover .ccount{display:block;font-family:var(--sans);font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-top:9px}
-  .gp-cover .cline{position:absolute;left:14px;bottom:40px;z-index:2;width:22px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+  .gp-cover .cline{display:block;margin-top:10px;width:22px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}   /* cjp直後の通常フロー配置。bottom固定マジックナンバーをやめ、現地語名の実高さに追従させる */
   @media(hover:hover){
     .gp-cover:hover .cimg{transform:scale(1.08)}
     .gp-cover:hover .cen{color:var(--accent)}
@@ -1273,7 +1273,7 @@
   .gp-dest-en{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,10vw,4.4rem);line-height:1;letter-spacing:.01em;color:var(--text)}
   .gp-dest-jp{font-family:var(--mincho);font-size:.8rem;color:var(--muted);letter-spacing:.22em;margin-top:12px}
   @media(min-width:481px){.gp-cover-grid{grid-template-columns:repeat(3,1fr);gap:16px}
-    .gp-cover .cen{font-size:.94rem}.gp-cover .cjp{font-size:.74rem}.gp-cover .cline{bottom:48px}.gp-cover .ctext{padding:20px 18px 18px}}
+    .gp-cover .cen{font-size:.94rem}.gp-cover .cjp{font-size:.74rem}.gp-cover .ctext{padding:20px 18px 18px}}
   @media(min-width:1024px){.gp-cover-grid{grid-template-columns:repeat(4,1fr)}}
   .gp-count{text-align:center;font-family:var(--sans);font-size:.66rem;font-weight:500;
     letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
@@ -4287,7 +4287,7 @@
         {n:'08',o:'l',jp:'ハーバーブリッジの夜',       en:'Sydney Harbour Bridge at Night',loc:'Sydney'},
         {n:'04',o:'p',jp:'ハーバーブリッジ 光の夜景',  en:'Harbour Bridge in Lights',    loc:'Sydney'},
         {n:'05',o:'p',jp:'タロンガ動物園のキリン',     en:'Giraffes at Taronga Zoo',     loc:'Sydney'},
-        {n:'06',o:'p',jp:'ロッジのラウンジ',          en:'Lodge Lounge',                loc:'Australia'},
+        {n:'06',o:'p',jp:'タロンガズー・ホテルのロビー', en:'Taronga Zoo Hotel Lobby',     loc:'Sydney'},
         {n:'09',o:'l',jp:'ハーバーブリッジ空撮',       en:'Harbour Bridge from Above',   loc:'Sydney'},
         {n:'10',o:'l',jp:'客船とオペラハウス',        en:'Cruise Ship by the Opera House',loc:'Sydney'}
       ]},
@@ -4390,10 +4390,10 @@
       b.innerHTML=
         '<div class="cimg '+(c.real?'':PH[i%PH.length])+'" style="'+imgStyle(c.cover)+'"></div>'+
         '<div class="scrim"></div>'+
-        '<div class="cline"></div>'+
         '<div class="ctext">'+
           '<div class="cen">'+c.en+'</div>'+
           '<div class="cjp">'+c.jp+'</div>'+
+          '<div class="cline"></div>'+
           countLine+soon+
         '</div>';
       if(c.real){ b.addEventListener('click',function(){ openDest(c.id); }); }
